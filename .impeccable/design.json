@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-13T10:55:01Z",
+  "title": "Design System: CoCo Project",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper Cream",
+        "canonical": "oklch(98.2% 0.012 88)",
+        "tonalRamp": [
+          "oklch(16% 0.012 88)",
+          "oklch(28% 0.012 88)",
+          "oklch(40% 0.012 88)",
+          "oklch(52% 0.012 88)",
+          "oklch(64% 0.012 88)",
+          "oklch(76% 0.012 88)",
+          "oklch(88% 0.012 88)",
+          "oklch(98.2% 0.012 88)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Warm Ink",
+        "canonical": "oklch(23% 0.036 71)",
+        "tonalRamp": [
+          "oklch(15% 0.036 71)",
+          "oklch(23% 0.036 71)",
+          "oklch(34% 0.036 71)",
+          "oklch(46% 0.036 71)",
+          "oklch(58% 0.036 71)",
+          "oklch(70% 0.036 71)",
+          "oklch(82% 0.036 71)",
+          "oklch(94% 0.036 71)"
+        ]
+      },
+      "coconut": {
+        "role": "secondary",
+        "displayName": "Coconut Brown",
+        "canonical": "oklch(42% 0.105 58)",
+        "tonalRamp": [
+          "oklch(16% 0.105 58)",
+          "oklch(27% 0.105 58)",
+          "oklch(38% 0.105 58)",
+          "oklch(49% 0.105 58)",
+          "oklch(60% 0.105 58)",
+          "oklch(71% 0.085 58)",
+          "oklch(82% 0.065 58)",
+          "oklch(93% 0.045 58)"
+        ]
+      },
+      "leaf": {
+        "role": "primary",
+        "displayName": "Growth Green",
+        "canonical": "oklch(50% 0.112 144)",
+        "tonalRamp": [
+          "oklch(16% 0.112 144)",
+          "oklch(27% 0.112 144)",
+          "oklch(38% 0.112 144)",
+          "oklch(49% 0.112 144)",
+          "oklch(60% 0.105 144)",
+          "oklch(71% 0.085 144)",
+          "oklch(82% 0.065 144)",
+          "oklch(93% 0.045 144)"
+        ]
+      },
+      "slate": {
+        "role": "tertiary",
+        "displayName": "Cryo Slate",
+        "canonical": "oklch(45% 0.065 218)",
+        "tonalRamp": [
+          "oklch(16% 0.065 218)",
+          "oklch(27% 0.065 218)",
+          "oklch(38% 0.065 218)",
+          "oklch(49% 0.065 218)",
+          "oklch(60% 0.06 218)",
+          "oklch(71% 0.05 218)",
+          "oklch(82% 0.042 218)",
+          "oklch(93% 0.032 218)"
+        ]
+      },
+      "ctfa": {
+        "role": "tertiary",
+        "displayName": "CTFA Lavender",
+        "canonical": "oklch(58% 0.055 285)",
+        "tonalRamp": [
+          "oklch(16% 0.055 285)",
+          "oklch(27% 0.055 285)",
+          "oklch(38% 0.055 285)",
+          "oklch(49% 0.055 285)",
+          "oklch(60% 0.052 285)",
+          "oklch(71% 0.046 285)",
+          "oklch(82% 0.038 285)",
+          "oklch(93% 0.03 285)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero titles and module page titles. Keep the measure short and balanced."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings that explain system relationship and primary action."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Module names, component headings, and subsection titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Explanatory prose and research-facing descriptions."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrows, toolbar labels, table headers, and small status cues."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ambient-surface",
+        "value": "0 24px 70px oklch(38% 0.058 70 / 0.14)",
+        "purpose": "Use only for major showcase surfaces like the workbench card."
+      },
+      {
+        "name": "soft-surface",
+        "value": "0 12px 38px oklch(38% 0.058 70 / 0.09)",
+        "purpose": "Use for secondary panels, figures, download surfaces, and embedded media."
+      },
+      {
+        "name": "primary-button-glow",
+        "value": "0 14px 28px oklch(35% 0.083 145 / 0.22)",
+        "purpose": "Use for the primary CTA at rest."
+      },
+      {
+        "name": "primary-button-hover-glow",
+        "value": "0 18px 34px oklch(35% 0.083 145 / 0.26)",
+        "purpose": "Use only on primary CTA hover."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default easing for hover, focus, dropdown, and view transitions."
+      },
+      {
+        "name": "state-fast",
+        "value": "180ms",
+        "purpose": "Fast interaction response for hover and active states."
+      },
+      {
+        "name": "state-medium",
+        "value": "220ms to 280ms",
+        "purpose": "Dropdown and view fade transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "42rem"
+      },
+      {
+        "name": "md",
+        "value": "58rem"
+      },
+      {
+        "name": "lg",
+        "value": "74rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The singular CoCo download action: green, pill-shaped, tactile, and calm.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Download CoCo</a>",
+      "css": ".ds-btn-primary { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: 999px; padding: 0.78rem 1.1rem; background: oklch(35% 0.083 145); box-shadow: 0 14px 28px oklch(35% 0.083 145 / 0.22); color: oklch(97% 0.018 132); font: 800 16px/1 Inter, ui-sans-serif, system-ui, sans-serif; text-decoration: none; transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1), background-color 180ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-primary:hover { transform: translateY(-1px); background: oklch(50% 0.112 144); box-shadow: 0 18px 34px oklch(35% 0.083 145 / 0.26); } .ds-btn-primary:focus-visible { outline: 3px solid oklch(54% 0.15 142); outline-offset: 4px; } .ds-btn-primary:active { transform: scale(0.975); box-shadow: none; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A lower-commitment navigation button for exploration, never equal to Download CoCo.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">View modules</a>",
+      "css": ".ds-btn-secondary { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(72% 0.052 82); border-radius: 999px; padding: 0.78rem 1.1rem; background: oklch(97% 0.016 88 / 0.78); color: oklch(31% 0.078 52); font: 800 16px/1 Inter, ui-sans-serif, system-ui, sans-serif; text-decoration: none; transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), background-color 180ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-secondary:hover { transform: translateY(-1px); background: oklch(89% 0.048 72); } .ds-btn-secondary:focus-visible { outline: 3px solid oklch(54% 0.15 142); outline-offset: 4px; } .ds-btn-secondary:active { transform: scale(0.975); }"
+    },
+    {
+      "name": "Module Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Small attribute markers for module capabilities and status.",
+      "html": "<span class=\"ds-chip ds-chip-sieve\">Particle sieving</span> <span class=\"ds-chip ds-chip-pros\">Orientation correction</span> <span class=\"ds-chip ds-chip-ctfa\">TBD</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; margin: 0.15rem; padding: 0.45rem 0.72rem; border: 1px solid oklch(84% 0.033 88); border-radius: 999px; font: 760 0.86rem/1 Inter, ui-sans-serif, system-ui, sans-serif; } .ds-chip-sieve { background: oklch(94% 0.04 74 / 0.55); color: oklch(31% 0.078 52); } .ds-chip-pros { background: oklch(93% 0.04 151 / 0.5); color: oklch(35% 0.083 145); } .ds-chip-ctfa { background: oklch(92% 0.032 292); color: oklch(58% 0.055 285); }"
+    },
+    {
+      "name": "Workbench Card",
+      "kind": "card",
+      "refersTo": "workbench-card",
+      "description": "The major showcase surface for the CoCo module relationship map.",
+      "html": "<section class=\"ds-workbench\"><div class=\"ds-toolbar\"><span></span><span></span><span></span><strong>CoCo module map</strong></div><div class=\"ds-map\"><strong>CoCo</strong><p>Unified GUI connecting CryoSieve, CryoPROS, and CTFA.</p></div></section>",
+      "css": ".ds-workbench { overflow: hidden; border: 1px solid oklch(84% 0.033 88); border-radius: 34px; background: linear-gradient(180deg, oklch(98% 0.012 88), oklch(94.4% 0.026 86)); box-shadow: 0 24px 70px oklch(38% 0.058 70 / 0.14); color: oklch(23% 0.036 71); font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-toolbar { min-height: 58px; display: flex; align-items: center; gap: 0.45rem; padding: 0.9rem 1rem; border-bottom: 1px solid oklch(84% 0.033 88); background: oklch(97% 0.015 88 / 0.88); } .ds-toolbar span { width: 0.68rem; height: 0.68rem; border-radius: 50%; background: oklch(72% 0.052 82); } .ds-toolbar span:nth-child(1) { background: oklch(42% 0.105 58); } .ds-toolbar span:nth-child(2) { background: oklch(50% 0.112 144); } .ds-toolbar span:nth-child(3) { background: oklch(45% 0.065 218); } .ds-toolbar strong { margin-left: 0.42rem; color: oklch(42% 0.03 80); font-size: 0.78rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; } .ds-map { padding: 2rem; background-image: linear-gradient(oklch(72% 0.032 88 / 0.12) 1px, transparent 1px), linear-gradient(90deg, oklch(72% 0.032 88 / 0.12) 1px, transparent 1px); background-size: 32px 32px; } .ds-map strong { display: block; color: oklch(31% 0.078 52); font: 750 2rem/1.1 Charter, Cambria, serif; } .ds-map p { max-width: 32ch; color: oklch(42% 0.03 80); line-height: 1.6; }"
+    },
+    {
+      "name": "Module Ledger Row",
+      "kind": "custom",
+      "refersTo": "module-ledger",
+      "description": "A ruled row pattern that avoids generic repeated cards for modules.",
+      "html": "<article class=\"ds-ledger-row\"><div class=\"ds-index\">01</div><div><h3>CryoSieve</h3><p>Particle sorting and sieving for single-particle cryo-EM.</p></div><span class=\"ds-ledger-chip\">Particle sieving</span></article>",
+      "css": ".ds-ledger-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1.4rem; align-items: center; padding: 1.6rem 0; border-block: 1px solid oklch(84% 0.033 88); color: oklch(23% 0.036 71); font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-index { width: 3.2rem; height: 3.2rem; display: grid; place-items: center; border: 1px solid oklch(72% 0.052 82); border-radius: 50%; background: oklch(96.1% 0.018 92); color: oklch(31% 0.078 52); font-weight: 850; } .ds-ledger-row h3 { margin: 0; font-size: 1.35rem; line-height: 1.12; letter-spacing: -0.025em; } .ds-ledger-row p { max-width: 72ch; margin: 0.45rem 0 0; color: oklch(42% 0.03 80); line-height: 1.6; } .ds-ledger-chip { padding: 0.45rem 0.72rem; border: 1px solid oklch(84% 0.033 88); border-radius: 999px; background: oklch(97% 0.017 88 / 0.78); color: oklch(42% 0.03 80); font-size: 0.86rem; font-weight: 760; }"
+    },
+    {
+      "name": "Navigation Dropdown",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Warm paper module selector with concise title and descriptor rows.",
+      "html": "<nav class=\"ds-nav\"><button class=\"ds-nav-trigger\">Modules</button><div class=\"ds-menu\"><a href=\"#\"><strong>CryoSieve</strong><span>Particle sorting and sieving</span></a><a href=\"#\"><strong>CryoPROS</strong><span>Preferred orientation correction</span></a></div></nav>",
+      "css": ".ds-nav { position: relative; display: inline-block; font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-nav-trigger { min-height: 42px; border: 0; border-radius: 999px; padding: 0.46rem 0.7rem; background: transparent; color: oklch(42% 0.03 80); font-size: 0.92rem; font-weight: 720; cursor: pointer; } .ds-nav-trigger:hover, .ds-nav:focus-within .ds-nav-trigger { background: oklch(91% 0.055 140); color: oklch(35% 0.083 145); } .ds-menu { min-width: 18rem; margin-top: 0.55rem; padding: 0.55rem; border: 1px solid oklch(84% 0.033 88); border-radius: 16px; background: oklch(98.8% 0.012 88 / 0.98); box-shadow: 0 20px 48px oklch(38% 0.058 70 / 0.13), 0 0 0 1px oklch(72% 0.032 88 / 0.18); } .ds-menu a { display: grid; gap: 0.08rem; padding: 0.72rem 0.85rem; border-radius: 10px; color: inherit; text-decoration: none; } .ds-menu a:hover, .ds-menu a:focus-visible { background: oklch(91% 0.055 140); outline: none; } .ds-menu strong { color: oklch(23% 0.036 71); font-size: 0.96rem; font-weight: 760; } .ds-menu span { color: oklch(55% 0.026 92); font-size: 0.81rem; font-weight: 620; }"
+    },
+    {
+      "name": "Scientific Figure",
+      "kind": "card",
+      "refersTo": "module-figure",
+      "description": "A bordered, softly shadowed treatment for cryo-EM figures and module visuals.",
+      "html": "<figure class=\"ds-figure\"><div class=\"ds-figure-placeholder\">CryoPROS figure</div><figcaption>Scientific figures stay legible, bordered, and softly lifted.</figcaption></figure>",
+      "css": ".ds-figure { margin: 0; color: oklch(42% 0.03 80); font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-figure-placeholder { min-height: 14rem; display: grid; place-items: center; border: 1px solid oklch(84% 0.033 88); border-radius: 16px; background: linear-gradient(180deg, oklch(98% 0.012 88), oklch(94.4% 0.026 86)); box-shadow: 0 12px 38px oklch(38% 0.058 70 / 0.09); color: oklch(35% 0.083 145); font-weight: 800; } .ds-figure figcaption { margin-top: 0.55rem; color: oklch(55% 0.026 92); font-size: 0.86rem; line-height: 1.5; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Coconut Atlas",
+    "overview": "CoCo should feel like a carefully annotated atlas for a structural biology lab: warm paper, precise routes, and a central landmark that makes the module family easy to navigate. The coconut mark gives the brand a human and memorable center, while the diagrammatic workbench keeps the page credible for cryo-EM researchers.\n\nThe physical scene is a cryo-EM researcher in a bright lab office, glancing between reconstruction runs and a project homepage to understand where to download CoCo and how CryoSieve, CryoPROS, and CTFA relate. That scene requires a light, warm, low-glare interface with calm academic density, not a dark launch screen or a sales-heavy SaaS page.\n\nThis system rejects generic research-project template pages, exaggerated SaaS landing-page styling, overly flashy dark tech aesthetics, and dense jargon walls. The interface should be composed, tactile, and navigable, with one clear primary action: Download CoCo.",
+    "keyCharacteristics": [
+      "Warm lab-paper surfaces with subtle green, coconut, slate, and lavender module cues.",
+      "Serif-led headings for academic calm, sans body text for readable instructions.",
+      "Diagrammatic structure over card-grid repetition.",
+      "Ambient tactile depth, never glassy or glossy.",
+      "CoCo is always the hub; module pages extend the system without competing with it."
+    ],
+    "rules": [
+      {
+        "name": "The Warm Paper Rule",
+        "body": "Every neutral surface must keep the warm lab-paper tint. Pure black and pure white are forbidden.",
+        "section": "colors"
+      },
+      {
+        "name": "The One CoCo Action Rule",
+        "body": "Growth Green carries primary action energy. Do not let module links, GitHub references, or CTFA states compete with Download CoCo.",
+        "section": "colors"
+      },
+      {
+        "name": "The Module Difference Rule",
+        "body": "CryoSieve uses Coconut Brown, CryoPROS uses Growth Green, CTFA uses CTFA Lavender, and Cryo Slate stays a supporting cryo-EM note.",
+        "section": "colors"
+      },
+      {
+        "name": "The Calm Hierarchy Rule",
+        "body": "Use size, weight, and measure for hierarchy. Do not add decorative type effects, gradient text, or noisy emphasis.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Mono Costume Rule",
+        "body": "Do not use monospace as shorthand for scientific software. This brand is technical through structure, not terminal styling.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ambient Not Glass Rule",
+        "body": "Depth comes from soft shadow, tonal layering, and warm borders. Decorative blur, frosted panels, and glassmorphism are forbidden.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Lift on Intent Rule",
+        "body": "Interactive lift should be slight: one pixel for hover, small scale on active press. Large floating cards are not part of this system.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep CoCo as the central GUI hub in both copy and layout.",
+      "Do use OKLCH tokens from the frontmatter for all new colors.",
+      "Do keep the primary CTA singular: Download CoCo should remain the only primary action.",
+      "Do use warm paper neutrals for large surfaces and full Warm Ink for headings.",
+      "Do use the module color rule consistently: Coconut Brown for CryoSieve, Growth Green for CryoPROS, CTFA Lavender for CTFA.",
+      "Do preserve keyboard navigation, visible focus rings, and reduced-motion behavior.",
+      "Do keep scientific copy concise, precise, and readable."
+    ],
+    "donts": [
+      "Don't create generic research-project template pages.",
+      "Don't use exaggerated SaaS landing-page styling.",
+      "Don't use overly flashy dark tech aesthetics.",
+      "Don't create dense jargon walls.",
+      "Don't use pure black, pure white, gradient text, or decorative glassmorphism.",
+      "Don't use thick colored side-stripe borders on cards, rows, callouts, or alerts.",
+      "Don't repeat identical icon-card grids for modules. Use ledger rows, diagrams, or content-specific layouts.",
+      "Don't make CryoSieve, CryoPROS, CTFA, GitHub, or references look like equal download actions.",
+      "Don't use modals as the first solution for navigation or module detail.",
+      "Don't add em dash punctuation in interface copy."
+    ]
+  }
+}

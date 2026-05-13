@@ -281,26 +281,84 @@
       </nav>
 
       <header class="module-page-hero">
-        <p class="module-page-kicker">CoCo wrapped module</p>
-        <h1 class="module-page-title">CryoSieve</h1>
-        <p class="module-page-lede">Particle sorting and sieving for single-particle cryo-EM. CryoSieve removes unnecessary particles from final stacks, improving downstream reconstruction quality.</p>
-        <span class="module-page-version">v1.3.0</span>
+        <div class="module-page-hero-grid">
+          <div>
+            <p class="module-page-kicker">CoCo wrapped module</p>
+            <h1 class="module-page-title">CryoSieve</h1>
+            <p class="module-page-lede">An advanced particle sorting and sieving solution for single-particle cryo-EM analysis. CryoSieve eliminates unnecessary particles from final stacks, producing cleaner density maps with measurably higher resolution.</p>
+            <span class="module-page-version">v1.3.0</span>
+          </div>
+          <img
+            src="./img/cryosieve_featured_image.jpg"
+            alt="CryoSieve particle sieving overview: 3D density maps showing before-and-after particle selection"
+            class="module-page-hero-img"
+            width="600"
+            height="338"
+          >
+        </div>
       </header>
 
       <div class="module-page-body">
-        <section class="module-page-section">
+        <section class="module-page-section module-page-section--overview">
           <h2>What it does</h2>
-          <p>CryoSieve is a particle sorting module that analyzes single-particle cryo-EM datasets and removes suboptimal particles. By sieving out particles that degrade reconstruction, it helps produce cleaner density maps with higher resolution.</p>
+          <p>CryoSieve is an advanced software solution designed for particle sorting and sieving in single-particle analysis for cryo-EM. Supported by extensive experimental results, it has demonstrated superior performance compared to other cryo-EM particle sorting algorithms. For certain datasets, the precision of CryoSieve's particle subset selection approaches the theoretical limit.</p>
           <ul class="module-feature-list">
-            <li>Iterative particle sieving across multiple rounds</li>
-            <li>Density-map-guided particle selection</li>
-            <li>Stack quality improvement with measurable resolution gains</li>
+            <li>Iterative sieving across multiple rounds with progressively refined density maps</li>
+            <li>Superior particle retention ratio compared to alternative sorting algorithms</li>
+            <li>Multi-GPU support for accelerated processing of large particle stacks</li>
+            <li>Resolution improvement that approaches theoretical limits for select datasets</li>
           </ul>
+
+          <p class="module-page-validated-note">Validated on publicly available cryo-EM datasets from EMPIAR:</p>
+          <div class="demo-table-wrap">
+            <table class="demo-table">
+              <thead>
+                <tr>
+                  <th scope="col">Dataset</th>
+                  <th scope="col">Particles</th>
+                  <th scope="col">Mass (kDa)</th>
+                  <th scope="col">Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>TRPA1</td><td>43,585</td><td>688</td><td><a href="https://www.ebi.ac.uk/empiar/EMPIAR-10024/" target="_blank" rel="noopener">EMPIAR-10024</a></td></tr>
+                <tr><td>Hemagglutinin</td><td>130,000</td><td>150</td><td><a href="https://www.ebi.ac.uk/empiar/EMPIAR-10097/" target="_blank" rel="noopener">EMPIAR-10097</a></td></tr>
+                <tr><td>LAT1</td><td>250,712</td><td>172</td><td><a href="https://www.ebi.ac.uk/empiar/EMPIAR-10264/" target="_blank" rel="noopener">EMPIAR-10264</a></td></tr>
+                <tr><td>pfCRT</td><td>16,905</td><td>102</td><td><a href="https://www.ebi.ac.uk/empiar/EMPIAR-10330/" target="_blank" rel="noopener">EMPIAR-10330</a></td></tr>
+                <tr><td>TSHR-Gs</td><td>41,054</td><td>125</td><td><a href="https://www.ebi.ac.uk/empiar/EMPIAR-11120/" target="_blank" rel="noopener">EMPIAR-11120</a></td></tr>
+                <tr><td>TRPM8</td><td>42,040</td><td>513</td><td><a href="https://www.ebi.ac.uk/empiar/EMPIAR-11233/" target="_blank" rel="noopener">EMPIAR-11233</a></td></tr>
+                <tr><td>Apoferritin</td><td>382,391</td><td>440</td><td><a href="https://www.ebi.ac.uk/empiar/EMPIAR-10200/" target="_blank" rel="noopener">EMPIAR-10200</a></td></tr>
+                <tr><td>Streptavidin</td><td>23,991</td><td>52</td><td><a href="https://www.ebi.ac.uk/empiar/EMPIAR-10269/" target="_blank" rel="noopener">EMPIAR-10269</a></td></tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
-        <section class="module-page-section">
+        <section class="module-page-section module-page-section--process">
+          <h2>How it works</h2>
+          <p>The sieving process involves iterative rounds of 3D reconstruction and particle filtering. In each round, CryoSieve analyzes the reconstructed density map, identifies particles that degrade the final resolution, and removes them. The high-pass cutoff frequency typically increases with each iteration, progressively refining the particle subset.</p>
+        </section>
+
+        <img
+          src="./img/cryosieve_main_figure.jpg"
+          alt="CryoSieve main figure: iterative particle sieving workflow and density map refinement stages"
+          class="module-page-figure module-page-figure--main"
+          width="800"
+          height="1040"
+        >
+
+        <section class="module-page-section module-page-section--publication">
+          <h2>Publication</h2>
+          <div class="citation-block">
+            <p>"A minority of final stacks yields superior amplitude in single-particle cryo-EM"</p>
+            <a href="https://www.nature.com/articles/s41467-023-43555-x" target="_blank" rel="noopener" class="citation-link">Nature Communications, 2023</a>
+          </div>
+          <p class="video-caption">If CryoSieve contributes to your work, please cite the paper above. Full demo datasets and expected results are available at <a href="https://github.com/mxhulab/cryosieve-demos" target="_blank" rel="noopener">cryosieve-demos</a>.</p>
+        </section>
+
+        <section class="module-page-section module-page-section--fit">
           <h2>How it fits in CoCo</h2>
-          <p>CryoSieve operates as a wrapped analysis module inside CoCo. Open it from the CoCo workbench, point it at your particle stack, and let it sieve while you continue working on other parts of your pipeline.</p>
+          <p>CryoSieve operates as a wrapped analysis module inside the CoCo unified GUI. Open it from the CoCo workbench, point it at your particle stack, and let it sieve while you continue working on other parts of your pipeline. The module integrates with Relion for 3D reconstruction and postprocessing, and supports CryoSPARC refinement workflows.</p>
         </section>
 
         <aside class="module-page-tags" aria-label="CryoSieve attributes">
@@ -329,14 +387,25 @@
       </nav>
 
       <header class="module-page-hero">
-        <p class="module-page-kicker">CoCo wrapped module</p>
-        <h1 class="module-page-title">CryoPROS</h1>
-        <p class="module-page-lede">A preferred-orientation correction framework for single-particle cryo-EM, using AI-generated auxiliary particles and co-refinement of synthesized and experimental data.</p>
-        <span class="module-page-version">v1.0.1</span>
+        <div class="module-page-hero-grid">
+          <div>
+            <p class="module-page-kicker">CoCo wrapped module</p>
+            <h1 class="module-page-title">CryoPROS</h1>
+            <p class="module-page-lede">A preferred-orientation correction framework for single-particle cryo-EM, using AI-generated auxiliary particles and co-refinement of synthesized and experimental data.</p>
+            <span class="module-page-version">v1.0.1</span>
+          </div>
+          <img
+            src="img/cryopros_featured_image.png"
+            alt="CryoPROS overview: AI-generated auxiliary particle workflow and orientation correction results"
+            class="module-page-hero-img"
+            width="600"
+            height="338"
+          >
+        </div>
       </header>
 
       <div class="module-page-body">
-        <section class="module-page-section">
+        <section class="module-page-section module-page-section--overview">
           <h2>What it does</h2>
           <p>CryoPROS addresses misalignment errors caused by preferred orientation in single-particle cryo-EM. It uses AI to generate auxiliary particles and performs co-refinement between synthesized and experimental data, correcting orientation bias that would otherwise degrade reconstruction.</p>
           <ul class="module-feature-list">
@@ -347,7 +416,12 @@
           </ul>
         </section>
 
-        <section class="module-page-section">
+        <section class="module-page-section module-page-section--process">
+          <h2>How it works</h2>
+          <p>CryoPROS uses AI to generate auxiliary particles that compensate for preferred-orientation bias during cryo-EM reconstruction. These synthetic particles are co-refined with experimental data, producing a more isotropic orientation distribution and reducing misalignment errors.</p>
+        </section>
+
+        <section class="module-page-section module-page-section--fit">
           <h2>How it fits in CoCo</h2>
           <p>CryoPROS is accessed through the CoCo GUI. Launch it from the workbench, supply your particle set, and let the AI-assisted correction run alongside your existing refinement workflow.</p>
         </section>
