@@ -12,16 +12,37 @@
 
     <header class="site-header" aria-label="Primary navigation">
       <nav class="nav-shell">
-        <a class="brand-mark" href="#top" aria-label="CoCo Project home">
+        <a class="brand-mark" href="#top" data-nav="home" aria-label="CoCo Project home">
           <img src="coco_logo.png" alt="CoCo coconut logo" width="58" height="42">
           <span>
             <strong>CoCo Project</strong>
-            <small>Cryo-EM GUI workbench</small>
+            <small><span class="co-source-cryo">Cryo</span>-EM <span class="co-source-copilot">Co</span>pilot</small>
           </span>
         </a>
         <div class="nav-links" aria-label="Page sections">
           <a href="#overview">Overview</a>
-          <a href="#modules">Modules</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+              Modules
+              <svg aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu" role="menu" aria-label="Module quick links">
+              <a href="#cryosieve" data-nav="cryosieve" role="menuitem">
+                <strong>CryoSieve</strong>
+                <span>Particle sorting &amp; sieving</span>
+              </a>
+              <a href="#cryopros" data-nav="cryopros" role="menuitem">
+                <strong>CryoPROS</strong>
+                <span>Preferred orientation correction</span>
+              </a>
+              <a href="#ctfa" data-nav="ctfa" role="menuitem">
+                <strong>CTFA</strong>
+                <span>Planned capability, TBD</span>
+              </a>
+            </div>
+          </div>
           <a href="#download">Download</a>
           <a href="#references">References</a>
         </div>
@@ -29,14 +50,14 @@
       </nav>
     </header>
 
-    <main id="main" tabindex="-1">
+    <main id="main" data-view="home" tabindex="-1">
       <section class="hero-section" id="top" aria-labelledby="hero-title">
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Unified interface for structural biology labs</p>
-            <h1 id="hero-title">CoCo brings cryo-EM analysis modules into one calm GUI workbench.</h1>
+            <p class="eyebrow">Cryo-EM workflow copilot</p>
+            <h1 id="hero-title">CoCo weaves additional modules straight into the cryo-EM workflow.</h1>
             <p class="hero-lede">
-              CoCo wraps CryoSieve, CryoPROS, and CTFA in a single desktop-oriented interface, giving researchers a clearer entry point for related cryo-EM workflows.
+              CoCo acts as a copilot for your cryo-EM workflow, integrating CryoSieve, CryoPROS, and CTFA directly into the process you already run.
             </p>
             <div class="hero-actions" aria-label="Hero actions">
               <a class="button button-primary" href="#download">Download CoCo</a>
@@ -94,21 +115,21 @@
                 <text x="102" y="121" text-anchor="middle" class="hub-subtitle">Unified GUI</text>
               </g>
 
-              <g class="module-node module-sieve" transform="translate(52 78)">
+              <g class="module-node module-sieve" data-nav="cryosieve" transform="translate(52 78)" role="link" tabindex="0" aria-label="CryoSieve details">
                 <rect width="232" height="126" rx="24"></rect>
                 <text x="28" y="44" class="node-label">CryoSieve</text>
                 <text x="28" y="74" class="node-body">Particle sorting</text>
                 <text x="28" y="99" class="node-meta">single-particle cryo-EM</text>
               </g>
 
-              <g class="module-node module-pros" transform="translate(500 76)">
+              <g class="module-node module-pros" data-nav="cryopros" transform="translate(500 76)" role="link" tabindex="0" aria-label="CryoPROS details">
                 <rect width="220" height="132" rx="24"></rect>
                 <text x="28" y="44" class="node-label">CryoPROS</text>
                 <text x="28" y="74" class="node-body">Preferred orientation</text>
                 <text x="28" y="99" class="node-meta">correction framework</text>
               </g>
 
-              <g class="module-node module-ctfa" transform="translate(494 386)">
+              <g class="module-node module-ctfa" data-nav="ctfa" transform="translate(494 386)" role="link" tabindex="0" aria-label="CTFA details">
                 <rect width="222" height="124" rx="24"></rect>
                 <text x="28" y="44" class="node-label">CTFA</text>
                 <text x="28" y="74" class="node-body">Module placeholder</text>
@@ -165,7 +186,7 @@
         </div>
 
         <div class="module-ledger">
-          <article class="module-row" aria-labelledby="cryosieve-title">
+          <article class="module-row module-row--link" id="module-row-cryosieve" data-nav="cryosieve" tabindex="0" aria-labelledby="cryosieve-title">
             <div class="module-index">01</div>
             <div class="module-copy">
               <h3 id="cryosieve-title">CryoSieve</h3>
@@ -177,7 +198,7 @@
             </div>
           </article>
 
-          <article class="module-row" aria-labelledby="cryopros-title">
+          <article class="module-row module-row--link" id="module-row-cryopros" data-nav="cryopros" tabindex="0" aria-labelledby="cryopros-title">
             <div class="module-index">02</div>
             <div class="module-copy">
               <h3 id="cryopros-title">CryoPROS</h3>
@@ -189,7 +210,7 @@
             </div>
           </article>
 
-          <article class="module-row module-row-muted" aria-labelledby="ctfa-title">
+          <article class="module-row module-row-muted module-row--link" id="module-row-ctfa" data-nav="ctfa" tabindex="0" aria-labelledby="ctfa-title">
             <div class="module-index">03</div>
             <div class="module-copy">
               <h3 id="ctfa-title">CTFA</h3>
@@ -241,6 +262,141 @@
       </section>
     </main>
 
+    <div id="view-cryosieve" class="module-page module-page--sieve" data-view="cryosieve" hidden>
+      <nav class="module-page-back" aria-label="Module navigation">
+        <a href="#home" class="module-back-link" data-nav="home">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to CoCo
+        </a>
+        <a href="https://github.com/mxhulab/cryosieve" class="module-github-link" target="_blank" rel="noopener">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M8 6.5V9.5C8 9.76522 7.89464 10.0196 7.70711 10.2071C7.51957 10.3946 7.26522 10.5 7 10.5H2.5C2.23478 10.5 1.98043 10.3946 1.79289 10.2071C1.60536 10.0196 1.5 9.76522 1.5 9.5V5C1.5 4.73478 1.60536 4.48043 1.79289 4.29289C1.98043 4.10536 2.23478 4 2.5 4H5.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.5 1.5H10.5V4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 7L10.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          GitHub
+        </a>
+      </nav>
+
+      <header class="module-page-hero">
+        <p class="module-page-kicker">CoCo wrapped module</p>
+        <h1 class="module-page-title">CryoSieve</h1>
+        <p class="module-page-lede">Particle sorting and sieving for single-particle cryo-EM. CryoSieve removes unnecessary particles from final stacks, improving downstream reconstruction quality.</p>
+        <span class="module-page-version">v1.3.0</span>
+      </header>
+
+      <div class="module-page-body">
+        <section class="module-page-section">
+          <h2>What it does</h2>
+          <p>CryoSieve is a particle sorting module that analyzes single-particle cryo-EM datasets and removes suboptimal particles. By sieving out particles that degrade reconstruction, it helps produce cleaner density maps with higher resolution.</p>
+          <ul class="module-feature-list">
+            <li>Iterative particle sieving across multiple rounds</li>
+            <li>Density-map-guided particle selection</li>
+            <li>Stack quality improvement with measurable resolution gains</li>
+          </ul>
+        </section>
+
+        <section class="module-page-section">
+          <h2>How it fits in CoCo</h2>
+          <p>CryoSieve operates as a wrapped analysis module inside CoCo. Open it from the CoCo workbench, point it at your particle stack, and let it sieve while you continue working on other parts of your pipeline.</p>
+        </section>
+
+        <aside class="module-page-tags" aria-label="CryoSieve attributes">
+          <span>Particle sieving</span>
+          <span>Density-map support</span>
+        </aside>
+      </div>
+    </div>
+
+    <div id="view-cryopros" class="module-page module-page--pros" data-view="cryopros" hidden>
+      <nav class="module-page-back" aria-label="Module navigation">
+        <a href="#home" class="module-back-link" data-nav="home">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to CoCo
+        </a>
+        <a href="https://github.com/mxhulab/cryopros" class="module-github-link" target="_blank" rel="noopener">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M8 6.5V9.5C8 9.76522 7.89464 10.0196 7.70711 10.2071C7.51957 10.3946 7.26522 10.5 7 10.5H2.5C2.23478 10.5 1.98043 10.3946 1.79289 10.2071C1.60536 10.0196 1.5 9.76522 1.5 9.5V5C1.5 4.73478 1.60536 4.48043 1.79289 4.29289C1.98043 4.10536 2.23478 4 2.5 4H5.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.5 1.5H10.5V4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 7L10.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          GitHub
+        </a>
+      </nav>
+
+      <header class="module-page-hero">
+        <p class="module-page-kicker">CoCo wrapped module</p>
+        <h1 class="module-page-title">CryoPROS</h1>
+        <p class="module-page-lede">A preferred-orientation correction framework for single-particle cryo-EM, using AI-generated auxiliary particles and co-refinement of synthesized and experimental data.</p>
+        <span class="module-page-version">v1.0.1</span>
+      </header>
+
+      <div class="module-page-body">
+        <section class="module-page-section">
+          <h2>What it does</h2>
+          <p>CryoPROS addresses misalignment errors caused by preferred orientation in single-particle cryo-EM. It uses AI to generate auxiliary particles and performs co-refinement between synthesized and experimental data, correcting orientation bias that would otherwise degrade reconstruction.</p>
+          <ul class="module-feature-list">
+            <li>AI-generated auxiliary particles for orientation diversity</li>
+            <li>Preferred-orientation correction across tilted views</li>
+            <li>Co-refinement of synthesized and experimental particle data</li>
+            <li>Misalignment error reduction for higher-fidelity maps</li>
+          </ul>
+        </section>
+
+        <section class="module-page-section">
+          <h2>How it fits in CoCo</h2>
+          <p>CryoPROS is accessed through the CoCo GUI. Launch it from the workbench, supply your particle set, and let the AI-assisted correction run alongside your existing refinement workflow.</p>
+        </section>
+
+        <aside class="module-page-tags" aria-label="CryoPROS attributes">
+          <span>Orientation correction</span>
+          <span>Co-refinement</span>
+        </aside>
+      </div>
+    </div>
+
+    <div id="view-ctfa" class="module-page module-page--ctfa" data-view="ctfa" hidden>
+      <nav class="module-page-back" aria-label="Module navigation">
+        <a href="#home" class="module-back-link" data-nav="home">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to CoCo
+        </a>
+      </nav>
+
+      <header class="module-page-hero">
+        <p class="module-page-kicker">Planned module</p>
+        <h1 class="module-page-title">CTFA</h1>
+        <p class="module-page-lede">Reserved for the CTFA module. It appears in the CoCo system model as a planned capability and is marked TBD until public details are ready.</p>
+        <span class="module-page-version">TBD</span>
+      </header>
+
+      <div class="module-page-body">
+        <section class="module-page-section">
+          <h2>What it does</h2>
+          <p>CTFA is a planned addition to the CoCo module family. Details are forthcoming once the module reaches a public milestone. For now, it is represented in the system map so researchers know it is on the roadmap.</p>
+          <ul class="module-feature-list">
+            <li>Details forthcoming</li>
+          </ul>
+        </section>
+
+        <section class="module-page-section">
+          <h2>How it fits in CoCo</h2>
+          <p>CTFA is represented in the CoCo system map so researchers can track the full project scope. No separate download or release is available. Check back for updates.</p>
+        </section>
+
+        <aside class="module-page-tags" aria-label="CTFA status">
+          <span>TBD</span>
+          <span>No separate download</span>
+        </aside>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="footer-brand">
         <img src="coco_logo.png" alt="" width="42" height="30" aria-hidden="true">
@@ -248,5 +404,200 @@
       </div>
       <p>Gentle, professional, academic software for structural biology laboratories.</p>
     </footer>
+
+    <script>
+      (function () {
+        var dropdown = document.querySelector('.nav-dropdown');
+        var trigger = dropdown.querySelector('.nav-dropdown-trigger');
+        var menu = dropdown.querySelector('.nav-dropdown-menu');
+
+        function dropdownOpen() {
+          dropdown.classList.add('nav-dropdown--open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+
+        function dropdownClose() {
+          dropdown.classList.remove('nav-dropdown--open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          if (dropdown.classList.contains('nav-dropdown--open')) {
+            dropdownClose();
+          } else {
+            dropdownOpen();
+          }
+        });
+
+        document.addEventListener('click', function (e) {
+          if (!dropdown.contains(e.target)) {
+            dropdownClose();
+          }
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && dropdown.classList.contains('nav-dropdown--open')) {
+            dropdownClose();
+            trigger.focus();
+          }
+        });
+
+        menu.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            dropdownClose();
+            trigger.focus();
+          }
+        });
+
+        var VIEWS = ['home', 'cryosieve', 'cryopros', 'ctfa'];
+        var currentView = 'home';
+        var transitioning = false;
+        var scrollTarget = null;
+
+        function getEl(name) {
+          return document.querySelector('[data-view="' + name + '"]');
+        }
+
+        function showView(viewName, addToHistory) {
+          if (transitioning || viewName === currentView) return;
+          transitioning = true;
+
+          var oldEl = getEl(currentView);
+          var newEl = getEl(viewName);
+          if (!newEl) { transitioning = false; return; }
+
+          dropdownClose();
+
+          oldEl.classList.add('view-exit');
+
+          setTimeout(function () {
+            oldEl.classList.remove('view-exit');
+            oldEl.hidden = true;
+
+            newEl.hidden = false;
+            newEl.classList.add('view-enter');
+
+            void newEl.offsetWidth;
+            newEl.classList.add('view-enter-active');
+
+            var heading = newEl.querySelector('h1');
+            if (heading) {
+              heading.setAttribute('tabindex', '-1');
+              heading.focus({ preventScroll: true });
+            } else if (viewName === 'home') {
+              var main = document.getElementById('main');
+              if (main) main.focus({ preventScroll: true });
+            }
+
+            if (viewName === 'home' && scrollTarget) {
+              var target = document.querySelector(scrollTarget);
+              if (target) {
+                setTimeout(function () {
+                  target.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }
+              scrollTarget = null;
+            }
+
+            currentView = viewName;
+            transitioning = false;
+
+            setTimeout(function () {
+              newEl.classList.remove('view-enter', 'view-enter-active');
+            }, 280);
+          }, 200);
+
+          if (addToHistory !== false) {
+            var hash = viewName === 'home' ? '' : '#' + viewName;
+            var url = window.location.pathname + (hash || '');
+            history.pushState({ view: viewName }, '', url);
+          }
+        }
+
+        function initViewFromHash() {
+          var hash = window.location.hash.replace('#', '');
+          if (hash && VIEWS.indexOf(hash) !== -1) {
+            var homeEl = getEl('home');
+            var targetEl = getEl(hash);
+            if (homeEl && targetEl) {
+              homeEl.hidden = true;
+              targetEl.hidden = false;
+              currentView = hash;
+              updateNavState(hash);
+              return;
+            }
+          }
+          currentView = 'home';
+          updateNavState('home');
+        }
+
+        function updateNavState(viewName) {
+          var moduleRows = document.querySelectorAll('.module-row--link');
+          for (var i = 0; i < moduleRows.length; i++) {
+            if (moduleRows[i].getAttribute('data-nav') === viewName) {
+              moduleRows[i].style.background = 'oklch(95% 0.028 88 / 0.92)';
+            } else {
+              moduleRows[i].style.background = '';
+            }
+          }
+        }
+
+        document.addEventListener('click', function (e) {
+          var link = e.target.closest('[data-nav]');
+          if (!link) return;
+
+          var dropdownMenu = e.target.closest('.nav-dropdown-menu');
+          if (!dropdownMenu) {
+            e.preventDefault();
+          }
+
+          var viewName = link.getAttribute('data-nav');
+          if (viewName && VIEWS.indexOf(viewName) !== -1) {
+            showView(viewName, true);
+          }
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            var row = e.target.closest('.module-row--link');
+            if (row && document.activeElement === row) {
+              e.preventDefault();
+              var viewName = row.getAttribute('data-nav');
+              if (viewName) showView(viewName, true);
+            }
+            var node = e.target.closest('.module-node[data-nav]');
+            if (node && document.activeElement === node) {
+              e.preventDefault();
+              var vn = node.getAttribute('data-nav');
+              if (vn) showView(vn, true);
+            }
+          }
+        });
+
+        document.addEventListener('click', function (e) {
+          if (currentView === 'home') return;
+          var anchor = e.target.closest('a[href^="#"]');
+          if (!anchor) return;
+          var href = anchor.getAttribute('href');
+          if (!href || href === '#home' || href === '#top') return;
+          var hash = href.replace('#', '');
+          if (VIEWS.indexOf(hash) !== -1) return;
+          if (anchor.getAttribute('data-nav')) return;
+          e.preventDefault();
+          scrollTarget = href;
+          showView('home', true);
+        });
+
+        window.addEventListener('popstate', function (e) {
+          var hash = window.location.hash.replace('#', '');
+          var viewName = (hash && VIEWS.indexOf(hash) !== -1) ? hash : 'home';
+          if (e.state && e.state.view) viewName = e.state.view;
+          showView(viewName, false);
+        });
+
+        initViewFromHash();
+      })();
+    </script>
   </body>
 </html>
