@@ -1,0 +1,17 @@
+[
+  {
+    "name": "probe-1-academic-workbench",
+    "path": "/Users/hmx/Development/CoCoProject_Web_Case_2/.impeccable-artifacts/probe-1-academic-workbench.png",
+    "prompt": "Homepage visual direction probe for CoCo Project, a scientific software website for structural biology labs. Light academic interface, gentle professional tone. Hero shows CoCo as a unified GUI hub connected to three modules: CryoSieve, CryoPROS, CTFA. Scientific workflow-map composition, not SaaS. Soft off-white lab paper background, muted mineral green and blue accents, precise typography blocks, subtle cryo-EM density-map inspired contours, download CoCo primary CTA only. CTFA marked as TBD module, not a download target. High-end web design mockup, 16:9."
+  },
+  {
+    "name": "probe-2-specimen-atlas",
+    "path": "/Users/hmx/Development/CoCoProject_Web_Case_2/.impeccable-artifacts/probe-2-specimen-atlas.png",
+    "prompt": "Homepage visual direction probe for CoCo Project, a research software homepage for cryo-EM structural biology labs. Light interface like a refined scientific atlas page. CoCo is the central instrument panel, with CryoSieve, CryoPROS, CTFA arranged as annotated module plates. Warm ivory background, restrained ink, soft sage and slate accents, academic but approachable. Primary action is Download CoCo only. Avoid generic card grid, avoid dark sci-fi, avoid SaaS hero metrics. High fidelity web mockup, 16:9."
+  },
+  {
+    "name": "probe-3-gui-lab-console",
+    "path": "/Users/hmx/Development/CoCoProject_Web_Case_2/.impeccable-artifacts/probe-3-gui-lab-console.png",
+    "prompt": "Homepage visual direction probe for CoCo Project, unified GUI for CryoSieve, CryoPROS, CTFA. Light lab workstation aesthetic, calm professional academic. Hero contains a clean abstract GUI window showing module pipeline: particle sieving, preferred orientation correction, CTFA TBD. Subtle translucent microscopy textures but no glassmorphism. CoCo download button is the only primary download. Layout is production website mockup, responsive-friendly, polished typography, 16:9."
+  }
+]

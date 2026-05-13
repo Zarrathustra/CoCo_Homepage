@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="CoCo Project is a unified GUI for CryoSieve, CryoPROS, and CTFA, designed for cryo-EM structural biology laboratories.">
+    <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header" aria-label="Primary navigation">
+      <nav class="nav-shell">
+        <a class="brand-mark" href="#top" aria-label="CoCo Project home">
+          <img src="coco_logo.png" alt="CoCo coconut logo" width="58" height="42">
+          <span>
+            <strong>CoCo Project</strong>
+            <small>Cryo-EM GUI workbench</small>
+          </span>
+        </a>
+        <div class="nav-links" aria-label="Page sections">
+          <a href="#overview">Overview</a>
+          <a href="#modules">Modules</a>
+          <a href="#download">Download</a>
+          <a href="#references">References</a>
+        </div>
+        <a class="button button-primary nav-cta" href="#download">Download CoCo</a>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero-section" id="top" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Unified interface for structural biology labs</p>
+            <h1 id="hero-title">CoCo brings cryo-EM analysis modules into one calm GUI workbench.</h1>
+            <p class="hero-lede">
+              CoCo wraps CryoSieve, CryoPROS, and CTFA in a single desktop-oriented interface, giving researchers a clearer entry point for related cryo-EM workflows.
+            </p>
+            <div class="hero-actions" aria-label="Hero actions">
+              <a class="button button-primary" href="#download">Download CoCo</a>
+              <a class="button button-secondary" href="#modules">View modules</a>
+            </div>
+            <dl class="hero-facts" aria-label="CoCo homepage facts">
+              <div>
+                <dt>Primary action</dt>
+                <dd>Download CoCo only</dd>
+              </div>
+              <div>
+                <dt>Audience</dt>
+                <dd>Cryo-EM researchers and labs</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>CTFA shown as TBD</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="workbench-card" aria-label="CoCo module relationship map">
+            <div class="workbench-toolbar" aria-hidden="true">
+              <span></span><span></span><span></span>
+              <strong>CoCo module map</strong>
+            </div>
+            <svg class="workflow-map" viewBox="0 0 760 560" role="img" aria-labelledby="workflow-title workflow-desc">
+              <title id="workflow-title">CoCo as the central GUI hub for three modules</title>
+              <desc id="workflow-desc">CoCo is placed in the center, connected to CryoSieve, CryoPROS, and CTFA. CTFA is marked as TBD.</desc>
+              <defs>
+                <pattern id="paper-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+                  <path d="M 32 0 L 0 0 0 32" fill="none" class="grid-line"></path>
+                </pattern>
+              </defs>
+              <rect x="0" y="0" width="760" height="560" rx="34" class="map-bg"></rect>
+              <rect x="0" y="0" width="760" height="560" rx="34" fill="url(#paper-grid)" opacity="0.72"></rect>
+
+              <path class="contour contour-a" d="M72 112c52-68 161-59 207-5 34 40 22 92-24 120-52 32-143 28-185-18-32-36-30-71 2-97Z"></path>
+              <path class="contour contour-b" d="M511 66c67 8 127 58 129 122 2 59-45 108-109 112-59 4-104-29-118-80-18-66 28-164 98-154Z"></path>
+              <path class="contour contour-c" d="M447 375c72-33 167-13 199 42 28 49-7 95-72 111-77 19-174-16-186-70-8-37 18-65 59-83Z"></path>
+
+              <g class="connector-lines" aria-hidden="true">
+                <path d="M380 278 C284 230 235 182 184 135"></path>
+                <path d="M404 268 C458 188 502 148 575 126"></path>
+                <path d="M408 315 C478 363 515 398 572 455"></path>
+              </g>
+
+              <g class="hub" transform="translate(284 196)">
+                <path class="hub-shadow" d="M101 0c55 0 98 43 98 96 0 62-44 108-98 108S0 158 0 96C0 43 46 0 101 0Z"></path>
+                <path class="hub-shell" d="M103 14c45 0 80 34 80 78 0 51-36 89-80 89s-83-38-83-89c0-44 38-78 83-78Z"></path>
+                <path class="hub-rim" d="M52 78c20-34 83-44 111-13 8 9 12 20 12 33 0 41-32 72-72 72-39 0-74-30-74-72 0-7 8-13 23-20Z"></path>
+                <path class="hub-leaf hub-leaf-a" d="M99 11c3-35 35-56 76-48-5 34-34 57-76 48Z"></path>
+                <path class="hub-leaf hub-leaf-b" d="M91 12c-10-32-42-46-78-31 13 30 43 47 78 31Z"></path>
+                <text x="102" y="92" text-anchor="middle" class="hub-title">CoCo</text>
+                <text x="102" y="121" text-anchor="middle" class="hub-subtitle">Unified GUI</text>
+              </g>
+
+              <g class="module-node module-sieve" transform="translate(52 78)">
+                <rect width="232" height="126" rx="24"></rect>
+                <text x="28" y="44" class="node-label">CryoSieve</text>
+                <text x="28" y="74" class="node-body">Particle sorting</text>
+                <text x="28" y="99" class="node-meta">single-particle cryo-EM</text>
+              </g>
+
+              <g class="module-node module-pros" transform="translate(500 76)">
+                <rect width="220" height="132" rx="24"></rect>
+                <text x="28" y="44" class="node-label">CryoPROS</text>
+                <text x="28" y="74" class="node-body">Preferred orientation</text>
+                <text x="28" y="99" class="node-meta">correction framework</text>
+              </g>
+
+              <g class="module-node module-ctfa" transform="translate(494 386)">
+                <rect width="222" height="124" rx="24"></rect>
+                <text x="28" y="44" class="node-label">CTFA</text>
+                <text x="28" y="74" class="node-body">Module placeholder</text>
+                <text x="28" y="99" class="node-meta">TBD, not a download</text>
+              </g>
+
+              <g class="annotation" transform="translate(73 420)">
+                <line x1="0" y1="0" x2="146" y2="0"></line>
+                <text x="0" y="30">One CoCo download, three wrapped capabilities</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="relationship-section" id="overview" aria-labelledby="overview-title">
+        <div class="section-kicker">System relationship</div>
+        <div class="relationship-layout">
+          <div>
+            <h2 id="overview-title">A GUI hub first, then the analysis modules it coordinates.</h2>
+            <p>
+              The homepage introduces CoCo as the central workbench before presenting the individual tools. This keeps the project coherent and prevents CryoSieve, CryoPROS, or CTFA from competing with CoCo as the main download.
+            </p>
+          </div>
+          <ol class="relationship-steps" aria-label="CoCo system structure">
+            <li>
+              <span>01</span>
+              <strong>Install CoCo</strong>
+              <p>Researchers start from one GUI entry point.</p>
+            </li>
+            <li>
+              <span>02</span>
+              <strong>Open modules inside CoCo</strong>
+              <p>CryoSieve and CryoPROS are framed as wrapped workflows.</p>
+            </li>
+            <li>
+              <span>03</span>
+              <strong>Track what is still emerging</strong>
+              <p>CTFA is present in the system map and clearly marked TBD.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="modules-section" id="modules" aria-labelledby="modules-title">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Wrapped modules</div>
+            <h2 id="modules-title">Three capabilities, one CoCo workbench.</h2>
+          </div>
+          <p>
+            The module descriptions use practical research language, with source references for the established tools and a transparent TBD state for CTFA.
+          </p>
+        </div>
+
+        <div class="module-ledger">
+          <article class="module-row" aria-labelledby="cryosieve-title">
+            <div class="module-index">01</div>
+            <div class="module-copy">
+              <h3 id="cryosieve-title">CryoSieve</h3>
+              <p>Particle sorting and sieving for single-particle cryo-EM. CryoSieve helps remove unnecessary particles from final stacks so reconstruction quality can improve.</p>
+            </div>
+            <div class="module-tags" aria-label="CryoSieve attributes">
+              <span>Particle sieving</span>
+              <span>Density-map support</span>
+            </div>
+          </article>
+
+          <article class="module-row" aria-labelledby="cryopros-title">
+            <div class="module-index">02</div>
+            <div class="module-copy">
+              <h3 id="cryopros-title">CryoPROS</h3>
+              <p>A preferred-orientation correction framework for single-particle cryo-EM, using AI-generated auxiliary particles and co-refinement.</p>
+            </div>
+            <div class="module-tags" aria-label="CryoPROS attributes">
+              <span>Orientation correction</span>
+              <span>Co-refinement</span>
+            </div>
+          </article>
+
+          <article class="module-row module-row-muted" aria-labelledby="ctfa-title">
+            <div class="module-index">03</div>
+            <div class="module-copy">
+              <h3 id="ctfa-title">CTFA</h3>
+              <p>Reserved for the CTFA module. It appears in the CoCo system model as a planned capability and is marked TBD until public details are ready.</p>
+            </div>
+            <div class="module-tags" aria-label="CTFA status">
+              <span>TBD</span>
+              <span>No separate download</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="download-section" id="download" aria-labelledby="download-title">
+        <div class="download-panel">
+          <div>
+            <div class="section-kicker">Primary action</div>
+            <h2 id="download-title">Download CoCo as the single GUI entry point.</h2>
+            <p>
+              CoCo is the only primary download on this homepage. The submodules are introduced as capabilities available through the CoCo project structure, not as competing calls to action.
+            </p>
+          </div>
+          <div class="download-checklist" id="download-details" aria-label="Download confidence notes">
+            <p class="download-note">Public CoCo installer link pending.</p>
+            <ul>
+              <li>Use CoCo as the central GUI interface.</li>
+              <li>Access CryoSieve and CryoPROS as wrapped analysis modules.</li>
+              <li>Track CTFA as TBD until its release details are available.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="references-section" id="references" aria-labelledby="references-title">
+        <div class="section-heading compact">
+          <div>
+            <div class="section-kicker">Source references</div>
+            <h2 id="references-title">Module information comes from project sources.</h2>
+          </div>
+          <p>These are secondary references for visitors who need technical detail. They are not primary download targets.</p>
+        </div>
+        <div class="reference-links">
+          <a href="https://github.com/mxhulab/cryosieve" rel="noreferrer">CryoSieve GitHub</a>
+          <a href="https://github.com/mxhulab/cryopros" rel="noreferrer">CryoPROS GitHub</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <img src="coco_logo.png" alt="" width="42" height="30" aria-hidden="true">
+        <span>CoCo Project</span>
+      </div>
+      <p>Gentle, professional, academic software for structural biology laboratories.</p>
+    </footer>
+  </body>
+</html>
