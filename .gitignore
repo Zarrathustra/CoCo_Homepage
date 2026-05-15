@@ -1,3 +1,16 @@
 .env
+.env.*
+!.env.example
 .DS_Store
+
+# Java / Maven build output
+target/
+*.class
+*.log
+hs_err_pid*
+replay_pid*
+
+# Local editor and Claude settings
+.idea/
+.vscode/
 .claude/settings.local.json

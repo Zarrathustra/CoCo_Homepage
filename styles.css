@@ -432,6 +432,15 @@
     text-transform: uppercase;
   }
 
+  .hero-title-coco {
+    display: inline-block;
+    margin-right: 0.04em;
+    font-style: italic;
+    font-weight: 760;
+    letter-spacing: -0.06em;
+    white-space: nowrap;
+  }
+
   .hero-lede {
     max-width: 62ch;
     font-size: 1.05rem;
@@ -675,8 +684,71 @@
   .section-heading p,
   .relationship-layout p,
   .download-panel p,
-  .site-footer p {
+  .footer-main p {
     max-width: 66ch;
+  }
+
+  .footer-card {
+    display: grid;
+    gap: clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(1.2rem, 3vw, 1.6rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at 14% 18%, oklch(91% 0.048 72 / 0.34), transparent 16rem),
+      linear-gradient(180deg, oklch(98.1% 0.012 88 / 0.92), oklch(95.7% 0.019 90 / 0.9));
+    box-shadow: var(--shadow-soft);
+  }
+
+  .footer-main,
+  .footer-legal,
+  .footer-contact {
+    display: grid;
+    gap: 0.48rem;
+    align-content: start;
+  }
+
+  .footer-main p,
+  .footer-legal p,
+  .footer-contact p {
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .footer-legal,
+  .footer-contact {
+    padding-top: 0.1rem;
+  }
+
+  .footer-contact {
+    font-style: normal;
+  }
+
+  .footer-contact a {
+    color: var(--coconut-deep);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+    text-decoration-color: oklch(72% 0.052 82 / 0.45);
+  }
+
+  .footer-contact a:hover {
+    text-decoration-color: var(--coconut-deep);
+  }
+
+  .footer-ga {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+  }
+
+  .footer-ga img {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    border-radius: 2px;
   }
 
   .relationship-steps {
@@ -1132,8 +1204,27 @@
   }
 
   .module-page--pros .module-page-section--process,
-  .module-page--pros .module-page-section--fit {
+  .module-page--pros .module-page-section--fit,
+  .module-page--pros .module-page-section--publication {
     align-content: start;
+  }
+
+  .module-page--pros .module-page-section--publication {
+    gap: 0.8rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: oklch(96.8% 0.021 112 / 0.66);
+    box-shadow: 0 16px 42px oklch(38% 0.058 70 / 0.07);
+  }
+
+  .module-page--pros .module-page-section--publication .citation-block {
+    gap: 0.4rem;
+    margin-top: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
   }
 
   .module-page--pros .module-feature-list {
@@ -1462,8 +1553,6 @@
   }
 
   .site-footer {
-    display: grid;
-    gap: 0.8rem;
     padding-top: clamp(2rem, 5vw, 3.2rem);
     padding-bottom: max(clamp(2rem, 5vw, 3.2rem), env(safe-area-inset-bottom));
     border-top: 1px solid var(--line);
@@ -1506,7 +1595,7 @@
     }
 
     .hero-facts {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       max-width: 44rem;
     }
 
@@ -1551,14 +1640,9 @@
       justify-content: flex-end;
     }
 
-    .site-footer {
-      grid-template-columns: auto 1fr;
-      align-items: center;
-    }
-
-    .site-footer p {
-      justify-self: end;
-      text-align: right;
+    .footer-card {
+      grid-template-columns: minmax(0, 1.08fr) minmax(14rem, 0.72fr) minmax(18rem, 1fr);
+      align-items: start;
     }
 
     .module-page-hero-grid {
@@ -1646,8 +1730,12 @@
       max-width: 34rem;
     }
 
+    .module-page--pros .module-page-section--publication,
     .module-page--pros .module-page-tags {
       grid-column: 2;
+    }
+
+    .module-page--pros .module-page-section--publication {
       position: sticky;
       top: 6rem;
     }
