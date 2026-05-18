@@ -237,7 +237,7 @@
               CoCo is the only download target on this page. CryoSieve, CryoPROS, and CTFA are accessed through CoCo, not as standalone downloads.
             </p>
             <div class="download-actions">
-              <a class="button button-primary" aria-disabled="true" role="link">Download coming soon</a>
+              <span class="button button-primary" aria-disabled="true">Download coming soon</span>
             </div>
           </div>
           <div class="download-checklist" id="download-details" aria-label="Download confidence notes">
@@ -298,6 +298,8 @@
             class="module-page-hero-img"
             width="600"
             height="338"
+            loading="lazy"
+            decoding="async"
           >
         </div>
       </header>
@@ -349,6 +351,8 @@
           class="module-page-figure module-page-figure--main"
           width="800"
           height="1040"
+          loading="lazy"
+          decoding="async"
         >
 
         <section class="module-page-section module-page-section--publication">
@@ -404,6 +408,8 @@
             class="module-page-hero-img"
             width="600"
             height="338"
+            loading="lazy"
+            decoding="async"
           >
         </div>
       </header>
@@ -497,7 +503,7 @@
           <p>© cocoproject</p>
           <p>备案号：粤ICP备2022141747号-8</p>
           <p class="footer-ga">
-            <img src="img/ga.jpg" alt="" width="18" height="18" aria-hidden="true">
+            <img src="img/ga.jpg" alt="" width="18" height="18" aria-hidden="true" loading="lazy" decoding="async">
             <span>粤公网安备44030002009440号</span>
           </p>
         </div>
@@ -560,6 +566,10 @@
         var transitioning = false;
         var scrollTarget = null;
 
+        function motionBehavior() {
+          return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+        }
+
         function getEl(name) {
           return document.querySelector('[data-view="' + name + '"]');
         }
@@ -573,6 +583,10 @@
           if (!newEl) { transitioning = false; return; }
 
           dropdownClose();
+
+          var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var exitDelay = reduceMotion ? 0 : 200;
+          var cleanupDelay = reduceMotion ? 0 : 280;
 
           oldEl.classList.add('view-exit');
 
@@ -599,19 +613,20 @@
               var target = document.querySelector(scrollTarget);
               if (target) {
                 setTimeout(function () {
-                  target.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
+                  target.scrollIntoView({ behavior: motionBehavior() });
+                }, reduceMotion ? 0 : 100);
               }
               scrollTarget = null;
             }
 
+            updateNavState(viewName);
             currentView = viewName;
             transitioning = false;
 
             setTimeout(function () {
               newEl.classList.remove('view-enter', 'view-enter-active');
-            }, 280);
-          }, 200);
+            }, cleanupDelay);
+          }, exitDelay);
 
           if (addToHistory !== false) {
             var hash = viewName === 'home' ? '' : '#' + viewName;
@@ -640,10 +655,12 @@
         function updateNavState(viewName) {
           var moduleRows = document.querySelectorAll('.module-row--link');
           for (var i = 0; i < moduleRows.length; i++) {
-            if (moduleRows[i].getAttribute('data-nav') === viewName) {
-              moduleRows[i].style.background = 'oklch(95% 0.028 88 / 0.92)';
+            var isCurrent = moduleRows[i].getAttribute('data-nav') === viewName;
+            moduleRows[i].classList.toggle('module-row--current', isCurrent);
+            if (isCurrent) {
+              moduleRows[i].setAttribute('aria-current', 'page');
             } else {
-              moduleRows[i].style.background = '';
+              moduleRows[i].removeAttribute('aria-current');
             }
           }
         }
@@ -652,10 +669,7 @@
           var link = e.target.closest('[data-nav]');
           if (!link) return;
 
-          var dropdownMenu = e.target.closest('.nav-dropdown-menu');
-          if (!dropdownMenu) {
-            e.preventDefault();
-          }
+          e.preventDefault();
 
           var viewName = link.getAttribute('data-nav');
           if (viewName && VIEWS.indexOf(viewName) !== -1) {

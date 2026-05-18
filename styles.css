@@ -390,7 +390,7 @@
 
   .button:disabled,
   .button[aria-disabled="true"] {
-    opacity: 0.5;
+    opacity: 0.58;
     cursor: not-allowed;
     box-shadow: none;
     transform: none;
@@ -1328,8 +1328,14 @@
     transition: background-color 180ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .module-row--link:hover {
+  .module-row--link:hover,
+  .module-row--current {
     background: oklch(97.4% 0.018 88 / 0.85);
+  }
+
+  .module-row--current .module-index {
+    background: var(--coconut-soft);
+    color: var(--coconut-deep);
   }
 
   .module-row--link:focus-visible {
