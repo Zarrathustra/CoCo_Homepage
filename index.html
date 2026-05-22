@@ -86,26 +86,47 @@
           <aside class="hero-relationship" id="overview" aria-labelledby="hero-relationship-title">
             <p class="eyebrow">CoCo structure</p>
             <h2 id="hero-relationship-title">A GUI hub first, then the analysis modules it coordinates.</h2>
-            <ol class="relationship-steps" aria-label="CoCo system structure">
+            <ol class="relationship-steps" aria-label="CoCo system structure and module flow">
               <li>
                 <span>01</span>
                 <div>
-                  <strong>Install CoCo</strong>
-                  <p>Researchers start from one GUI entry point.</p>
+                  <strong>Start from the CoCo GUI</strong>
+                  <p>Researchers use one graphical entry point for supported cryo-EM workflow tasks.</p>
                 </div>
               </li>
               <li>
                 <span>02</span>
                 <div>
-                  <strong>Open modules inside CoCo</strong>
-                  <p>CryoSieve and CryoPROS are framed as wrapped workflows.</p>
+                  <strong>Prepare a shared work context</strong>
+                  <p>Projects, inputs, and module choices are organized before analysis begins.</p>
+                </div>
+              </li>
+              <li class="relationship-steps__branch">
+                <span>A</span>
+                <div>
+                  <strong>CryoSieve: particle selection</strong>
+                  <p>Use the CryoSieve path when sorting or sieving particle sets is the task.</p>
+                </div>
+              </li>
+              <li class="relationship-steps__branch">
+                <span>B</span>
+                <div>
+                  <strong>CryoPROS: orientation correction</strong>
+                  <p>Use the CryoPROS path when preferred orientation limits reconstruction quality.</p>
+                </div>
+              </li>
+              <li class="relationship-steps__branch">
+                <span>C</span>
+                <div>
+                  <strong>CTFA: planned capability</strong>
+                  <p>Keep CTFA visible as a planned module while public details remain TBD.</p>
                 </div>
               </li>
               <li>
                 <span>03</span>
                 <div>
-                  <strong>Track what is still emerging</strong>
-                  <p>CTFA is present in the system map and clearly marked TBD.</p>
+                  <strong>Return outputs to the workflow</strong>
+                  <p>Results are intended to fit back into existing cryo-EM analysis and review steps.</p>
                 </div>
               </li>
             </ol>

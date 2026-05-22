@@ -916,6 +916,12 @@
     font-weight: 850;
   }
 
+  .relationship-steps__branch span {
+    border-color: oklch(67% 0.064 218 / 0.4);
+    background: var(--slate-soft);
+    color: var(--slate);
+  }
+
   .relationship-steps strong {
     display: block;
     color: var(--ink);
