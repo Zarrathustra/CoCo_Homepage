@@ -14,3 +14,4 @@ replay_pid*
 .idea/
 .vscode/
 .claude/settings.local.json
+.claude/skills/impeccable/

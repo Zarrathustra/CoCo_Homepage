@@ -83,68 +83,41 @@
             </dl>
           </div>
 
-          <div class="workbench-card" aria-label="CoCo module relationship map">
+          <div class="workbench-card coco-gui-card" data-coco-gui-mode="light" aria-label="CoCo GUI preview">
             <div class="workbench-toolbar" aria-hidden="true">
               <span></span><span></span><span></span>
-              <strong>CoCo module map</strong>
+              <strong>CoCo GUI</strong>
             </div>
-            <svg class="workflow-map" viewBox="0 0 760 560" role="img" aria-labelledby="workflow-title workflow-desc">
-              <title id="workflow-title">CoCo as the central GUI hub for three modules</title>
-              <desc id="workflow-desc">CoCo is placed in the center, connected to CryoSieve, CryoPROS, and CTFA. CTFA is marked as TBD.</desc>
-              <defs>
-                <pattern id="paper-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                  <path d="M 32 0 L 0 0 0 32" fill="none" class="grid-line"></path>
-                </pattern>
-              </defs>
-              <rect x="0" y="0" width="760" height="560" rx="34" class="map-bg"></rect>
-              <rect x="0" y="0" width="760" height="560" rx="34" fill="url(#paper-grid)" opacity="0.72"></rect>
-
-              <path class="contour contour-a" d="M72 112c52-68 161-59 207-5 34 40 22 92-24 120-52 32-143 28-185-18-32-36-30-71 2-97Z"></path>
-              <path class="contour contour-b" d="M511 66c67 8 127 58 129 122 2 59-45 108-109 112-59 4-104-29-118-80-18-66 28-164 98-154Z"></path>
-              <path class="contour contour-c" d="M447 375c72-33 167-13 199 42 28 49-7 95-72 111-77 19-174-16-186-70-8-37 18-65 59-83Z"></path>
-
-              <g class="connector-lines" aria-hidden="true">
-                <path d="M380 278 C284 230 235 182 184 135"></path>
-                <path d="M404 268 C458 188 502 148 575 126"></path>
-                <path d="M408 315 C478 363 515 398 572 455"></path>
-              </g>
-
-              <g class="hub" transform="translate(284 196)">
-                <path class="hub-shadow" d="M101 0c55 0 98 43 98 96 0 62-44 108-98 108S0 158 0 96C0 43 46 0 101 0Z"></path>
-                <path class="hub-shell" d="M103 14c45 0 80 34 80 78 0 51-36 89-80 89s-83-38-83-89c0-44 38-78 83-78Z"></path>
-                <path class="hub-rim" d="M52 78c20-34 83-44 111-13 8 9 12 20 12 33 0 41-32 72-72 72-39 0-74-30-74-72 0-7 8-13 23-20Z"></path>
-                <path class="hub-leaf hub-leaf-a" d="M99 11c3-35 35-56 76-48-5 34-34 57-76 48Z"></path>
-                <path class="hub-leaf hub-leaf-b" d="M91 12c-10-32-42-46-78-31 13 30 43 47 78 31Z"></path>
-                <text x="102" y="92" text-anchor="middle" class="hub-title">CoCo</text>
-                <text x="102" y="121" text-anchor="middle" class="hub-subtitle">Unified GUI</text>
-              </g>
-
-              <g class="module-node module-sieve" data-nav="cryosieve" transform="translate(52 78)" role="link" tabindex="0" aria-label="CryoSieve details">
-                <rect width="232" height="126" rx="24"></rect>
-                <text x="28" y="44" class="node-label">CryoSieve</text>
-                <text x="28" y="74" class="node-body">Particle sorting</text>
-                <text x="28" y="99" class="node-meta">single-particle cryo-EM</text>
-              </g>
-
-              <g class="module-node module-pros" data-nav="cryopros" transform="translate(500 76)" role="link" tabindex="0" aria-label="CryoPROS details">
-                <rect width="220" height="132" rx="24"></rect>
-                <text x="28" y="44" class="node-label">CryoPROS</text>
-                <text x="28" y="74" class="node-body">Preferred orientation</text>
-                <text x="28" y="99" class="node-meta">correction framework</text>
-              </g>
-
-              <g class="module-node module-ctfa" data-nav="ctfa" transform="translate(494 386)" role="link" tabindex="0" aria-label="CTFA details">
-                <rect width="222" height="124" rx="24"></rect>
-                <text x="28" y="44" class="node-label">CTFA</text>
-                <text x="28" y="74" class="node-body">Module placeholder</text>
-                <text x="28" y="99" class="node-meta">TBD, not a download</text>
-              </g>
-
-              <g class="annotation" transform="translate(73 420)">
-                <line x1="0" y1="0" x2="146" y2="0"></line>
-                <text x="0" y="30">One CoCo download, three wrapped capabilities</text>
-              </g>
-            </svg>
+            <figure class="coco-gui-figure">
+              <img
+                class="coco-gui-image coco-gui-image--light"
+                src="img/North_Star_light_mode.png"
+                alt="CoCo GUI preview showing the project workbench interface in light mode"
+                width="5120"
+                height="2880"
+                fetchpriority="high"
+                decoding="async"
+              >
+              <img
+                class="coco-gui-image coco-gui-image--dark"
+                src="img/North_Star_dark_mode.png"
+                alt=""
+                width="5120"
+                height="2880"
+                loading="lazy"
+                decoding="async"
+                aria-hidden="true"
+              >
+            </figure>
+            <button
+              class="coco-gui-toggle"
+              type="button"
+              aria-pressed="false"
+              aria-label="Switch CoCo GUI preview to dark mode"
+            >
+              <span class="coco-gui-toggle__dot" aria-hidden="true"></span>
+              <span class="coco-gui-toggle__label">Dark mode</span>
+            </button>
           </div>
         </div>
       </section>
@@ -560,6 +533,27 @@
             trigger.focus();
           }
         });
+
+        var cocoGuiCard = document.querySelector('.coco-gui-card');
+        var cocoGuiToggle = document.querySelector('.coco-gui-toggle');
+        var cocoGuiToggleLabel = cocoGuiToggle ? cocoGuiToggle.querySelector('.coco-gui-toggle__label') : null;
+
+        function setCocoGuiMode(mode) {
+          if (!cocoGuiCard || !cocoGuiToggle) return;
+          var isDark = mode === 'dark';
+          cocoGuiCard.setAttribute('data-coco-gui-mode', isDark ? 'dark' : 'light');
+          cocoGuiToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+          cocoGuiToggle.setAttribute('aria-label', isDark ? 'Switch CoCo GUI preview to light mode' : 'Switch CoCo GUI preview to dark mode');
+          if (cocoGuiToggleLabel) cocoGuiToggleLabel.textContent = isDark ? 'Light mode' : 'Dark mode';
+        }
+
+        if (cocoGuiCard && cocoGuiToggle) {
+          setCocoGuiMode('light');
+          cocoGuiToggle.addEventListener('click', function () {
+            var currentMode = cocoGuiCard.getAttribute('data-coco-gui-mode');
+            setCocoGuiMode(currentMode === 'dark' ? 'light' : 'dark');
+          });
+        }
 
         var VIEWS = ['home', 'cryosieve', 'cryopros', 'ctfa'];
         var currentView = 'home';

@@ -546,6 +546,105 @@
     text-transform: uppercase;
   }
 
+  .coco-gui-card {
+    grid-column: 1 / -1;
+    isolation: isolate;
+    background:
+      radial-gradient(circle at 88% 18%, oklch(88% 0.055 140 / 0.48), transparent 16rem),
+      linear-gradient(180deg, oklch(97.4% 0.015 88), oklch(94% 0.024 86));
+  }
+
+  .coco-gui-card::before {
+    z-index: 0;
+  }
+
+  .coco-gui-figure {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 100%;
+    min-height: clamp(14rem, 62vw, 24rem);
+    margin: 0;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 50%, oklch(96% 0.015 88), transparent 72%),
+      oklch(92.5% 0.022 88);
+  }
+
+  .coco-gui-image {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 1;
+    transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .coco-gui-image--dark {
+    opacity: 0;
+  }
+
+  .coco-gui-card[data-coco-gui-mode="dark"] .coco-gui-image--light {
+    opacity: 0;
+  }
+
+  .coco-gui-card[data-coco-gui-mode="dark"] .coco-gui-image--dark {
+    opacity: 1;
+  }
+
+  .coco-gui-toggle {
+    position: absolute;
+    left: clamp(0.82rem, 2vw, 1.18rem);
+    bottom: clamp(0.82rem, 2vw, 1.18rem);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.52rem;
+    min-height: 2.55rem;
+    padding: 0.58rem 0.82rem;
+    border: 1px solid oklch(93% 0.018 88 / 0.24);
+    border-radius: 999px;
+    background: oklch(22% 0.03 74 / 0.88);
+    color: oklch(96% 0.013 88);
+    box-shadow: 0 12px 28px oklch(24% 0.046 72 / 0.24);
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-weight: 850;
+    letter-spacing: 0.035em;
+    transition:
+      transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .coco-gui-toggle:hover {
+    transform: translateY(-1px);
+  }
+
+  .coco-gui-toggle__dot {
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 50%;
+    background: var(--slate);
+    box-shadow: 0 0 0 4px oklch(96% 0.013 88 / 0.16);
+  }
+
+  .coco-gui-toggle__label {
+    white-space: nowrap;
+  }
+
+  .coco-gui-card[data-coco-gui-mode="dark"] .coco-gui-toggle {
+    border-color: oklch(72% 0.044 84 / 0.48);
+    background: oklch(95% 0.016 88 / 0.92);
+    color: var(--coconut-deep);
+  }
+
+  .coco-gui-card[data-coco-gui-mode="dark"] .coco-gui-toggle__dot {
+    background: var(--coconut);
+    box-shadow: 0 0 0 4px oklch(42% 0.105 58 / 0.12);
+  }
+
   .workflow-map {
     position: relative;
     z-index: 1;
@@ -1621,7 +1720,16 @@
 
   @media (min-width: 58rem) {
     .hero-grid {
-      grid-template-columns: minmax(0, 0.92fr) minmax(28rem, 1.08fr);
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-copy {
+      max-width: 54rem;
+    }
+
+    .coco-gui-figure {
+      min-height: clamp(28rem, 62vh, 48rem);
+      max-height: min(76vh, 54rem);
     }
 
     .relationship-layout,
@@ -1752,6 +1860,10 @@
       transform: rotate(0.35deg);
     }
 
+    .coco-gui-card {
+      transform: none;
+    }
+
     .hero-copy {
       padding-top: 1rem;
     }
@@ -1760,7 +1872,8 @@
   @media (pointer: coarse) {
     .button,
     .nav-links a,
-    .reference-links a {
+    .reference-links a,
+    .coco-gui-toggle {
       min-height: 48px;
     }
   }
@@ -1768,7 +1881,8 @@
   @media (hover: none) {
     .button:hover,
     .nav-links a:hover,
-    .reference-links a:hover {
+    .reference-links a:hover,
+    .coco-gui-toggle:hover {
       transform: none;
     }
   }
@@ -1781,6 +1895,10 @@
       transition-duration: 0.001ms !important;
       animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;
+    }
+
+    .coco-gui-image {
+      transition: none !important;
     }
   }
 }
