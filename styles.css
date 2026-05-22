@@ -774,14 +774,12 @@
   }
 
   .section-heading,
-  .relationship-layout,
   .download-panel {
     display: grid;
     gap: 1.4rem;
   }
 
   .section-heading p,
-  .relationship-layout p,
   .download-panel p,
   .footer-main p {
     max-width: 66ch;
@@ -850,44 +848,85 @@
     border-radius: 2px;
   }
 
-  .relationship-steps {
+  .hero-relationship {
+    position: relative;
+    align-self: stretch;
     display: grid;
-    gap: 0.8rem;
+    align-content: start;
+    gap: 1rem;
+    padding: clamp(1rem, 2.5vw, 1.35rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at 92% 8%, oklch(91% 0.046 140 / 0.5), transparent 10rem),
+      linear-gradient(180deg, oklch(98% 0.012 88 / 0.9), oklch(95% 0.022 86 / 0.82));
+    box-shadow: var(--shadow-soft);
+  }
+
+  .hero-relationship .eyebrow {
+    margin-bottom: -0.35rem;
+  }
+
+  .hero-relationship h2 {
+    max-width: 18rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+  }
+
+  .relationship-steps {
+    position: relative;
+    display: grid;
+    gap: 0;
     padding: 0;
     list-style: none;
   }
 
+  .relationship-steps::before {
+    position: absolute;
+    top: 1.2rem;
+    bottom: 1.2rem;
+    left: 1.08rem;
+    width: 1px;
+    content: "";
+    background: linear-gradient(180deg, var(--line-strong), oklch(72% 0.052 82 / 0.18));
+  }
+
   .relationship-steps li {
+    position: relative;
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 0.15rem 0.8rem;
-    padding: 1rem;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-    background: oklch(97.4% 0.016 88 / 0.78);
+    gap: 0.12rem 0.82rem;
+    padding: 0.68rem 0 0.68rem;
   }
 
   .relationship-steps span {
-    grid-row: span 2;
-    width: 2.35rem;
-    height: 2.35rem;
+    position: relative;
+    z-index: 1;
+    width: 2.15rem;
+    height: 2.15rem;
     display: grid;
     place-items: center;
+    border: 1px solid oklch(72% 0.052 82 / 0.38);
     border-radius: 50%;
-    background: var(--coconut-soft);
+    background: oklch(97.4% 0.016 88);
     color: var(--coconut-deep);
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     font-weight: 850;
   }
 
   .relationship-steps strong {
+    display: block;
     color: var(--ink);
-    font-size: 1.05rem;
-    line-height: 1.24;
+    font-size: 1.02rem;
+    line-height: 1.22;
   }
 
   .relationship-steps p {
-    font-size: 0.96rem;
+    margin-top: 0.2rem;
+    font-size: 0.93rem;
+    line-height: 1.5;
   }
 
   .module-ledger {
@@ -1611,7 +1650,6 @@
 
 @layer layout {
   .hero-section,
-  .relationship-section,
   .modules-section,
   .download-section,
   .references-section,
@@ -1638,7 +1676,6 @@
     gap: clamp(1rem, 2.6vw, 1.65rem);
   }
 
-  .relationship-section,
   .modules-section,
   .download-section,
   .references-section {
@@ -1720,11 +1757,16 @@
 
   @media (min-width: 58rem) {
     .hero-grid {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 0.58fr);
+      align-items: stretch;
     }
 
     .hero-copy {
       max-width: 54rem;
+    }
+
+    .coco-gui-card {
+      grid-column: 1 / -1;
     }
 
     .coco-gui-figure {
@@ -1732,15 +1774,10 @@
       max-height: min(76vh, 54rem);
     }
 
-    .relationship-layout,
     .section-heading,
     .download-panel {
       grid-template-columns: minmax(0, 0.95fr) minmax(20rem, 0.78fr);
       align-items: start;
-    }
-
-    .relationship-steps {
-      margin-top: 0.55rem;
     }
 
     .module-row {
