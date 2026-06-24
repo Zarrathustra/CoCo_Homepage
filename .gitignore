@@ -2,6 +2,7 @@
 .env.*
 !.env.example
 .DS_Store
+coco.tar.gz
 
 # Java / Maven build output
 target/

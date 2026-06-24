@@ -197,7 +197,7 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 - **Primary:** Growth Green background, warm paper text, strong weight, compact horizontal padding. This is for Download CoCo and no other equal-priority action.
 - **Hover / Focus:** Hover shifts to brighter Growth Green with a slightly stronger glow. Focus uses the visible green ring from `focus`.
 - **Secondary:** Warm paper fill, Pencil Line border, Coconut Brown text. Use for lower-commitment navigation like View modules.
-- **Disabled:** Reduce opacity, remove shadow, and prevent pointer interaction. The current Download coming soon state uses this intentionally.
+- **Disabled:** Reduce opacity, remove shadow, and prevent pointer interaction. Use disabled buttons only for unavailable actions; the current release download is an active primary link.
 
 ### Chips
 

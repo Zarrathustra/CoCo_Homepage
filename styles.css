@@ -180,7 +180,7 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    padding: max(0.65rem, env(safe-area-inset-top)) var(--space-page) 0.65rem;
+    padding: max(0.5rem, env(safe-area-inset-top)) var(--space-page) 0.5rem;
     background: linear-gradient(180deg, oklch(98.2% 0.012 88 / 0.96), oklch(98.2% 0.012 88 / 0.82));
     border-bottom: 1px solid oklch(84% 0.033 88 / 0.72);
   }
@@ -189,9 +189,9 @@
     width: min(100%, var(--max-width));
     margin-inline: auto;
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: 0.85rem 1rem;
+    gap: 0.45rem 0.75rem;
   }
 
   .brand-mark,
@@ -200,6 +200,12 @@
     align-items: center;
     gap: 0.75rem;
     color: var(--ink);
+  }
+
+  .brand-mark {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
   }
 
   .brand-mark img,
@@ -235,22 +241,28 @@
   }
 
   .nav-links {
+    position: relative;
     grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
-    gap: 0.35rem;
+    justify-content: space-between;
+    gap: 0.1rem;
     color: var(--ink-muted);
-    font-size: 0.92rem;
+    font-size: 0.82rem;
     font-weight: 720;
+    line-height: 1;
   }
 
   .nav-links a {
-    min-height: 42px;
+    min-height: 40px;
     display: inline-flex;
     align-items: center;
-    padding: 0.46rem 0.7rem;
+    padding: 0.42rem 0.48rem;
     border-radius: 999px;
+    white-space: nowrap;
   }
 
   .nav-links a:hover {
@@ -259,21 +271,22 @@
   }
 
   .nav-dropdown {
-    position: relative;
+    position: static;
   }
 
   .nav-dropdown-trigger {
-    min-height: 42px;
+    min-height: 40px;
     display: inline-flex;
     align-items: center;
     gap: 0.38rem;
-    padding: 0.46rem 0.7rem;
+    padding: 0.42rem 0.48rem;
     border: 0;
     border-radius: 999px;
     background: transparent;
     color: var(--ink-muted);
-    font-size: 0.92rem;
+    font-size: inherit;
     font-weight: 720;
+    white-space: nowrap;
     cursor: pointer;
     transition:
       background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -296,10 +309,13 @@
   .nav-dropdown-menu {
     position: absolute;
     top: calc(100% + 0.55rem);
-    left: 50%;
-    transform: translateX(-50%) translateY(-4px);
-    min-width: 18rem;
-    padding: 0.55rem;
+    left: 0;
+    right: 0;
+    width: auto;
+    min-width: 0;
+    max-width: calc(100vw - (2 * var(--space-page)));
+    padding: 0.45rem;
+    transform: translateY(-4px);
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
     background: oklch(98.8% 0.012 88 / 0.98);
@@ -319,13 +335,13 @@
   .nav-dropdown:focus-within .nav-dropdown-menu {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
 
   .nav-dropdown-menu a {
     display: grid;
     gap: 0.08rem;
-    padding: 0.72rem 0.85rem;
+    padding: 0.66rem 0.72rem;
     border-radius: var(--radius-sm);
     min-height: auto;
     text-decoration: none;
@@ -339,7 +355,7 @@
   .nav-dropdown-menu a strong {
     display: block;
     color: var(--ink);
-    font-size: 0.96rem;
+    font-size: 0.93rem;
     font-weight: 760;
     letter-spacing: -0.015em;
   }
@@ -352,8 +368,9 @@
   .nav-dropdown-menu a span {
     display: block;
     color: var(--ink-soft);
-    font-size: 0.81rem;
+    font-size: 0.78rem;
     font-weight: 620;
+    line-height: 1.3;
   }
 
   .nav-dropdown-menu a:hover span,
@@ -419,8 +436,14 @@
   }
 
   .nav-cta {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
     justify-self: end;
-    padding-inline: 1rem;
+    min-height: 42px;
+    padding-inline: clamp(0.72rem, 2.6vw, 1rem);
+    font-size: clamp(0.82rem, 3.2vw, 0.92rem);
+    white-space: nowrap;
   }
 
   .eyebrow,
@@ -1766,6 +1789,371 @@
   .citation-link:hover {
     text-decoration-color: var(--coconut-deep);
   }
+
+  .install-page {
+    padding-bottom: clamp(2.4rem, 7vw, 6rem);
+  }
+
+  .install-page-back {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 0.9rem;
+    margin-bottom: clamp(1.2rem, 3vw, 2.2rem);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .install-download-link {
+    min-height: 42px;
+    padding-inline: clamp(0.78rem, 2.4vw, 1rem);
+    font-size: clamp(0.82rem, 2.6vw, 0.92rem);
+    white-space: nowrap;
+  }
+
+  .install-page-hero {
+    display: grid;
+    gap: clamp(1.4rem, 3.2vw, 2.5rem);
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.4rem, 4vw, 3rem);
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-xl);
+    background:
+      radial-gradient(circle at 88% 14%, oklch(91% 0.055 140 / 0.52), transparent 24rem),
+      radial-gradient(circle at 8% 100%, oklch(89% 0.048 72 / 0.32), transparent 24rem),
+      linear-gradient(180deg, oklch(98% 0.012 88), oklch(94.2% 0.025 86));
+    box-shadow: var(--shadow-soft);
+  }
+
+  .install-page-hero-copy {
+    display: grid;
+    gap: 0.8rem;
+    align-content: start;
+  }
+
+  .install-page-title {
+    max-width: 15ch;
+    font-family: var(--font-serif);
+    font-size: clamp(2.1rem, 4.4vw, 3.5rem);
+    font-weight: 650;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+
+  .install-page-lede {
+    max-width: 68ch;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .install-release-badge {
+    width: fit-content;
+    padding: 0.42rem 0.82rem;
+    border: 1px solid oklch(76% 0.068 148 / 0.42);
+    border-radius: 999px;
+    background: oklch(93% 0.044 151 / 0.62);
+    color: var(--leaf-deep);
+    font-size: 0.84rem;
+    font-weight: 830;
+  }
+
+  .install-hero-facts {
+    display: grid;
+    gap: 0.8rem;
+    align-content: start;
+    padding: clamp(1rem, 3vw, 1.3rem);
+    border: 1px solid oklch(84% 0.033 88 / 0.72);
+    border-radius: var(--radius-lg);
+    background: oklch(98% 0.012 88 / 0.64);
+  }
+
+  .install-hero-facts div {
+    display: grid;
+    gap: 0.14rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .install-hero-facts div:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .install-hero-facts dt {
+    color: var(--ink-soft);
+    font-size: 0.72rem;
+    font-weight: 850;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .install-hero-facts dd {
+    color: var(--ink);
+    font-size: 1rem;
+    font-weight: 760;
+  }
+
+  .install-guide-layout {
+    display: grid;
+    gap: clamp(1.4rem, 4vw, 3rem);
+    padding-top: clamp(1.8rem, 4vw, 3.2rem);
+  }
+
+  .install-toc {
+    align-self: start;
+    padding: clamp(1rem, 2.6vw, 1.25rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at 90% 10%, oklch(91% 0.035 216 / 0.34), transparent 12rem),
+      oklch(97.4% 0.016 88 / 0.78);
+  }
+
+  .install-toc h2 {
+    max-width: none;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 850;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .install-toc-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+    margin-top: 0.85rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .install-toc-list a {
+    display: inline-flex;
+    min-height: 2rem;
+    align-items: center;
+    padding: 0.34rem 0.58rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: oklch(98% 0.012 88 / 0.72);
+    color: var(--ink-muted);
+    font-size: 0.82rem;
+    font-weight: 720;
+  }
+
+  .install-toc-list a:hover,
+  .install-toc-list a:focus-visible {
+    background: var(--leaf-soft);
+    color: var(--leaf-deep);
+  }
+
+  .install-content {
+    display: grid;
+    gap: clamp(1.4rem, 3.6vw, 2.4rem);
+    min-width: 0;
+  }
+
+  .install-section {
+    scroll-margin-top: 6rem;
+    display: grid;
+    gap: 0.85rem;
+    padding: clamp(1.1rem, 3vw, 1.6rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: oklch(98% 0.012 88 / 0.62);
+  }
+
+  .install-section--protocol {
+    background:
+      radial-gradient(circle at 12% 10%, oklch(89% 0.048 72 / 0.26), transparent 16rem),
+      linear-gradient(180deg, oklch(98.2% 0.012 88 / 0.88), oklch(96.1% 0.018 92 / 0.78));
+    box-shadow: var(--shadow-soft);
+  }
+
+  .install-section-heading {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .install-section-heading h2 {
+    max-width: 24ch;
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 650;
+    line-height: 1.12;
+  }
+
+  .install-section h3 {
+    font-size: clamp(1.06rem, 1.4vw, 1.22rem);
+  }
+
+  .install-section p {
+    max-width: 74ch;
+  }
+
+  .install-section code,
+  .install-command code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.92em;
+  }
+
+  .install-section p code,
+  .install-section li code {
+    padding: 0.08rem 0.28rem;
+    border: 1px solid oklch(84% 0.033 88 / 0.75);
+    border-radius: 0.38rem;
+    background: oklch(95.8% 0.018 88 / 0.78);
+    color: var(--coconut-deep);
+  }
+
+  .install-protocol {
+    display: grid;
+    gap: 0;
+    padding: 0;
+    list-style: none;
+    border-block: 1px solid var(--line-strong);
+  }
+
+  .install-step {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: clamp(0.95rem, 2.8vw, 1.35rem) 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .install-step:last-child {
+    border-bottom: 0;
+  }
+
+  .install-step__index {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid oklch(72% 0.052 82 / 0.42);
+    border-radius: 50%;
+    background: oklch(97.4% 0.016 88);
+    color: var(--coconut-deep);
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  .install-command {
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 0.45rem;
+    padding: 0.72rem;
+    overflow-x: auto;
+    border: 1px solid oklch(72% 0.052 82 / 0.36);
+    border-radius: var(--radius-md);
+    background:
+      linear-gradient(180deg, oklch(31% 0.035 74), oklch(25% 0.032 74));
+    color: oklch(94% 0.014 92);
+  }
+
+  .install-command--tree {
+    background:
+      linear-gradient(180deg, oklch(34% 0.03 92), oklch(28% 0.028 92));
+  }
+
+  .install-command--avoid {
+    border-color: oklch(72% 0.052 82 / 0.54);
+    background:
+      linear-gradient(180deg, oklch(36% 0.045 58), oklch(29% 0.038 58));
+  }
+
+  .install-code-label {
+    color: oklch(82% 0.054 138);
+    font-size: 0.7rem;
+    font-weight: 850;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .install-command pre {
+    min-width: 0;
+    margin: 0;
+    overflow-x: auto;
+    color: inherit;
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .install-command code {
+    color: inherit;
+    white-space: pre;
+  }
+
+  .install-inline-list,
+  .install-numbered-list,
+  .install-job-list {
+    display: grid;
+    gap: 0.58rem;
+    max-width: 74ch;
+    margin: 0;
+    color: var(--ink-muted);
+  }
+
+  .install-inline-list,
+  .install-job-list {
+    padding-left: 1.15rem;
+  }
+
+  .install-numbered-list {
+    padding-left: 1.35rem;
+  }
+
+  .install-job-list {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    max-width: none;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .install-job-list li {
+    padding: 0.55rem 0.72rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: oklch(97% 0.017 88 / 0.7);
+  }
+
+  .install-note {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid oklch(72% 0.052 82 / 0.44);
+    border-radius: var(--radius-md);
+    background: oklch(96.4% 0.024 82 / 0.72);
+  }
+
+  .install-note strong {
+    color: var(--coconut-deep);
+  }
+
+  .install-note p {
+    margin: 0;
+  }
+
+  .install-note--caution {
+    background: oklch(95.4% 0.028 72 / 0.76);
+  }
+
+  .install-troubleshooting-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .install-troubleshooting-list article {
+    display: grid;
+    gap: 0.58rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .install-troubleshooting-list article:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
 }
 
 @layer layout {
@@ -1774,7 +2162,8 @@
   .download-section,
   .references-section,
   .site-footer,
-  .module-page {
+  .module-page,
+  .install-page {
     width: min(100%, calc(var(--max-width) + var(--space-page) * 2));
     margin-inline: auto;
     padding-inline: var(--space-page);
@@ -1826,22 +2215,65 @@
 }
 
 @layer responsive {
-  .nav-dropdown-menu {
-    left: auto;
-    right: -0.5rem;
-    transform: translateY(-4px);
-  }
+  @media (max-width: 22rem) {
+    .brand-mark small {
+      display: none;
+    }
 
-  .nav-dropdown--open .nav-dropdown-menu,
-  .nav-dropdown:hover .nav-dropdown-menu,
-  .nav-dropdown:focus-within .nav-dropdown-menu {
-    transform: translateY(0);
+    .brand-mark img {
+      width: 48px;
+      height: auto;
+    }
+
+    .nav-cta {
+      padding-inline: 0.72rem;
+    }
   }
 
   @media (min-width: 42rem) {
+    .brand-mark,
+    .nav-cta,
+    .nav-links {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .nav-shell {
+      grid-template-columns: auto 1fr auto;
+      gap: 1rem;
+    }
+
+    .nav-links {
+      position: static;
+      width: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.35rem;
+      font-size: 0.92rem;
+      line-height: normal;
+    }
+
+    .nav-links a,
+    .nav-dropdown-trigger {
+      min-height: 42px;
+      padding: 0.46rem 0.7rem;
+    }
+
+    .nav-dropdown-trigger {
+      font-size: 0.92rem;
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
     .nav-dropdown-menu {
       left: 50%;
       right: auto;
+      width: auto;
+      min-width: 18rem;
+      max-width: none;
+      padding: 0.55rem;
       transform: translateX(-50%) translateY(-4px);
     }
 
@@ -1849,15 +2281,6 @@
     .nav-dropdown:hover .nav-dropdown-menu,
     .nav-dropdown:focus-within .nav-dropdown-menu {
       transform: translateX(-50%) translateY(0);
-    }
-    .nav-shell {
-      grid-template-columns: auto 1fr auto;
-      gap: 1rem;
-    }
-
-    .nav-links {
-      grid-column: auto;
-      justify-content: center;
     }
 
     .hero-facts {
@@ -1933,6 +2356,50 @@
 
     .module-page-hero-grid {
       grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.72fr);
+    }
+
+    .install-page-hero {
+      grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.42fr);
+      align-items: start;
+    }
+
+    .install-guide-layout {
+      grid-template-columns: minmax(13rem, 0.26fr) minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .install-toc {
+      position: sticky;
+      top: 6rem;
+    }
+
+    .install-toc-list {
+      display: grid;
+    }
+
+    .install-section {
+      grid-template-columns: minmax(10rem, 0.26fr) minmax(0, 1fr);
+      column-gap: clamp(1.4rem, 4vw, 2.8rem);
+    }
+
+    .install-section-heading {
+      align-self: start;
+    }
+
+    .install-section > p,
+    .install-section > ul,
+    .install-section > ol,
+    .install-section > h3,
+    .install-section > .install-command,
+    .install-section > .install-note,
+    .install-section > .install-protocol,
+    .install-section > .install-troubleshooting-list {
+      grid-column: 2;
+    }
+
+    .install-section--protocol .install-section-heading {
+      position: sticky;
+      top: 6rem;
     }
 
     .module-page--sieve .module-page-body {
@@ -2044,6 +2511,7 @@
   @media (pointer: coarse) {
     .button,
     .nav-links a,
+    .nav-dropdown-trigger,
     .coco-gui-toggle {
       min-height: 48px;
     }
@@ -2052,6 +2520,7 @@
   @media (hover: none) {
     .button:hover,
     .nav-links a:hover,
+    .nav-dropdown-trigger:hover,
     .coco-gui-toggle:hover {
       transform: none;
     }
