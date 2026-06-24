@@ -1790,25 +1790,47 @@
     text-decoration-color: var(--coconut-deep);
   }
 
+  .install-page,
+  .install-page-hero,
+  .install-page-hero-copy,
+  .install-guide-layout,
+  .install-content,
+  .install-section,
+  .install-section-heading,
+  .install-protocol,
+  .install-step,
+  .install-step > div,
+  .install-note,
+  .install-troubleshooting-list {
+    min-width: 0;
+  }
+
   .install-page {
     padding-bottom: clamp(2.4rem, 7vw, 6rem);
   }
 
   .install-page-back {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem 1rem;
     padding-block: 0.9rem;
     margin-bottom: clamp(1.2rem, 3vw, 2.2rem);
     border-bottom: 1px solid var(--line);
+  }
+
+  .install-page-back .module-back-link,
+  .install-download-link {
+    min-width: 0;
   }
 
   .install-download-link {
     min-height: 42px;
     padding-inline: clamp(0.78rem, 2.4vw, 1rem);
     font-size: clamp(0.82rem, 2.6vw, 0.92rem);
-    white-space: nowrap;
+    text-align: center;
+    white-space: normal;
   }
 
   .install-page-hero {
@@ -2041,9 +2063,12 @@
   .install-command {
     display: grid;
     gap: 0.45rem;
+    max-width: 100%;
+    min-width: 0;
     margin-top: 0.45rem;
     padding: 0.72rem;
     overflow-x: auto;
+    overscroll-behavior-inline: contain;
     border: 1px solid oklch(72% 0.052 82 / 0.36);
     border-radius: var(--radius-md);
     background:
@@ -2071,6 +2096,7 @@
   }
 
   .install-command pre {
+    max-width: 100%;
     min-width: 0;
     margin: 0;
     overflow-x: auto;
@@ -2104,7 +2130,7 @@
   }
 
   .install-job-list {
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
     max-width: none;
     list-style: none;
     padding-left: 0;
@@ -2227,6 +2253,124 @@
 
     .nav-cta {
       padding-inline: 0.72rem;
+    }
+  }
+
+  @media (max-width: 41.999rem) {
+    .nav-links {
+      min-width: 0;
+      max-width: 100%;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 0.2rem;
+    }
+
+    .nav-links a,
+    .nav-dropdown-trigger {
+      white-space: nowrap;
+    }
+
+    .install-page-hero {
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+    }
+
+    .install-page-title {
+      max-width: 16ch;
+      font-size: clamp(1.85rem, 10vw, 2.45rem);
+    }
+
+    .install-page-lede {
+      font-size: 0.98rem;
+      line-height: 1.62;
+    }
+
+    .install-hero-facts {
+      gap: 0.55rem;
+      padding: 0.85rem;
+    }
+
+    .install-hero-facts div {
+      padding-bottom: 0.55rem;
+    }
+
+    .install-hero-facts dd {
+      font-size: 0.94rem;
+    }
+
+    .install-command {
+      padding: 0.65rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .install-command pre {
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+  }
+
+  @media (min-width: 24rem) and (max-width: 57.999rem) {
+    .install-hero-facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .install-hero-facts div {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+
+  @media (max-width: 57.999rem) {
+    .install-toc,
+    .install-section--protocol .install-section-heading {
+      position: static;
+    }
+
+    .install-toc {
+      padding: 0.85rem;
+      overflow: hidden;
+    }
+
+    .install-toc-list {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: inline proximity;
+      padding-bottom: 0.2rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .install-toc-list li {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+    }
+
+    .install-toc-list a {
+      white-space: nowrap;
+    }
+
+    .install-section {
+      scroll-margin-top: 4.5rem;
+    }
+  }
+
+  @media (max-width: 26rem) {
+    .install-download-link {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 22rem) {
+    .install-step {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .install-step__index {
+      width: 2rem;
+      height: 2rem;
     }
   }
 
