@@ -2257,60 +2257,313 @@
   }
 
   @media (max-width: 41.999rem) {
+    .site-header {
+      padding: max(0.32rem, env(safe-area-inset-top)) var(--space-page) 0.36rem;
+    }
+
+    .nav-shell {
+      gap: 0.28rem 0.55rem;
+    }
+
+    .brand-mark {
+      gap: 0.52rem;
+    }
+
+    .brand-mark img {
+      width: 44px;
+      height: auto;
+    }
+
+    .brand-mark strong {
+      font-size: 0.98rem;
+    }
+
+    .brand-mark small {
+      display: none;
+    }
+
+    .nav-cta {
+      min-height: 40px;
+      padding: 0.62rem 0.82rem;
+      font-size: 0.82rem;
+    }
+
     .nav-links {
       min-width: 0;
       max-width: 100%;
-      flex-wrap: wrap;
+      overflow-x: auto;
+      flex-wrap: nowrap;
       justify-content: flex-start;
-      gap: 0.2rem;
+      gap: 0.16rem;
+      padding-bottom: 0.02rem;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .nav-links a,
-    .nav-dropdown-trigger {
+    .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+
+    .site-header .nav-links a,
+    .site-header .nav-dropdown-trigger {
+      min-height: 40px;
+      padding: 0.34rem 0.5rem;
       white-space: nowrap;
     }
 
+    body:has(#view-install:not([hidden])) .nav-links {
+      display: none;
+    }
+
+    .install-page {
+      padding-bottom: 2.6rem;
+    }
+
+    .install-page-back {
+      padding-block: 0.38rem;
+      margin-bottom: 0.7rem;
+      border-bottom-color: oklch(84% 0.033 88 / 0.55);
+    }
+
+    .install-page-back .module-back-link {
+      min-height: 36px;
+      padding: 0.36rem 0.52rem;
+      font-size: 0.82rem;
+    }
+
+    .install-page-back .install-download-link {
+      display: none;
+    }
+
     .install-page-hero {
-      gap: 1rem;
-      padding: 1.25rem;
-      border-radius: var(--radius-lg);
+      gap: 0.75rem;
+      padding: 0.95rem;
+      border-color: oklch(84% 0.033 88 / 0.78);
+      border-radius: var(--radius-md);
+      background:
+        radial-gradient(circle at 92% 8%, oklch(91% 0.055 140 / 0.24), transparent 10rem),
+        linear-gradient(180deg, oklch(98% 0.012 88), oklch(96% 0.018 88));
+      box-shadow: none;
+    }
+
+    .install-page-hero-copy {
+      gap: 0.45rem;
+    }
+
+    .install-page-hero .module-page-kicker {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
 
     .install-page-title {
-      max-width: 16ch;
-      font-size: clamp(1.85rem, 10vw, 2.45rem);
+      max-width: none;
+      font-size: clamp(1.55rem, 8vw, 2rem);
+      line-height: 1.08;
     }
 
     .install-page-lede {
-      font-size: 0.98rem;
-      line-height: 1.62;
+      font-size: 0.94rem;
+      line-height: 1.52;
+    }
+
+    .install-release-badge {
+      padding: 0.32rem 0.62rem;
+      font-size: 0.76rem;
     }
 
     .install-hero-facts {
-      gap: 0.55rem;
-      padding: 0.85rem;
+      display: flex;
+      gap: 0.3rem;
+      padding: 0;
+      overflow-x: auto;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .install-hero-facts::-webkit-scrollbar {
+      display: none;
     }
 
     .install-hero-facts div {
-      padding-bottom: 0.55rem;
+      flex: 0 0 auto;
+      gap: 0.04rem;
+      padding: 0.38rem 0.5rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: oklch(98% 0.012 88 / 0.62);
+    }
+
+    .install-hero-facts div:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .install-hero-facts dt {
+      font-size: 0.58rem;
+      letter-spacing: 0.07em;
     }
 
     .install-hero-facts dd {
-      font-size: 0.94rem;
+      font-size: 0.76rem;
+      line-height: 1.18;
     }
 
-    .install-command {
-      padding: 0.65rem;
+    .install-guide-layout {
+      gap: 0.95rem;
+      padding-top: 0.95rem;
+    }
+
+    .install-content {
+      gap: 0.95rem;
+    }
+
+    .install-section {
+      gap: 0.62rem;
+      padding: 1rem 0 1.05rem;
+      border-width: 1px 0 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .install-section--protocol {
+      padding: 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background:
+        radial-gradient(circle at 12% 8%, oklch(89% 0.048 72 / 0.18), transparent 11rem),
+        linear-gradient(180deg, oklch(98.2% 0.012 88 / 0.9), oklch(96.1% 0.018 92 / 0.7));
+      box-shadow: none;
+    }
+
+    .install-section-heading {
+      gap: 0.22rem;
+    }
+
+    .install-section-heading h2 {
+      max-width: none;
+      font-size: clamp(1.22rem, 6vw, 1.55rem);
+      line-height: 1.1;
+    }
+
+    .install-section h3 {
+      font-size: 1rem;
+      line-height: 1.22;
+    }
+
+    .install-section p,
+    .install-inline-list,
+    .install-numbered-list,
+    .install-job-list {
+      font-size: 0.94rem;
+      line-height: 1.52;
+    }
+
+    .install-inline-list,
+    .install-numbered-list,
+    .install-job-list {
+      gap: 0.42rem;
+    }
+
+    .install-inline-list {
+      padding-left: 1rem;
+    }
+
+    .install-numbered-list {
+      padding-left: 1.12rem;
+    }
+
+    .install-section p code,
+    .install-section li code {
+      padding: 0.05rem 0.22rem;
+      overflow-wrap: anywhere;
+    }
+
+    .install-protocol {
+      border-block-color: oklch(72% 0.052 82 / 0.44);
+    }
+
+    .install-step {
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.55rem;
+      padding: 0.62rem 0;
+    }
+
+    .install-step__index {
+      width: fit-content;
+      height: auto;
+      margin-top: 0.05rem;
+      padding: 0.2rem 0.44rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+    }
+
+    .install-section--protocol .install-code-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .install-job-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .install-job-list li {
+      padding: 0.34rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      line-height: 1.25;
+    }
+
+    .install-note {
+      gap: 0.4rem;
+      padding: 0.7rem 0.75rem;
       border-radius: var(--radius-sm);
     }
 
+    .install-troubleshooting-list {
+      gap: 0.75rem;
+    }
+
+    .install-troubleshooting-list article {
+      gap: 0.45rem;
+      padding-top: 0.75rem;
+    }
+
+    .install-section--protocol .install-command {
+      margin-top: 0.34rem;
+      padding: 0.5rem;
+    }
+
+    .install-command {
+      padding: 0.56rem;
+      border-radius: var(--radius-sm);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-gutter: stable;
+    }
+
     .install-command pre {
-      font-size: 0.78rem;
-      line-height: 1.5;
+      font-size: 0.76rem;
+      line-height: 1.48;
+      tab-size: 2;
+    }
+
+    .install-note .install-command {
+      padding: 0.5rem;
     }
   }
 
-  @media (min-width: 24rem) and (max-width: 57.999rem) {
+  @media (min-width: 42rem) and (max-width: 57.999rem) {
     .install-hero-facts {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -2328,17 +2581,36 @@
     }
 
     .install-toc {
-      padding: 0.85rem;
+      padding: 0.62rem 0;
       overflow: hidden;
+      border-width: 1px 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .install-toc h2 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
 
     .install-toc-list {
       flex-wrap: nowrap;
+      gap: 0.3rem;
+      margin-top: 0;
       overflow-x: auto;
       overscroll-behavior-inline: contain;
       scroll-snap-type: inline proximity;
-      padding-bottom: 0.2rem;
+      padding-bottom: 0.12rem;
+      scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
+    }
+
+    .install-toc-list::-webkit-scrollbar {
+      display: none;
     }
 
     .install-toc-list li {
@@ -2347,11 +2619,15 @@
     }
 
     .install-toc-list a {
+      min-height: 34px;
+      padding: 0.26rem 0.5rem;
+      background: oklch(98% 0.012 88 / 0.66);
+      font-size: 0.76rem;
       white-space: nowrap;
     }
 
     .install-section {
-      scroll-margin-top: 4.5rem;
+      scroll-margin-top: clamp(4.25rem, 14vw, 7.5rem);
     }
   }
 
@@ -2363,14 +2639,8 @@
   }
 
   @media (max-width: 22rem) {
-    .install-step {
-      grid-template-columns: 1fr;
-      gap: 0.5rem;
-    }
-
-    .install-step__index {
-      width: 2rem;
-      height: 2rem;
+    .install-command pre {
+      font-size: 0.74rem;
     }
   }
 
