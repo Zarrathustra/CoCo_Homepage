@@ -12,7 +12,7 @@ CoCo 面向结构生物学实验室、cryo-EM 研究者、研究生、PI 和科�
 - CryoSieve、CryoPROS 和 CTFA 是 CoCo 内部包装的分析模块。
 - 页面主要转化目标是 Download CoCo，而不是分别下载各模块。
 
-当前发布版本为 `v0.1.0`，首页主按钮下载根目录静态资源 `coco.tar.gz`。完整安装说明以内嵌网页视图 `#install` 展示，不直接向用户暴露 raw `INSTALL.md`。
+当前发布版本为 `v0.1.0`，首页主按钮通过 `/downloads/coco.tar.gz` 下载外部发布包。完整安装说明以内嵌网页视图 `#install` 展示，不直接向用户暴露 raw `INSTALL.md`。
 
 ## 模块概览
 
@@ -72,7 +72,6 @@ index.html
 ├── index.html
 ├── styles.css
 ├── coco_logo.png
-├── coco.tar.gz
 ├── img/
 │   ├── North_Star_dark_mode.png
 │   ├── North_Star_light_mode.png
@@ -84,9 +83,13 @@ index.html
 ├── pom.xml
 └── src/
     └── main/
-        ├── java/org/cocoproject/homepage/CocoHomepageApplication.java
+        ├── java/org/cocoproject/homepage/
+        │   ├── CocoHomepageApplication.java
+        │   └── DownloadResourceConfiguration.java
         └── resources/application.properties
 ```
+
+`coco.tar.gz` 是外部部署资源，不属于源码或 JAR 内容。默认从进程工作目录下的 `downloads/` 读取，也可以通过 `COCO_DOWNLOAD_DIR` 指定其他目录。
 
 ## 本地预览
 
@@ -119,7 +122,7 @@ http://localhost:8000/#install
 需要 Java 17 和 Maven。
 
 ```bash
-mvn spring-boot:run
+COCO_DOWNLOAD_DIR=/path/to/downloads mvn spring-boot:run
 ```
 
 默认访问：
@@ -153,8 +156,25 @@ java -jar target/coco-homepage-0.1.0.jar
 - `index.html`
 - `styles.css`
 - `coco_logo.png`
-- `coco.tar.gz`
 - `img/**`
+
+`coco.tar.gz` 不会进入 JAR。Spring Boot 将 `/downloads/**` 映射到外部下载目录：
+
+```text
+/opt/coco-homepage/
+├── coco-homepage-0.1.0.jar
+└── downloads/
+    └── coco.tar.gz
+```
+
+生产环境可以这样启动：
+
+```bash
+COCO_DOWNLOAD_DIR=/opt/coco-homepage/downloads \
+java -jar /opt/coco-homepage/coco-homepage-0.1.0.jar
+```
+
+不设置 `COCO_DOWNLOAD_DIR` 时，默认目录是进程工作目录下的 `./downloads`。更新发布包只需替换外部文件，不需要重新构建 JAR。
 
 ## 发布包安装说明
 
@@ -174,7 +194,7 @@ java -jar target/coco-homepage-0.1.0.jar
 - 样式集中在 `styles.css`，使用 OKLCH 色彩变量和 CSS cascade layers：`reset`、`base`、`components`、`layout`、`responsive`。
 - Spring Boot 只负责提供可运行 JAR 外壳；通常不需要修改 Java 代码。
 - 根目录静态资源若需要打包进 JAR，必须同步更新 `pom.xml` 的 resources includes。放在 `img/` 下的资源会自动随 `img/**` 打包。
-- `coco.tar.gz` 是 CoCo `v0.1.0` 的唯一主下载目标。
+- `coco.tar.gz` 是 CoCo `v0.1.0` 的唯一主下载目标，但应部署在 `COCO_DOWNLOAD_DIR` 指向的外部目录中，不应加入 Maven resources。
 - CTFA 当前为 TBD，不应作为独立下载入口展示。
 
 ## 设计方向
