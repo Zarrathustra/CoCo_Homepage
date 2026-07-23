@@ -37,7 +37,6 @@
           <include>index.html</include>
           <include>styles.css</include>
           <include>coco_logo.png</include>
-          <include>coco.tar.gz</include>
           <include>img/**</include>
         </includes>
       </resource>
