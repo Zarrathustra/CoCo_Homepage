@@ -46,7 +46,7 @@
           <a href="#download">Download</a>
           <a href="#references">References</a>
         </div>
-        <a class="button button-primary nav-cta" href="#download">Download CoCo</a>
+        <a class="button button-primary nav-cta" href="#download">Download CoCo v0.2.0</a>
       </nav>
     </header>
 
@@ -60,7 +60,7 @@
               CoCo acts as a copilot for your cryo-EM workflow, integrating CryoSieve, CryoPROS, and CTFA directly into the process you already run.
             </p>
             <div class="hero-actions" aria-label="Hero actions">
-              <a class="button button-primary" href="#download">Download CoCo</a>
+              <a class="button button-primary" href="#download">Download CoCo v0.2.0</a>
               <a class="button button-secondary" href="#modules">View modules</a>
             </div>
             <dl class="hero-facts" aria-label="CoCo platform highlights">
@@ -132,23 +132,24 @@
             </ol>
           </aside>
 
-          <div class="workbench-card coco-gui-card" data-coco-gui-mode="light" aria-label="CoCo GUI preview">
+          <div class="workbench-card coco-gui-card" data-coco-gui-theme="light" data-coco-gui-layout="dag" aria-label="CoCo GUI preview">
             <div class="workbench-toolbar" aria-hidden="true">
               <span></span><span></span><span></span>
               <strong>CoCo GUI</strong>
             </div>
-            <figure class="coco-gui-figure">
+            <figure class="coco-gui-figure" role="img" aria-label="CoCo GUI preview showing the project workbench in light mode with DAG layout">
               <img
-                class="coco-gui-image coco-gui-image--light"
+                class="coco-gui-image coco-gui-image--light-cards"
                 src="img/North_Star_light_mode.png"
-                alt="CoCo GUI preview showing the project workbench interface in light mode"
+                alt=""
                 width="5120"
                 height="2880"
-                fetchpriority="high"
+                loading="lazy"
                 decoding="async"
+                aria-hidden="true"
               >
               <img
-                class="coco-gui-image coco-gui-image--dark"
+                class="coco-gui-image coco-gui-image--dark-cards"
                 src="img/North_Star_dark_mode.png"
                 alt=""
                 width="5120"
@@ -157,16 +158,37 @@
                 decoding="async"
                 aria-hidden="true"
               >
+              <img
+                class="coco-gui-image coco-gui-image--light-dag"
+                src="img/North_Star_light_mode_DAG.png"
+                alt=""
+                width="5120"
+                height="2880"
+                fetchpriority="high"
+                decoding="async"
+                aria-hidden="true"
+              >
+              <img
+                class="coco-gui-image coco-gui-image--dark-dag"
+                src="img/North_Star_dark_mode_DAG.png"
+                alt=""
+                width="5120"
+                height="2880"
+                loading="lazy"
+                decoding="async"
+                aria-hidden="true"
+              >
             </figure>
-            <button
-              class="coco-gui-toggle"
-              type="button"
-              aria-pressed="false"
-              aria-label="Switch CoCo GUI preview to dark mode"
-            >
-              <span class="coco-gui-toggle__dot" aria-hidden="true"></span>
-              <span class="coco-gui-toggle__label">Dark mode</span>
-            </button>
+            <div class="coco-gui-controls">
+              <div class="coco-gui-segmented" role="group" aria-label="CoCo GUI preview color mode">
+                <button type="button" data-coco-gui-theme-option="light" aria-pressed="true">Light</button>
+                <button type="button" data-coco-gui-theme-option="dark" aria-pressed="false">Dark</button>
+              </div>
+              <div class="coco-gui-segmented" role="group" aria-label="CoCo GUI preview layout">
+                <button type="button" data-coco-gui-layout-option="cards" aria-pressed="false">Cards</button>
+                <button type="button" data-coco-gui-layout-option="dag" aria-pressed="true">DAG</button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -227,12 +249,15 @@
               CoCo is the only download target on this page. CryoSieve, CryoPROS, and CTFA are accessed through CoCo, not as standalone downloads.
             </p>
             <div class="download-actions">
-              <a class="button button-primary" href="/downloads/coco.tar.gz" download>Download CoCo v0.1.0</a>
+              <a class="button button-primary" href="/downloads/coco-0.2.6.tar.gz" download>Download CoCo v0.2.0</a>
               <a class="button button-secondary" href="#install" data-nav="install">Installation guide</a>
+            </div>
+            <div class="download-stat-slot">
+              <p class="download-stat" data-total-downloads aria-live="polite" aria-atomic="true" hidden></p>
             </div>
           </div>
           <div class="download-checklist" id="download-details" aria-label="Download confidence notes">
-            <p class="download-note">Packaged CoCo v0.1.0 release.</p>
+            <p class="download-note">Packaged CoCo v0.2.0 release. <a href="#changelog" data-nav="changelog">View change log</a></p>
             <ul>
               <li>Use Java 8 or above to run the packaged backend.</li>
               <li>Install the managed CoCo runtime for CryoSieve and CryoPROS.</li>
@@ -524,12 +549,628 @@
           </svg>
           Back to CoCo
         </a>
-        <a class="button button-primary install-download-link" href="/downloads/coco.tar.gz" download>Download CoCo v0.1.0</a>
       </nav>
 
       <header class="install-page-hero">
         <div class="install-page-hero-copy">
-          <p class="module-page-kicker">CoCo v0.1.0 release guide</p>
+          <p class="module-page-kicker">CoCo v0.2.0 release guide</p>
+          <h1 class="install-page-title">Install CoCo v0.2.0.</h1>
+          <p class="install-page-lede">Extract the packaged release, prepare the managed runtime, then verify the web application and its external cryo-EM dependencies.</p>
+          <span class="install-release-badge">v0.2.0</span>
+        </div>
+        <dl class="install-hero-facts" aria-label="Release requirements summary">
+          <div>
+            <dt>Platform</dt>
+            <dd>Linux or macOS</dd>
+          </div>
+          <div>
+            <dt>Runtime</dt>
+            <dd>Java 8 or above</dd>
+          </div>
+          <div>
+            <dt>Default port</dt>
+            <dd>8078</dd>
+          </div>
+          <div>
+            <dt>Archive</dt>
+            <dd>coco-0.2.6.tar.gz</dd>
+          </div>
+        </dl>
+      </header>
+
+      <div class="install-guide-layout">
+        <aside class="install-toc" aria-labelledby="install-toc-title">
+          <h2 id="install-toc-title">Sections</h2>
+          <nav aria-label="Install guide table of contents">
+            <ol class="install-toc-list">
+              <li><a href="#install-quickstart">Quick start</a></li>
+              <li><a href="#install-prerequisites">Prerequisites</a></li>
+              <li><a href="#install-unpack">Extract release</a></li>
+              <li><a href="#install-runtime">Managed runtime</a></li>
+              <li><a href="#install-start">Start CoCo</a></li>
+              <li><a href="#install-verify">Verify installation</a></li>
+              <li><a href="#install-configuration">Configuration</a></li>
+              <li><a href="#install-dependencies">External dependencies</a></li>
+              <li><a href="#install-slurm">SLURM lanes</a></li>
+              <li><a href="#install-modules">Built-in modules</a></li>
+              <li><a href="#install-runtime-behavior">Runtime behavior</a></li>
+              <li><a href="#install-workflows">Workflow checks</a></li>
+              <li><a href="#install-troubleshooting">Troubleshooting</a></li>
+            </ol>
+          </nav>
+        </aside>
+
+        <div class="install-content">
+          <section class="install-section install-section--protocol" id="install-quickstart" aria-labelledby="install-quickstart-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Fast path</p>
+              <h2 id="install-quickstart-title">Quick start protocol</h2>
+            </div>
+            <ol class="install-protocol">
+              <li class="install-step">
+                <span class="install-step__index">01</span>
+                <div>
+                  <h3>Extract the release</h3>
+                  <div class="install-command">
+                    <span class="install-code-label">Terminal</span>
+                    <pre><code>tar -xzf coco-0.2.6.tar.gz
+cd coco</code></pre>
+                  </div>
+                </div>
+              </li>
+              <li class="install-step">
+                <span class="install-step__index">02</span>
+                <div>
+                  <h3>Install the managed runtime</h3>
+                  <div class="install-command">
+                    <span class="install-code-label">Terminal</span>
+                    <pre><code>bin/coco-install-runtime.sh</code></pre>
+                  </div>
+                </div>
+              </li>
+              <li class="install-step">
+                <span class="install-step__index">03</span>
+                <div>
+                  <h3>Start CoCo</h3>
+                  <div class="install-command">
+                    <span class="install-code-label">Terminal</span>
+                    <pre><code>java -jar backend/&lt;coco-backend-jar&gt;.jar</code></pre>
+                  </div>
+                </div>
+              </li>
+              <li class="install-step">
+                <span class="install-step__index">04</span>
+                <div>
+                  <h3>Open the interface</h3>
+                  <div class="install-command">
+                    <span class="install-code-label">Browser</span>
+                    <pre><code>http://localhost:8078</code></pre>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <section class="install-section" id="install-prerequisites" aria-labelledby="install-prerequisites-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Before install</p>
+              <h2 id="install-prerequisites-title">Prerequisites</h2>
+            </div>
+            <p>Prepare a Linux or macOS machine with a writable installation directory and these command-line tools:</p>
+            <ul class="install-inline-list">
+              <li><code>bash</code></li>
+              <li><code>tar</code> and <code>gzip</code></li>
+              <li><code>awk</code>, <code>date</code>, and <code>du</code></li>
+              <li>Java 8 or newer</li>
+            </ul>
+            <p>Access to CryoSPARC and RELION is required only for workflows that use them. CryoSieve and CryoPROS are bundled with CoCo and do not need separate Python environments in a normal packaged deployment.</p>
+          </section>
+
+          <section class="install-section" id="install-unpack" aria-labelledby="install-unpack-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Release archive</p>
+              <h2 id="install-unpack-title">Extract the release</h2>
+            </div>
+            <p>Copy <code>coco-0.2.6.tar.gz</code> to the target machine, extract it, and enter the release directory.</p>
+            <div class="install-command">
+              <span class="install-code-label">Terminal</span>
+              <pre><code>tar -xzf coco-0.2.6.tar.gz
+cd coco</code></pre>
+            </div>
+            <p>Expected layout:</p>
+            <div class="install-command install-command--tree">
+              <span class="install-code-label">Layout</span>
+              <pre><code>coco/
+├── bin/
+│   └── coco-install-runtime.sh
+├── backend/
+│   └── &lt;coco-backend-jar&gt;.jar
+├── modules/
+│   ├── cryosieve/
+│   └── cryopros/
+├── runtime/
+├── runtime-packs/
+│   └── coco-runtime.tar.gz
+├── .gitmodules
+└── modules.lock</code></pre>
+            </div>
+            <ul class="install-job-list">
+              <li><code>backend/</code> contains the runnable backend and embedded frontend.</li>
+              <li><code>bin/</code> contains the runtime installer and validator.</li>
+              <li><code>runtime-packs/</code> contains the managed environment archive.</li>
+              <li><code>modules/</code> contains bundled CryoSieve and CryoPROS resources.</li>
+            </ul>
+            <div class="install-note">
+              <strong>Tutorial movie excluded</strong>
+              <p><code>modules/cryosieve/cryosieve_video_tutorial.mp4</code> is intentionally omitted and is not required at runtime.</p>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-runtime" aria-labelledby="install-runtime-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Managed environment</p>
+              <h2 id="install-runtime-title">Install the managed runtime</h2>
+            </div>
+            <p>Run the installer from the extracted <code>coco/</code> directory.</p>
+            <div class="install-command">
+              <span class="install-code-label">Terminal</span>
+              <pre><code>bin/coco-install-runtime.sh</code></pre>
+            </div>
+            <p>The installer checks the runtime archive for unsafe paths, extracts it, runs <code>conda-unpack</code>, validates required commands, and writes the backend profile.</p>
+            <div class="install-command">
+              <span class="install-code-label">Installed runtime</span>
+              <pre><code>runtime/envs/coco-runtime/</code></pre>
+            </div>
+            <div class="install-command">
+              <span class="install-code-label">Runtime profile</span>
+              <pre><code>runtime/coco-runtime-profile.json</code></pre>
+            </div>
+            <p>Validation covers Python, CryoSPARC conversion, MPI, RELION, PyTorch launch, and image-handling commands:</p>
+            <ul class="install-job-list">
+              <li><code>python</code></li>
+              <li><code>csparc2star.py</code></li>
+              <li><code>star.py</code></li>
+              <li><code>mpirun</code></li>
+              <li><code>relion_reconstruct_mpi</code></li>
+              <li><code>relion_reconstruct</code></li>
+              <li><code>relion_postprocess</code></li>
+              <li><code>torchrun</code></li>
+              <li><code>relion_image_handler</code></li>
+            </ul>
+            <p>CryoSieve and CryoPROS are bundled modules and are not validated as separate top-level CLI commands.</p>
+            <div class="install-command">
+              <span class="install-code-label">Validate existing runtime</span>
+              <pre><code>bin/coco-install-runtime.sh --check-only</code></pre>
+            </div>
+            <div class="install-command">
+              <span class="install-code-label">Force reinstall</span>
+              <pre><code>bin/coco-install-runtime.sh --force</code></pre>
+            </div>
+            <div class="install-command">
+              <span class="install-code-label">Explicit install root</span>
+              <pre><code>bin/coco-install-runtime.sh --root /absolute/path/to/coco</code></pre>
+            </div>
+            <div class="install-note install-note--caution">
+              <strong>Option rules</strong>
+              <p><code>--root</code> must point to the extracted <code>coco/</code> directory. Do not combine <code>--force</code> with <code>--check-only</code>.</p>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-start" aria-labelledby="install-start-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Launch</p>
+              <h2 id="install-start-title">Start CoCo</h2>
+            </div>
+            <p>Start the backend from the extracted release directory. It also serves the built frontend.</p>
+            <div class="install-command">
+              <span class="install-code-label">Terminal</span>
+              <pre><code>java -jar backend/&lt;coco-backend-jar&gt;.jar</code></pre>
+            </div>
+            <div class="install-command">
+              <span class="install-code-label">Custom port</span>
+              <pre><code>java -jar backend/&lt;coco-backend-jar&gt;.jar --server.port=8080</code></pre>
+            </div>
+            <div class="install-command">
+              <span class="install-code-label">Start from parent directory</span>
+              <pre><code>java -jar coco/backend/&lt;coco-backend-jar&gt;.jar --server.port=8078</code></pre>
+            </div>
+            <p>The backend normally infers the runtime profile from the release layout. Provide it explicitly only when the standard layout is unavailable.</p>
+            <div class="install-command">
+              <span class="install-code-label">Runtime profile override</span>
+              <pre><code>java -Dcoco.runtime.profile=/absolute/path/to/coco/runtime/coco-runtime-profile.json \
+  -jar backend/&lt;coco-backend-jar&gt;.jar</code></pre>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-verify" aria-labelledby="install-verify-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Validation</p>
+              <h2 id="install-verify-title">Verify the installation</h2>
+            </div>
+            <p>Confirm the installed environment and runtime profile exist, then run the validator.</p>
+            <div class="install-command install-command--tree">
+              <span class="install-code-label">Required paths</span>
+              <pre><code>runtime/envs/coco-runtime/
+runtime/coco-runtime-profile.json</code></pre>
+            </div>
+            <div class="install-command">
+              <span class="install-code-label">Validate runtime</span>
+              <pre><code>bin/coco-install-runtime.sh --check-only</code></pre>
+            </div>
+            <ol class="install-numbered-list">
+              <li>Start CoCo and open <code>http://localhost:8078</code>.</li>
+              <li>Confirm the web interface loads.</li>
+              <li>Open Settings, then Environment Check.</li>
+              <li>Confirm Managed CoCo Runtime reports <code>READY</code>.</li>
+              <li>Configure and verify CryoSPARC, RELION, and SLURM lanes as required.</li>
+            </ol>
+            <div class="install-command">
+              <span class="install-code-label">Runtime status API</span>
+              <pre><code>GET /api/open/settings/managed-runtime</code></pre>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-configuration" aria-labelledby="install-configuration-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Application settings</p>
+              <h2 id="install-configuration-title">Configure CoCo and authentication</h2>
+            </div>
+            <p>Default settings are bundled in the backend JAR and can be overridden with Spring Boot command-line properties.</p>
+            <div class="install-command">
+              <span class="install-code-label">Defaults</span>
+              <pre><code>server.port=8078
+app.auth.mode=DISABLED
+app.auth.users-file=auth/users.json</code></pre>
+            </div>
+            <p>Authentication modes are <code>DISABLED</code>, <code>BOOTSTRAP</code>, and <code>ENFORCED</code>. When enabled, file-based users are stored relative to the process working directory.</p>
+            <div class="install-command">
+              <span class="install-code-label">Bootstrap an administrator</span>
+              <pre><code>java -jar backend/&lt;coco-backend-jar&gt;.jar \
+  --app.auth.mode=BOOTSTRAP \
+  --app.auth.bootstrap-admin-username=admin \
+  --app.auth.bootstrap-admin-password=ChangeMe123 \
+  --app.auth.bootstrap-admin-must-change-password=true</code></pre>
+            </div>
+            <ol class="install-numbered-list">
+              <li>Open <code>http://localhost:8078/home</code>.</li>
+              <li>Sign in at <code>/login-verification</code>.</li>
+              <li>Change the temporary password when prompted.</li>
+              <li>Continue to the authenticated home page.</li>
+            </ol>
+            <p><code>BOOTSTRAP</code> creates the administrator only when <code>auth/users.json</code> is missing or empty. Changing the bootstrap password later does not overwrite an existing account.</p>
+            <div class="install-command">
+              <span class="install-code-label">Intentional password reset</span>
+              <pre><code>java -jar backend/&lt;coco-backend-jar&gt;.jar \
+  --server.port=8078 \
+  --app.auth.mode=BOOTSTRAP \
+  --app.auth.bootstrap-admin-username=admin \
+  --app.auth.reset-admin-password=ChangeMe123</code></pre>
+            </div>
+            <div class="install-note install-note--caution">
+              <strong>Disposable local tests only</strong>
+              <p>Removing <code>auth/users.json</code> deletes stored file-based users. Do not remove it in production unless that is intentional.</p>
+              <div class="install-command">
+                <span class="install-code-label">Local reset</span>
+                <pre><code>rm -f auth/users.json</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-dependencies" aria-labelledby="install-dependencies-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Site integration</p>
+              <h2 id="install-dependencies-title">Configure external dependencies</h2>
+            </div>
+            <p>Only CryoSPARC and RELION should appear as user-facing external dependencies in Environment Check.</p>
+            <ol class="install-numbered-list">
+              <li>Open Settings, then Environment Check.</li>
+              <li>Confirm the managed runtime is <code>READY</code>.</li>
+              <li>Configure the CryoSPARC command, environment, connection, and email settings required by the site.</li>
+              <li>Configure the RELION command and environment snippets.</li>
+              <li>Run each required validation check.</li>
+            </ol>
+            <p>CryoSieve and CryoPROS remain built-in modules under <code>modules/</code> and use <code>runtime/envs/coco-runtime</code>.</p>
+          </section>
+
+          <section class="install-section" id="install-slurm" aria-labelledby="install-slurm-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Cluster execution</p>
+              <h2 id="install-slurm-title">Configure SLURM lanes</h2>
+            </div>
+            <p>A lane stores fixed settings for a queue or partition. GPU count and other per-job resources are selected in each job dialog.</p>
+            <ul class="install-inline-list">
+              <li><strong>Max GPUs:</strong> the maximum GPU count a job may request on the lane.</li>
+              <li><strong>Cluster Template:</strong> partition, memory, stdout, stderr, and other fixed settings.</li>
+              <li><strong>Local Environment:</strong> site shell setup such as <code>module load</code>.</li>
+            </ul>
+            <p>Do not place fixed node, task, or GPU requests in the lane template:</p>
+            <div class="install-command install-command--avoid">
+              <span class="install-code-label">Avoid fixed requests</span>
+              <pre><code>#SBATCH -N 1
+#SBATCH --nodes=1
+#SBATCH -n 1
+#SBATCH --ntasks=1
+#SBATCH --gpus=1
+#SBATCH --gpus-per-node=1
+#SBATCH --gpus-per-task=1
+#SBATCH --gres=gpu:1</code></pre>
+            </div>
+            <p>CoCo generates those values from the job dialog:</p>
+            <div class="install-command">
+              <span class="install-code-label">Generated per job</span>
+              <pre><code>#SBATCH -N 1
+#SBATCH --ntasks=&lt;task-count&gt;
+#SBATCH --gpus=&lt;job num_gpus&gt;
+export COCO_NUM_GPUS=&lt;job num_gpus&gt;
+export COCO_NPROC_PER_NODE=&lt;job num_gpus&gt;</code></pre>
+            </div>
+            <div class="install-command">
+              <span class="install-code-label">Example fixed lane template</span>
+              <pre><code>#!/bin/bash
+#SBATCH --partition=&lt;gpu_partition&gt;
+#SBATCH --mem=128G
+#SBATCH --output=coco-%j.out
+#SBATCH --error=coco-%j.err</code></pre>
+            </div>
+            <div class="install-command">
+              <span class="install-code-label">Lane capacity</span>
+              <pre><code>Max GPUs: 4</code></pre>
+            </div>
+            <p>If a request exceeds the lane's Max GPUs, CoCo rejects the submission. CryoSieve and CryoPROS jobs must not activate a separate Python or conda environment in the lane.</p>
+          </section>
+
+          <section class="install-section" id="install-modules" aria-labelledby="install-modules-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Package inventory</p>
+              <h2 id="install-modules-title">Verify built-in modules</h2>
+            </div>
+            <p>The package includes metadata for <code>core</code>, <code>cryosieve</code>, and <code>cryopros</code>.</p>
+            <div class="install-command">
+              <span class="install-code-label">Module APIs</span>
+              <pre><code>GET /api/open/modules
+GET /api/open/modules/installed
+GET /api/open/modules/job-types
+GET /api/open/modules/job-type-modules</code></pre>
+            </div>
+            <ul class="install-job-list">
+              <li><code>PARTICLE</code></li>
+              <li><code>RESTACK_PARTICLES</code></li>
+              <li><code>RECONSTRUCT</code></li>
+              <li><code>CRYOSIEVE</code></li>
+              <li><code>CSREFINE</code></li>
+              <li><code>CSRHBFACTOR</code></li>
+              <li><code>CRYOPROS_PREP</code></li>
+              <li><code>CRYOPROS_TRAIN</code></li>
+              <li><code>CRYOPROS_GENERATE</code></li>
+            </ul>
+          </section>
+
+          <section class="install-section" id="install-runtime-behavior" aria-labelledby="install-runtime-behavior-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Submission guard</p>
+              <h2 id="install-runtime-behavior-title">Managed runtime behavior</h2>
+            </div>
+            <p>The backend requires the managed runtime to report <code>READY</code> before any supported job type can be submitted or run.</p>
+            <ul class="install-job-list">
+              <li>Drafts may be created and edited before runtime installation.</li>
+              <li>Submit Now and existing draft submission remain blocked until the runtime is ready.</li>
+              <li>Generated bash and SLURM scripts activate the managed runtime automatically.</li>
+              <li>Legacy <code>activationCmd</code> values are ignored for managed jobs.</li>
+            </ul>
+          </section>
+
+          <section class="install-section" id="install-workflows" aria-labelledby="install-workflows-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Acceptance checks</p>
+              <h2 id="install-workflows-title">Run workflow checks</h2>
+            </div>
+            <p>Test the installed release in a real project using the supported task relationships.</p>
+            <ol class="install-numbered-list">
+              <li>Import a <code>PARTICLE</code> job.</li>
+              <li>Create <code>RESTACK_PARTICLES</code> and <code>RECONSTRUCT</code>.</li>
+              <li>Create <code>CRYOSIEVE</code>, then <code>CSREFINE</code> and <code>CSRHBFACTOR</code>.</li>
+              <li>Create <code>CRYOPROS_PREP</code>, <code>CRYOPROS_TRAIN</code>, and <code>CRYOPROS_GENERATE</code>.</li>
+              <li>When using CryoSPARC export, confirm <code>export_cryopros.py</code> resolves from the module resource or classpath fallback.</li>
+            </ol>
+          </section>
+
+          <section class="install-section" id="install-troubleshooting" aria-labelledby="install-troubleshooting-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Troubleshooting</p>
+              <h2 id="install-troubleshooting-title">Common release checks</h2>
+            </div>
+            <div class="install-troubleshooting-list">
+              <article>
+                <h3>Port 8078 is already in use</h3>
+                <div class="install-command">
+                  <span class="install-code-label">Choose another port</span>
+                  <pre><code>java -jar backend/&lt;coco-backend-jar&gt;.jar --server.port=8080</code></pre>
+                </div>
+              </article>
+              <article>
+                <h3>The runtime pack is missing</h3>
+                <p>Confirm the complete release contains <code>runtime-packs/coco-runtime.tar.gz</code>.</p>
+              </article>
+              <article>
+                <h3>Runtime status is MISSING, ERROR, or INCOMPLETE</h3>
+                <div class="install-command">
+                  <span class="install-code-label">Validate runtime</span>
+                  <pre><code>bin/coco-install-runtime.sh --check-only</code></pre>
+                </div>
+                <div class="install-command">
+                  <span class="install-code-label">Reinstall stale runtime</span>
+                  <pre><code>bin/coco-install-runtime.sh --force</code></pre>
+                </div>
+              </article>
+              <article>
+                <h3>The backend cannot find the runtime profile</h3>
+                <p>Start from the extracted directory or pass <code>runtime/coco-runtime-profile.json</code> explicitly with <code>-Dcoco.runtime.profile</code>.</p>
+              </article>
+              <article>
+                <h3>CryoSPARC or RELION commands fail</h3>
+                <p>Return to Environment Check and verify the configured shell snippets. Keep built-in modules on the managed runtime.</p>
+              </article>
+              <article>
+                <h3>Module resources are missing</h3>
+                <div class="install-command install-command--tree">
+                  <span class="install-code-label">Required resources</span>
+                  <pre><code>modules/cryosieve/module.yaml
+modules/cryosieve/jobTypeMapping.json
+modules/cryopros/module.yaml
+modules/cryopros/jobTypeMapping.json
+modules/cryopros/scripts/export_cryopros.py
+modules.lock</code></pre>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-changelog" class="changelog-page" data-view="changelog" hidden>
+      <nav class="changelog-page-back" aria-label="Change log navigation">
+        <a href="#home" class="module-back-link" data-nav="home">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to CoCo
+        </a>
+      </nav>
+
+      <header class="changelog-hero">
+        <div class="changelog-hero-copy">
+          <p class="module-page-kicker">Release notes</p>
+          <h1 class="changelog-title">What changed in CoCo v0.2.0.</h1>
+          <p class="changelog-lede">This release brings task relationships and user access into the project workflow, making complex cryo-EM work easier to trace, share, and administer.</p>
+        </div>
+        <div class="release-version-path" aria-label="Upgrade from CoCo v0.1.0 to v0.2.0">
+          <span>
+            <small>Previous</small>
+            <strong>v0.1.0</strong>
+          </span>
+          <svg aria-hidden="true" width="36" height="16" viewBox="0 0 36 16" fill="none">
+            <path d="M1 8H34M28 2L34 8L28 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="release-version-path__current">
+            <small>Current</small>
+            <strong>v0.2.0</strong>
+          </span>
+        </div>
+      </header>
+
+      <div class="changelog-content">
+        <section class="changelog-intro" aria-labelledby="changelog-major-title">
+          <p class="section-kicker">Major release</p>
+          <h2 id="changelog-major-title">Two project-level capabilities reshape everyday work.</h2>
+          <p>CoCo v0.2.0 keeps the unified workbench introduced in v0.1.0 and adds a clearer model for both computational relationships and team access.</p>
+        </section>
+
+        <section class="changelog-feature" aria-labelledby="changelog-graph-title">
+          <div class="changelog-feature-copy">
+            <span class="changelog-feature-index">01</span>
+            <p class="section-kicker">Project data flow</p>
+            <h2 id="changelog-graph-title">Follow the complete job chain in a data job graph.</h2>
+            <p>The project task page now opens in a graph view by default. Jobs and their upstream and downstream relationships appear together, so researchers can recover context without moving through individual task pages.</p>
+            <ul class="changelog-detail-list">
+              <li>See dependencies across the full project.</li>
+              <li>Search and filter jobs without leaving the graph.</li>
+              <li>Switch to the card view when a list-oriented review is more useful.</li>
+            </ul>
+          </div>
+          <figure class="changelog-figure">
+            <a href="img/coco-v0.2.0-job-graph.png" target="_blank" rel="noopener" aria-label="Open the full-size CoCo data job graph screenshot">
+              <img src="img/coco-v0.2.0-job-graph.png" alt="CoCo v0.2.0 project page showing a graph of connected cryo-EM jobs and the project sharing panel" width="2562" height="1664" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Project jobs, dependency links, and project details in the default graph view.</figcaption>
+          </figure>
+        </section>
+
+        <section class="changelog-feature changelog-feature--reverse" aria-labelledby="changelog-users-title">
+          <div class="changelog-feature-copy">
+            <span class="changelog-feature-index">02</span>
+            <p class="section-kicker">Shared access</p>
+            <h2 id="changelog-users-title">Share projects and manage users with explicit access boundaries.</h2>
+            <p>Projects can now be shared with other CoCo users and assigned access permissions. Administrators also gain a dedicated user-management surface for maintaining accounts and deployment access.</p>
+            <ul class="changelog-detail-list">
+              <li>Review and edit sharing from project details.</li>
+              <li>Keep project membership and permissions visible.</li>
+              <li>Create, enable, disable, and maintain user accounts centrally.</li>
+            </ul>
+          </div>
+          <figure class="changelog-figure">
+            <a href="img/coco-v0.2.0-user-management.png" target="_blank" rel="noopener" aria-label="Open the full-size CoCo user management screenshot">
+              <img src="img/coco-v0.2.0-user-management.png" alt="CoCo v0.2.0 administration page showing user search, status filters, and account management" width="2512" height="1624" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Central account management for multi-user CoCo deployments.</figcaption>
+          </figure>
+        </section>
+
+        <section class="changelog-improvements" aria-labelledby="changelog-improvements-title">
+          <div class="changelog-section-heading">
+            <p class="section-kicker">Also improved</p>
+            <h2 id="changelog-improvements-title">Clearer operations from submission through review.</h2>
+          </div>
+          <div class="changelog-improvement-list">
+            <article>
+              <span>01</span>
+              <div>
+                <h3>Standardized Job Log</h3>
+                <p>stdout, stderr, and event logs are gathered into one consistent job-level record.</p>
+              </div>
+            </article>
+            <article>
+              <span>02</span>
+              <div>
+                <h3>Runtime visibility</h3>
+                <p>Status, progress, and run controls are clearer across the home page, sidebar, and job details.</p>
+              </div>
+            </article>
+            <article>
+              <span>03</span>
+              <div>
+                <h3>CryoSPARC configuration</h3>
+                <p>Connection validation and email configuration make deployment checks more dependable.</p>
+              </div>
+            </article>
+            <article>
+              <span>04</span>
+              <div>
+                <h3>CryoPROS output</h3>
+                <p>CryoPROS Generate jobs now parse and present particle metrics with the rest of the result context.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="changelog-release-actions" aria-labelledby="changelog-release-actions-title">
+          <div>
+            <p class="section-kicker">Ready to update</p>
+            <h2 id="changelog-release-actions-title">Install the current release or revisit the previous guide.</h2>
+          </div>
+          <div class="changelog-action-links">
+            <a class="button button-primary" href="/downloads/coco-0.2.6.tar.gz" download>Download CoCo v0.2.0</a>
+            <a class="button button-secondary" href="#install" data-nav="install">Installation guide</a>
+            <a class="changelog-archive-link" href="#install-v0-1-0" data-nav="install-v0-1-0">Archived v0.1.0 installation guide</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div id="view-install-v0-1-0" class="install-page install-page--archived" data-view="install-v0-1-0" hidden>
+      <nav class="install-page-back" aria-label="Archived install guide navigation">
+        <a href="#home" class="module-back-link" data-nav="home">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to CoCo
+        </a>
+        <a class="button button-secondary install-download-link" href="#install" data-nav="install">Current installation guide</a>
+      </nav>
+
+      <header class="install-page-hero">
+        <div class="install-page-hero-copy">
+          <p class="module-page-kicker">Archived CoCo v0.1.0 release guide</p>
           <h1 class="install-page-title">Install CoCo v0.1.0.</h1>
           <p class="install-page-lede">Download the packaged archive, install the managed runtime, then start the Spring Boot backend.</p>
           <span class="install-release-badge">v0.1.0</span>
@@ -555,32 +1196,32 @@
       </header>
 
       <div class="install-guide-layout">
-        <aside class="install-toc" aria-labelledby="install-toc-title">
-          <h2 id="install-toc-title">Sections</h2>
+        <aside class="install-toc" aria-labelledby="install-v0-1-0-toc-title">
+          <h2 id="install-v0-1-0-toc-title">Sections</h2>
           <nav aria-label="Install guide table of contents">
             <ol class="install-toc-list">
-              <li><a href="#install-quickstart">Quick start</a></li>
-              <li><a href="#install-prerequisites">Prerequisites</a></li>
-              <li><a href="#install-unpack">Unpack release</a></li>
-              <li><a href="#install-runtime">Managed runtime</a></li>
-              <li><a href="#install-start">Start CoCo</a></li>
-              <li><a href="#install-configuration">Configuration</a></li>
-              <li><a href="#install-login">Login verification</a></li>
-              <li><a href="#install-dependencies">External dependencies</a></li>
-              <li><a href="#install-slurm">SLURM lanes</a></li>
-              <li><a href="#install-modules">Built-in modules</a></li>
-              <li><a href="#install-runtime-behavior">Runtime behavior</a></li>
-              <li><a href="#install-workflows">Workflow checks</a></li>
-              <li><a href="#install-troubleshooting">Troubleshooting</a></li>
+              <li><a href="#install-v0-1-0-quickstart">Quick start</a></li>
+              <li><a href="#install-v0-1-0-prerequisites">Prerequisites</a></li>
+              <li><a href="#install-v0-1-0-unpack">Unpack release</a></li>
+              <li><a href="#install-v0-1-0-runtime">Managed runtime</a></li>
+              <li><a href="#install-v0-1-0-start">Start CoCo</a></li>
+              <li><a href="#install-v0-1-0-configuration">Configuration</a></li>
+              <li><a href="#install-v0-1-0-login">Login verification</a></li>
+              <li><a href="#install-v0-1-0-dependencies">External dependencies</a></li>
+              <li><a href="#install-v0-1-0-slurm">SLURM lanes</a></li>
+              <li><a href="#install-v0-1-0-modules">Built-in modules</a></li>
+              <li><a href="#install-v0-1-0-runtime-behavior">Runtime behavior</a></li>
+              <li><a href="#install-v0-1-0-workflows">Workflow checks</a></li>
+              <li><a href="#install-v0-1-0-troubleshooting">Troubleshooting</a></li>
             </ol>
           </nav>
         </aside>
 
         <div class="install-content">
-          <section class="install-section install-section--protocol" id="install-quickstart" aria-labelledby="install-quickstart-title">
+          <section class="install-section install-section--protocol" id="install-v0-1-0-quickstart" aria-labelledby="install-v0-1-0-quickstart-title">
             <div class="install-section-heading">
               <p class="section-kicker">Fast path</p>
-              <h2 id="install-quickstart-title">Quick start protocol</h2>
+              <h2 id="install-v0-1-0-quickstart-title">Quick start protocol</h2>
             </div>
             <ol class="install-protocol">
               <li class="install-step">
@@ -627,10 +1268,10 @@ cd coco</code></pre>
             </ol>
           </section>
 
-          <section class="install-section" id="install-prerequisites" aria-labelledby="install-prerequisites-title">
+          <section class="install-section" id="install-v0-1-0-prerequisites" aria-labelledby="install-v0-1-0-prerequisites-title">
             <div class="install-section-heading">
               <p class="section-kicker">Before install</p>
-              <h2 id="install-prerequisites-title">Prerequisites</h2>
+              <h2 id="install-v0-1-0-prerequisites-title">Prerequisites</h2>
             </div>
             <p>Required runtime tools:</p>
             <ul class="install-inline-list">
@@ -641,10 +1282,10 @@ cd coco</code></pre>
             <p>CoCo itself is packaged as a Spring Boot jar with the built frontend embedded. CryoSieve and CryoPROS use CoCo's managed runtime installed from <code>runtime-packs/coco-runtime.tar.gz</code>; users should not prepare separate CryoSieve or CryoPROS Python environments.</p>
           </section>
 
-          <section class="install-section" id="install-unpack" aria-labelledby="install-unpack-title">
+          <section class="install-section" id="install-v0-1-0-unpack" aria-labelledby="install-v0-1-0-unpack-title">
             <div class="install-section-heading">
               <p class="section-kicker">Release archive</p>
-              <h2 id="install-unpack-title">Unpack the release</h2>
+              <h2 id="install-v0-1-0-unpack-title">Unpack the release</h2>
             </div>
             <p>Given the release artifact <code>coco.tar.gz</code>, unpack it and enter the release directory.</p>
             <div class="install-command">
@@ -675,10 +1316,10 @@ cd coco</code></pre>
             </div>
           </section>
 
-          <section class="install-section" id="install-runtime" aria-labelledby="install-runtime-title">
+          <section class="install-section" id="install-v0-1-0-runtime" aria-labelledby="install-v0-1-0-runtime-title">
             <div class="install-section-heading">
               <p class="section-kicker">Managed environment</p>
-              <h2 id="install-runtime-title">Install the managed runtime</h2>
+              <h2 id="install-v0-1-0-runtime-title">Install the managed runtime</h2>
             </div>
             <p>From the unpacked <code>coco/</code> directory, install the unified CryoSieve and CryoPROS runtime.</p>
             <div class="install-command">
@@ -707,10 +1348,10 @@ cd coco</code></pre>
             </div>
           </section>
 
-          <section class="install-section" id="install-start" aria-labelledby="install-start-title">
+          <section class="install-section" id="install-v0-1-0-start" aria-labelledby="install-v0-1-0-start-title">
             <div class="install-section-heading">
               <p class="section-kicker">Launch</p>
-              <h2 id="install-start-title">Start CoCo</h2>
+              <h2 id="install-v0-1-0-start-title">Start CoCo</h2>
             </div>
             <p>Use the jar found under <code>backend/</code>.</p>
             <div class="install-command">
@@ -735,10 +1376,10 @@ cd coco</code></pre>
             </div>
           </section>
 
-          <section class="install-section" id="install-configuration" aria-labelledby="install-configuration-title">
+          <section class="install-section" id="install-v0-1-0-configuration" aria-labelledby="install-v0-1-0-configuration-title">
             <div class="install-section-heading">
               <p class="section-kicker">Settings</p>
-              <h2 id="install-configuration-title">Configuration</h2>
+              <h2 id="install-v0-1-0-configuration-title">Configuration</h2>
             </div>
             <p>Default application settings are bundled in the jar:</p>
             <div class="install-command">
@@ -768,10 +1409,10 @@ app.auth.mode=DISABLED</code></pre>
             <p>When auth is enabled, file-based users are stored under <code>auth/users.json</code>, relative to the process working directory.</p>
           </section>
 
-          <section class="install-section" id="install-login" aria-labelledby="install-login-title">
+          <section class="install-section" id="install-v0-1-0-login" aria-labelledby="install-v0-1-0-login-title">
             <div class="install-section-heading">
               <p class="section-kicker">Auth flow</p>
-              <h2 id="install-login-title">Login verification page</h2>
+              <h2 id="install-v0-1-0-login-title">Login verification page</h2>
             </div>
             <p>When auth is enabled, protected pages redirect unauthenticated users to <code>/login-verification</code>. Use the configured account and password to sign in.</p>
             <p>For a fresh release test with bootstrap auth:</p>
@@ -822,10 +1463,10 @@ java -jar backend/&lt;backend runnable jar&gt; \
             </div>
           </section>
 
-          <section class="install-section" id="install-dependencies" aria-labelledby="install-dependencies-title">
+          <section class="install-section" id="install-v0-1-0-dependencies" aria-labelledby="install-v0-1-0-dependencies-title">
             <div class="install-section-heading">
               <p class="section-kicker">Environment check</p>
-              <h2 id="install-dependencies-title">Configure external dependencies</h2>
+              <h2 id="install-v0-1-0-dependencies-title">Configure external dependencies</h2>
             </div>
             <p>Only these should appear as user-facing external dependencies in Environment Check:</p>
             <ul class="install-inline-list">
@@ -848,10 +1489,10 @@ java -jar backend/&lt;backend runnable jar&gt; \
             <p>CryoSieve and CryoPROS are built-in modules. They should not appear as top-level external dependency cards. Their module metadata and resources are packaged under <code>modules/</code>, and their CLI environment is provided by <code>runtime/envs/coco-runtime</code>.</p>
           </section>
 
-          <section class="install-section" id="install-slurm" aria-labelledby="install-slurm-title">
+          <section class="install-section" id="install-v0-1-0-slurm" aria-labelledby="install-v0-1-0-slurm-title">
             <div class="install-section-heading">
               <p class="section-kicker">Compute lanes</p>
-              <h2 id="install-slurm-title">Configure SLURM lanes</h2>
+              <h2 id="install-v0-1-0-slurm-title">Configure SLURM lanes</h2>
             </div>
             <p>CoCo lanes describe how jobs are submitted to a compute environment. For a SLURM lane, the lane should contain the fixed SLURM template for that queue or partition, while per-job resources such as GPU count are chosen in each job dialog.</p>
             <h3>Single-node SLURM lane with job-selected GPU count</h3>
@@ -914,10 +1555,10 @@ module load relion</code></pre>
             <p>For CryoSieve and CryoPROS jobs, do not activate a separate Python or conda environment in the lane. CoCo activates the managed runtime automatically.</p>
           </section>
 
-          <section class="install-section" id="install-modules" aria-labelledby="install-modules-title">
+          <section class="install-section" id="install-v0-1-0-modules" aria-labelledby="install-v0-1-0-modules-title">
             <div class="install-section-heading">
               <p class="section-kicker">Module state</p>
-              <h2 id="install-modules-title">Verify built-in modules</h2>
+              <h2 id="install-v0-1-0-modules-title">Verify built-in modules</h2>
             </div>
             <p>The package includes module metadata for:</p>
             <ul class="install-inline-list">
@@ -947,10 +1588,10 @@ GET /api/open/modules/job-type-modules</code></pre>
             </ul>
           </section>
 
-          <section class="install-section" id="install-runtime-behavior" aria-labelledby="install-runtime-behavior-title">
+          <section class="install-section" id="install-v0-1-0-runtime-behavior" aria-labelledby="install-v0-1-0-runtime-behavior-title">
             <div class="install-section-heading">
               <p class="section-kicker">Runtime rules</p>
-              <h2 id="install-runtime-behavior-title">Managed runtime behavior</h2>
+              <h2 id="install-v0-1-0-runtime-behavior-title">Managed runtime behavior</h2>
             </div>
             <p>Jobs that require the managed runtime include:</p>
             <ul class="install-job-list">
@@ -965,10 +1606,10 @@ GET /api/open/modules/job-type-modules</code></pre>
             <p>Draft creation and editing are allowed when the runtime is missing, so users can prepare jobs before installation. Submit Now and existing draft submit are blocked until the runtime status is <code>READY</code>. Generated bash and SLURM scripts automatically activate <code>runtime/envs/coco-runtime</code>; for managed jobs, any old <code>activationCmd</code> value is ignored to avoid activating a different environment.</p>
           </section>
 
-          <section class="install-section" id="install-workflows" aria-labelledby="install-workflows-title">
+          <section class="install-section" id="install-v0-1-0-workflows" aria-labelledby="install-v0-1-0-workflows-title">
             <div class="install-section-heading">
               <p class="section-kicker">Release checks</p>
-              <h2 id="install-workflows-title">Runtime workflow checks</h2>
+              <h2 id="install-v0-1-0-workflows-title">Runtime workflow checks</h2>
             </div>
             <p>After installation, test these flows in a real project:</p>
             <ol class="install-numbered-list">
@@ -984,10 +1625,10 @@ GET /api/open/modules/job-type-modules</code></pre>
             </ol>
           </section>
 
-          <section class="install-section" id="install-troubleshooting" aria-labelledby="install-troubleshooting-title">
+          <section class="install-section" id="install-v0-1-0-troubleshooting" aria-labelledby="install-v0-1-0-troubleshooting-title">
             <div class="install-section-heading">
               <p class="section-kicker">Troubleshooting</p>
-              <h2 id="install-troubleshooting-title">Common release checks</h2>
+              <h2 id="install-v0-1-0-troubleshooting-title">Common release checks</h2>
             </div>
             <div class="install-troubleshooting-list">
               <article>
@@ -1116,30 +1757,106 @@ modules.lock</code></pre>
         });
 
         var cocoGuiCard = document.querySelector('.coco-gui-card');
-        var cocoGuiToggle = document.querySelector('.coco-gui-toggle');
-        var cocoGuiToggleLabel = cocoGuiToggle ? cocoGuiToggle.querySelector('.coco-gui-toggle__label') : null;
+        var cocoGuiFigure = document.querySelector('.coco-gui-figure');
+        var cocoGuiStateButtons = document.querySelectorAll('[data-coco-gui-theme-option], [data-coco-gui-layout-option]');
 
-        function setCocoGuiMode(mode) {
-          if (!cocoGuiCard || !cocoGuiToggle) return;
-          var isDark = mode === 'dark';
-          cocoGuiCard.setAttribute('data-coco-gui-mode', isDark ? 'dark' : 'light');
-          cocoGuiToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-          cocoGuiToggle.setAttribute('aria-label', isDark ? 'Switch CoCo GUI preview to light mode' : 'Switch CoCo GUI preview to dark mode');
-          if (cocoGuiToggleLabel) cocoGuiToggleLabel.textContent = isDark ? 'Light mode' : 'Dark mode';
+        function setCocoGuiState(theme, layout) {
+          if (!cocoGuiCard) return;
+
+          var nextTheme = theme === 'dark' ? 'dark' : 'light';
+          var nextLayout = layout === 'dag' ? 'dag' : 'cards';
+          cocoGuiCard.setAttribute('data-coco-gui-theme', nextTheme);
+          cocoGuiCard.setAttribute('data-coco-gui-layout', nextLayout);
+
+          if (cocoGuiFigure) {
+            cocoGuiFigure.setAttribute(
+              'aria-label',
+              'CoCo GUI preview showing the project workbench in ' + nextTheme + ' mode with ' + (nextLayout === 'dag' ? 'DAG' : 'card') + ' layout'
+            );
+          }
+
+          for (var i = 0; i < cocoGuiStateButtons.length; i += 1) {
+            var button = cocoGuiStateButtons[i];
+            var themeOption = button.getAttribute('data-coco-gui-theme-option');
+            var layoutOption = button.getAttribute('data-coco-gui-layout-option');
+            var isSelected = themeOption ? themeOption === nextTheme : layoutOption === nextLayout;
+            button.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+          }
         }
 
-        if (cocoGuiCard && cocoGuiToggle) {
-          setCocoGuiMode('light');
-          cocoGuiToggle.addEventListener('click', function () {
-            var currentMode = cocoGuiCard.getAttribute('data-coco-gui-mode');
-            setCocoGuiMode(currentMode === 'dark' ? 'light' : 'dark');
-          });
+        if (cocoGuiCard && cocoGuiStateButtons.length) {
+          setCocoGuiState('light', 'dag');
+          for (var i = 0; i < cocoGuiStateButtons.length; i += 1) {
+            cocoGuiStateButtons[i].addEventListener('click', function () {
+              var nextTheme = this.getAttribute('data-coco-gui-theme-option') || cocoGuiCard.getAttribute('data-coco-gui-theme');
+              var nextLayout = this.getAttribute('data-coco-gui-layout-option') || cocoGuiCard.getAttribute('data-coco-gui-layout');
+              setCocoGuiState(nextTheme, nextLayout);
+            });
+          }
         }
 
-        var VIEWS = ['home', 'cryosieve', 'cryopros', 'ctfa', 'install'];
+        var VIEWS = ['home', 'cryosieve', 'cryopros', 'ctfa', 'install', 'changelog', 'install-v0-1-0'];
         var currentView = 'home';
         var transitioning = false;
         var scrollTarget = null;
+        var totalDownloads = document.querySelector('[data-total-downloads]');
+        var metricsAvailability;
+
+        function metricsAreAvailable() {
+          if (!metricsAvailability) {
+            if (window.location.protocol !== 'http:' && window.location.protocol !== 'https:') {
+              metricsAvailability = Promise.resolve(false);
+            } else {
+              metricsAvailability = window.fetch(window.location.pathname || '/', {
+                method: 'HEAD',
+                cache: 'no-store'
+              }).then(function (response) {
+                var server = response.headers.get('Server') || '';
+                return response.ok && server.toLowerCase().indexOf('simplehttp') === -1;
+              }).catch(function () {
+                return false;
+              });
+            }
+          }
+          return metricsAvailability;
+        }
+
+        function reportView(viewName) {
+          if (VIEWS.indexOf(viewName) === -1 || typeof window.fetch !== 'function') return;
+          metricsAreAvailable().then(function (available) {
+            if (!available) return;
+            return window.fetch('/api/metrics/views', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ view: viewName }),
+              keepalive: true
+            });
+          }).catch(function () {});
+        }
+
+        function loadReleaseDownloads() {
+          if (!totalDownloads || typeof window.fetch !== 'function') return;
+
+          metricsAreAvailable().then(function (available) {
+            if (!available) return null;
+            return window.fetch('/api/stats/releases/v0.2.0', {
+              headers: { Accept: 'application/json' }
+            });
+          }).then(function (response) {
+            if (!response) return null;
+            if (!response.ok) throw new Error('Release statistics are unavailable');
+            return response.json();
+          }).then(function (stats) {
+            if (!stats) return;
+            var count = Number(stats && stats.allReleaseDownloads);
+            if (!Number.isFinite(count) || count < 0) return;
+
+            var downloadCount = Math.trunc(count);
+            var formattedCount = new Intl.NumberFormat('en-US').format(downloadCount);
+            totalDownloads.textContent = formattedCount + ' downloads';
+            totalDownloads.hidden = false;
+          }).catch(function () {});
+        }
 
         function motionBehavior() {
           return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
@@ -1147,6 +1864,18 @@ modules.lock</code></pre>
 
         function getEl(name) {
           return document.querySelector('[data-view="' + name + '"]');
+        }
+
+        function resolveHash(hash) {
+          if (hash && hash.indexOf('install-v0-1-0-') === 0) {
+            scrollTarget = '#' + hash;
+            return 'install-v0-1-0';
+          }
+          if (hash && hash.indexOf('install-') === 0 && hash !== 'install-v0-1-0') {
+            scrollTarget = '#' + hash;
+            return 'install';
+          }
+          return hash && VIEWS.indexOf(hash) !== -1 ? hash : 'home';
         }
 
         function showView(viewName, addToHistory) {
@@ -1206,6 +1935,7 @@ modules.lock</code></pre>
             updateNavState(viewName);
             currentView = viewName;
             transitioning = false;
+            reportView(viewName);
 
             setTimeout(function () {
               newEl.classList.remove('view-enter', 'view-enter-active');
@@ -1221,13 +1951,10 @@ modules.lock</code></pre>
 
         function initViewFromHash() {
           var hash = window.location.hash.replace('#', '');
-          if (hash && hash.indexOf('install-') === 0) {
-            scrollTarget = '#' + hash;
-            hash = 'install';
-          }
-          if (hash && VIEWS.indexOf(hash) !== -1) {
+          var viewName = resolveHash(hash);
+          if (viewName !== 'home') {
             var homeEl = getEl('home');
-            var targetEl = getEl(hash);
+            var targetEl = getEl(viewName);
             if (homeEl && targetEl) {
               homeEl.hidden = true;
               targetEl.hidden = false;
@@ -1236,8 +1963,8 @@ modules.lock</code></pre>
                 if (target) target.scrollIntoView({ behavior: 'auto' });
                 scrollTarget = null;
               }
-              currentView = hash;
-              updateNavState(hash);
+              currentView = viewName;
+              updateNavState(viewName);
               return;
             }
           }
@@ -1296,7 +2023,8 @@ modules.lock</code></pre>
           var hash = href.replace('#', '');
           if (VIEWS.indexOf(hash) !== -1) return;
           if (anchor.getAttribute('data-nav')) return;
-          if (currentView === 'install' && hash.indexOf('install-') === 0) return;
+          if (currentView === 'install-v0-1-0' && hash.indexOf('install-v0-1-0-') === 0) return;
+          if (currentView === 'install' && hash.indexOf('install-') === 0 && hash.indexOf('install-v0-1-0-') !== 0) return;
           e.preventDefault();
           scrollTarget = href;
           showView('home', true);
@@ -1304,16 +2032,14 @@ modules.lock</code></pre>
 
         window.addEventListener('popstate', function (e) {
           var hash = window.location.hash.replace('#', '');
-          if (hash && hash.indexOf('install-') === 0) {
-            scrollTarget = '#' + hash;
-            hash = 'install';
-          }
-          var viewName = (hash && VIEWS.indexOf(hash) !== -1) ? hash : 'home';
+          var viewName = resolveHash(hash);
           if (e.state && e.state.view) viewName = e.state.view;
           showView(viewName, false);
         });
 
         initViewFromHash();
+        reportView(currentView);
+        loadReleaseDownloads();
       })();
     </script>
   </body>

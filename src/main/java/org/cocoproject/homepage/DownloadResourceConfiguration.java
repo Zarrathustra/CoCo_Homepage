@@ -2,8 +2,10 @@ package org.cocoproject.homepage;
 
 import java.nio.file.Path;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.cocoproject.homepage.metrics.DownloadMetricsInterceptor;
+import org.cocoproject.homepage.metrics.MetricsProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
@@ -11,10 +13,19 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 @Configuration
 public class DownloadResourceConfiguration implements WebMvcConfigurer {
     private final Path downloadDirectory;
+    private final DownloadMetricsInterceptor downloadMetricsInterceptor;
 
     public DownloadResourceConfiguration(
-            @Value("${coco.download.directory}") String downloadDirectory) {
-        this.downloadDirectory = Path.of(downloadDirectory).toAbsolutePath().normalize();
+            MetricsProperties properties,
+            DownloadMetricsInterceptor downloadMetricsInterceptor) {
+        this.downloadDirectory = properties.getDownload().getDirectory().toAbsolutePath().normalize();
+        this.downloadMetricsInterceptor = downloadMetricsInterceptor;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(downloadMetricsInterceptor)
+                .addPathPatterns("/downloads/**");
     }
 
     @Override
