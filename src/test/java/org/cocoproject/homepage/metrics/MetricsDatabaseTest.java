@@ -32,7 +32,7 @@ class MetricsDatabaseTest {
     @Test
     void initializesSchemaAndPersistsReleaseCountsAcrossRestarts() throws Exception {
         Path databasePath = tempDirectory.resolve("nested/coco-metrics.db");
-        TestDatabase first = database(databasePath, "v0.2.0", "coco-0.2.6.tar.gz",
+        TestDatabase first = database(databasePath, "v0.2.0", "coco-0.2.0.tar.gz",
                 "v0.3.0", "coco-0.3.0.tar.gz");
         Instant now = Instant.parse("2026-07-29T02:00:00Z");
 
@@ -60,7 +60,7 @@ class MetricsDatabaseTest {
                 LocalDate.parse("2026-07-29"),
                 Duration.ofSeconds(30))).isTrue();
 
-        TestDatabase restarted = database(databasePath, "v0.2.0", "coco-0.2.6.tar.gz",
+        TestDatabase restarted = database(databasePath, "v0.2.0", "coco-0.2.0.tar.gz",
                 "v0.3.0", "coco-0.3.0.tar.gz");
         assertThat(restarted.metrics.releaseStatistics("v0.2.0").releaseDownloads()).isEqualTo(2);
 
@@ -82,7 +82,7 @@ class MetricsDatabaseTest {
     void countsUniqueVisitorsPerViewAndDate() {
         TestDatabase testDatabase = database(
                 tempDirectory.resolve("views.db"),
-                "v0.2.0", "coco-0.2.6.tar.gz");
+                "v0.2.0", "coco-0.2.0.tar.gz");
         Instant firstDay = Instant.parse("2026-07-29T02:00:00Z");
         LocalDate july29 = LocalDate.parse("2026-07-29");
         LocalDate july30 = LocalDate.parse("2026-07-30");
@@ -106,7 +106,7 @@ class MetricsDatabaseTest {
     @Test
     void cleanupRemovesOnlyExpiredDeduplicationRows() throws Exception {
         Path databasePath = tempDirectory.resolve("cleanup.db");
-        TestDatabase testDatabase = database(databasePath, "v0.2.0", "coco-0.2.6.tar.gz");
+        TestDatabase testDatabase = database(databasePath, "v0.2.0", "coco-0.2.0.tar.gz");
         ReleaseInfo release = testDatabase.catalog.findByVersion("v0.2.0").orElseThrow();
         Instant now = Instant.parse("2026-07-29T12:00:00Z");
 
@@ -135,7 +135,7 @@ class MetricsDatabaseTest {
     void concurrentDuplicateDownloadClaimsIncrementOnlyOnce() throws Exception {
         TestDatabase testDatabase = database(
                 tempDirectory.resolve("concurrent.db"),
-                "v0.2.0", "coco-0.2.6.tar.gz");
+                "v0.2.0", "coco-0.2.0.tar.gz");
         ReleaseInfo release = testDatabase.catalog.findByVersion("v0.2.0").orElseThrow();
         Instant now = Instant.parse("2026-07-29T12:00:00Z");
         CountDownLatch start = new CountDownLatch(1);
@@ -173,7 +173,7 @@ class MetricsDatabaseTest {
             statement.execute("PRAGMA user_version=2");
         }
 
-        MetricsProperties properties = properties(databasePath, "v0.2.0", "coco-0.2.6.tar.gz");
+        MetricsProperties properties = properties(databasePath, "v0.2.0", "coco-0.2.0.tar.gz");
         MetricsDatabase database = new MetricsDatabase(properties, new ReleaseCatalog(properties));
         assertThatThrownBy(database::initialize)
                 .isInstanceOf(IllegalStateException.class)
@@ -185,7 +185,7 @@ class MetricsDatabaseTest {
         Path blockingFile = tempDirectory.resolve("not-a-directory");
         Files.writeString(blockingFile, "blocking file");
         Path databasePath = blockingFile.resolve("metrics.db");
-        MetricsProperties properties = properties(databasePath, "v0.2.0", "coco-0.2.6.tar.gz");
+        MetricsProperties properties = properties(databasePath, "v0.2.0", "coco-0.2.0.tar.gz");
         MetricsDatabase database = new MetricsDatabase(properties, new ReleaseCatalog(properties));
 
         assertThatThrownBy(database::initialize)

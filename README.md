@@ -12,7 +12,7 @@ CoCo 面向结构生物学实验室、cryo-EM 研究者、研究生、PI 和科�
 - CryoSieve、CryoPROS 和 CTFA 是 CoCo 内部包装的分析模块。
 - 页面主要转化目标是 `Download CoCo v0.2.0`，而不是分别下载各模块。
 
-当前发布版本为 `v0.2.0`，首页主按钮通过 `/downloads/coco-0.2.6.tar.gz` 下载外部发布包。当前安装说明以内嵌网页视图 `#install` 展示，`#changelog` 说明相对 v0.1.0 的主要变化；旧版指南保留为 `#install-v0-1-0` 归档视图。
+当前发布版本为 `v0.2.0`，首页主按钮通过 `/downloads/coco-0.2.0.tar.gz` 下载外部发布包。当前安装说明以内嵌网页视图 `#install` 展示，`#changelog` 说明相对 v0.1.0 的主要变化；旧版指南保留为 `#install-v0-1-0` 归档视图。
 
 ## 模块概览
 
@@ -97,7 +97,7 @@ index.html
         └── resources/application.properties
 ```
 
-`coco-0.2.6.tar.gz` 是外部部署资源，不属于源码或 JAR 内容。默认从进程工作目录下的 `downloads/` 读取，也可以通过 `COCO_DOWNLOAD_DIR` 指定其他目录。统计数据库同样位于 JAR 之外，默认使用 `./data/coco-metrics.db`。
+`coco-0.2.0.tar.gz` 是外部部署资源，不属于源码或 JAR 内容。默认从进程工作目录下的 `downloads/` 读取，也可以通过 `COCO_DOWNLOAD_DIR` 指定其他目录。统计数据库同样位于 JAR 之外，默认使用 `./data/coco-metrics.db`。
 
 ## 本地预览
 
@@ -186,7 +186,7 @@ CoCo 发布包不会进入 JAR。Spring Boot 将 `/downloads/**` 映射到外部
 ├── data/
 │   └── coco-metrics.db
 └── downloads/
-    └── coco-0.2.6.tar.gz
+    └── coco-0.2.0.tar.gz
 ```
 
 生产环境可以这样启动：
@@ -270,7 +270,7 @@ coco.releases[1].file-name=coco-0.3.0.tar.gz
 用户在首页点击 `Installation guide` 会进入当前 `#install` 视图。该视图根据 CoCo 仓库当前 `INSTALL.md` 整理，展示：
 
 - Java 8+、CryoSPARC、RELION 前置要求。
-- `coco-0.2.6.tar.gz` 解包结构。
+- `coco-0.2.0.tar.gz` 解包结构。
 - `bin/coco-install-runtime.sh` 管理运行时安装。
 - CoCo 后端启动方式和默认端口 `8078`。
 - auth、Environment Check、SLURM lanes、内置模块验证、runtime workflow checks 和 troubleshooting。
@@ -283,7 +283,7 @@ coco.releases[1].file-name=coco-0.3.0.tar.gz
 - 样式集中在 `styles.css`，使用 OKLCH 色彩变量和 CSS cascade layers：`reset`、`base`、`components`、`layout`、`responsive`。
 - Spring Boot 提供静态资源、外部下载映射、SQLite 长期统计和统计 API；统计行为变更需要同步修改 Java 与测试。
 - 根目录静态资源若需要打包进 JAR，必须同步更新 `pom.xml` 的 resources includes。放在 `img/` 下的资源会自动随 `img/**` 打包。
-- `coco-0.2.6.tar.gz` 是 CoCo `v0.2.0` 的唯一主下载目标，但应部署在 `COCO_DOWNLOAD_DIR` 指向的外部目录中，不应加入 Maven resources。
+- `coco-0.2.0.tar.gz` 是 CoCo `v0.2.0` 的唯一主下载目标，但应部署在 `COCO_DOWNLOAD_DIR` 指向的外部目录中，不应加入 Maven resources。
 - `data/` 与发布压缩包都属于部署数据，不应提交或打包进 JAR。
 - CTFA 当前为 TBD，不应作为独立下载入口展示。
 

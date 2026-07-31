@@ -35,7 +35,7 @@ The Maven build requires Java 17. There are currently no frontend package-manage
 
 ## Current content state
 
-- CoCo is presented as the only primary download target. The `v0.2.0` release downloads from `/downloads/coco-0.2.6.tar.gz`; do not validate or unpack this archive unless the user explicitly asks.
+- CoCo is presented as the only primary download target. The `v0.2.0` release downloads from `/downloads/coco-0.2.0.tar.gz`; do not validate or unpack this archive unless the user explicitly asks.
 - The homepage shows the all-release CoCo download total as quiet gray supporting text. Detailed daily UV and per-release download metrics are available through the Bearer-token-protected internal JSON endpoint.
 - The current installation guide is a designed `#install` view based on the CoCo repository's `INSTALL.md`, not a public raw-document link. The previous v0.1.0 guide remains available as the archived `#install-v0-1-0` view from the v0.2.0 change log.
 - The `#changelog` view explains the v0.2.0 data job graph, multi-user project access, standardized logs, CryoSPARC configuration, and CryoPROS metric improvements using two release screenshots under `img/`.

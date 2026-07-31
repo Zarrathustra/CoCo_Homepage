@@ -19,7 +19,7 @@ class MetricsServiceTest {
         MetricsProperties properties = new MetricsProperties();
         MetricsProperties.Release configuredRelease = new MetricsProperties.Release();
         configuredRelease.setVersion("v0.2.0");
-        configuredRelease.setFileName("coco-0.2.6.tar.gz");
+        configuredRelease.setFileName("coco-0.2.0.tar.gz");
         properties.setReleases(List.of(configuredRelease));
         MetricsDatabase database = new FailingMetricsDatabase(
                 properties,
@@ -32,7 +32,7 @@ class MetricsServiceTest {
         assertThatCode(() -> service.recordView("home", "visitor-hash"))
                 .doesNotThrowAnyException();
         assertThatCode(() -> service.recordDownload(
-                new ReleaseInfo("v0.2.0", "coco-0.2.6.tar.gz"),
+                new ReleaseInfo("v0.2.0", "coco-0.2.0.tar.gz"),
                 "visitor-hash"))
                 .doesNotThrowAnyException();
     }
