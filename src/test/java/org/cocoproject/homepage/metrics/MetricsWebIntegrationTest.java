@@ -105,6 +105,22 @@ class MetricsWebIntegrationTest {
     }
 
     @Test
+    void siteAssetsRequireRevalidationAndSupportUnchangedResponses() throws Exception {
+        for (String path : List.of("/index.html", "/styles.css")) {
+            MvcResult result = mockMvc.perform(get(path))
+                    .andExpect(status().isOk())
+                    .andExpect(header().string(HttpHeaders.CACHE_CONTROL, "no-cache"))
+                    .andReturn();
+            String lastModified = result.getResponse().getHeader(HttpHeaders.LAST_MODIFIED);
+            assertNotNull(lastModified);
+
+            mockMvc.perform(get(path).header(HttpHeaders.IF_MODIFIED_SINCE, lastModified))
+                    .andExpect(status().isNotModified())
+                    .andExpect(content().bytes(new byte[0]));
+        }
+    }
+
+    @Test
     void normalDownloadReturnsOriginalContentAndRecordsOneDownload() throws Exception {
         MvcResult result = mockMvc.perform(get(DOWNLOAD_PATH))
                 .andExpect(status().isOk())

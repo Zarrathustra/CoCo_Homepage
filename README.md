@@ -212,6 +212,8 @@ java -jar /opt/coco-homepage/coco-homepage-0.3.2.jar
 
 不设置 `COCO_DOWNLOAD_DIR` 时，默认目录是进程工作目录下的 `./downloads`。数据库默认写入 `./data/coco-metrics.db`；网页或 JAR 更新必须复用原数据库路径，才能延续历史统计。
 
+页面及静态资源返回 `Cache-Control: no-cache`，让浏览器每次访问时向服务器校验缓存，未变化的文件仍可返回 `304`。反向代理应保留此响应头。`index.html` 的样式链接带有 `styles.css` SHA-256 的前 12 位作为 `v` 参数；修改样式时同步更新该值，以避开旧版本已有的浏览器缓存。首次从未设置缓存策略的旧版本升级后，如仍显示旧界面，需强制刷新一次。
+
 ### 辅助资源下载路由
 
 CoCo 的 Environment Check 使用 `https://cocoproject.org.cn/emodelg/` 下载资源。服务器文件仍放在 `COCO_DOWNLOAD_DIR/emodelg/`，无需复制到第二个目录。每个文件同时支持 `/emodelg/<文件名>` 和 `/downloads/emodelg/<文件名>`，直接返回原始文件，并支持 `GET`、`HEAD` 和字节范围请求。这些资源不注册为 CoCo release，也不计入首页下载总量。
