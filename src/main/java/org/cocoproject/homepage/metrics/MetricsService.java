@@ -23,7 +23,11 @@ public class MetricsService {
             "cryopros",
             "ctfa",
             "changelog",
+            "changelogs",
+            "changelog-v0-2-0",
             "install",
+            "install-v0-3-2",
+            "install-v0-2-0",
             "install-v0-1-0");
 
     private final MetricsDatabase database;

@@ -18,8 +18,6 @@ colors:
   leaf-soft: "oklch(91% 0.055 140)"
   slate: "oklch(45% 0.065 218)"
   slate-soft: "oklch(91% 0.035 216)"
-  ctfa: "oklch(58% 0.055 285)"
-  ctfa-soft: "oklch(92% 0.032 292)"
   focus: "oklch(54% 0.15 142)"
 typography:
   display:
@@ -69,18 +67,22 @@ components:
     backgroundColor: "{colors.leaf-deep}"
     textColor: "{colors.paper}"
     rounded: "{rounded.pill}"
-    padding: "0.78rem 1.1rem"
-    typography: "{typography.title}"
+    minHeight: "48px"
+    padding: "0.75rem 1.15rem"
+    fontSize: "0.95rem"
+    fontWeight: 760
+    lineHeight: 1.25
   button-primary-hover:
     backgroundColor: "{colors.leaf}"
     textColor: "{colors.paper}"
     rounded: "{rounded.pill}"
-    padding: "0.78rem 1.1rem"
+    padding: "0.75rem 1.15rem"
   button-secondary:
     backgroundColor: "{colors.paper-soft}"
     textColor: "{colors.coconut-deep}"
     rounded: "{rounded.pill}"
-    padding: "0.78rem 1.1rem"
+    minHeight: "48px"
+    padding: "0.75rem 1.15rem"
   chip:
     backgroundColor: "{colors.paper-soft}"
     textColor: "{colors.ink-muted}"
@@ -112,7 +114,7 @@ This system rejects generic research-project template pages, exaggerated SaaS la
 
 **Key Characteristics:**
 
-- Warm lab-paper surfaces with subtle green, coconut, slate, and lavender module cues.
+- Warm lab-paper surfaces with subtle green, coconut, and slate module cues.
 - Serif-led headings for academic calm, sans body text for readable instructions.
 - Diagrammatic structure over card-grid repetition.
 - Ambient tactile depth, never glassy or glossy.
@@ -120,7 +122,7 @@ This system rejects generic research-project template pages, exaggerated SaaS la
 
 ## 2. Colors
 
-The palette is Lab-warm: tinted paper neutrals carry the page, while coconut brown, growth green, cryo slate, and CTFA lavender identify system roles.
+The palette is Lab-warm: tinted paper neutrals carry the page, while coconut brown, growth green, and cryo slate identify system roles.
 
 ### Primary
 
@@ -133,7 +135,6 @@ The palette is Lab-warm: tinted paper neutrals carry the page, while coconut bro
 ### Tertiary
 
 - **Cryo Slate** (`slate`, `slate-soft`): The cryo-EM technical support color. Use it sparingly in the workflow map and secondary reference interactions.
-- **CTFA Lavender** (`ctfa`, `ctfa-soft`): The planned-state color. Use it for CTFA and TBD treatments only, with dashed or muted behavior when the status is unresolved.
 
 ### Neutral
 
@@ -145,9 +146,9 @@ The palette is Lab-warm: tinted paper neutrals carry the page, while coconut bro
 
 **The Warm Paper Rule.** Every neutral surface must keep the warm lab-paper tint. Pure black and pure white are forbidden.
 
-**The One CoCo Action Rule.** Growth Green carries primary action energy. Do not let module links, GitHub references, or CTFA states compete with Download CoCo.
+**The One CoCo Action Rule.** Growth Green carries primary action energy. Do not let module links or GitHub references compete with Download CoCo.
 
-**The Module Difference Rule.** CryoSieve uses Coconut Brown, CryoPROS uses Growth Green, CTFA uses CTFA Lavender, and Cryo Slate stays a supporting cryo-EM note.
+**The Module Color Rule.** CryoSieve uses Coconut Brown, CryoPROS and CTFA share Growth Green, and Cryo Slate stays a supporting cryo-EM note. All homepage module rows use the same paper surfaces and ink text.
 
 ## 3. Typography
 
@@ -179,8 +180,8 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 
 - **Ambient Surface** (`0 24px 70px oklch(38% 0.058 70 / 0.14)`): Use only for major showcase surfaces like the workbench card.
 - **Soft Surface** (`0 12px 38px oklch(38% 0.058 70 / 0.09)`): Use for secondary panels, figures, download surfaces, and embedded media.
-- **Primary Button Glow** (`0 14px 28px oklch(35% 0.083 145 / 0.22)`): Use for the primary CTA at rest.
-- **Primary Button Hover Glow** (`0 18px 34px oklch(35% 0.083 145 / 0.26)`): Use only on primary CTA hover.
+- **Primary Button Glow** (`0 6px 16px oklch(35% 0.083 145 / 0.14)`): Use for the primary CTA at rest.
+- **Primary Button Hover Glow** (`0 8px 20px oklch(35% 0.083 145 / 0.2)`): Use only on primary CTA hover.
 - **Logo Drop** (`drop-shadow(0 8px 16px oklch(36% 0.08 58 / 0.15))`): Use for the coconut logo and footer mark.
 
 ### Named Rules
@@ -194,6 +195,8 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 ### Buttons
 
 - **Shape:** Fully rounded pills (`pill`). Buttons should feel reassuring and practical, not flashy.
+- **Size:** Content action buttons share a 48px minimum height, 0.95rem text, and 1.25 line height. Keep navigation compact and preserve 48px touch targets. Grid rows must not stretch buttons vertically.
+- **Grouping:** Paired actions share a baseline and a 12px gap. Keep 24px between the download heading and its actions. Below 36rem, stack content buttons at equal full width. Release-directory links sit below the main release actions as aligned text links.
 - **Primary:** Growth Green background, warm paper text, strong weight, compact horizontal padding. This is for Download CoCo and no other equal-priority action.
 - **Hover / Focus:** Hover shifts to brighter Growth Green with a slightly stronger glow. Focus uses the visible green ring from `focus`.
 - **Secondary:** Warm paper fill, Pencil Line border, Coconut Brown text. Use for lower-commitment navigation like View modules.
@@ -202,7 +205,7 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 ### Chips
 
 - **Style:** Small pill badges with warm paper fill, quiet borders, and semibold text.
-- **Module Color:** CryoSieve chips use coconut-tinted fills, CryoPROS chips use leaf-tinted fills, CTFA chips use lavender fills.
+- **Module Color:** Homepage module chips share neutral paper fills. Detail-page chips use coconut tints for CryoSieve and leaf tints for CryoPROS and CTFA.
 - **Use:** Use chips for attributes and status. Do not turn every metadata phrase into a chip.
 
 ### Cards / Containers
@@ -225,7 +228,7 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 
 - **Style:** A ruled ledger, not an identical card grid. Each module row has an index, description, and tags.
 - **Interaction:** Rows are clickable with subtle background change and visible focus outline.
-- **Status:** CTFA remains muted, lavender, and clearly TBD.
+- **Status:** CTFA is an available CoCo module and uses the same neutral row treatment as CryoSieve and CryoPROS. Its detail page shares CryoPROS colors; do not reintroduce a separate purple palette.
 
 ### Workbench Map
 
@@ -246,7 +249,7 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 - **Do** use OKLCH tokens from the frontmatter for all new colors.
 - **Do** keep the primary CTA singular: Download CoCo should remain the only primary action.
 - **Do** use warm paper neutrals for large surfaces and full Warm Ink for headings.
-- **Do** use the module color rule consistently: Coconut Brown for CryoSieve, Growth Green for CryoPROS, CTFA Lavender for CTFA.
+- **Do** use the module color rule consistently: neutral homepage rows, Coconut Brown for CryoSieve details, and Growth Green for CryoPROS and CTFA details.
 - **Do** preserve keyboard navigation, visible focus rings, and reduced-motion behavior.
 - **Do** keep scientific copy concise, precise, and readable.
 

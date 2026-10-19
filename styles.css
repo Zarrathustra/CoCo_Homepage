@@ -65,8 +65,6 @@
     --leaf-soft: oklch(91% 0.055 140);
     --slate: oklch(45% 0.065 218);
     --slate-soft: oklch(91% 0.035 216);
-    --ctfa: oklch(58% 0.055 285);
-    --ctfa-soft: oklch(92% 0.032 292);
     --focus: oklch(54% 0.15 142);
     --shadow: 0 24px 70px oklch(38% 0.058 70 / 0.14);
     --shadow-soft: 0 12px 38px oklch(38% 0.058 70 / 0.09);
@@ -379,16 +377,20 @@
   }
 
   .button {
-    min-height: 46px;
+    min-height: 48px;
+    max-width: 100%;
     display: inline-flex;
+    align-self: center;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     border: 1px solid transparent;
     border-radius: 999px;
-    padding: 0.78rem 1.1rem;
-    font-weight: 800;
-    line-height: 1;
+    padding: 0.75rem 1.15rem;
+    font-size: 0.95rem;
+    font-weight: 760;
+    line-height: 1.25;
+    text-align: center;
     transition:
       transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
       box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -416,13 +418,13 @@
 
   .button-primary {
     background: var(--leaf-deep);
-    box-shadow: 0 14px 28px oklch(35% 0.083 145 / 0.22);
+    box-shadow: 0 6px 16px oklch(35% 0.083 145 / 0.14);
     color: oklch(97% 0.018 132);
   }
 
   .button-primary:hover {
     background: var(--leaf);
-    box-shadow: 0 18px 34px oklch(35% 0.083 145 / 0.26);
+    box-shadow: 0 8px 20px oklch(35% 0.083 145 / 0.2);
   }
 
   .button-secondary {
@@ -471,11 +473,20 @@
   }
 
   .hero-actions,
-  .download-actions {
+  .download-actions,
+  .changelog-action-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 0.4rem;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .download-copy h2 {
+    margin-top: 0.5rem;
+  }
+
+  .download-actions {
+    margin-top: 1.5rem;
   }
 
   .download-stat-slot {
@@ -763,13 +774,9 @@
     fill: oklch(94% 0.045 74 / 0.96);
   }
 
-  .module-pros rect {
-    fill: oklch(93% 0.044 151 / 0.96);
-  }
-
+  .module-pros rect,
   .module-ctfa rect {
-    fill: var(--ctfa-soft);
-    stroke-dasharray: 7 6;
+    fill: oklch(93% 0.044 151 / 0.96);
   }
 
   .node-label {
@@ -1018,15 +1025,6 @@
 
   .module-tags span {
     padding: 0.45rem 0.72rem;
-  }
-
-  .module-row-muted {
-    color: var(--ink-soft);
-  }
-
-  .module-row-muted .module-index,
-  .module-row-muted .module-tags span {
-    background: var(--ctfa-soft);
   }
 
   .download-panel {
@@ -1294,14 +1292,10 @@
   }
 
   .module-page--pros .module-back-link:hover,
-  .module-page--pros .module-github-link:hover {
+  .module-page--pros .module-github-link:hover,
+  .module-page--ctfa .module-back-link:hover {
     background: var(--leaf-soft);
     color: var(--leaf-deep);
-  }
-
-  .module-page--ctfa .module-back-link:hover {
-    background: var(--ctfa-soft);
-    color: var(--ctfa);
   }
 
   .module-page-hero {
@@ -1318,18 +1312,12 @@
     border: 1px solid oklch(82% 0.042 76 / 0.55);
   }
 
-  .module-page--pros .module-page-hero {
+  .module-page--pros .module-page-hero,
+  .module-page--ctfa .module-page-hero {
     background:
       radial-gradient(circle at 72% 22%, oklch(91% 0.055 140 / 0.62), transparent 26rem),
       linear-gradient(180deg, oklch(97.6% 0.016 108), oklch(94.4% 0.026 112));
     border: 1px solid oklch(80% 0.052 142 / 0.5);
-  }
-
-  .module-page--ctfa .module-page-hero {
-    background:
-      radial-gradient(circle at 50% 20%, oklch(92% 0.032 292 / 0.58), transparent 26rem),
-      linear-gradient(180deg, oklch(97.8% 0.012 280), oklch(94.6% 0.022 286));
-    border: 1px solid oklch(82% 0.035 288 / 0.5);
   }
 
   .module-page-kicker {
@@ -1346,10 +1334,6 @@
 
   .module-page--pros .module-page-kicker {
     color: var(--leaf-deep);
-  }
-
-  .module-page--ctfa .module-page-kicker {
-    color: var(--ctfa);
   }
 
   .module-page-title {
@@ -1389,17 +1373,11 @@
     border-color: oklch(76% 0.062 68 / 0.45);
   }
 
-  .module-page--pros .module-page-version {
+  .module-page--pros .module-page-version,
+  .module-page--ctfa .module-page-version {
     background: oklch(93% 0.044 151 / 0.6);
     color: var(--leaf-deep);
     border-color: oklch(76% 0.068 148 / 0.4);
-  }
-
-  .module-page--ctfa .module-page-version {
-    background: var(--ctfa-soft);
-    color: var(--ctfa);
-    border-style: dashed;
-    opacity: 0.72;
   }
 
   .module-page-body {
@@ -1566,12 +1544,9 @@
     background: var(--coconut);
   }
 
-  .module-page--pros .module-feature-list li::before {
-    background: var(--leaf);
-  }
-
+  .module-page--pros .module-feature-list li::before,
   .module-page--ctfa .module-feature-list li::before {
-    background: var(--ctfa);
+    background: var(--leaf);
   }
 
   .module-page-tags {
@@ -1600,14 +1575,10 @@
     color: var(--coconut-deep);
   }
 
-  .module-page--pros .module-page-tags span {
+  .module-page--pros .module-page-tags span,
+  .module-page--ctfa .module-page-tags span {
     background: oklch(93% 0.04 151 / 0.5);
     color: var(--leaf-deep);
-  }
-
-  .module-page--ctfa .module-page-tags span {
-    background: var(--ctfa-soft);
-    color: var(--ctfa);
   }
 
   .module-node {
@@ -1924,6 +1895,87 @@
     padding-bottom: clamp(2rem, 5vw, 4rem);
   }
 
+  .changelog-intro--illustrated {
+    max-width: none;
+  }
+
+  .changelog-intro--illustrated > p {
+    max-width: 54rem;
+  }
+
+  .changelog-intro--illustrated .changelog-figure {
+    margin-top: clamp(1rem, 3vw, 2rem);
+  }
+
+  .changelog-index {
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .changelog-index > li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .changelog-index-entry {
+    display: grid;
+    gap: 1rem;
+    align-items: start;
+    padding: clamp(1.2rem, 3vw, 2rem) 0.75rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .changelog-index-entry:hover {
+    background: var(--paper-soft);
+  }
+
+  .changelog-index-version,
+  .changelog-index-copy {
+    display: grid;
+    gap: 0.55rem;
+    min-width: 0;
+  }
+
+  .changelog-index-version strong {
+    font-size: 1.25rem;
+  }
+
+  .changelog-status {
+    width: fit-content;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-muted);
+    font-size: 0.75rem;
+    font-weight: 720;
+  }
+
+  .changelog-status--current {
+    background: var(--leaf-soft);
+    color: var(--leaf-deep);
+  }
+
+  .changelog-index-copy h2 {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    text-wrap: pretty;
+  }
+
+  .changelog-index-copy p {
+    max-width: 65ch;
+  }
+
+  .changelog-index-link {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: var(--coconut-deep);
+    font-size: 0.88rem;
+    font-weight: 720;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.22em;
+  }
+
   .changelog-intro h2,
   .changelog-section-heading h2,
   .changelog-release-actions h2 {
@@ -1990,9 +2042,6 @@
   .changelog-figure img {
     width: 100%;
     height: auto;
-    aspect-ratio: 1.54 / 1;
-    object-fit: cover;
-    object-position: center top;
   }
 
   .changelog-figure figcaption {
@@ -2066,28 +2115,20 @@
     gap: 0.48rem;
   }
 
-  .changelog-action-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    align-items: center;
-  }
-
-  .changelog-archive-link {
-    min-height: 42px;
+  .changelog-all-link {
+    flex-basis: 100%;
+    min-height: 36px;
     display: inline-flex;
     align-items: center;
-    padding: 0.45rem 0.15rem;
-    color: var(--ink-muted);
-    font-size: 0.88rem;
-    font-weight: 720;
+    color: var(--coconut-deep);
+    font-size: 0.9rem;
+    font-weight: 700;
     text-decoration: underline;
     text-decoration-color: var(--line-strong);
-    text-underline-offset: 0.22em;
+    text-underline-offset: 0.2em;
   }
 
-  .changelog-archive-link:hover {
-    color: var(--coconut-deep);
+  .changelog-all-link:hover {
     text-decoration-color: currentColor;
   }
 
@@ -2133,17 +2174,40 @@
     border-bottom: 1px solid var(--line);
   }
 
-  .install-page-back .module-back-link,
-  .install-download-link {
-    min-width: 0;
+  .install-version-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
   }
 
-  .install-download-link {
-    min-height: 42px;
-    padding-inline: clamp(0.78rem, 2.4vw, 1rem);
-    font-size: clamp(0.82rem, 2.6vw, 0.92rem);
-    text-align: center;
-    white-space: normal;
+  .install-version-switcher > span {
+    margin-right: 0.25rem;
+    color: var(--ink-muted);
+    font-size: 0.78rem;
+  }
+
+  .install-version-switcher a {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--ink-muted);
+    font-size: 0.82rem;
+    font-weight: 720;
+  }
+
+  .install-version-switcher a:hover,
+  .install-version-switcher a[aria-current="page"] {
+    background: var(--leaf-soft);
+    color: var(--leaf-deep);
+  }
+
+  .install-page-back .module-back-link {
+    min-width: 0;
   }
 
   .install-page-hero {
@@ -2522,6 +2586,7 @@
 
   .hero-copy {
     display: grid;
+    align-content: start;
     gap: clamp(1rem, 2.6vw, 1.65rem);
   }
 
@@ -2555,6 +2620,25 @@
 }
 
 @layer responsive {
+  @media (max-width: 35.999rem) {
+    .hero-actions,
+    .download-actions,
+    .changelog-action-links {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-actions .button,
+    .download-actions .button,
+    .changelog-action-links .button {
+      width: 100%;
+    }
+
+    .changelog-all-link {
+      flex-basis: auto;
+    }
+  }
+
   @media (max-width: 22rem) {
     .brand-mark small {
       display: none;
@@ -2722,10 +2806,6 @@
       min-height: 36px;
       padding: 0.36rem 0.52rem;
       font-size: 0.82rem;
-    }
-
-    .install-page-back .install-download-link {
-      display: none;
     }
 
     .install-page-hero {
@@ -3024,13 +3104,6 @@
     }
   }
 
-  @media (max-width: 26rem) {
-    .install-download-link {
-      width: 100%;
-      justify-content: center;
-    }
-  }
-
   @media (max-width: 22rem) {
     .install-command pre {
       font-size: 0.74rem;
@@ -3134,6 +3207,10 @@
       align-items: start;
     }
 
+    .download-panel {
+      align-items: center;
+    }
+
     .module-row {
       grid-template-columns: 4.5rem minmax(0, 1fr) minmax(13rem, 0.32fr);
       gap: clamp(1.2rem, 3vw, 2.5rem);
@@ -3174,6 +3251,15 @@
       grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.5fr);
     }
 
+    .changelog-hero--index {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .changelog-index-entry {
+      grid-template-columns: minmax(9rem, 0.3fr) minmax(0, 1fr) auto;
+      gap: 2rem;
+    }
+
     .changelog-feature {
       grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
     }
@@ -3198,11 +3284,12 @@
 
     .changelog-release-actions {
       grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
     }
 
     .changelog-action-links {
       max-width: 30rem;
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
 
     .install-guide-layout {
@@ -3354,6 +3441,8 @@
     .button,
     .nav-links a,
     .nav-dropdown-trigger,
+    .install-version-switcher a,
+    .changelog-all-link,
     .coco-gui-segmented button {
       min-height: 48px;
     }

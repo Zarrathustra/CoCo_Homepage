@@ -17,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.IOException;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,6 +29,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -70,6 +72,9 @@ class MetricsWebIntegrationTest {
     private static final byte[] RELEASE_CONTENT = createReleaseContent();
     private static final byte[] UNREGISTERED_CONTENT = "unregistered test artifact"
             .getBytes(StandardCharsets.UTF_8);
+    private static final List<String> EMODELG_FILES = List.of(
+            "emodelg-so3-2.2.0-20261011.tar.gz",
+            "emodelg-models-2.2.0-20261011.tar.gz");
     private static final Path TEST_ROOT = createTestFixtures();
     private static final Path DOWNLOAD_DIRECTORY = TEST_ROOT.resolve("downloads");
     private static final Path DATABASE_PATH = TEST_ROOT.resolve("coco-metrics.db");
@@ -206,19 +211,70 @@ class MetricsWebIntegrationTest {
     }
 
     @Test
+    void emodelgBundlesSupportDownloadHeadAndRangesThroughBothPaths() throws Exception {
+        for (String fileName : EMODELG_FILES) {
+            byte[] expected = Files.readAllBytes(DOWNLOAD_DIRECTORY.resolve("emodelg").resolve(fileName));
+            for (String prefix : List.of("/emodelg/", "/downloads/emodelg/")) {
+                String path = prefix + fileName;
+                mockMvc.perform(get(path))
+                        .andExpect(status().isOk())
+                        .andExpect(content().bytes(expected))
+                        .andExpect(header().doesNotExist(HttpHeaders.SET_COOKIE));
+
+                mockMvc.perform(request(HttpMethod.HEAD, path))
+                        .andExpect(status().isOk())
+                        .andExpect(header().longValue(HttpHeaders.CONTENT_LENGTH, expected.length))
+                        .andExpect(header().string(HttpHeaders.ACCEPT_RANGES, "bytes"))
+                        .andExpect(content().bytes(new byte[0]));
+
+                mockMvc.perform(get(path).header(HttpHeaders.RANGE, "bytes=8-15"))
+                        .andExpect(status().isPartialContent())
+                        .andExpect(header().string(HttpHeaders.CONTENT_RANGE, "bytes 8-15/" + expected.length))
+                        .andExpect(content().bytes(Arrays.copyOfRange(expected, 8, 16)));
+            }
+        }
+        mockMvc.perform(get("/api/stats/releases/" + RELEASE_VERSION))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.allReleaseDownloads").value(0));
+    }
+
+    @Test
+    void emodelgAliasRejectsMissingFilesAndPathsOutsideItsDirectory() throws Exception {
+        for (String path : List.of(
+                "/emodelg/missing.tar.gz",
+                "/downloads/emodelg/missing.tar.gz",
+                "/emodelg/" + RELEASE_FILE,
+                "/emodelg/../" + RELEASE_FILE,
+                "/emodelg/%2e%2e/" + RELEASE_FILE,
+                "/emodelg/%2e%2e%2f" + RELEASE_FILE)) {
+            mockMvc.perform(get(URI.create(path)))
+                    .andExpect(status().isNotFound());
+        }
+        assertEquals(0, downloadCount(RELEASE_VERSION));
+    }
+
+    @Test
     void allDocumentedViewsAreAccepted() throws Exception {
+        Cookie visitor = visitorCookie("all-views-visitor-0001");
+        LocalDate today = LocalDate.now(METRICS_ZONE);
         for (String view : List.of(
                 "home",
                 "cryosieve",
                 "cryopros",
                 "ctfa",
                 "changelog",
+                "changelogs",
+                "changelog-v0-2-0",
                 "install",
+                "install-v0-3-2",
+                "install-v0-2-0",
                 "install-v0-1-0")) {
             mockMvc.perform(post("/api/metrics/views")
+                            .cookie(visitor)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content("{\"view\":\"" + view + "\"}"))
                     .andExpect(status().isNoContent());
+            assertEquals(1, uniqueViewCount(today, view));
         }
     }
 
@@ -398,6 +454,10 @@ class MetricsWebIntegrationTest {
             Path downloads = Files.createDirectories(root.resolve("downloads"));
             Files.write(downloads.resolve(RELEASE_FILE), RELEASE_CONTENT);
             Files.write(downloads.resolve(UNREGISTERED_FILE), UNREGISTERED_CONTENT);
+            Path emodelg = Files.createDirectories(downloads.resolve("emodelg"));
+            for (String fileName : EMODELG_FILES) {
+                Files.write(emodelg.resolve(fileName), ("test bundle: " + fileName).getBytes(StandardCharsets.UTF_8));
+            }
             return root;
         } catch (IOException exception) {
             throw new ExceptionInInitializerError(exception);

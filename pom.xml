@@ -13,7 +13,7 @@
 
   <groupId>org.cocoproject</groupId>
   <artifactId>coco-homepage</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.2</version>
   <name>CoCo Homepage</name>
   <description>Runnable JAR distribution for the CoCo Project homepage.</description>
 

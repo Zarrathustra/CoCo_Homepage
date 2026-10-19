@@ -30,12 +30,19 @@ public class DownloadResourceConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String resourceLocation = downloadDirectory.toUri().toString();
+        addDownloadLocation(registry, "/downloads/**", downloadDirectory);
+        // CoCo's Environment Check uses /emodelg/ for these externally hosted bundles.
+        addDownloadLocation(registry, "/emodelg/**", downloadDirectory.resolve("emodelg"));
+    }
+
+    private static void addDownloadLocation(
+            ResourceHandlerRegistry registry, String pattern, Path directory) {
+        String resourceLocation = directory.toUri().toString();
         if (!resourceLocation.endsWith("/")) {
             resourceLocation += "/";
         }
 
-        registry.addResourceHandler("/downloads/**")
+        registry.addResourceHandler(pattern)
                 .addResourceLocations(resourceLocation)
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver());
