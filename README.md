@@ -1,6 +1,6 @@
 # CoCo Project Homepage
 
-CoCo Project Homepage 是 CoCo 项目的官方网站首页，用于介绍 CoCo 作为 cryo-EM 数据准备、重构与分析的统一工作区，并重点说明 CryoSieve、CryoPROS 和 CTFA 在工作流中的作用。
+CoCo Project Homepage 是 CoCo 项目的官方网站首页，用于介绍 CoCo 作为 cryo-EM 数据准备、重构与分析的统一工作区，并重点说明 CryoSieve、CryoPROS 和 EModelG 在工作流中的作用。
 
 页面前端没有 npm、框架或构建流程；生产环境由 Spring Boot 提供静态页面、外部发布包和长期统计服务。纯静态服务器仍可用于布局预览，但不会记录访问或下载统计。
 
@@ -9,10 +9,10 @@ CoCo Project Homepage 是 CoCo 项目的官方网站首页，用于介绍 CoCo �
 CoCo 面向结构生物学实验室、cryo-EM 研究者、研究生、PI 和科学软件用户。首页重点传达三点：
 
 - CoCo 是统一 GUI 入口。
-- CryoSieve、CryoPROS 和 CTFA 是重点介绍的分析模块；CoCo 还包含数据导入、粒子挑选与提取、分类、重构和 CryoSPARC 导出等任务。
-- 页面主要转化目标是 `Download CoCo v0.3.2`，而不是分别下载各模块。
+- CryoSieve、CryoPROS 和 EModelG 是重点介绍的分析模块；CoCo 还包含数据导入、粒子挑选与提取、分类、重构和 CryoSPARC 导出等任务。
+- 页面主要转化目标是 `Download CoCo v0.3.5`，而不是分别下载各模块。
 
-当前发布版本为 `v0.3.2`，首页主按钮通过 `/downloads/coco-0.3.2.tar.gz` 下载外部发布包。当前安装说明以内嵌网页视图 `#install-v0-3-2` 展示，`#install` 保留为兼容入口，`#changelog` 展示 v0.3.2 更新日志，`#changelogs` 列出所有日志，`#changelog-v0-2-0` 保留完整 v0.2.0 日志；旧版安装指南分别保留为 `#install-v0-2-0` 和 `#install-v0-1-0`，每个指南顶部均可切换版本。
+当前发布版本为 `v0.3.5`，首页主按钮通过 `/downloads/coco-0.3.5.tar.gz` 下载外部发布包。`#install-v0-3-5` 展示该版完整安装指南；`#changelog` 继续保留更新日志占位内容。`#install` 保留为最新指南兼容入口，`#changelogs` 列出所有日志；v0.3.2、v0.2.0 的完整日志分别保留在 `#changelog-v0-3-2`、`#changelog-v0-2-0`。历史安装指南保留 v0.3.2、v0.2.0、v0.1.0，每个指南顶部均可切换版本。
 
 ## 模块概览
 
@@ -20,7 +20,8 @@ CoCo 面向结构生物学实验室、cryo-EM 研究者、研究生、PI 和科�
 | --- | --- | --- |
 | CryoSieve | 已展示，`v1.3.0` | 单颗粒 cryo-EM 粒子排序与筛选模块，用于移除不必要粒子并提升重构质量；包含 GitHub、论文、featured image、main figure 和 EMPIAR demo 表格。 |
 | CryoPROS | 已展示，`v1.0.1` | 使用 AI 生成辅助粒子并进行 co-refinement 的 preferred-orientation correction 框架；包含 GitHub、论文和 featured image。 |
-| CTFA | CoCo 内置模块 | 微图 CTF 估计、拟合参数与 Thon-ring 检查，输出可供后续粒子挑选与提取使用；没有独立下载、GitHub 链接或单独版本号。 |
+| CTFA | 暂不公开 | 因 CoCo 界面中尚不可见，菜单、首页介绍和详情路由暂时隐藏；既有文案保留在惰性 template 中。 |
+| EModelG | CoCo 内置模块 | 从 cryo-EM 密度自动构建糖链与蛋白主链模型；包含两条英文流程、研究示例和 Science 论文引用，没有独立下载或单独版本号。 |
 
 ## 页面结构
 
@@ -32,10 +33,13 @@ index.html
   main[data-view=home]      homepage
   div[data-view=cryosieve]  CryoSieve sub-page
   div[data-view=cryopros]   CryoPROS sub-page
-  div[data-view=ctfa]       CTFA sub-page
-  div[data-view=install-v0-3-2]  CoCo v0.3.2 installation guide
+  template#deferred-ctfa    deferred CTFA content, outside active routing
+  div[data-view=emodelg]    EModelG sub-page
+  div[data-view=install-v0-3-5]  CoCo v0.3.5 installation guide
+  div[data-view=install-v0-3-2]  archived v0.3.2 guide
   div[data-view=install-v0-2-0]  archived v0.2.0 guide
-  div[data-view=changelog]  CoCo v0.3.2 change log
+  div[data-view=changelog]  CoCo v0.3.5 change log placeholder
+  div[data-view=changelog-v0-3-2]  archived v0.3.2 change log
   div[data-view=changelogs]  all change logs, newest first
   div[data-view=changelog-v0-2-0]  archived v0.2.0 change log
   div[data-view=install-v0-1-0]  archived v0.1.0 guide
@@ -48,17 +52,17 @@ index.html
 2. Relationship panel：用步骤说明 CoCo 工作区、任务依赖、重点模块和下游处理的关系。
 3. CoCo GUI preview：展示 `North_Star` 的 Light/Dark 与 Cards/DAG 四种界面组合，并提供主题和布局两组切换控件。
 4. Modules：三行 ledger 式重点模块入口，不将其表述为 CoCo 的全部能力。
-5. Download：唯一主下载目标，提供 `Download CoCo v0.3.2`、安装指南与轻量 Change Log 入口。
-6. References：CryoSieve 和 CryoPROS 的 GitHub 与论文引用。
-7. Change Log：`#changelog` 展示 v0.3.2 的任务自动接续、批量操作、DFR／SGD 重构入口和 CryoSPARC 独立导出任务，Workflow continuity 区块配有 `coco-v0.3.2-deferred-job.png`，批量操作区使用发布文档图 1，不使用文档原图 2。`#changelogs` 提供版本目录，`#changelog-v0-2-0` 保留旧版正文及两张配图；两个详情页的 Ready to update 面板均提供 All change logs 入口。
-8. Install guides：v0.3.2、v0.2.0、v0.1.0 各有独立页面及章节锚点，顶部可切换版本；各版本 Change Log 指向对应指南。
+5. Download：唯一主下载目标，提供 `Download CoCo v0.3.5`、安装指南与轻量 Change Log 入口。
+6. Publications：CryoSieve、CryoPROS 和 EModelG 的三篇主要论文，首页不再列出 Code 栏。模块详情页中的既有 GitHub 链接继续保留。
+7. Change Log：`#changelog` 展示 v0.3.5 占位内容，`#changelogs` 提供倒序版本目录。`#changelog-v0-3-2` 保留任务自动接续、批量操作、DFR／SGD 重构和独立 CryoSPARC 导出的完整内容及两张配图；`#changelog-v0-2-0` 保留原正文及两张配图。所有日志详情均链接当前下载及对应版本指南。
+8. Install guides：v0.3.5 提供完整指南，v0.3.2、v0.2.0、v0.1.0 保留历史正文与版本章节锚点；所有指南顶部可切换版本。
 9. Footer：版权、备案、公安备案、电话、地址与邮箱。
 
 主要交互：
 
-- 首页、模块子页、Change Log 和三个安装指南之间使用 hash 路由切换。
-- 支持 `#cryosieve`、`#cryopros`、`#ctfa`、`#changelog`、`#changelogs`、`#changelog-v0-2-0`、`#install-v0-3-2`、`#install-v0-2-0` 和 `#install-v0-1-0` 深链接。
-- 各安装指南使用版本前缀的内部锚点，例如 `#install-v0-2-0-runtime`。旧 `#install` 与 `#install-*` 章节链接兼容映射到最新指南；未知版本不会被误判为最新指南。
+- 首页、模块子页、Change Log 和四个版本的安装页面之间使用 hash 路由切换。
+- 支持三个公开模块、当前日志、日志目录、历史日志和四个安装版本的 hash 深链接。
+- 各安装指南使用版本前缀的内部锚点，例如 `#install-v0-2-0-runtime`。旧 `#install` 与 `#install-*` 章节链接兼容映射到最新指南；最新指南没有对应章节时定位页首，同页操作也适用。未知版本不会被误判为最新指南。
 - 支持浏览器前进、后退。
 - 导航栏 Modules 下拉菜单支持点击、hover/focus-within 和 Escape 关闭。
 - CoCo GUI preview 支持 Light/Dark 和 Cards/DAG 独立切换，并同步各组按钮的 `aria-pressed` 状态。
@@ -91,6 +95,10 @@ index.html
 │   ├── cryosieve_main_figure.jpg
 │   ├── cryopros_featured_image.png
 │   ├── cryopros_main_figure.png
+│   ├── emodelg-glycan-example.png
+│   ├── emodelg-glycan-workflow.png
+│   ├── emodelg-protein-example.png
+│   ├── emodelg-protein-workflow.png
 │   └── ga.jpg
 ├── pom.xml
 └── src/
@@ -102,7 +110,7 @@ index.html
         └── resources/application.properties
 ```
 
-`coco-0.3.2.tar.gz` 是外部部署资源，不属于源码或 JAR 内容。默认从进程工作目录下的 `downloads/` 读取，也可以通过 `COCO_DOWNLOAD_DIR` 指定其他目录。统计数据库同样位于 JAR 之外，默认使用 `./data/coco-metrics.db`。
+`coco-0.3.5.tar.gz` 是外部部署资源，不属于源码或 JAR 内容。默认从进程工作目录下的 `downloads/` 读取，也可以通过 `COCO_DOWNLOAD_DIR` 指定其他目录。统计数据库同样位于 JAR 之外，默认使用 `./data/coco-metrics.db`。
 
 ## 本地预览
 
@@ -127,6 +135,7 @@ http://localhost:8000
 安装指南视图：
 
 ```text
+http://localhost:8000/#install-v0-3-5
 http://localhost:8000/#install-v0-3-2
 http://localhost:8000/#install-v0-2-0
 ```
@@ -136,6 +145,7 @@ Change Log 与归档指南：
 ```text
 http://localhost:8000/#changelog
 http://localhost:8000/#changelogs
+http://localhost:8000/#changelog-v0-3-2
 http://localhost:8000/#changelog-v0-2-0
 http://localhost:8000/#install-v0-1-0
 ```
@@ -176,7 +186,7 @@ mvn package
 运行打包产物：
 
 ```bash
-java -jar target/coco-homepage-0.3.2.jar
+java -jar target/coco-homepage-0.3.5.jar
 ```
 
 `pom.xml` 会将以下静态资源打包到 Spring Boot 的 `static` 目录中：
@@ -190,11 +200,13 @@ CoCo 发布包和辅助资源包不会进入 JAR。Spring Boot 将 `/downloads/*
 
 ```text
 /opt/coco-homepage/
-├── coco-homepage-0.3.2.jar
+├── coco-homepage-0.3.5.jar
 ├── data/
 │   └── coco-metrics.db
 └── downloads/
+    ├── coco-0.2.0.tar.gz
     ├── coco-0.3.2.tar.gz
+    ├── coco-0.3.5.tar.gz
     └── emodelg/
         ├── emodelg-so3-2.2.0-20261011.tar.gz
         └── emodelg-models-2.2.0-20261011.tar.gz
@@ -207,7 +219,7 @@ COCO_DOWNLOAD_DIR=/opt/coco-homepage/downloads \
 COCO_METRICS_DB=/opt/coco-homepage/data/coco-metrics.db \
 COCO_METRICS_TIME_ZONE=Asia/Shanghai \
 COCO_METRICS_ADMIN_TOKEN=replace-with-a-random-secret \
-java -jar /opt/coco-homepage/coco-homepage-0.3.2.jar
+java -jar /opt/coco-homepage/coco-homepage-0.3.5.jar
 ```
 
 不设置 `COCO_DOWNLOAD_DIR` 时，默认目录是进程工作目录下的 `./downloads`。数据库默认写入 `./data/coco-metrics.db`；网页或 JAR 更新必须复用原数据库路径，才能延续历史统计。
@@ -225,7 +237,7 @@ curl --fail --head https://cocoproject.org.cn/emodelg/emodelg-so3-2.2.0-20261011
 curl --fail --head https://cocoproject.org.cn/emodelg/emodelg-models-2.2.0-20261011.tar.gz
 ```
 
-应返回 `200`，对应 `Content-Length` 分别为 `395653505` 和 `1115143034`。网站暂不展示 EModelG 产品介绍或环境配置指南；上述内容仅用于维护服务器下载路由。
+应返回 `200`，对应 `Content-Length` 分别为 `395653505` 和 `1115143034`。网站已展示 EModelG 产品介绍；v0.3.5 安装指南包含资源下载与 Phenix 配置说明。上述资源路由与 CoCo 主下载分别维护。
 
 ## 访问与下载统计
 
@@ -238,7 +250,7 @@ curl --fail --head https://cocoproject.org.cn/emodelg/emodelg-models-2.2.0-20261
 公共下载统计：
 
 ```bash
-curl http://localhost:8080/api/stats/releases/v0.3.2
+curl http://localhost:8080/api/stats/releases/v0.3.5
 ```
 
 内部统计默认查询最近 30 天，单次查询最多 366 天：
@@ -279,41 +291,48 @@ COCO_DOWNLOAD_DIR=/opt/coco-homepage/downloads \
 COCO_METRICS_DB=/opt/coco-homepage/data/coco-metrics.db \
 COCO_METRICS_TIME_ZONE=Asia/Shanghai \
 COCO_METRICS_ADMIN_TOKEN="${COCO_METRICS_ADMIN_TOKEN}" \
-java -jar /opt/coco-homepage/coco-homepage-0.3.2.jar
+java -jar /opt/coco-homepage/coco-homepage-0.3.5.jar
 ```
 
 若同目录仍有 `coco-metrics.db-wal` 或 `coco-metrics.db-shm`，也应在复制备份前移入 `before-restore/`。重启后通过公共接口和带令牌的内部接口核对版本总数、全版本总数和最近每日 UV。
 - 更新首页或 JAR 前先备份数据库，部署后继续指向同一个 `COCO_METRICS_DB`。
-- 新增 CoCo 版本时，在 `application.properties` 追加下一组 `coco.releases[n].version` 和 `coco.releases[n].file-name`，并保留所有旧映射；随后放置外部压缩包并更新页面链接。该过程不需要修改统计 schema。当前保留 v0.2.0，并追加 v0.3.2：
+- 新增 CoCo 版本时，在 `application.properties` 追加下一组 `coco.releases[n].version` 和 `coco.releases[n].file-name`，并保留所有旧映射；随后放置外部压缩包并更新页面链接。该过程不需要修改统计 schema。当前保留 v0.2.0、v0.3.2，并追加 v0.3.5：
 
 ```properties
 coco.releases[0].version=v0.2.0
 coco.releases[0].file-name=coco-0.2.0.tar.gz
 coco.releases[1].version=v0.3.2
 coco.releases[1].file-name=coco-0.3.2.tar.gz
+coco.releases[2].version=v0.3.5
+coco.releases[2].file-name=coco-0.3.5.tar.gz
 ```
 
 ## 发布包安装说明
 
-用户在首页点击 `Installation guide` 会进入当前 `#install-v0-3-2` 视图。两版指南分别依据 CoCo 对应 release tag 的 `INSTALL.md`，并核对打包与安装脚本、后端 Maven 配置、前端路由和 Settings 界面。维护时使用以下固定提交，不用 main 的新内容覆盖历史版本：
+用户在首页点击 `Installation guide` 会进入完整的 `#install-v0-3-5` 指南。指南沿用历史页的四步快速安装、侧边目录、版本切换和命令块样式，内容依据 CoCo GitHub 仓库的 v0.3.5 源码快照核对。当前日志继续显示 “Release notes will be added soon.”。
+
+- [v0.3.5 安装文档](https://github.com/mxhulab/CoCo/blob/11bab54eaaa8514589de9314d92be2ff5d607e6f/INSTALL.md)：固定提交 `11bab54eaaa8514589de9314d92be2ff5d607e6f`，该提交的 `backend/pom.xml` 版本为 0.3.5；不将其称为发布 tag。交叉核对 `PACK.md`、打包脚本、Settings 和 EModelG 源码。涵盖 Linux x86_64 / glibc 2.17+、Java 8+、主机 Python 3、版本运行时、认证、CryoSPARC/WIT、Local GPU、SLURM、LSF、EModelG 资源与 Phenix，以及持久状态备份升级。
+
+v0.3.2、v0.2.0 历史指南分别依据 CoCo 对应 release tag 的 `INSTALL.md`，并核对打包与安装脚本、后端 Maven 配置、前端路由和 Settings 界面。维护时使用以下固定提交，不用 main 的新内容覆盖历史版本：
 
 - [v0.3.2 安装文档](https://github.com/mxhulab/CoCo/blob/a38abf5353224f177a55fe0c9273c13d37efe54d/INSTALL.md)：Linux x86_64、Java 8+、主机 Python 3；GPU 工作流要求兼容 CUDA 12.1 的驱动。运行时包为 `coco-runtime-0.3.2.tar.gz`，环境目录为 `runtime/envs/coco-runtime-0.3.2`，配套 CoCoShed、CryoPROS 和 pySymStat。使用 `/login`、`/account/password`、`/projects` 和 `/api/v1/managed-runtimes/current`。CryoSPARC 可通过 4/5 安装路径或 5 远程 URL 接入；不要求 RELION 可执行程序。指南包含 SLURM、LSF 的部署条件与独立 Export to CryoSPARC 检查。
 - [v0.2.0 安装文档](https://github.com/mxhulab/CoCo/blob/c833bb9fc88b3951000642e47814f0bc1050bf5b/INSTALL.md)：保留旧版未加版本号的 `coco-runtime.tar.gz` 和 `runtime/envs/coco-runtime`、CryoSPARC/RELION 配置、SLURM 单节点资源示例、`/login-verification`、`/change-password`、`/home` 及 `/api/open/settings/managed-runtime`。CryoSPARC 导出在 CryoPROS Generate 内启用。旧文档称发布包为 `coco.tar.gz`，网页命令采用本站下载名 `coco-0.2.0.tar.gz`；旧版 Conda 运行时包需要匹配目标系统和架构。
 
 两版均使用 `bin/coco-install-runtime.sh`，默认端口为 `8078`。启动命令采用各 tag 中 `backend/pom.xml` 对应的 `coco-0.3.2.jar` 或 `coco-0.2.0.jar`。网页指南的核对不执行 CoCo 安装，也不检查或解包下载归档。
 
-安装说明是网页界面的一部分，不通过 raw `INSTALL.md` 对外发布。v0.2.0、v0.1.0 的指南分别保留在独立版本页面，并通过指南顶部的版本切换访问。各版本 Change Log 的安装按钮明确标注并链接对应指南，面板不再单列 v0.1.0 归档入口。
+安装说明是网页界面的一部分，不通过 raw `INSTALL.md` 对外发布。v0.3.2、v0.2.0、v0.1.0 的指南分别保留在独立版本页面，并通过指南顶部的版本切换访问。各版本 Change Log 的安装按钮明确标注并链接对应指南，面板不再单列 v0.1.0 归档入口。
 
 ## 编辑说明
 
-- 首页与模块介绍已对照 CoCo v0.3.2 的 `backend/src/main/resources/jobTypeMapping.json`、`INSTALL.md` 和当前源码核对：CTFA 已提供 CTF 估计与结果检查，CryoSieve 使用内置 DFR 重构及后处理，CryoPROS 采用 Prep / Train / Generate 与独立导出任务。主下载仍为 v0.3.2，历史安装说明及更新日志保持对应版本内容。
+- 首页和 v0.3.5 安装指南展示 CryoSieve、CryoPROS 和 EModelG；CTFA 因产品界面暂不可见而隐藏。CryoSieve 使用内置 DFR 重构及后处理，CryoPROS 采用 Prep / Train / Generate 与独立导出任务。主下载为 v0.3.5，更新日志继续占位；历史安装说明及更新日志保持对应版本内容。
+- EModelG 内容来自 `CoCo_Project/v0.3.5/EModelG_v2.docx`：示例图使用同目录语义化命名的图片，英文流程图直接提取 DOCX 原图。正式引用核对至 CoCo 提交 `11bab54eaaa8514589de9314d92be2ff5d607e6f` 的 `frontend/src/constants/toolCitations.ts`，采用 DOI `10.1126/science.aef4958`。
 - 页面内容主要在 `index.html` 中维护。
 - 样式集中在 `styles.css`，使用 OKLCH 色彩变量和 CSS cascade layers：`reset`、`base`、`components`、`layout`、`responsive`。
 - Spring Boot 提供静态资源、外部下载映射、SQLite 长期统计和统计 API；统计行为变更需要同步修改 Java 与测试。
 - 根目录静态资源若需要打包进 JAR，必须同步更新 `pom.xml` 的 resources includes。放在 `img/` 下的资源会自动随 `img/**` 打包。
-- `coco-0.3.2.tar.gz` 是 CoCo `v0.3.2` 的唯一主下载目标，但应部署在 `COCO_DOWNLOAD_DIR` 指向的外部目录中，不应加入 Maven resources。
+- `coco-0.3.5.tar.gz` 是 CoCo `v0.3.5` 的唯一主下载目标，但应部署在 `COCO_DOWNLOAD_DIR` 指向的外部目录中，不应加入 Maven resources。
 - `data/` 与发布压缩包都属于部署数据，不应提交或打包进 JAR。
-- CTFA 作为 CoCo 内置分析模块展示；不提供独立下载、未经确认的 GitHub 链接或单独版本号。
+- CTFA 暂不公开展示；`#ctfa` 不打开详情，历史 `ctfa` 访问统计仍保留。
 
 ## 设计方向
 
@@ -322,9 +341,9 @@ coco.releases[1].file-name=coco-0.3.2.tar.gz
 - 温和、专业、偏学术的页面语气。
 - Warm paper / research atlas 视觉风格。
 - CoCo 作为中心 GUI hub。
-- CryoSieve、CryoPROS、CTFA 围绕 CoCo 作为模块能力展示。
-- 使用柔和的 coconut、leaf、slate 与 warm ink 色彩体系；首页三个模块使用相同的中性配色，CTFA 详情页沿用 CryoPROS 的绿色，不使用独立紫色。
-- 保持 `Download CoCo v0.3.2` 作为唯一主行动，不让模块链接、GitHub 或论文引用与它竞争。
+- CryoSieve、CryoPROS 和 EModelG 围绕 CoCo 作为模块能力展示。
+- 使用柔和的 coconut、leaf、slate 与 warm ink 色彩体系；首页三个模块使用相同的中性配色，EModelG 详情页沿用 CryoPROS 的绿色，不使用独立紫色。
+- 保持 `Download CoCo v0.3.5` 作为唯一主行动，不让模块链接、GitHub 或论文引用与它竞争。
 
 ## 可访问性
 
@@ -344,3 +363,5 @@ coco.releases[1].file-name=coco-0.3.2.tar.gz
 - CryoPROS GitHub: https://github.com/mxhulab/cryopros
 - CryoSieve Nature Communications paper: https://www.nature.com/articles/s41467-023-43555-x
 - CryoPROS Nature Communications paper: https://doi.org/10.1038/s41467-025-59797-w
+- EModelG Science paper: https://doi.org/10.1126/science.aef4958
+- EModelG research examples (CryoSeek preprint): https://doi.org/10.65215/bkvrt910

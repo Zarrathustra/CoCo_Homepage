@@ -1098,63 +1098,6 @@
     background: var(--leaf);
   }
 
-  .reference-resources {
-    display: grid;
-    gap: clamp(1rem, 2.6vw, 1.5rem);
-  }
-
-  .reference-resource {
-    display: grid;
-    gap: clamp(0.85rem, 2vw, 1.2rem);
-  }
-
-  .reference-resource > h3 {
-    color: var(--ink);
-    font-size: clamp(1.08rem, 1.8vw, 1.3rem);
-    line-height: 1.15;
-  }
-
-  .reference-code-links {
-    display: grid;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    background: oklch(97.4% 0.016 88 / 0.76);
-  }
-
-  .reference-code-link {
-    display: grid;
-    gap: 0.25rem;
-    min-height: 44px;
-    padding: clamp(0.9rem, 2.4vw, 1.15rem) clamp(1rem, 2.6vw, 1.35rem);
-    color: var(--ink);
-    text-decoration: none;
-  }
-
-  .reference-code-link + .reference-code-link {
-    border-top: 1px solid var(--line);
-  }
-
-  .reference-code-link strong {
-    font-size: 0.98rem;
-    font-weight: 820;
-  }
-
-  .reference-code-link span {
-    color: var(--ink-soft);
-    font-size: 0.86rem;
-    line-height: 1.45;
-  }
-
-  .reference-code-link:hover {
-    background: var(--paper-soft);
-    color: var(--coconut-deep);
-  }
-
-  .reference-code-link--pros:hover {
-    color: var(--leaf-deep);
-  }
-
   .reference-publications {
     display: grid;
     overflow: hidden;
@@ -1176,13 +1119,13 @@
     border-top: 1px solid var(--line);
   }
 
-  .reference-publication h4 {
+  .reference-publication h3 {
     color: var(--ink);
     font-size: clamp(1rem, 1.5vw, 1.16rem);
     line-height: 1.15;
   }
 
-  .reference-publication h4::after {
+  .reference-publication h3::after {
     display: block;
     width: 2.2rem;
     height: 1px;
@@ -1191,11 +1134,12 @@
     background: var(--line-strong);
   }
 
-  .reference-publication--sieve h4::after {
+  .reference-publication--sieve h3::after {
     background: var(--coconut);
   }
 
-  .reference-publication--pros h4::after {
+  .reference-publication--pros h3::after,
+  .reference-publication--emodelg h3::after {
     background: var(--leaf);
   }
 
@@ -1219,17 +1163,6 @@
     color: var(--ink-soft);
     font-size: 0.86rem;
     line-height: 1.55;
-  }
-
-  .reference-note a {
-    color: var(--coconut-deep);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-    text-decoration-color: oklch(72% 0.052 82 / 0.5);
-  }
-
-  .reference-note a:hover {
-    text-decoration-color: var(--coconut-deep);
   }
 
   .view-exit {
@@ -1293,7 +1226,8 @@
 
   .module-page--pros .module-back-link:hover,
   .module-page--pros .module-github-link:hover,
-  .module-page--ctfa .module-back-link:hover {
+  .module-page--ctfa .module-back-link:hover,
+  .module-page--emodelg .module-back-link:hover {
     background: var(--leaf-soft);
     color: var(--leaf-deep);
   }
@@ -1313,7 +1247,8 @@
   }
 
   .module-page--pros .module-page-hero,
-  .module-page--ctfa .module-page-hero {
+  .module-page--ctfa .module-page-hero,
+  .module-page--emodelg .module-page-hero {
     background:
       radial-gradient(circle at 72% 22%, oklch(91% 0.055 140 / 0.62), transparent 26rem),
       linear-gradient(180deg, oklch(97.6% 0.016 108), oklch(94.4% 0.026 112));
@@ -1374,7 +1309,8 @@
   }
 
   .module-page--pros .module-page-version,
-  .module-page--ctfa .module-page-version {
+  .module-page--ctfa .module-page-version,
+  .module-page--emodelg .module-page-version {
     background: oklch(93% 0.044 151 / 0.6);
     color: var(--leaf-deep);
     border-color: oklch(76% 0.068 148 / 0.4);
@@ -1385,6 +1321,11 @@
     gap: clamp(2rem, 4vw, 3.5rem);
     padding-top: clamp(1.8rem, 4vw, 3.2rem);
     padding-inline: clamp(0rem, 2vw, 1.5rem);
+  }
+
+  .module-page--emodelg figure {
+    min-width: 0;
+    margin: 0;
   }
 
   .module-page-section h2 {
@@ -1545,7 +1486,8 @@
   }
 
   .module-page--pros .module-feature-list li::before,
-  .module-page--ctfa .module-feature-list li::before {
+  .module-page--ctfa .module-feature-list li::before,
+  .module-page--emodelg .module-feature-list li::before {
     background: var(--leaf);
   }
 
@@ -1576,7 +1518,8 @@
   }
 
   .module-page--pros .module-page-tags span,
-  .module-page--ctfa .module-page-tags span {
+  .module-page--ctfa .module-page-tags span,
+  .module-page--emodelg .module-page-tags span {
     background: oklch(93% 0.04 151 / 0.5);
     color: var(--leaf-deep);
   }
@@ -1683,6 +1626,11 @@
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-soft);
+  }
+
+  .module-page-figure--example {
+    max-width: 800px;
+    margin-inline: auto;
   }
 
   .module-page-figure--half {
@@ -2228,6 +2176,10 @@
     display: grid;
     gap: 0.8rem;
     align-content: start;
+  }
+
+  .install-page-hero[id] {
+    scroll-margin-top: 7.5rem;
   }
 
   .install-page-title {
@@ -3220,11 +3172,6 @@
     .module-tags {
       grid-column: auto;
       justify-content: flex-end;
-    }
-
-    .reference-resources {
-      grid-template-columns: minmax(13rem, 0.34fr) minmax(0, 1fr);
-      align-items: start;
     }
 
     .reference-publication {

@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, including CryoSieve, CryoPROS, and CTFA.">
+    <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, including CryoSieve, CryoPROS, and EModelG.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
-    <link rel="stylesheet" href="styles.css?v=277dd7c24f58">
+    <link rel="stylesheet" href="styles.css?v=e410962263f4">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -37,16 +37,16 @@
                 <strong>CryoPROS</strong>
                 <span>Preferred orientation correction</span>
               </a>
-              <a href="#ctfa" data-nav="ctfa" role="menuitem">
-                <strong>CTFA</strong>
-                <span>CTF estimation &amp; inspection</span>
+              <a href="#emodelg" data-nav="emodelg" role="menuitem">
+                <strong>EModelG</strong>
+                <span>Glycan &amp; protein backbone modeling</span>
               </a>
             </div>
           </div>
           <a href="#download">Download</a>
           <a href="#references">References</a>
         </div>
-        <a class="button button-primary nav-cta" href="#download">Download CoCo v0.3.2</a>
+        <a class="button button-primary nav-cta" href="#download">Download CoCo v0.3.5</a>
       </nav>
     </header>
 
@@ -57,10 +57,10 @@
             <p class="eyebrow">Cryo-EM workflow copilot</p>
             <h1 id="hero-title"><span class="hero-title-coco"><span class="co-source-cryo">Co</span><span class="co-source-copilot">Co</span></span> connects your cryo-EM workflow.</h1>
             <p class="hero-lede">
-              Organize projects, connect processing jobs, and review results in one graphical workspace. CoCo brings together data preparation, reconstruction, and analysis, including CryoSieve, CryoPROS, and CTFA.
+              Organize projects, connect processing jobs, and review results in one graphical workspace. CoCo brings together data preparation, reconstruction, and analysis, including CryoSieve, CryoPROS, and EModelG.
             </p>
             <div class="hero-actions" aria-label="Hero actions">
-              <a class="button button-primary" href="#download">Download CoCo v0.3.2</a>
+              <a class="button button-primary" href="#download">Download CoCo v0.3.5</a>
               <a class="button button-secondary" href="#modules">View modules</a>
             </div>
             <dl class="hero-facts" aria-label="CoCo platform highlights">
@@ -118,8 +118,8 @@
               <li class="relationship-steps__branch">
                 <span>C</span>
                 <div>
-                  <strong>CTFA: CTF estimation</strong>
-                  <p>Estimate micrograph CTF parameters and inspect the fits before particle picking.</p>
+                  <strong>EModelG: structural modeling</strong>
+                  <p>Build glycan and protein backbone models from cryo-EM density.</p>
                 </div>
               </li>
               <li>
@@ -226,15 +226,15 @@
             </div>
           </article>
 
-          <article class="module-row module-row--link" id="module-row-ctfa" data-nav="ctfa" tabindex="0" aria-labelledby="ctfa-title">
+          <article class="module-row module-row--link" id="module-row-emodelg" data-nav="emodelg" tabindex="0" aria-labelledby="emodelg-title">
             <div class="module-index">03</div>
             <div class="module-copy">
-              <h3 id="ctfa-title">CTFA</h3>
-              <p>Contrast transfer function estimation for micrographs, with fitted parameters and Thon-ring diagnostics to review before particle picking and extraction.</p>
+              <h3 id="emodelg-title">EModelG</h3>
+              <p>Automated glycan and protein backbone modeling from cryo-EM density. EModelG combines AI detection with density-guided modeling to support studies of proteins, glycoproteins, and glycan-rich complexes.</p>
             </div>
-            <div class="module-tags" aria-label="CTFA attributes">
-              <span>CTF estimation</span>
-              <span>Micrograph inspection</span>
+            <div class="module-tags" aria-label="EModelG attributes">
+              <span>Glycan modeling</span>
+              <span>Protein backbone</span>
             </div>
           </article>
         </div>
@@ -246,19 +246,19 @@
             <div class="section-kicker">Primary action</div>
             <h2 id="download-title">One download. A connected workflow.</h2>
             <div class="download-actions">
-              <a class="button button-primary" href="/downloads/coco-0.3.2.tar.gz" download>Download CoCo v0.3.2</a>
-              <a class="button button-secondary" href="#install-v0-3-2" data-nav="install-v0-3-2">Installation guide</a>
+              <a class="button button-primary" href="/downloads/coco-0.3.5.tar.gz" download>Download CoCo v0.3.5</a>
+              <a class="button button-secondary" href="#install-v0-3-5" data-nav="install-v0-3-5">Installation guide</a>
             </div>
             <div class="download-stat-slot">
               <p class="download-stat" data-total-downloads aria-live="polite" aria-atomic="true" hidden></p>
             </div>
           </div>
           <div class="download-checklist" id="download-details" aria-label="Download confidence notes">
-            <p class="download-note">Packaged CoCo v0.3.2 release. <a href="#changelog" data-nav="changelog">View change log</a></p>
+            <p class="download-note">Packaged CoCo v0.3.5 release. <a href="#changelog" data-nav="changelog">View change log</a></p>
             <ul>
               <li>Use Linux x86_64 with Java 8+ and host Python 3.</li>
               <li>Install the managed runtime; GPU jobs need an NVIDIA driver compatible with CUDA 12.1.</li>
-              <li>Configure CryoSPARC for workflows that use it. Packaged workflows do not require RELION executables.</li>
+              <li>Configure CryoSPARC for workflows that use it.</li>
             </ul>
           </div>
         </div>
@@ -267,49 +267,41 @@
       <section class="references-section" id="references" aria-labelledby="references-title">
         <div class="section-heading compact">
           <div>
-            <div class="section-kicker">Code &amp; Publications</div>
-            <h2 id="references-title">Code and publications for CryoSieve and CryoPROS.</h2>
+            <div class="section-kicker">Publications</div>
+            <h2 id="references-title">Publications for CryoSieve, CryoPROS and EModelG.</h2>
           </div>
         </div>
-        <div class="reference-resources" aria-label="Code and publication resources">
-          <section class="reference-resource reference-resource--code" aria-labelledby="reference-code-title">
-            <h3 id="reference-code-title">Code</h3>
-            <div class="reference-code-links">
-              <a class="reference-code-link reference-code-link--sieve" href="https://github.com/mxhulab/cryosieve" target="_blank" rel="noopener">
-                <strong>CryoSieve GitHub</strong>
-                <span>Particle sorting and sieving</span>
-              </a>
-              <a class="reference-code-link reference-code-link--pros" href="https://github.com/mxhulab/cryopros" target="_blank" rel="noopener">
-                <strong>CryoPROS GitHub</strong>
-                <span>Preferred orientation correction</span>
-              </a>
+        <div class="reference-publications" aria-label="Module publications">
+          <article class="reference-publication reference-publication--sieve" aria-labelledby="reference-cryosieve-title">
+            <h3 id="reference-cryosieve-title">CryoSieve</h3>
+            <div class="reference-publication-body">
+              <div class="citation-block">
+                <p>"A minority of final stacks yields superior amplitude in single-particle cryo-EM"</p>
+                <a href="https://www.nature.com/articles/s41467-023-43555-x" target="_blank" rel="noopener" class="citation-link">Nature Communications, 2023</a>
+              </div>
+              <p class="reference-note">If CryoSieve contributes to your work, please cite the paper above.</p>
             </div>
-          </section>
-          <section class="reference-resource reference-resource--publications" aria-labelledby="reference-publications-label">
-            <h3 id="reference-publications-label">Publications</h3>
-            <div class="reference-publications" aria-label="Module publications">
-              <article class="reference-publication reference-publication--sieve" aria-labelledby="reference-cryosieve-title">
-                <h4 id="reference-cryosieve-title">CryoSieve</h4>
-                <div class="reference-publication-body">
-                  <div class="citation-block">
-                    <p>"A minority of final stacks yields superior amplitude in single-particle cryo-EM"</p>
-                    <a href="https://www.nature.com/articles/s41467-023-43555-x" target="_blank" rel="noopener" class="citation-link">Nature Communications, 2023</a>
-                  </div>
-                  <p class="reference-note">If CryoSieve contributes to your work, please cite the paper above. Full demo datasets and expected results are available at <a href="https://github.com/mxhulab/cryosieve-demos" target="_blank" rel="noopener">cryosieve-demos</a>.</p>
-                </div>
-              </article>
-              <article class="reference-publication reference-publication--pros" aria-labelledby="reference-cryopros-title">
-                <h4 id="reference-cryopros-title">CryoPROS</h4>
-                <div class="reference-publication-body">
-                  <div class="citation-block">
-                    <p>"CryoPROS: Correcting misalignment caused by preferred orientation using AI-generated auxiliary particles"</p>
-                    <a href="https://doi.org/10.1038/s41467-025-59797-w" target="_blank" rel="noopener" class="citation-link">Nature Communications, 2025</a>
-                  </div>
-                  <p class="reference-note">If CryoPROS contributes to your work, please cite the paper above.</p>
-                </div>
-              </article>
+          </article>
+          <article class="reference-publication reference-publication--pros" aria-labelledby="reference-cryopros-title">
+            <h3 id="reference-cryopros-title">CryoPROS</h3>
+            <div class="reference-publication-body">
+              <div class="citation-block">
+                <p>"CryoPROS: Correcting misalignment caused by preferred orientation using AI-generated auxiliary particles"</p>
+                <a href="https://doi.org/10.1038/s41467-025-59797-w" target="_blank" rel="noopener" class="citation-link">Nature Communications, 2025</a>
+              </div>
+              <p class="reference-note">If CryoPROS contributes to your work, please cite the paper above.</p>
             </div>
-          </section>
+          </article>
+          <article class="reference-publication reference-publication--emodelg" aria-labelledby="reference-emodelg-title">
+            <h3 id="reference-emodelg-title">EModelG</h3>
+            <div class="reference-publication-body">
+              <div class="citation-block">
+                <p>"Structural N- and O-glycans revealed by high-resolution cryo-EM analysis of tubular mastigonemes"</p>
+                <a href="https://doi.org/10.1126/science.aef4958" target="_blank" rel="noopener" class="citation-link">Science, 2026</a>
+              </div>
+              <p class="reference-note">If EModelG contributes to your work, please cite the paper above.</p>
+            </div>
+          </article>
         </div>
       </section>
     </main>
@@ -500,6 +492,8 @@
       </div>
     </div>
 
+    <!-- CTFA remains deferred until it is visible in the CoCo application. -->
+    <template id="deferred-ctfa">
     <div id="view-ctfa" class="module-page module-page--ctfa" data-view="ctfa" hidden>
       <nav class="module-page-back" aria-label="Module navigation">
         <a href="#home" class="module-back-link" data-nav="home">
@@ -540,8 +534,99 @@
       </div>
     </div>
 
-    <!-- CoCo v0.3.2: a38abf5353224f177a55fe0c9273c13d37efe54d; INSTALL.md, packaging scripts, backend/pom.xml, frontend router and Settings. -->
-    <div id="view-install-v0-3-2" class="install-page" data-view="install-v0-3-2" hidden>
+    </template>
+
+    <!-- EModelG content: EModelG_v2.docx, CoCo_Project/v0.3.5. Citation verified against CoCo 11bab54eaaa8514589de9314d92be2ff5d607e6f, frontend/src/constants/toolCitations.ts. -->
+    <div id="view-emodelg" class="module-page module-page--emodelg" data-view="emodelg" hidden>
+      <nav class="module-page-back" aria-label="Module navigation">
+        <a href="#home" class="module-back-link" data-nav="home">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to CoCo
+        </a>
+      </nav>
+
+      <header class="module-page-hero">
+        <div class="module-page-hero-grid">
+          <div>
+            <p class="module-page-kicker">CoCo analysis module</p>
+            <h1 class="module-page-title">EModelG</h1>
+            <p class="module-page-lede">Automated glycan and protein backbone modeling from cryo-EM density. EModelG combines AI detection, density fitting, and structural restraints to support studies of proteins, glycoproteins, and glycan-rich complexes.</p>
+            <span class="module-page-version">Included in CoCo</span>
+          </div>
+          <figure>
+            <a href="img/emodelg-glycan-example.png" target="_blank" rel="noopener" aria-label="Open the full-size glycan modeling example">
+              <img src="img/emodelg-glycan-example.png" alt="GF-1L2R5 density and glycan models: the automated model in pink overlaps the manual model in white beside the protein in blue" class="module-page-hero-img" width="616" height="395" loading="lazy" decoding="async">
+            </a>
+            <figcaption class="video-caption">Automated and manual glycan models in the 2.53 Å GF-1L2R5 map. Source: <a href="https://doi.org/10.65215/bkvrt910" target="_blank" rel="noopener">CryoSeek preprint, 2025</a>.</figcaption>
+          </figure>
+        </div>
+      </header>
+
+      <div class="module-page-body">
+        <section class="module-page-section" aria-labelledby="emodelg-glycan-title">
+          <h2 id="emodelg-glycan-title">Automated glycan modeling</h2>
+          <p>Glycan diversity, flexibility, and complex linkages make structural modeling challenging. EModelG links AI detection with density-guided template fitting, joint optimization, and chain refinement.</p>
+          <ul class="module-feature-list">
+            <li>Detect candidate glycan sites and fit monosaccharide templates to the density.</li>
+            <li>Optimize conformations and linkages using density correlation, chemical geometry, torsions, and clash restraints.</li>
+            <li>Build and refine chains for studies of glycofibrils, glycoproteins, and glycan-rich complexes.</li>
+          </ul>
+          <figure>
+            <a href="img/emodelg-glycan-workflow.png" target="_blank" rel="noopener" aria-label="Open the full-size glycan modeling workflow">
+              <img src="img/emodelg-glycan-workflow.png" alt="Glycan modeling workflow: AI detection, template fitting, joint optimization, then chain building and refinement" class="module-page-figure" width="2485" height="497" loading="lazy" decoding="async">
+            </a>
+            <figcaption class="video-caption">From candidate glycan sites to density-supported chains and refined models.</figcaption>
+          </figure>
+        </section>
+
+        <section class="module-page-section" aria-labelledby="emodelg-protein-title">
+          <h2 id="emodelg-protein-title">Automated protein backbone modeling</h2>
+          <p>EModelG combines AI detection, backbone tracing, and density validation to retain reliable long fragments and extend models using peptide-derived symmetry.</p>
+          <ul class="module-feature-list">
+            <li>Preserve long backbone fragments supported by density and geometry, including when usable symmetry is unavailable.</li>
+            <li>Extend from fixed seeds with local density and backbone anchors to limit accumulated drift.</li>
+            <li>Model proteins independently or integrate protein and glycan models for joint structural analysis.</li>
+          </ul>
+          <figure>
+            <a href="img/emodelg-protein-workflow.png" target="_blank" rel="noopener" aria-label="Open the full-size protein modeling workflow">
+              <img src="img/emodelg-protein-workflow.png" alt="Protein modeling workflow: AI detection, backbone tracing, symmetry extension, then model integration" class="module-page-figure" width="2485" height="497" loading="lazy" decoding="async">
+            </a>
+            <figcaption class="video-caption">From backbone detection and tracing to density-supported extension and model integration.</figcaption>
+          </figure>
+        </section>
+
+        <section class="module-page-section" aria-labelledby="emodelg-example-title">
+          <h2 id="emodelg-example-title">From density to a protein model</h2>
+          <p>The PLL-1 example illustrates an automated protein model fitted into cryo-EM density. Protein scaffolds and glycan connectivity provide complementary views of complex assemblies.</p>
+          <figure>
+            <a href="img/emodelg-protein-example.png" target="_blank" rel="noopener" aria-label="Open the full-size protein modeling example">
+              <img src="img/emodelg-protein-example.png" alt="PLL-1 cryo-EM map at 2.87 Å with two protein subunits in pink and yellow, enlarged to show the automated model within transparent density" class="module-page-figure module-page-figure--example" width="1600" height="1026" loading="lazy" decoding="async">
+            </a>
+            <figcaption class="video-caption">The 2.87 Å PLL-1 map and automated model of two protein subunits. Source: <a href="https://doi.org/10.65215/bkvrt910" target="_blank" rel="noopener">CryoSeek preprint, 2025, Supplementary Fig. S2A–B</a>.</figcaption>
+          </figure>
+        </section>
+
+        <section class="module-page-section" aria-labelledby="emodelg-publication-title">
+          <h2 id="emodelg-publication-title">Publication</h2>
+          <div class="citation-block">
+            <p>"Structural N- and O-glycans revealed by high-resolution cryo-EM analysis of tubular mastigonemes"</p>
+            <a href="https://doi.org/10.1126/science.aef4958" target="_blank" rel="noopener" class="citation-link">Science, 2026</a>
+          </div>
+          <p>If EModelG contributes to your work, please cite this paper.</p>
+        </section>
+
+        <aside class="module-page-tags" aria-label="EModelG attributes">
+          <span>Glycan modeling</span>
+          <span>Protein backbone</span>
+          <span>Density guided</span>
+        </aside>
+      </div>
+    </div>
+
+    <!-- CoCo v0.3.5 source snapshot: 11bab54eaaa8514589de9314d92be2ff5d607e6f; INSTALL.md, PACK.md, packaging scripts, backend/pom.xml, frontend Settings and EModelG integration. -->
+    <div id="view-install-v0-3-5" class="install-page" data-view="install-v0-3-5" hidden>
       <nav class="install-page-back" aria-label="Install guide navigation">
         <a href="#home" class="module-back-link" data-nav="home">
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -551,6 +636,502 @@
         </a>
         <div class="install-version-switcher" role="group" aria-label="Installation guide version">
           <span>Version</span>
+          <a href="#install-v0-3-5" data-nav="install-v0-3-5" aria-current="page">v0.3.5</a>
+          <a href="#install-v0-3-2" data-nav="install-v0-3-2">v0.3.2</a>
+          <a href="#install-v0-2-0" data-nav="install-v0-2-0">v0.2.0</a>
+          <a href="#install-v0-1-0" data-nav="install-v0-1-0">v0.1.0</a>
+        </div>
+      </nav>
+      <header class="install-page-hero" id="install-v0-3-5-top">
+        <div class="install-page-hero-copy">
+          <p class="module-page-kicker">CoCo v0.3.5 release guide</p>
+          <h1 class="install-page-title">Install CoCo v0.3.5.</h1>
+          <p class="install-page-lede">Set up the Linux x86_64 release with its managed runtime, then connect the services and compute lanes your workflows need.</p>
+          <span class="install-release-badge">v0.3.5</span>
+        </div>
+        <dl class="install-hero-facts" aria-label="Release requirements summary">
+          <div><dt>Platform</dt><dd>Linux x86_64 · glibc 2.17+</dd></div>
+          <div><dt>Runtime</dt><dd>Java 8+ and Python 3</dd></div>
+          <div><dt>Default port</dt><dd>8078</dd></div>
+          <div><dt>Archive</dt><dd>coco-0.3.5.tar.gz</dd></div>
+        </dl>
+      </header>
+
+      <div class="install-guide-layout">
+        <aside class="install-toc" aria-labelledby="install-v0-3-5-toc-title">
+          <h2 id="install-v0-3-5-toc-title">Sections</h2>
+          <nav aria-label="Install guide table of contents">
+            <ol class="install-toc-list">
+              <li><a href="#install-v0-3-5-quickstart">Quick start</a></li>
+              <li><a href="#install-v0-3-5-prerequisites">Prerequisites</a></li>
+              <li><a href="#install-v0-3-5-unpack">Extract release</a></li>
+              <li><a href="#install-v0-3-5-runtime">Managed runtime</a></li>
+              <li><a href="#install-v0-3-5-start">Start CoCo</a></li>
+              <li><a href="#install-v0-3-5-verify">Verify installation</a></li>
+              <li><a href="#install-v0-3-5-configuration">Configuration</a></li>
+              <li><a href="#install-v0-3-5-dependencies">External dependencies</a></li>
+              <li><a href="#install-v0-3-5-emodelg">EModelG setup</a></li>
+              <li><a href="#install-v0-3-5-local-gpu">Local GPU lanes</a></li>
+              <li><a href="#install-v0-3-5-slurm">SLURM lanes</a></li>
+              <li><a href="#install-v0-3-5-lsf">LSF lanes</a></li>
+              <li><a href="#install-v0-3-5-modules">Built-in modules</a></li>
+              <li><a href="#install-v0-3-5-runtime-behavior">Runtime behavior</a></li>
+              <li><a href="#install-v0-3-5-upgrades">Backups and upgrades</a></li>
+              <li><a href="#install-v0-3-5-workflows">Workflow checks</a></li>
+              <li><a href="#install-v0-3-5-troubleshooting">Troubleshooting</a></li>
+            </ol>
+          </nav>
+        </aside>
+
+        <div class="install-content">
+          <section class="install-section install-section--protocol" id="install-v0-3-5-quickstart" aria-labelledby="install-v0-3-5-quickstart-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Fast path</p>
+              <h2 id="install-v0-3-5-quickstart-title">Quick start protocol</h2>
+            </div>
+            <ol class="install-protocol">
+              <li class="install-step">
+                <span class="install-step__index">01</span>
+                <div>
+                  <h3>Extract the release</h3>
+                  <p>Begin in an empty release directory containing the archive. Check the <a href="#install-v0-3-5-prerequisites">Linux host prerequisites</a> before installing.</p>
+                  <div class="install-command">
+                    <span class="install-code-label">Terminal</span>
+                    <pre><code>tar -xzf coco-0.3.5.tar.gz
+cd coco</code></pre>
+                  </div>
+                </div>
+              </li>
+              <li class="install-step">
+                <span class="install-step__index">02</span>
+                <div>
+                  <h3>Install the managed runtime</h3>
+                  <div class="install-command">
+                    <span class="install-code-label">Terminal</span>
+                    <pre><code>bin/coco-install-runtime.sh</code></pre>
+                  </div>
+                </div>
+              </li>
+              <li class="install-step">
+                <span class="install-step__index">03</span>
+                <div>
+                  <h3>Start CoCo</h3>
+                  <div class="install-command">
+                    <span class="install-code-label">Terminal</span>
+                    <pre><code>java -jar backend/coco-0.3.5.jar</code></pre>
+                  </div>
+                </div>
+              </li>
+              <li class="install-step">
+                <span class="install-step__index">04</span>
+                <div>
+                  <h3>Open the interface</h3>
+                  <div class="install-command">
+                    <span class="install-code-label">Browser</span>
+                    <pre><code>http://localhost:8078</code></pre>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-prerequisites" aria-labelledby="install-v0-3-5-prerequisites-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Before install</p>
+              <h2 id="install-v0-3-5-prerequisites-title">Prerequisites</h2>
+            </div>
+            <p>The packaged application and managed runtime target Linux x86_64 (amd64) with glibc 2.17 or newer. macOS is supported for source development, but cannot run this packaged runtime.</p>
+            <ul class="install-inline-list">
+              <li>A writable installation directory with space for the release and extracted runtime.</li>
+              <li><code>bash</code>, <code>tar</code>, <code>gzip</code>, <code>awk</code>, and <code>date</code>.</li>
+              <li>Java 8 or newer to run the backend.</li>
+              <li>Host Python 3 for runtime archive validation. Set <code>PYTHON</code> to another Python 3 executable if needed.</li>
+              <li>For GPU workflows, an NVIDIA GPU and a host driver compatible with the bundled CUDA 12.1 runtime.</li>
+              <li>A desktop browser with a viewport of at least 1024 × 768 for the CoCo application.</li>
+              <li>Access to the external services and shared storage used by your workflows.</li>
+            </ul>
+            <p>The managed runtime supplies the Python environment and CUDA user-space dependencies. CryoSieve and CryoPROS use bundled CoCoShed packages. The installer also validates the bundled <code>setsid</code> executable.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-unpack" aria-labelledby="install-v0-3-5-unpack-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Release archive</p>
+              <h2 id="install-v0-3-5-unpack-title">Extract the release</h2>
+            </div>
+            <p>Place <code>coco-0.3.5.tar.gz</code> in an empty release directory and extract it there.</p>
+            <div class="install-command">
+              <span class="install-code-label">Terminal</span>
+              <pre><code>tar -xzf coco-0.3.5.tar.gz
+cd coco</code></pre>
+            </div>
+            <div class="install-command install-command--tree">
+              <span class="install-code-label">Main release paths</span>
+              <pre><code>coco/
+├── bin/
+│   ├── coco-install-runtime.sh
+│   ├── coco-validate-runtime-pack.py
+│   ├── coco-write-runtime-profile.py
+│   ├── coco_runtime_checks.py
+│   ├── coco-run-cocoshed-smoke.py
+│   └── coco-validate-native-compatibility.py
+├── backend/
+│   └── coco-0.3.5.jar
+├── cocoshed/
+│   ├── manifest.json
+│   └── &lt;compiled copra_* packages&gt;/
+├── runtime/
+│   ├── coco-version
+│   ├── runtime-environment.yml
+│   └── native-compatibility.json
+└── runtime-packs/
+    └── coco-runtime-0.3.5.tar.gz</code></pre>
+            </div>
+            <p><code>runtime/coco-version</code> selects the matching runtime pack and environment. The installer checks the bundled environment specification and the compiled package inventory in <code>cocoshed/manifest.json</code>.</p>
+            <div class="install-note">
+              <strong>Use a fresh release directory</strong>
+              <p>Extracting over an older release can leave obsolete files behind. For an existing installation, follow <a href="#install-v0-3-5-upgrades">Backups and upgrades</a> to preserve state and saved paths.</p>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-runtime" aria-labelledby="install-v0-3-5-runtime-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Bundled environment</p>
+              <h2 id="install-v0-3-5-runtime-title">Install the managed runtime</h2>
+            </div>
+            <p>Run the installer from the extracted <code>coco/</code> directory.</p>
+            <div class="install-command">
+              <span class="install-code-label">Terminal</span>
+              <pre><code>bin/coco-install-runtime.sh</code></pre>
+            </div>
+            <p>The installer validates and extracts the runtime, checks the complete CoCoShed manifest, relocates the environment, and validates its commands, Python modules, and CUDA headers. It publishes these paths:</p>
+            <div class="install-command install-command--tree">
+              <span class="install-code-label">Installed paths</span>
+              <pre><code>runtime/envs/coco-runtime-0.3.5/
+runtime/coco-runtime-profile.json</code></pre>
+            </div>
+            <p>The runtime, profile, and CoCoShed files are updated together. A failed installation restores the previous installation.</p>
+            <h3>Installer options</h3>
+            <ul class="install-inline-list">
+              <li><code>--check-only</code> validates an existing environment and rewrites its profile. Use it for a later audit or diagnosis; a successful fresh installation has already completed validation.</li>
+              <li><code>--force</code> replaces the selected version's runtime and CoCoShed inventory from the bundled release.</li>
+              <li><code>--root /absolute/path/to/coco</code> specifies the installation root explicitly.</li>
+              <li><code>--run-cocoshed-smokes</code> adds optional functional diagnostics during installation or audit. Their results are reported separately from runtime readiness.</li>
+            </ul>
+            <p><code>--force</code> and <code>--check-only</code> cannot be combined. Manifest and exact-inventory validation always run.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-start" aria-labelledby="install-v0-3-5-start-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Launch</p>
+              <h2 id="install-v0-3-5-start-title">Start CoCo</h2>
+            </div>
+            <div class="install-command">
+              <span class="install-code-label">Terminal</span>
+              <pre><code>cd /absolute/path/to/coco
+java -jar backend/coco-0.3.5.jar</code></pre>
+            </div>
+            <p>Open <code>http://localhost:8078</code>. Always start from the same <code>coco/</code> working directory: project references, accounts, and site settings are stored relative to it. Run one active backend JVM for each project tree.</p>
+            <p>To use a different port, append <code>--server.port=8080</code>. If the runtime profile cannot be located automatically, specify it while keeping the same working directory:</p>
+            <div class="install-command">
+              <span class="install-code-label">Runtime profile override</span>
+              <pre><code>java -Dcoco.runtime.profile=/absolute/path/to/coco/runtime/coco-runtime-profile.json \
+  -jar backend/coco-0.3.5.jar</code></pre>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-verify" aria-labelledby="install-v0-3-5-verify-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Validation</p>
+              <h2 id="install-v0-3-5-verify-title">Verify the installation</h2>
+            </div>
+            <ol class="install-numbered-list">
+              <li>Confirm <code>runtime/envs/coco-runtime-0.3.5/</code> and <code>runtime/coco-runtime-profile.json</code> exist after installation.</li>
+              <li>Start CoCo and confirm the interface loads at <code>http://localhost:8078</code>.</li>
+              <li>Open Settings → Environment Check and confirm Managed CoCo Runtime reports <code>READY</code>.</li>
+              <li>Configure and check external connections needed by your workflows.</li>
+              <li>Configure a Local GPU, SLURM, or LSF lane for job execution.</li>
+            </ol>
+            <div class="install-command">
+              <span class="install-code-label">Runtime status API</span>
+              <pre><code>GET /api/v1/managed-runtimes/current</code></pre>
+            </div>
+            <p>Job submission also checks the capabilities required by that job. For example, Import Structure requires <code>STRUCTURE</code> and Auto Mask requires <code>AUTO_MASK</code>. Global runtime readiness alone does not replace these checks.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-configuration" aria-labelledby="install-v0-3-5-configuration-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Application settings</p>
+              <h2 id="install-v0-3-5-configuration-title">Configure CoCo and authentication</h2>
+            </div>
+            <p>Default settings are bundled in the backend JAR and can be overridden with Spring Boot command-line properties.</p>
+            <div class="install-command">
+              <span class="install-code-label">Defaults</span>
+              <pre><code>server.port=8078
+server.servlet.session.timeout=24h
+app.auth.mode=DISABLED
+app.auth.users-file=auth/users.json</code></pre>
+            </div>
+            <ul class="install-inline-list">
+              <li><code>DISABLED</code> treats every client as the local administrator. Use it on a trusted single-user host or isolated network.</li>
+              <li><code>BOOTSTRAP</code> creates an administrator when the user store is missing or empty.</li>
+              <li><code>ENFORCED</code> requires login for the interface and API. Create the initial administrator before enabling it; an empty user store prevents startup.</li>
+            </ul>
+            <p>Run the following from the fixed <code>coco/</code> working directory. Replace <code>YOUR_TEMPORARY_PASSWORD</code> with your chosen password.</p>
+            <div class="install-command">
+              <span class="install-code-label">Bootstrap an administrator</span>
+              <pre><code>java -jar backend/coco-0.3.5.jar \
+  --app.auth.mode=BOOTSTRAP \
+  --app.auth.bootstrap-admin-username=admin \
+  --app.auth.bootstrap-admin-password='YOUR_TEMPORARY_PASSWORD' \
+  --app.auth.bootstrap-admin-must-change-password=true</code></pre>
+            </div>
+            <ol class="install-numbered-list">
+              <li>Open <code>http://localhost:8078/projects</code>.</li>
+              <li>Sign in at <code>/login</code> with the administrator account.</li>
+              <li>Change the temporary password at <code>/account/password</code> when prompted.</li>
+              <li>Continue to <code>/projects</code>.</li>
+            </ol>
+            <p>Changing the bootstrap password in later launches does not overwrite an existing account. For an intentional reset, use:</p>
+            <div class="install-command">
+              <span class="install-code-label">One-time password reset</span>
+              <pre><code>java -jar backend/coco-0.3.5.jar \
+  --app.auth.mode=BOOTSTRAP \
+  --app.auth.bootstrap-admin-username=admin \
+  --app.auth.reset-admin-password='YOUR_TEMPORARY_PASSWORD'</code></pre>
+            </div>
+            <p>Remove the reset flag from future launches after resetting the password. Preserve <code>auth/users.json</code>; it is the account database. The default login-session idle timeout is 24 hours.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-dependencies" aria-labelledby="install-v0-3-5-dependencies-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Site integration</p>
+              <h2 id="install-v0-3-5-dependencies-title">Connect external services</h2>
+            </div>
+            <p>Configure the services used by your workflows in Settings → Environment Check after the managed runtime reports <code>READY</code>.</p>
+            <h3>Installation path · CryoSPARC 4 or 5</h3>
+            <ol class="install-numbered-list">
+              <li>Choose <strong>Installation path</strong> and enter the CryoSPARC installation path accessible from the CoCo host.</li>
+              <li>As an administrator, run <strong>Check installation</strong> and confirm the detected version.</li>
+              <li>In <strong>CryoSPARC Email</strong>, enter your account email and server URL, provide a password when requested, and run the account check.</li>
+              <li>Confirm the expected projects and lanes are available.</li>
+            </ol>
+            <h3>Remote URL · CryoSPARC 5</h3>
+            <ol class="install-numbered-list">
+              <li>Choose <strong>Remote URL</strong> and enter the server root, for example <code>https://cryosparc.example.org</code>. Include the port if needed; omit page paths, queries, and fragments.</li>
+              <li>Enter your CryoSPARC email and password, then select <strong>Check connection</strong>. The password creates a saved session; reconnect with your password if the session expires.</li>
+              <li>Check data access as well as API connectivity. When shared storage has different mount paths, set the CoCo and CryoSPARC prefixes in <strong>Shared storage path mapping</strong>.</li>
+            </ol>
+            <p>Path mapping describes shared files already available to both systems; it does not transfer data. Ensure the CoCo host can read the actual project directories.</p>
+            <h3>CryoSeek WIT</h3>
+            <p>WIT workflows need HTTPS access from the CoCo server to the CryoSeek WIT service. In <strong>CryoSeek WIT Connectivity</strong>, an administrator can configure <strong>Proxy Command</strong> and select <strong>Save and run WIT probe</strong>.</p>
+            <p>The default command is <code>source /usr/local/bin/set_proxy.sh</code>. To use the server's inherited network environment without extra setup, enter the nonempty Bash no-op <code>:</code>.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-emodelg" aria-labelledby="install-v0-3-5-emodelg-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Structural modeling</p>
+              <h2 id="install-v0-3-5-emodelg-title">Set up EModelG</h2>
+            </div>
+            <p>The EModelG algorithm is bundled in CoCoShed. Its larger resource bundles are downloaded separately through Environment Check.</p>
+            <ol class="install-numbered-list">
+              <li>Open Settings → Environment Check → <strong>EModelG Resources</strong>.</li>
+              <li>Set <strong>Resource Directory</strong> to a writable installation root, for example <code>/shared/emodelg</code>. CoCo creates the version subdirectory automatically.</li>
+              <li>Use the default <strong>Download Base URL</strong>, <code>https://cocoproject.org.cn/emodelg/</code>, or an HTTPS mirror serving the same fixed archive filenames.</li>
+              <li>If needed, set the optional <strong>Proxy Command</strong> before downloading. Run the resource check and wait for download and verification to complete.</li>
+              <li>Make the installed resources accessible at the same configured path from the backend and the selected compute nodes.</li>
+            </ol>
+            <p>All EModelG modes require both resource bundles: 21 SO(3) libraries and three checkpoints. CoCo verifies them against its bundled catalog. Rerun Environment Check for an existing resource installation when upgrading to this release.</p>
+            <h3>Phenix for glycan modeling</h3>
+            <p><strong>Glycan (+ protein) modeling</strong> (<code>full</code>) also requires a separately installed Phenix. In the <strong>Phenix</strong> card, set <strong>Installation Path</strong> and run <strong>Check</strong>. The optional <strong>Environment Command</strong> runs before Phenix activation during both the check and job execution.</p>
+            <p>Phenix and any paths used by its environment command must be accessible from the backend and compute nodes. <strong>Protein modeling</strong> and <strong>Protein modeling (preserve existing glycans)</strong> do not require Phenix.</p>
+            <div class="install-note">
+              <strong>One node and one GPU per EModelG job</strong>
+              <p>Select a lane with one available GPU. Preserve-existing-glycans mode requires a glycan-only input structure; a structure containing protein CA atoms is rejected. Clear or Restart begins a fresh attempt from the start.</p>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-local-gpu" aria-labelledby="install-v0-3-5-local-gpu-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Host execution</p>
+              <h2 id="install-v0-3-5-local-gpu-title">Configure Local GPU lanes</h2>
+            </div>
+            <p>Open Settings → Cluster Configuration, create a <strong>Local GPU</strong> lane, and choose the concrete devices in <strong>Local GPU Pool</strong>. Refresh the inventory after hardware changes.</p>
+            <ul class="install-inline-list">
+              <li>The CoCo host needs the NVIDIA driver and <code>nvidia-smi</code> for GPU discovery.</li>
+              <li>The selected pool size limits the GPUs a job may request.</li>
+              <li>Local GPU execution uses one host; requests for more than one node are rejected.</li>
+              <li>Jobs run as the backend account. That account must be able to read inputs and the runtime, and write project and job outputs.</li>
+            </ul>
+            <p>Local GPU lanes do not require a scheduler client. CoCo activates the managed runtime for each job.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-slurm" aria-labelledby="install-v0-3-5-slurm-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Cluster execution</p>
+              <h2 id="install-v0-3-5-slurm-title">Configure SLURM lanes</h2>
+            </div>
+            <p>In Settings → Cluster Configuration, set <strong>Max GPUs per Node</strong> to the lane's per-node capacity. Choose node count, GPUs per node, and CPU budget in each job dialog.</p>
+            <p>Put fixed site settings such as partition, account, time, memory, and CPU defaults in <strong>Cluster Template</strong>. Adapt this example to your cluster:</p>
+            <div class="install-command">
+              <span class="install-code-label">Example cluster template</span>
+              <pre><code>#!/bin/bash
+#SBATCH --partition=&lt;gpu_partition&gt;
+#SBATCH --mem=128G
+#SBATCH --cpus-per-task=8</code></pre>
+            </div>
+            <p>CoCo generates job names, stdout/stderr paths, node/task layout, and GPU requests. Leave those directives out of the template. Use <strong>Local Environment</strong> for required site setup such as <code>module load</code> commands.</p>
+            <p>For distributed <code>torchrun</code> jobs, CoCo starts one SLURM task per node, then one worker per requested GPU. Two nodes with four GPUs each use two SLURM tasks and eight GPU workers.</p>
+            <p>The job's CPU budget is per node and shared by its GPU workers. A typed job CPU budget overrides lane CPU settings. Avoid activating another Conda environment or launching <code>torchrun</code> or <code>mpirun</code> in Local Environment.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-lsf" aria-labelledby="install-v0-3-5-lsf-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Cluster execution</p>
+              <h2 id="install-v0-3-5-lsf-title">Configure LSF lanes</h2>
+            </div>
+            <p>Use IBM Spectrum LSF 10.1 Fix Pack 9 or newer. Run the CoCo backend directly on the submission host, with these commands available to its service account in the same non-interactive startup environment:</p>
+            <div class="install-command">
+              <span class="install-code-label">Client check</span>
+              <pre><code>command -v bsub blaunch bjobs bhist bkill</code></pre>
+            </div>
+            <p>The cluster must enable <code>LSB_GPU_NEW_SYNTAX=extend</code> and provide task-level <code>CUDA_VISIBLE_DEVICES&lt;number&gt;</code> bindings. Ask the cluster administrator to verify these settings; GPU requests using <code>nocvd</code> are incompatible.</p>
+            <p>Set <strong>Max GPUs per Node</strong> to the lane's capacity. Keep only fixed queue, project, wall-time, memory, and site constraints in <strong>Cluster Template</strong>:</p>
+            <div class="install-command">
+              <span class="install-code-label">Example cluster template</span>
+              <pre><code>#!/bin/bash
+#BSUB -q &lt;gpu_queue&gt;
+#BSUB -P &lt;project_name&gt;
+#BSUB -W 24:00</code></pre>
+            </div>
+            <p>Leave job identity, log paths, slot and host counts, <code>span[...]</code>, and GPU requests to CoCo. Do not add <code>-outdir</code>, interactive submission flags, or GPU constraints in <code>-R</code>.</p>
+            <p>For jobs with a typed CPU budget, CoCo requests <code>nodes × CPUs per node</code> slots and places that CPU budget on each host. <code>blaunch</code> starts one launcher per allocated host, then one worker per requested GPU.</p>
+            <div class="install-note">
+              <strong>Shared paths and submission environment</strong>
+              <p>The backend and compute nodes must resolve the same absolute CoCo, runtime, CoCoShed, project, and job paths. Initialize the LSF client before starting Java; a lane's Local Environment runs too late to configure backend submission commands.</p>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-modules" aria-labelledby="install-v0-3-5-modules-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Workflow tools</p>
+              <h2 id="install-v0-3-5-modules-title">Built-in modules</h2>
+            </div>
+            <ul class="install-inline-list">
+              <li><strong>CryoSieve</strong> uses the bundled DFR reconstruction engine and CoCo postprocessing.</li>
+              <li><strong>CryoPROS</strong> provides connected Prep, Train, and Generate jobs. Export to CryoSPARC is a separate job.</li>
+              <li><strong>EModelG</strong> provides glycan and protein modeling with the <a href="#install-v0-3-5-emodelg">resource and mode requirements</a> above.</li>
+            </ul>
+            <p>CoCo also includes data preparation, reconstruction, and analysis jobs. Inspect the deployed catalog through:</p>
+            <div class="install-command">
+              <span class="install-code-label">Job catalog API</span>
+              <pre><code>GET /api/v1/job-types</code></pre>
+            </div>
+            <p>The reconstruction job keys are <code>3D_RECONSTRUCTION_DFR</code> and <code>3D_RECONSTRUCTION_SGD</code>.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-runtime-behavior" aria-labelledby="install-v0-3-5-runtime-behavior-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Job execution</p>
+              <h2 id="install-v0-3-5-runtime-behavior-title">Runtime behavior</h2>
+            </div>
+            <p>You can prepare job drafts before the runtime is installed. Submission requires a <code>READY</code> runtime and the capabilities needed by the selected job.</p>
+            <p>Generated scripts activate the versioned runtime automatically for Local GPU, SLURM, and LSF execution. Legacy lane <code>activationCmd</code> settings are ignored.</p>
+            <p>Retain older <code>runtime/envs/coco-runtime-&lt;version&gt;/</code> directories when saved scripts still reference them. Their absolute paths are part of the saved execution context.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-upgrades" aria-labelledby="install-v0-3-5-upgrades-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Installation lifecycle</p>
+              <h2 id="install-v0-3-5-upgrades-title">Backups and upgrades</h2>
+            </div>
+            <p>Keep the same installation path and backend working directory across upgrades. With default settings, these directories inside <code>coco/</code> contain persistent operator state:</p>
+            <ul class="install-inline-list">
+              <li><code>projectConfig/</code> — registered project references.</li>
+              <li><code>pageParam/</code> — saved page parameters and scheduler lanes.</li>
+              <li><code>path/</code> — external connection settings.</li>
+              <li><code>auth/</code> — users, CryoSPARC sessions, profiles, and path mappings.</li>
+              <li><code>settings/</code> — artifact-signing key and SSD cache settings.</li>
+              <li><code>bookmarks/</code> and <code>user-settings/</code> — filesystem bookmarks and user preferences.</li>
+            </ul>
+            <p>If the user-store or artifact-signing-key location is overridden, back up its actual path. CryoSPARC account state follows the user-store parent directory. Project and job data may be outside the installation; back up those directories too. <code>projectConfig/</code> stores references to them.</p>
+            <ol class="install-numbered-list">
+              <li>Stop new submissions. Let active jobs finish or cancel them with the current backend, and confirm their terminal state.</li>
+              <li>Stop the backend JVM and back up application state, project/job data, and runtime trees you need to retain.</li>
+              <li>Extract the new release into an empty staging directory. Replace release-owned artifacts at the original installation path, accounting for obsolete files while preserving state and existing <code>runtime/envs/</code> trees.</li>
+              <li>Run the new runtime installer at the final installation path. For an existing selected-version environment, use <code>--check-only</code> for intentional reuse or <code>--force</code> to replace it. Resolve validation errors before restarting.</li>
+              <li>Restart from the same working directory and follow <a href="#install-v0-3-5-verify">Verify the installation</a>.</li>
+            </ol>
+            <p>Install the runtime at its final path; do not install it in a staging directory that will later be moved.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-workflows" aria-labelledby="install-v0-3-5-workflows-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Optional acceptance</p>
+              <h2 id="install-v0-3-5-workflows-title">Workflow checks</h2>
+            </div>
+            <p>Choose end-to-end checks that apply to your site, especially after changing the runtime or compute lanes. These complement the <a href="#install-v0-3-5-verify">fresh-install verification</a>.</p>
+            <ol class="install-numbered-list">
+              <li>Import particles, then create Restack Particles, DFR reconstruction, or CryoSieve jobs from the particle output.</li>
+              <li>Where CryoSPARC is configured, test refinement and B-factor analysis from CryoSieve outputs.</li>
+              <li>Connect CryoPROS Prep → Train → Generate.</li>
+              <li>Run Export to CryoSPARC from a completed CryoPROS Generate or Select 2D job. Confirm it creates and waits for one CryoSPARC Import Particles job.</li>
+              <li>For EModelG, verify the resources, submit a one-node, one-GPU job, and inspect the available structures, summary, and review warnings. <strong>Retry loading</strong> refreshes saved result data without rerunning the computation.</li>
+              <li>Submit and monitor a representative job through each configured lane. Verify a multi-node LSF job and its <code>blaunch</code> startup before enabling that execution mode for users.</li>
+            </ol>
+          </section>
+
+          <section class="install-section" id="install-v0-3-5-troubleshooting" aria-labelledby="install-v0-3-5-troubleshooting-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Recovery</p>
+              <h2 id="install-v0-3-5-troubleshooting-title">Troubleshooting</h2>
+            </div>
+            <div class="install-troubleshooting-list">
+              <article>
+                <h3>Port 8078 is already in use</h3>
+                <p>Start from the fixed <code>coco/</code> directory with <code>java -jar backend/coco-0.3.5.jar --server.port=8080</code>, then open that port.</p>
+              </article>
+              <article>
+                <h3>Runtime pack or matching metadata is missing</h3>
+                <p>Use a complete release containing <code>runtime-packs/coco-runtime-0.3.5.tar.gz</code> and <code>runtime/runtime-environment.yml</code>. A provenance-field error can indicate mixed installer and runtime versions; deploy the matching backend, helpers, metadata, and CoCoShed together.</p>
+              </article>
+              <article>
+                <h3>Managed runtime is MISSING, ERROR, or INCOMPLETE</h3>
+                <p>Run <code>bin/coco-install-runtime.sh --check-only</code>. If files are missing or stale, reinstall with <code>--force</code>, then refresh Environment Check. Check-only reports undeclared CoCoShed artifacts instead of cleaning them.</p>
+              </article>
+              <article>
+                <h3>The backend cannot find the runtime profile</h3>
+                <p>Confirm <code>runtime/coco-runtime-profile.json</code> exists and that Java starts from the extracted <code>coco/</code> directory. Use the explicit profile option under <a href="#install-v0-3-5-start">Start CoCo</a> if needed.</p>
+              </article>
+              <article>
+                <h3>CryoSPARC connects, but project files cannot be read</h3>
+                <p>Verify shared mounts, permissions, and path mappings from the CoCo host. For an expired saved session, reconnect with the account password. An API connection check does not establish filesystem access.</p>
+              </article>
+              <article>
+                <h3>EModelG resources or Phenix checks fail</h3>
+                <p>Check the resource directory's permissions, HTTPS or proxy access, and mirror filenames. Rerun the resource check to download and verify both bundles. For full mode, verify Phenix and its environment command on the backend and compute nodes.</p>
+              </article>
+              <article>
+                <h3>LSF submission, status, or cancellation fails</h3>
+                <p>Check <code>bsub</code>, <code>blaunch</code>, <code>bjobs</code>, <code>bhist</code>, and <code>bkill</code> as the backend account in its startup environment. Inspect <code>bjobs -l &lt;job_id&gt;</code> and <code>bhist -l &lt;job_id&gt;</code>. Verify site GPU bindings and shared paths, and remove conflicting template resource directives.</p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- CoCo v0.3.2: a38abf5353224f177a55fe0c9273c13d37efe54d; INSTALL.md, packaging scripts, backend/pom.xml, frontend router and Settings. -->
+    <div id="view-install-v0-3-2" class="install-page install-page--archived" data-view="install-v0-3-2" hidden>
+      <nav class="install-page-back" aria-label="Install guide navigation">
+        <a href="#home" class="module-back-link" data-nav="home">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to CoCo
+        </a>
+        <div class="install-version-switcher" role="group" aria-label="Installation guide version">
+          <span>Version</span>
+          <a href="#install-v0-3-5" data-nav="install-v0-3-5">v0.3.5</a>
           <a href="#install-v0-3-2" data-nav="install-v0-3-2" aria-current="page">v0.3.2</a>
           <a href="#install-v0-2-0" data-nav="install-v0-2-0">v0.2.0</a>
           <a href="#install-v0-1-0" data-nav="install-v0-1-0">v0.1.0</a>
@@ -559,7 +1140,7 @@
 
       <header class="install-page-hero">
         <div class="install-page-hero-copy">
-          <p class="module-page-kicker">CoCo v0.3.2 release guide</p>
+          <p class="module-page-kicker">Archived CoCo v0.3.2 release guide</p>
           <h1 class="install-page-title">Install CoCo v0.3.2.</h1>
           <p class="install-page-lede">Set up the Linux x86_64 release with its versioned runtime, then connect CryoSPARC and configure the compute lanes your workflows need.</p>
           <span class="install-release-badge">v0.3.2</span>
@@ -1059,6 +1640,7 @@ modules.lock</code></pre>
         </a>
         <div class="install-version-switcher" role="group" aria-label="Installation guide version">
           <span>Version</span>
+          <a href="#install-v0-3-5" data-nav="install-v0-3-5">v0.3.5</a>
           <a href="#install-v0-3-2" data-nav="install-v0-3-2">v0.3.2</a>
           <a href="#install-v0-2-0" data-nav="install-v0-2-0" aria-current="page">v0.2.0</a>
           <a href="#install-v0-1-0" data-nav="install-v0-1-0">v0.1.0</a>
@@ -1557,10 +2139,23 @@ modules.lock</code></pre>
       <div class="changelog-content">
         <ol class="changelog-index" aria-label="CoCo releases, newest first">
           <li>
-            <a class="changelog-index-entry" href="#changelog" data-nav="changelog" aria-labelledby="changelog-index-v032-version changelog-index-v032-title">
+            <a class="changelog-index-entry" href="#changelog" data-nav="changelog" aria-labelledby="changelog-index-v035-version changelog-index-v035-title">
+              <div class="changelog-index-version">
+                <strong id="changelog-index-v035-version">v0.3.5</strong>
+                <span class="changelog-status changelog-status--current">Current release</span>
+              </div>
+              <div class="changelog-index-copy">
+                <h2 id="changelog-index-v035-title">CoCo v0.3.5 release notes.</h2>
+                <p>Release notes will be added soon.</p>
+              </div>
+              <span class="changelog-index-link" aria-hidden="true">Read change log <span>&rarr;</span></span>
+            </a>
+          </li>
+          <li>
+            <a class="changelog-index-entry" href="#changelog-v0-3-2" data-nav="changelog-v0-3-2" aria-labelledby="changelog-index-v032-version changelog-index-v032-title">
               <div class="changelog-index-version">
                 <strong id="changelog-index-v032-version">v0.3.2</strong>
-                <span class="changelog-status changelog-status--current">Current release</span>
+                <span class="changelog-status">Archived release</span>
               </div>
               <div class="changelog-index-copy">
                 <h2 id="changelog-index-v032-title">Connect the next steps in your workflow.</h2>
@@ -1596,6 +2191,38 @@ modules.lock</code></pre>
         </a>
         <a href="#changelogs" class="module-back-link" data-nav="changelogs">All change logs</a>
       </nav>
+      <header class="changelog-hero">
+        <div class="changelog-hero-copy">
+          <p class="module-page-kicker">Release notes</p>
+          <h1 class="changelog-title">What changed in CoCo v0.3.5.</h1>
+          <p class="changelog-lede">Release notes will be added soon.</p>
+        </div>
+      </header>
+      <div class="changelog-content">
+        <section class="changelog-release-actions" aria-labelledby="changelog-v0-3-5-actions-title">
+          <div>
+            <p class="section-kicker">Current release</p>
+            <h2 id="changelog-v0-3-5-actions-title">Download CoCo v0.3.5.</h2>
+          </div>
+          <div class="changelog-action-links">
+            <a class="button button-primary" href="/downloads/coco-0.3.5.tar.gz" download>Download CoCo v0.3.5</a>
+            <a class="button button-secondary" href="#install-v0-3-5" data-nav="install-v0-3-5">v0.3.5 installation guide</a>
+            <a class="changelog-all-link" href="#changelogs" data-nav="changelogs">All change logs</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div id="view-changelog-v0-3-2" class="changelog-page" data-view="changelog-v0-3-2" hidden>
+      <nav class="changelog-page-back" aria-label="Change log navigation">
+        <a href="#home" class="module-back-link" data-nav="home">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to CoCo
+        </a>
+        <a href="#changelogs" class="module-back-link" data-nav="changelogs">All change logs</a>
+      </nav>
 
       <header class="changelog-hero">
         <div class="changelog-hero-copy">
@@ -1603,7 +2230,7 @@ modules.lock</code></pre>
           <h1 class="changelog-title">What changed in CoCo v0.3.2.</h1>
           <p class="changelog-lede">Plan downstream jobs in advance, manage multiple jobs together, and connect particle processing, reconstruction, and CryoSPARC export within one project.</p>
         </div>
-        <div class="release-version-path" aria-label="Upgrade from CoCo v0.2.0 to v0.3.2">
+        <div class="release-version-path" aria-label="CoCo v0.3.2 release, following v0.2.0">
           <span>
             <small>Previous</small>
             <strong>v0.2.0</strong>
@@ -1612,7 +2239,7 @@ modules.lock</code></pre>
             <path d="M1 8H34M28 2L34 8L28 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span class="release-version-path__current">
-            <small>Current</small>
+            <small>Released</small>
             <strong>v0.3.2</strong>
           </span>
         </div>
@@ -1693,10 +2320,10 @@ modules.lock</code></pre>
         <section class="changelog-release-actions" aria-labelledby="changelog-release-actions-title">
           <div>
             <p class="section-kicker">Ready to update</p>
-            <h2 id="changelog-release-actions-title">Continue your workflow with CoCo v0.3.2.</h2>
+            <h2 id="changelog-release-actions-title">Install the current release or revisit the v0.3.2 guide.</h2>
           </div>
           <div class="changelog-action-links">
-            <a class="button button-primary" href="/downloads/coco-0.3.2.tar.gz" download>Download CoCo v0.3.2</a>
+            <a class="button button-primary" href="/downloads/coco-0.3.5.tar.gz" download>Download CoCo v0.3.5</a>
             <a class="button button-secondary" href="#install-v0-3-2" data-nav="install-v0-3-2">v0.3.2 installation guide</a>
             <a class="changelog-all-link" href="#changelogs" data-nav="changelogs">All change logs</a>
           </div>
@@ -1826,7 +2453,7 @@ modules.lock</code></pre>
             <h2 id="changelog-v0-2-0-release-actions-title">Install the current release or revisit the previous guide.</h2>
           </div>
           <div class="changelog-action-links">
-            <a class="button button-primary" href="/downloads/coco-0.3.2.tar.gz" download>Download CoCo v0.3.2</a>
+            <a class="button button-primary" href="/downloads/coco-0.3.5.tar.gz" download>Download CoCo v0.3.5</a>
             <a class="button button-secondary" href="#install-v0-2-0" data-nav="install-v0-2-0">v0.2.0 installation guide</a>
             <a class="changelog-all-link" href="#changelogs" data-nav="changelogs">All change logs</a>
           </div>
@@ -1844,6 +2471,7 @@ modules.lock</code></pre>
         </a>
         <div class="install-version-switcher" role="group" aria-label="Installation guide version">
           <span>Version</span>
+          <a href="#install-v0-3-5" data-nav="install-v0-3-5">v0.3.5</a>
           <a href="#install-v0-3-2" data-nav="install-v0-3-2">v0.3.2</a>
           <a href="#install-v0-2-0" data-nav="install-v0-2-0">v0.2.0</a>
           <a href="#install-v0-1-0" data-nav="install-v0-1-0" aria-current="page">v0.1.0</a>
@@ -2373,7 +3001,7 @@ modules.lock</code></pre>
             <img src="coco_logo.png" alt="" width="42" height="30" aria-hidden="true">
             <span>CoCo Project</span>
           </div>
-          <p>A shared cryo-EM workspace for data preparation, reconstruction, and analysis with CryoSieve, CryoPROS, and CTFA.</p>
+          <p>A shared cryo-EM workspace for data preparation, reconstruction, and analysis with CryoSieve, CryoPROS, and EModelG.</p>
         </div>
 
         <div class="footer-legal">
@@ -2477,8 +3105,8 @@ modules.lock</code></pre>
           }
         }
 
-        var CURRENT_INSTALL_VIEW = 'install-v0-3-2';
-        var VIEWS = ['home', 'cryosieve', 'cryopros', 'ctfa', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0', 'changelog', 'changelogs', 'changelog-v0-2-0'];
+        var CURRENT_INSTALL_VIEW = 'install-v0-3-5';
+        var VIEWS = ['home', 'cryosieve', 'cryopros', 'emodelg', 'install-v0-3-5', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0', 'changelog', 'changelogs', 'changelog-v0-3-2', 'changelog-v0-2-0'];
         var currentView = 'home';
         var transitioning = false;
         var scrollTarget = null;
@@ -2522,7 +3150,7 @@ modules.lock</code></pre>
 
           metricsAreAvailable().then(function (available) {
             if (!available) return null;
-            return window.fetch('/api/stats/releases/v0.3.2', {
+            return window.fetch('/api/stats/releases/v0.3.5', {
               headers: { Accept: 'application/json' }
             });
           }).then(function (response) {
@@ -2551,12 +3179,16 @@ modules.lock</code></pre>
 
         function resolveHash(hash) {
           scrollTarget = null;
-          if (hash === 'install') return CURRENT_INSTALL_VIEW;
+          if (hash === 'install') {
+            scrollTarget = '#' + CURRENT_INSTALL_VIEW + '-top';
+            return CURRENT_INSTALL_VIEW;
+          }
           if (VIEWS.indexOf(hash) !== -1) return hash;
 
           var target = document.getElementById(hash);
           if (!target && hash.indexOf('install-') === 0 && !/^install-v[0-9]/.test(hash)) {
-            target = document.getElementById(CURRENT_INSTALL_VIEW + hash.slice('install'.length));
+            target = document.getElementById(CURRENT_INSTALL_VIEW + hash.slice('install'.length))
+              || document.getElementById(CURRENT_INSTALL_VIEW + '-top');
           }
           var targetView = target && target.closest('[data-view]');
           if (targetView) {

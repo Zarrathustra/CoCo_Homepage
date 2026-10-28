@@ -10,7 +10,7 @@ CoCo Project serves structural biology laboratories, especially cryo-EM research
 
 ## Product Purpose
 
-The homepage should help visitors understand CoCo as a shared graphical workspace for cryo-EM data preparation, reconstruction, and analysis. CryoSieve, CryoPROS, and CTFA are featured modules within a broader set of connected jobs. The primary conversion goal is downloading CoCo; the secondary goal is understanding how its workflow tools fit together.
+The homepage should help visitors understand CoCo as a shared graphical workspace for cryo-EM data preparation, reconstruction, and analysis. CryoSieve, CryoPROS, and EModelG are featured modules within a broader set of connected jobs. The primary conversion goal is downloading CoCo; the secondary goal is understanding how its workflow tools fit together.
 
 ## Brand Personality
 
@@ -22,7 +22,7 @@ Avoid generic research-project template pages, exaggerated SaaS landing-page sty
 
 ## Design Principles
 
-1. Explain the system relationship first: CoCo is the GUI hub for connected processing jobs; CryoSieve, CryoPROS, and CTFA are featured analysis modules, not the full job catalog.
+1. Explain the system relationship first: CoCo is the GUI hub for connected processing jobs; CryoSieve, CryoPROS, and EModelG are featured analysis modules, not the full job catalog.
 2. Make download confidence high: the primary action should be easy to find, visually calm, and supported by enough context to feel trustworthy.
 3. Prefer academic clarity over sales language: use precise, readable copy that respects scientific users.
 4. Keep the experience gentle and composed: visual polish should support comprehension, not compete with the content.

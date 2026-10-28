@@ -79,6 +79,48 @@ class MetricsDatabaseTest {
     }
 
     @Test
+    void addingReleasePreservesHistoricalCountsAcrossRestarts() {
+        Path databasePath = tempDirectory.resolve("release-upgrade.db");
+        TestDatabase original = database(databasePath,
+                "v0.2.0", "coco-0.2.0.tar.gz",
+                "v0.3.2", "coco-0.3.2.tar.gz");
+        Instant now = Instant.parse("2026-10-28T02:00:00Z");
+        LocalDate today = LocalDate.parse("2026-10-28");
+        for (String version : List.of("v0.2.0", "v0.3.2")) {
+            original.metrics.recordDownload("existing-visitor",
+                    original.catalog.findByVersion(version).orElseThrow(),
+                    now, today, Duration.ofSeconds(30));
+        }
+
+        TestDatabase upgraded = database(databasePath,
+                "v0.2.0", "coco-0.2.0.tar.gz",
+                "v0.3.2", "coco-0.3.2.tar.gz",
+                "v0.3.5", "coco-0.3.5.tar.gz");
+        assertThat(upgraded.metrics.releaseStatistics("v0.2.0").releaseDownloads()).isEqualTo(1);
+        assertThat(upgraded.metrics.releaseStatistics("v0.3.2").releaseDownloads()).isEqualTo(1);
+        assertThat(upgraded.metrics.releaseStatistics("v0.3.5"))
+                .satisfies(statistics -> {
+                    assertThat(statistics.releaseDownloads()).isZero();
+                    assertThat(statistics.allReleaseDownloads()).isEqualTo(2);
+                });
+
+        upgraded.metrics.recordDownload("existing-visitor",
+                upgraded.catalog.findByVersion("v0.3.5").orElseThrow(),
+                now, today, Duration.ofSeconds(30));
+        TestDatabase restarted = database(databasePath,
+                "v0.2.0", "coco-0.2.0.tar.gz",
+                "v0.3.2", "coco-0.3.2.tar.gz",
+                "v0.3.5", "coco-0.3.5.tar.gz");
+        for (String version : List.of("v0.2.0", "v0.3.2", "v0.3.5")) {
+            assertThat(restarted.metrics.releaseStatistics(version))
+                    .satisfies(statistics -> {
+                        assertThat(statistics.releaseDownloads()).isEqualTo(1);
+                        assertThat(statistics.allReleaseDownloads()).isEqualTo(3);
+                    });
+        }
+    }
+
+    @Test
     void countsUniqueVisitorsPerViewAndDate() {
         TestDatabase testDatabase = database(
                 tempDirectory.resolve("views.db"),

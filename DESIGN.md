@@ -108,7 +108,7 @@ components:
 
 CoCo should feel like a carefully annotated atlas for a structural biology lab: warm paper, precise routes, and a central landmark that makes the module family easy to navigate. The coconut mark gives the brand a human and memorable center, while the diagrammatic workbench keeps the page credible for cryo-EM researchers.
 
-The physical scene is a cryo-EM researcher in a bright lab office, glancing between reconstruction runs and a project homepage to understand where to download CoCo and how CryoSieve, CryoPROS, and CTFA relate. That scene requires a light, warm, low-glare interface with calm academic density, not a dark launch screen or a sales-heavy SaaS page.
+The physical scene is a cryo-EM researcher in a bright lab office, glancing between reconstruction runs and a project homepage to understand where to download CoCo and how CryoSieve, CryoPROS, and EModelG relate. That scene requires a light, warm, low-glare interface with calm academic density, not a dark launch screen or a sales-heavy SaaS page.
 
 This system rejects generic research-project template pages, exaggerated SaaS landing-page styling, overly flashy dark tech aesthetics, and dense jargon walls. The interface should be composed, tactile, and navigable, with one clear primary action: Download CoCo.
 
@@ -148,7 +148,7 @@ The palette is Lab-warm: tinted paper neutrals carry the page, while coconut bro
 
 **The One CoCo Action Rule.** Growth Green carries primary action energy. Do not let module links or GitHub references compete with Download CoCo.
 
-**The Module Color Rule.** CryoSieve uses Coconut Brown, CryoPROS and CTFA share Growth Green, and Cryo Slate stays a supporting cryo-EM note. All homepage module rows use the same paper surfaces and ink text.
+**The Module Color Rule.** CryoSieve uses Coconut Brown; CryoPROS and EModelG share Growth Green; and Cryo Slate stays a supporting cryo-EM note. All homepage module rows use the same paper surfaces and ink text.
 
 ## 3. Typography
 
@@ -205,7 +205,7 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 ### Chips
 
 - **Style:** Small pill badges with warm paper fill, quiet borders, and semibold text.
-- **Module Color:** Homepage module chips share neutral paper fills. Detail-page chips use coconut tints for CryoSieve and leaf tints for CryoPROS and CTFA.
+- **Module Color:** Homepage module chips share neutral paper fills. Detail-page chips use coconut tints for CryoSieve and leaf tints for CryoPROS and EModelG.
 - **Use:** Use chips for attributes and status. Do not turn every metadata phrase into a chip.
 
 ### Cards / Containers
@@ -228,11 +228,11 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 
 - **Style:** A ruled ledger, not an identical card grid. Each module row has an index, description, and tags.
 - **Interaction:** Rows are clickable with subtle background change and visible focus outline.
-- **Status:** CTFA is an available CoCo module and uses the same neutral row treatment as CryoSieve and CryoPROS. Its detail page shares CryoPROS colors; do not reintroduce a separate purple palette.
+- **Status:** CTFA is deferred until it is visible in CoCo. Public rows and navigation feature CryoSieve, CryoPROS, and EModelG. Retain the neutral row treatment and existing module accents.
 
 ### Workbench Map
 
-- **Style:** The signature component. It combines a GUI-like container, topographic contour lines, connector paths, and three module nodes around the CoCo hub.
+- **Style:** The signature component. It combines a GUI-like container, topographic contour lines, connector paths, and three featured module branches around the CoCo hub.
 - **Behavior:** Module nodes are keyboard accessible and scale slightly on hover.
 - **Rule:** The map must explain relationship first. It is not decorative wallpaper.
 
@@ -249,7 +249,7 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 - **Do** use OKLCH tokens from the frontmatter for all new colors.
 - **Do** keep the primary CTA singular: Download CoCo should remain the only primary action.
 - **Do** use warm paper neutrals for large surfaces and full Warm Ink for headings.
-- **Do** use the module color rule consistently: neutral homepage rows, Coconut Brown for CryoSieve details, and Growth Green for CryoPROS and CTFA details.
+- **Do** use the module color rule consistently: neutral homepage rows, Coconut Brown for CryoSieve details, and Growth Green for CryoPROS and EModelG details.
 - **Do** preserve keyboard navigation, visible focus rings, and reduced-motion behavior.
 - **Do** keep scientific copy concise, precise, and readable.
 
@@ -262,6 +262,6 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 - **Don't** use pure black, pure white, gradient text, or decorative glassmorphism.
 - **Don't** use thick colored side-stripe borders on cards, rows, callouts, or alerts.
 - **Don't** repeat identical icon-card grids for modules. Use ledger rows, diagrams, or content-specific layouts.
-- **Don't** make CryoSieve, CryoPROS, CTFA, GitHub, or references look like equal download actions.
+- **Don't** make CryoSieve, CryoPROS, EModelG, GitHub, or references look like equal download actions.
 - **Don't** use modals as the first solution for navigation or module detail.
 - **Don't** add em dash punctuation in interface copy.

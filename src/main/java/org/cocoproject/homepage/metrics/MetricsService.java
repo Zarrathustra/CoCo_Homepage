@@ -22,10 +22,13 @@ public class MetricsService {
             "cryosieve",
             "cryopros",
             "ctfa",
+            "emodelg",
             "changelog",
             "changelogs",
+            "changelog-v0-3-2",
             "changelog-v0-2-0",
             "install",
+            "install-v0-3-5",
             "install-v0-3-2",
             "install-v0-2-0",
             "install-v0-1-0");
