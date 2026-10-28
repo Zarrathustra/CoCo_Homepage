@@ -50,7 +50,7 @@ index.html
 
 1. Hero：CoCo 定位、主 CTA、模块入口 CTA、事实列表。
 2. Relationship panel：用步骤说明 CoCo 工作区、任务依赖、重点模块和下游处理的关系。
-3. CoCo GUI preview：展示 `North_Star` 的 Light/Dark 与 Cards/DAG 四种界面组合，并提供主题和布局两组切换控件。
+3. CoCo GUI preview：展示 Light/Dark 与 Structure/DAG/2D/EModelG 的八种界面组合，默认 Light + Structure。主题和视图独立切换，使用单张预览图片按选择加载。
 4. Modules：三行 ledger 式重点模块入口，不将其表述为 CoCo 的全部能力。
 5. Download：唯一主下载目标，提供 `Download CoCo v0.3.5`、安装指南与轻量 Change Log 入口。
 6. Publications：CryoSieve、CryoPROS 和 EModelG 的三篇主要论文，首页不再列出 Code 栏。模块详情页中的既有 GitHub 链接继续保留。
@@ -65,7 +65,7 @@ index.html
 - 各安装指南使用版本前缀的内部锚点，例如 `#install-v0-2-0-runtime`。旧 `#install` 与 `#install-*` 章节链接兼容映射到最新指南；最新指南没有对应章节时定位页首，同页操作也适用。未知版本不会被误判为最新指南。
 - 支持浏览器前进、后退。
 - 导航栏 Modules 下拉菜单支持点击、hover/focus-within 和 Escape 关闭。
-- CoCo GUI preview 支持 Light/Dark 和 Cards/DAG 独立切换，并同步各组按钮的 `aria-pressed` 状态。
+- CoCo GUI preview 支持 Light/Dark 和 Structure/DAG/2D/EModelG 独立切换，同步各组按钮的 `aria-pressed` 状态与预览描述；小于 36rem 时视图按钮排列为 2×2。
 - 模块 ledger 行支持鼠标点击与键盘 Enter/Space 激活。
 - 从模块页点击首页锚点时，会先切回 home view，再滚动到目标区块。
 - 支持 `prefers-reduced-motion: reduce`。
@@ -83,10 +83,14 @@ index.html
 ├── styles.css
 ├── coco_logo.png
 ├── img/
-│   ├── North_Star_dark_mode.png
-│   ├── North_Star_dark_mode_DAG.png
-│   ├── North_Star_light_mode.png
-│   ├── North_Star_light_mode_DAG.png
+│   ├── Structure_Light.png
+│   ├── Structure_Dark.png
+│   ├── DAG_Light.png
+│   ├── DAG_Dark.png
+│   ├── 2D_Reconstruction_Light.png
+│   ├── 2D_Reconstruction_Dark.png
+│   ├── EModelG_Light.png
+│   ├── EModelG_Dark.png
 │   ├── coco-v0.2.0-job-graph.png
 │   ├── coco-v0.2.0-user-management.png
 │   ├── coco-v0.3.2-batch-operations.png

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, including CryoSieve, CryoPROS, and EModelG.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
-    <link rel="stylesheet" href="styles.css?v=c6d8ec4769c2">
+    <link rel="stylesheet" href="styles.css?v=7d87596583e5">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -132,49 +132,19 @@
             </ol>
           </aside>
 
-          <div class="workbench-card coco-gui-card" data-coco-gui-theme="light" data-coco-gui-layout="dag" aria-label="CoCo GUI preview">
+          <div class="workbench-card coco-gui-card" data-coco-gui-theme="light" data-coco-gui-layout="structure" aria-label="CoCo GUI preview">
             <div class="workbench-toolbar" aria-hidden="true">
               <span></span><span></span><span></span>
               <strong>CoCo GUI</strong>
             </div>
-            <figure class="coco-gui-figure" role="img" aria-label="CoCo GUI preview showing the project workbench in light mode with DAG layout">
+            <figure class="coco-gui-figure" role="img" aria-label="CoCo GUI preview: Structure view in light mode">
               <img
-                class="coco-gui-image coco-gui-image--light-cards"
-                src="img/North_Star_light_mode.png"
-                alt=""
-                width="5120"
-                height="2880"
-                loading="lazy"
-                decoding="async"
-                aria-hidden="true"
-              >
-              <img
-                class="coco-gui-image coco-gui-image--dark-cards"
-                src="img/North_Star_dark_mode.png"
-                alt=""
-                width="5120"
-                height="2880"
-                loading="lazy"
-                decoding="async"
-                aria-hidden="true"
-              >
-              <img
-                class="coco-gui-image coco-gui-image--light-dag"
-                src="img/North_Star_light_mode_DAG.png"
+                class="coco-gui-image"
+                src="img/Structure_Light.png"
                 alt=""
                 width="5120"
                 height="2880"
                 fetchpriority="high"
-                decoding="async"
-                aria-hidden="true"
-              >
-              <img
-                class="coco-gui-image coco-gui-image--dark-dag"
-                src="img/North_Star_dark_mode_DAG.png"
-                alt=""
-                width="5120"
-                height="2880"
-                loading="lazy"
                 decoding="async"
                 aria-hidden="true"
               >
@@ -184,9 +154,11 @@
                 <button type="button" data-coco-gui-theme-option="light" aria-pressed="true">Light</button>
                 <button type="button" data-coco-gui-theme-option="dark" aria-pressed="false">Dark</button>
               </div>
-              <div class="coco-gui-segmented" role="group" aria-label="CoCo GUI preview layout">
-                <button type="button" data-coco-gui-layout-option="cards" aria-pressed="false">Cards</button>
-                <button type="button" data-coco-gui-layout-option="dag" aria-pressed="true">DAG</button>
+              <div class="coco-gui-segmented coco-gui-segmented--views" role="group" aria-label="CoCo GUI preview view">
+                <button type="button" data-coco-gui-layout-option="structure" aria-pressed="true">Structure</button>
+                <button type="button" data-coco-gui-layout-option="dag" aria-pressed="false">DAG</button>
+                <button type="button" data-coco-gui-layout-option="2d" aria-pressed="false">2D</button>
+                <button type="button" data-coco-gui-layout-option="emodelg" aria-pressed="false">EModelG</button>
               </div>
             </div>
           </div>
@@ -3265,20 +3237,48 @@ modules.lock</code></pre>
 
         var cocoGuiCard = document.querySelector('.coco-gui-card');
         var cocoGuiFigure = document.querySelector('.coco-gui-figure');
+        var cocoGuiImage = document.querySelector('.coco-gui-image');
         var cocoGuiStateButtons = document.querySelectorAll('[data-coco-gui-theme-option], [data-coco-gui-layout-option]');
+        var cocoGuiViews = {
+          structure: {
+            label: 'Structure view',
+            light: 'img/Structure_Light.png',
+            dark: 'img/Structure_Dark.png'
+          },
+          dag: {
+            label: 'DAG workflow',
+            light: 'img/DAG_Light.png',
+            dark: 'img/DAG_Dark.png'
+          },
+          '2d': {
+            label: '2D reconstruction',
+            light: 'img/2D_Reconstruction_Light.png',
+            dark: 'img/2D_Reconstruction_Dark.png'
+          },
+          emodelg: {
+            label: 'EModelG modeling',
+            light: 'img/EModelG_Light.png',
+            dark: 'img/EModelG_Dark.png'
+          }
+        };
 
         function setCocoGuiState(theme, layout) {
           if (!cocoGuiCard) return;
 
           var nextTheme = theme === 'dark' ? 'dark' : 'light';
-          var nextLayout = layout === 'dag' ? 'dag' : 'cards';
+          var nextLayout = Object.prototype.hasOwnProperty.call(cocoGuiViews, layout) ? layout : 'structure';
+          var nextView = cocoGuiViews[nextLayout];
           cocoGuiCard.setAttribute('data-coco-gui-theme', nextTheme);
           cocoGuiCard.setAttribute('data-coco-gui-layout', nextLayout);
+
+          if (cocoGuiImage && cocoGuiImage.getAttribute('src') !== nextView[nextTheme]) {
+            cocoGuiImage.setAttribute('src', nextView[nextTheme]);
+          }
 
           if (cocoGuiFigure) {
             cocoGuiFigure.setAttribute(
               'aria-label',
-              'CoCo GUI preview showing the project workbench in ' + nextTheme + ' mode with ' + (nextLayout === 'dag' ? 'DAG' : 'card') + ' layout'
+              'CoCo GUI preview: ' + nextView.label + ' in ' + nextTheme + ' mode'
             );
           }
 
@@ -3292,7 +3292,7 @@ modules.lock</code></pre>
         }
 
         if (cocoGuiCard && cocoGuiStateButtons.length) {
-          setCocoGuiState('light', 'dag');
+          setCocoGuiState('light', 'structure');
           for (var i = 0; i < cocoGuiStateButtons.length; i += 1) {
             cocoGuiStateButtons[i].addEventListener('click', function () {
               var nextTheme = this.getAttribute('data-coco-gui-theme-option') || cocoGuiCard.getAttribute('data-coco-gui-theme');

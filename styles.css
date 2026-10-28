@@ -610,7 +610,7 @@
     z-index: 1;
     display: grid;
     width: 100%;
-    min-height: clamp(14rem, 62vw, 24rem);
+    aspect-ratio: 16 / 9;
     margin: 0;
     overflow: hidden;
     background:
@@ -623,16 +623,7 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    opacity: 0;
     pointer-events: none;
-    transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .coco-gui-card[data-coco-gui-theme="light"][data-coco-gui-layout="cards"] .coco-gui-image--light-cards,
-  .coco-gui-card[data-coco-gui-theme="dark"][data-coco-gui-layout="cards"] .coco-gui-image--dark-cards,
-  .coco-gui-card[data-coco-gui-theme="light"][data-coco-gui-layout="dag"] .coco-gui-image--light-dag,
-  .coco-gui-card[data-coco-gui-theme="dark"][data-coco-gui-layout="dag"] .coco-gui-image--dark-dag {
-    opacity: 1;
   }
 
   .coco-gui-controls {
@@ -2683,6 +2674,18 @@
 
 @layer responsive {
   @media (max-width: 35.999rem) {
+    .coco-gui-controls {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .coco-gui-segmented--views {
+      width: 100%;
+      grid-auto-flow: row;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-radius: var(--radius-md);
+    }
+
     .hero-actions,
     .download-actions,
     .changelog-action-links {
@@ -3258,11 +3261,6 @@
       grid-column: 1 / -1;
     }
 
-    .coco-gui-figure {
-      min-height: clamp(28rem, 62vh, 48rem);
-      max-height: min(76vh, 54rem);
-    }
-
     .section-heading,
     .download-panel {
       grid-template-columns: minmax(0, 0.95fr) minmax(20rem, 0.78fr);
@@ -3522,10 +3520,6 @@
       transition-duration: 0.001ms !important;
       animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;
-    }
-
-    .coco-gui-image {
-      transition: none !important;
     }
   }
 }
