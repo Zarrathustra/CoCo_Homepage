@@ -12,7 +12,7 @@ CoCo 面向结构生物学实验室、cryo-EM 研究者、研究生、PI 和科�
 - CryoSieve、CryoPROS 和 EModelG 是重点介绍的分析模块；CoCo 还包含数据导入、粒子挑选与提取、分类、重构和 CryoSPARC 导出等任务。
 - 页面主要转化目标是 `Download CoCo v0.3.5`，而不是分别下载各模块。
 
-当前发布版本为 `v0.3.5`，首页主按钮通过 `/downloads/coco-0.3.5.tar.gz` 下载外部发布包。`#install-v0-3-5` 展示该版完整安装指南；`#changelog` 继续保留更新日志占位内容。`#install` 保留为最新指南兼容入口，`#changelogs` 列出所有日志；v0.3.2、v0.2.0 的完整日志分别保留在 `#changelog-v0-3-2`、`#changelog-v0-2-0`。历史安装指南保留 v0.3.2、v0.2.0、v0.1.0，每个指南顶部均可切换版本。
+当前发布版本为 `v0.3.5`，首页主按钮通过 `/downloads/coco-0.3.5.tar.gz` 下载外部发布包。`#install-v0-3-5` 展示该版完整安装指南；`#changelog` 按 v0.3.5 brochure 展示完整更新日志。`#install` 保留为最新指南兼容入口，`#changelogs` 列出所有日志；v0.3.2、v0.2.0 的完整日志分别保留在 `#changelog-v0-3-2`、`#changelog-v0-2-0`。历史安装指南保留 v0.3.2、v0.2.0、v0.1.0，每个指南顶部均可切换版本。
 
 ## 模块概览
 
@@ -21,7 +21,7 @@ CoCo 面向结构生物学实验室、cryo-EM 研究者、研究生、PI 和科�
 | CryoSieve | 已展示，`v1.3.0` | 单颗粒 cryo-EM 粒子排序与筛选模块，用于移除不必要粒子并提升重构质量；包含 GitHub、论文、featured image、main figure 和 EMPIAR demo 表格。 |
 | CryoPROS | 已展示，`v1.0.1` | 使用 AI 生成辅助粒子并进行 co-refinement 的 preferred-orientation correction 框架；包含 GitHub、论文和 featured image。 |
 | CTFA | 暂不公开 | 因 CoCo 界面中尚不可见，菜单、首页介绍和详情路由暂时隐藏；既有文案保留在惰性 template 中。 |
-| EModelG | CoCo 内置模块 | 从 cryo-EM 密度自动构建糖链与蛋白主链模型；包含两条英文流程、研究示例和 Science 论文引用，没有独立下载或单独版本号。 |
+| EModelG | CoCo 内置模块 | 从 cryo-EM 密度自动构建糖链与蛋白主链模型；包含两条建模流程、三张科研实例图、指标评价条件、三种模式、使用步骤和 Science 论文引用，没有独立下载或单独版本号。 |
 
 ## 页面结构
 
@@ -38,7 +38,7 @@ index.html
   div[data-view=install-v0-3-5]  CoCo v0.3.5 installation guide
   div[data-view=install-v0-3-2]  archived v0.3.2 guide
   div[data-view=install-v0-2-0]  archived v0.2.0 guide
-  div[data-view=changelog]  CoCo v0.3.5 change log placeholder
+  div[data-view=changelog]  CoCo v0.3.5 change log
   div[data-view=changelog-v0-3-2]  archived v0.3.2 change log
   div[data-view=changelogs]  all change logs, newest first
   div[data-view=changelog-v0-2-0]  archived v0.2.0 change log
@@ -54,7 +54,7 @@ index.html
 4. Modules：三行 ledger 式重点模块入口，不将其表述为 CoCo 的全部能力。
 5. Download：唯一主下载目标，提供 `Download CoCo v0.3.5`、安装指南与轻量 Change Log 入口。
 6. Publications：CryoSieve、CryoPROS 和 EModelG 的三篇主要论文，首页不再列出 Code 栏。模块详情页中的既有 GitHub 链接继续保留。
-7. Change Log：`#changelog` 展示 v0.3.5 占位内容，`#changelogs` 提供倒序版本目录。`#changelog-v0-3-2` 保留任务自动接续、批量操作、DFR／SGD 重构和独立 CryoSPARC 导出的完整内容及两张配图；`#changelog-v0-2-0` 保留原正文及两张配图。所有日志详情均链接当前下载及对应版本指南。
+7. Change Log：`#changelog` 展示 v0.3.5 的新增任务、工作流复用、查看与配置改进，`#changelogs` 提供倒序版本目录。`#changelog-v0-3-2` 保留任务自动接续、批量操作、DFR／SGD 重构和独立 CryoSPARC 导出的完整内容及两张配图；`#changelog-v0-2-0` 保留原正文及两张配图。所有日志详情均链接当前下载及对应版本指南。
 8. Install guides：v0.3.5 提供完整指南，v0.3.2、v0.2.0、v0.1.0 保留历史正文与版本章节锚点；所有指南顶部可切换版本。
 9. Footer：版权、备案、公安备案、电话、地址与邮箱。
 
@@ -96,9 +96,8 @@ index.html
 │   ├── cryopros_featured_image.png
 │   ├── cryopros_main_figure.png
 │   ├── emodelg-glycan-example.png
-│   ├── emodelg-glycan-workflow.png
 │   ├── emodelg-protein-example.png
-│   ├── emodelg-protein-workflow.png
+│   ├── emodelg-structural-examples.png
 │   └── ga.jpg
 ├── pom.xml
 └── src/
@@ -309,7 +308,7 @@ coco.releases[2].file-name=coco-0.3.5.tar.gz
 
 ## 发布包安装说明
 
-用户在首页点击 `Installation guide` 会进入完整的 `#install-v0-3-5` 指南。指南沿用历史页的四步快速安装、侧边目录、版本切换和命令块样式，内容依据 CoCo GitHub 仓库的 v0.3.5 源码快照核对。当前日志继续显示 “Release notes will be added soon.”。
+用户在首页点击 `Installation guide` 会进入完整的 `#install-v0-3-5` 指南。指南沿用历史页的四步快速安装、侧边目录、版本切换和命令块样式，内容依据 CoCo GitHub 仓库的 v0.3.5 源码快照核对。当前更新日志依据 v0.3.5 brochure 提供完整功能说明。
 
 - [v0.3.5 安装文档](https://github.com/mxhulab/CoCo/blob/11bab54eaaa8514589de9314d92be2ff5d607e6f/INSTALL.md)：固定提交 `11bab54eaaa8514589de9314d92be2ff5d607e6f`，该提交的 `backend/pom.xml` 版本为 0.3.5；不将其称为发布 tag。交叉核对 `PACK.md`、打包脚本、Settings 和 EModelG 源码。涵盖 Linux x86_64 / glibc 2.17+、Java 8+、主机 Python 3、版本运行时、认证、CryoSPARC/WIT、Local GPU、SLURM、LSF、EModelG 资源与 Phenix，以及持久状态备份升级。
 
@@ -324,8 +323,10 @@ v0.3.2、v0.2.0 历史指南分别依据 CoCo 对应 release tag 的 `INSTALL.md
 
 ## 编辑说明
 
-- 首页和 v0.3.5 安装指南展示 CryoSieve、CryoPROS 和 EModelG；CTFA 因产品界面暂不可见而隐藏。CryoSieve 使用内置 DFR 重构及后处理，CryoPROS 采用 Prep / Train / Generate 与独立导出任务。主下载为 v0.3.5，更新日志继续占位；历史安装说明及更新日志保持对应版本内容。
-- EModelG 内容来自 `CoCo_Project/v0.3.5/EModelG_v2.docx`：示例图使用同目录语义化命名的图片，英文流程图直接提取 DOCX 原图。正式引用核对至 CoCo 提交 `11bab54eaaa8514589de9314d92be2ff5d607e6f` 的 `frontend/src/constants/toolCitations.ts`，采用 DOI `10.1126/science.aef4958`。
+- 首页和 v0.3.5 安装指南展示 CryoSieve、CryoPROS 和 EModelG；CTFA 因产品界面暂不可见而隐藏。CryoSieve 使用内置 DFR 重构及后处理，CryoPROS 采用 Prep / Train / Generate 与独立导出任务。主下载为 v0.3.5，更新日志按 brochure 编写；历史安装说明及更新日志保持对应版本内容。
+- EModelG 和 v0.3.5 更新日志以 `/Users/hmx/Git/Documents/Lab_Managing/CoCo_Project/v0.3.5/CoCo_v0.3.5_brochure.pdf` / `.tex` 为正文依据，英文重组内容并沿用网站样式。三张科研实例图来自 brochure 的 `assets/`；两个算法流程用可访问的 HTML 步骤表示。正式引用保留 Science DOI `10.1126/science.aef4958`。
+- 功能范围依据同目录 `版本差异核对.md`：v0.3.2 标签提交 `a38abf5353224f177a55fe0c9273c13d37efe54d` 与 v0.3.5 beta 快照 `87e70ed7770eb7d8837a18f54700255f76c275ba`；不将后者称为发布 tag。新增六种可见任务。工作流保存仅涵盖符合条件且完成的颗粒导入、二维 DFR、Select 2D、Average Spectrum 流程；载入生成草稿，选类需重新审核。
+- 研究指标保持评价范围：0.643 Å 平均全原子 RMSD 属于另一个无蛋白糖链案例，0.891 AUPRC 使用 4 Å 位点匹配阈值，PLL-1 的 2.87 Å 为实验密度图分辨率、0.87 TM-score 的比较对象为 AlphaFold 模型；不表示版本间性能提升。研究来源详见 brochure 的核对文件。
 - 页面内容主要在 `index.html` 中维护。
 - 样式集中在 `styles.css`，使用 OKLCH 色彩变量和 CSS cascade layers：`reset`、`base`、`components`、`layout`、`responsive`。
 - Spring Boot 提供静态资源、外部下载映射、SQLite 长期统计和统计 API；统计行为变更需要同步修改 Java 与测试。

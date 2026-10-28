@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, including CryoSieve, CryoPROS, and EModelG.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
-    <link rel="stylesheet" href="styles.css?v=e410962263f4">
+    <link rel="stylesheet" href="styles.css?v=c6d8ec4769c2">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -536,7 +536,7 @@
 
     </template>
 
-    <!-- EModelG content: EModelG_v2.docx, CoCo_Project/v0.3.5. Citation verified against CoCo 11bab54eaaa8514589de9314d92be2ff5d607e6f, frontend/src/constants/toolCitations.ts. -->
+    <!-- EModelG: CoCo_v0.3.5_brochure.pdf / .tex, pages 2–4; research scope and sources in 版本差异核对.md. Scientific images are unchanged brochure assets. -->
     <div id="view-emodelg" class="module-page module-page--emodelg" data-view="emodelg" hidden>
       <nav class="module-page-back" aria-label="Module navigation">
         <a href="#home" class="module-back-link" data-nav="home">
@@ -545,67 +545,124 @@
           </svg>
           Back to CoCo
         </a>
+        <a href="#install-v0-3-5-emodelg" class="module-back-link">EModelG setup</a>
       </nav>
 
       <header class="module-page-hero">
         <div class="module-page-hero-grid">
           <div>
-            <p class="module-page-kicker">CoCo analysis module</p>
+            <p class="module-page-kicker">From density to structure</p>
             <h1 class="module-page-title">EModelG</h1>
-            <p class="module-page-lede">Automated glycan and protein backbone modeling from cryo-EM density. EModelG combines AI detection, density fitting, and structural restraints to support studies of proteins, glycoproteins, and glycan-rich complexes.</p>
-            <span class="module-page-version">Included in CoCo</span>
+            <p class="module-page-lede">Bring glycan and protein modeling into your cryo-EM workflow. EModelG combines AI detection, density fitting, and structural restraints to turn reconstructed maps into models for studying proteins, glycoproteins, and glycan-rich complexes.</p>
+            <span class="module-page-version">Included in CoCo v0.3.5</span>
           </div>
           <figure>
-            <a href="img/emodelg-glycan-example.png" target="_blank" rel="noopener" aria-label="Open the full-size glycan modeling example">
-              <img src="img/emodelg-glycan-example.png" alt="GF-1L2R5 density and glycan models: the automated model in pink overlaps the manual model in white beside the protein in blue" class="module-page-hero-img" width="616" height="395" loading="lazy" decoding="async">
+            <a href="img/emodelg-structural-examples.png" target="_blank" rel="noopener" aria-label="Open the full-size structural examples">
+              <img src="img/emodelg-structural-examples.png" alt="Three structural examples: a protein assembly, a glycosylated protein with a close-up of its glycan, and a glycan-rich complex" class="module-page-hero-img" width="757" height="192" decoding="async">
             </a>
-            <figcaption class="video-caption">Automated and manual glycan models in the 2.53 Å GF-1L2R5 map. Source: <a href="https://doi.org/10.65215/bkvrt910" target="_blank" rel="noopener">CryoSeek preprint, 2025</a>.</figcaption>
+            <figcaption class="video-caption">From protein structures to glycoproteins and glycan-rich complexes.</figcaption>
           </figure>
         </div>
       </header>
 
       <div class="module-page-body">
         <section class="module-page-section" aria-labelledby="emodelg-glycan-title">
-          <h2 id="emodelg-glycan-title">Automated glycan modeling</h2>
-          <p>Glycan diversity, flexibility, and complex linkages make structural modeling challenging. EModelG links AI detection with density-guided template fitting, joint optimization, and chain refinement.</p>
+          <p class="section-kicker">Glycan modeling</p>
+          <h2 id="emodelg-glycan-title">Build complex glycans within the density.</h2>
+          <p>Glycan diversity, flexibility, and complex linkages make structural modeling challenging. EModelG connects candidate-site detection with template fitting, joint optimization, and chain refinement to provide a structural starting point for glycofibrils, glycoproteins, and glycan-rich complexes.</p>
+          <ol class="modeling-steps" aria-label="Glycan modeling workflow">
+            <li><span aria-hidden="true">01</span><strong>AI site detection</strong><p>Locate candidate glycan sites.</p></li>
+            <li><span aria-hidden="true">02</span><strong>Monosaccharide fitting</strong><p>Sample conformations and match templates to density.</p></li>
+            <li><span aria-hidden="true">03</span><strong>Joint optimization</strong><p>Refine linkages and conformations with density, geometry, and clash restraints.</p></li>
+            <li><span aria-hidden="true">04</span><strong>Chain refinement</strong><p>Assign chains and refine the resulting models.</p></li>
+          </ol>
           <ul class="module-feature-list">
-            <li>Detect candidate glycan sites and fit monosaccharide templates to the density.</li>
-            <li>Optimize conformations and linkages using density correlation, chemical geometry, torsions, and clash restraints.</li>
-            <li>Build and refine chains for studies of glycofibrils, glycoproteins, and glycan-rich complexes.</li>
+            <li><strong>Read structural clues from density.</strong> Density intensity, distribution, and continuity help evaluate candidate sites, glycosidic connections, and acetamide groups, informing sugar-residue assignments.</li>
+            <li><strong>Optimize with chemical restraints.</strong> Combine density correlation, glycosidic bond distances and torsion angles, and atomic clashes when refining conformations and connectivity.</li>
+            <li><strong>Connect models to structural questions.</strong> Examine glycan folding, assembly, and contacts between proteins and glycans.</li>
           </ul>
-          <figure>
-            <a href="img/emodelg-glycan-workflow.png" target="_blank" rel="noopener" aria-label="Open the full-size glycan modeling workflow">
-              <img src="img/emodelg-glycan-workflow.png" alt="Glycan modeling workflow: AI detection, template fitting, joint optimization, then chain building and refinement" class="module-page-figure" width="2485" height="497" loading="lazy" decoding="async">
-            </a>
-            <figcaption class="video-caption">From candidate glycan sites to density-supported chains and refined models.</figcaption>
-          </figure>
+          <div class="emodelg-example">
+            <figure>
+              <a href="img/emodelg-glycan-example.png" target="_blank" rel="noopener" aria-label="Open the full-size GF-1L2R5 glycan modeling example">
+                <img src="img/emodelg-glycan-example.png" alt="GF-1L2R5 at 2.53 Å: gray experimental density, pink automated glycan model, white manual glycan model, and blue protein" class="module-page-figure" width="616" height="395" loading="lazy" decoding="async">
+              </a>
+              <figcaption class="video-caption">GF-1L2R5, 2.53 Å. Gray: experimental density; pink: automated glycan model; white: manual glycan model; blue: protein. <a href="https://doi.org/10.65215/bkvrt910" target="_blank" rel="noopener">CryoSeek research example</a>.</figcaption>
+            </figure>
+            <div>
+              <dl class="research-metrics" aria-label="Glycan research results">
+                <div>
+                  <dt>Mean all-atom RMSD</dt>
+                  <dd><strong>0.643 Å</strong><span>Automated versus manual models in a separate protein-free glycan case.</span></dd>
+                </div>
+                <div>
+                  <dt>Glycan-site detection AUPRC</dt>
+                  <dd><strong>0.891</strong><span>Reported on the study test set with a 4 Å site-matching threshold.</span></dd>
+                </div>
+              </dl>
+              <p class="video-caption">These results use their respective study conditions. The RMSD value belongs to the separate protein-free case, rather than the GF-1L2R5 example shown here.</p>
+            </div>
+          </div>
         </section>
 
         <section class="module-page-section" aria-labelledby="emodelg-protein-title">
-          <h2 id="emodelg-protein-title">Automated protein backbone modeling</h2>
-          <p>EModelG combines AI detection, backbone tracing, and density validation to retain reliable long fragments and extend models using peptide-derived symmetry.</p>
+          <p class="section-kicker">Protein backbone modeling</p>
+          <h2 id="emodelg-protein-title">Trace continuous backbones in their structural context.</h2>
+          <p>EModelG combines AI detection, backbone tracing, and density validation to retain reliable long fragments and extend models using symmetry clues derived from peptide chains.</p>
+          <ol class="modeling-steps" aria-label="Protein backbone modeling workflow">
+            <li><span aria-hidden="true">01</span><strong>AI detection</strong><p>Locate candidate backbone sites.</p></li>
+            <li><span aria-hidden="true">02</span><strong>Backbone tracing</strong><p>Apply geometric restraints and retain reliable long fragments.</p></li>
+            <li><span aria-hidden="true">03</span><strong>Symmetry extension</strong><p>Use peptide-derived clues with local corrections.</p></li>
+            <li><span aria-hidden="true">04</span><strong>Model integration</strong><p>Bring protein models into their glycan and structural context.</p></li>
+          </ol>
           <ul class="module-feature-list">
-            <li>Preserve long backbone fragments supported by density and geometry, including when usable symmetry is unavailable.</li>
-            <li>Extend from fixed seeds with local density and backbone anchors to limit accumulated drift.</li>
-            <li>Model proteins independently or integrate protein and glycan models for joint structural analysis.</li>
+            <li><strong>Preserve reliable fragments.</strong> Retain backbones supported by density and geometry, including when usable symmetry is unavailable.</li>
+            <li><strong>Anchor each extension.</strong> Extend from fixed seeds using peptide-derived symmetry, with local density and backbone anchors limiting accumulated drift.</li>
+            <li><strong>Model independently or analyze together.</strong> Build protein models alone or combine them with glycans, using density, geometry, and clash checks to support interpretation.</li>
           </ul>
-          <figure>
-            <a href="img/emodelg-protein-workflow.png" target="_blank" rel="noopener" aria-label="Open the full-size protein modeling workflow">
-              <img src="img/emodelg-protein-workflow.png" alt="Protein modeling workflow: AI detection, backbone tracing, symmetry extension, then model integration" class="module-page-figure" width="2485" height="497" loading="lazy" decoding="async">
-            </a>
-            <figcaption class="video-caption">From backbone detection and tracing to density-supported extension and model integration.</figcaption>
-          </figure>
+          <h3 id="emodelg-example-title">PLL-1 research example</h3>
+          <div class="emodelg-example">
+            <figure>
+              <a href="img/emodelg-protein-example.png" target="_blank" rel="noopener" aria-label="Open the full-size PLL-1 protein modeling example">
+                <img src="img/emodelg-protein-example.png" alt="PLL-1 cryo-EM density at 2.87 Å with protein subunits in pink and yellow and a close-up of the automated model in transparent white density" class="module-page-figure" width="1600" height="1026" loading="lazy" decoding="async">
+              </a>
+              <figcaption class="video-caption">PLL-1 protein example. Pink and yellow identify two protein subunits; transparent white shows the experimental density. <a href="https://doi.org/10.65215/bkvrt910" target="_blank" rel="noopener">CryoSeek research example</a>.</figcaption>
+            </figure>
+            <dl class="research-metrics" aria-label="PLL-1 research results">
+              <div>
+                <dt>Experimental map resolution</dt>
+                <dd><strong>2.87 Å</strong><span>The cryo-EM density map used for the PLL-1 protein case.</span></dd>
+              </div>
+              <div>
+                <dt>TM-score</dt>
+                <dd><strong>0.87</strong><span>The automated model compared with the corresponding AlphaFold prediction.</span></dd>
+              </div>
+            </dl>
+          </div>
+          <p class="video-caption">Research metrics describe the individual cases and their evaluation conditions. Review generated models against the experimental density before further structural interpretation.</p>
         </section>
 
-        <section class="module-page-section" aria-labelledby="emodelg-example-title">
-          <h2 id="emodelg-example-title">From density to a protein model</h2>
-          <p>The PLL-1 example illustrates an automated protein model fitted into cryo-EM density. Protein scaffolds and glycan connectivity provide complementary views of complex assemblies.</p>
-          <figure>
-            <a href="img/emodelg-protein-example.png" target="_blank" rel="noopener" aria-label="Open the full-size protein modeling example">
-              <img src="img/emodelg-protein-example.png" alt="PLL-1 cryo-EM map at 2.87 Å with two protein subunits in pink and yellow, enlarged to show the automated model within transparent density" class="module-page-figure module-page-figure--example" width="1600" height="1026" loading="lazy" decoding="async">
-            </a>
-            <figcaption class="video-caption">The 2.87 Å PLL-1 map and automated model of two protein subunits. Source: <a href="https://doi.org/10.65215/bkvrt910" target="_blank" rel="noopener">CryoSeek preprint, 2025, Supplementary Fig. S2A–B</a>.</figcaption>
-          </figure>
+        <section class="module-page-section" aria-labelledby="emodelg-modes-title">
+          <p class="section-kicker">Three modeling modes</p>
+          <h2 id="emodelg-modes-title">Choose the mode for your research question.</h2>
+          <dl class="modeling-modes">
+            <div><dt>Glycan (+ protein) modeling</dt><dd>Build glycans from a density map and incorporate protein modeling through the workflow. This mode also requires a configured and checked Phenix installation.</dd></div>
+            <div><dt>Protein modeling</dt><dd>Focus on protein backbone tracing and model construction from density.</dd></div>
+            <div><dt>Protein modeling (preserve existing glycans)</dt><dd>Connect an Import Structure job containing only glycans. Preserve those glycans while building the protein model.</dd></div>
+          </dl>
+        </section>
+
+        <section class="module-page-section" aria-labelledby="emodelg-start-title">
+          <p class="section-kicker">Start with a density map</p>
+          <h2 id="emodelg-start-title">From input to a model you can inspect.</h2>
+          <ol class="modeling-steps" aria-label="Using EModelG in CoCo">
+            <li><span aria-hidden="true">01</span><strong>Connect your data</strong><p>Use Import Volume for a server-accessible MRC, MAP, or CCP4 file, including a CryoSPARC path, or connect a CoCo DFR / SGD 3D reconstruction.</p></li>
+            <li><span aria-hidden="true">02</span><strong>Set up the job</strong><p>Choose the map, modeling mode, and compute lane, then confirm the resolution. To preserve existing glycans, connect a glycan-only structure job.</p></li>
+            <li><span aria-hidden="true">03</span><strong>Review and continue</strong><p>Inspect the structures, model summary, and review messages. Switch between available models and download the files for further analysis.</p></li>
+          </ol>
+          <div class="install-note">
+            <strong>Prepare the modeling environment</strong>
+            <p>Set up EModelG resources in Settings → Environment Check. Glycan (+ protein) modeling also needs Phenix. EModelG runs on one node with one GPU; select an available GPU lane. Follow the <a href="#install-v0-3-5-emodelg">EModelG setup guide</a> for configuration.</p>
+          </div>
         </section>
 
         <section class="module-page-section" aria-labelledby="emodelg-publication-title">
@@ -2145,8 +2202,8 @@ modules.lock</code></pre>
                 <span class="changelog-status changelog-status--current">Current release</span>
               </div>
               <div class="changelog-index-copy">
-                <h2 id="changelog-index-v035-title">CoCo v0.3.5 release notes.</h2>
-                <p>Release notes will be added soon.</p>
+                <h2 id="changelog-index-v035-title">From density to structure.</h2>
+                <p>Import maps and structures, model with EModelG, inspect 2D classes and spectra, and save supported workflows for reuse.</p>
               </div>
               <span class="changelog-index-link" aria-hidden="true">Read change log <span>&rarr;</span></span>
             </a>
@@ -2181,6 +2238,7 @@ modules.lock</code></pre>
       </div>
     </div>
 
+    <!-- CoCo v0.3.5 release notes: CoCo_v0.3.5_brochure.pdf / .tex, pages 1 and 4; visibility and workflow scope checked in 版本差异核对.md against beta snapshot 87e70ed7770eb7d8837a18f54700255f76c275ba and v0.3.2 a38abf5353224f177a55fe0c9273c13d37efe54d. -->
     <div id="view-changelog" class="changelog-page" data-view="changelog" hidden>
       <nav class="changelog-page-back" aria-label="Change log navigation">
         <a href="#home" class="module-back-link" data-nav="home">
@@ -2195,14 +2253,153 @@ modules.lock</code></pre>
         <div class="changelog-hero-copy">
           <p class="module-page-kicker">Release notes</p>
           <h1 class="changelog-title">What changed in CoCo v0.3.5.</h1>
-          <p class="changelog-lede">Release notes will be added soon.</p>
+          <p class="changelog-lede">Connect density maps to structural models with EModelG. Inspect and select 2D results, analyze power spectra, and reuse supported workflows within the same research workspace.</p>
+        </div>
+        <div class="release-version-path" aria-label="CoCo v0.3.5, following v0.3.2">
+          <span><small>Previous</small><strong>v0.3.2</strong></span>
+          <svg aria-hidden="true" width="36" height="16" viewBox="0 0 36 16" fill="none">
+            <path d="M1 8H34M28 2L34 8L28 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="release-version-path__current"><small>Current</small><strong>v0.3.5</strong></span>
         </div>
       </header>
+
       <div class="changelog-content">
+        <section class="changelog-intro" aria-labelledby="changelog-v0-3-5-intro-title">
+          <p class="section-kicker">From density to structure</p>
+          <h2 id="changelog-v0-3-5-intro-title">Connect each analysis step to the next.</h2>
+          <p>CoCo v0.3.5 adds six job types: Import Volume, Import Structure, EModelG, 2D Reconstruction (DFR), Select 2D, and Average Spectrum. Alongside new ways to inspect results and save supported workflows, these additions connect particle analysis, reconstruction, and structural interpretation.</p>
+        </section>
+
+        <section class="changelog-feature" aria-labelledby="changelog-v0-3-5-modeling-title">
+          <div class="changelog-feature-copy">
+            <span class="changelog-feature-index">01</span>
+            <p class="section-kicker">Data input and modeling</p>
+            <h2 id="changelog-v0-3-5-modeling-title">Bring maps and structures into your workflow.</h2>
+            <p>EModelG joins CoCo with glycan and protein modeling. Start from an imported density map or a DFR / SGD 3D reconstruction, then inspect the generated structures in the workbench.</p>
+            <figure class="changelog-figure">
+              <a href="img/emodelg-structural-examples.png" target="_blank" rel="noopener" aria-label="Open the full-size EModelG structural examples">
+                <img src="img/emodelg-structural-examples.png" alt="Research examples spanning a protein structure, a glycosylated protein, and a glycan-rich complex" width="757" height="192" loading="lazy" decoding="async">
+              </a>
+              <figcaption>Structural context for protein, glycoprotein, and glycan-rich complex studies.</figcaption>
+            </figure>
+            <a href="#emodelg" class="module-back-link" data-nav="emodelg">Explore EModelG <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="changelog-feature-copy">
+            <h3>Import Volume</h3>
+            <p>Bring in a density map or mask from a server-accessible MRC, MAP, or CCP4 file, including a CryoSPARC path. Review voxel size, dimensions, and central slices before continuing.</p>
+            <h3>Import Structure</h3>
+            <p>Import a PDB or PDBx/mmCIF file from server storage, or retrieve a structure from RCSB by PDB ID. Inspect and download models in the browser; structures above the viewer's size limit remain available for download.</p>
+            <h3>EModelG</h3>
+            <p>Choose <strong>Glycan (+ protein) modeling</strong>, <strong>Protein modeling</strong>, or <strong>Protein modeling (preserve existing glycans)</strong>. The last mode uses a glycan-only Import Structure input.</p>
+            <p>Prepare EModelG resources in Environment Check and select a lane for one node and one GPU. Glycan (+ protein) modeling also requires Phenix. Results include available structures, a model summary, review messages, and downloads.</p>
+          </div>
+        </section>
+
+        <section class="changelog-improvements" aria-labelledby="changelog-v0-3-5-2d-title">
+          <div class="changelog-section-heading">
+            <span class="changelog-feature-index">02</span>
+            <p class="section-kicker">2D results and spectra</p>
+            <h2 id="changelog-v0-3-5-2d-title">Reconstruct, inspect, and select classes.</h2>
+            <p>Connect 2D reconstruction to class selection and power-spectrum analysis, with room to review the evidence before choosing the next step.</p>
+          </div>
+          <div class="changelog-improvement-list">
+            <article>
+              <span aria-hidden="true">A</span>
+              <div>
+                <h3>2D Reconstruction (DFR)</h3>
+                <p>Generate 2D reconstructions from particle metadata that already contains class assignments, then continue to Select 2D.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">B</span>
+              <div>
+                <h3>Select 2D</h3>
+                <p>Inspect class averages and the Fourier diagnostics available from upstream results. Select classes to produce selected and unselected particle sets and averages, then continue to reconstruction, sieving, or CryoSPARC export.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">C</span>
+              <div>
+                <h3>Average Spectrum</h3>
+                <p>Select exactly one class in Select 2D, then choose between averaging the individual particle power spectra and computing the power spectrum of the class-average image. These are two distinct calculations.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="changelog-feature" aria-labelledby="changelog-v0-3-5-workflows-title">
+          <div class="changelog-feature-copy">
+            <span class="changelog-feature-index">03</span>
+            <p class="section-kicker">Workflow reuse</p>
+            <h2 id="changelog-v0-3-5-workflows-title">Save a supported workflow for the next analysis.</h2>
+            <p>Save workflow stores eligible completed jobs and their complete upstream workflow in a personal library. Load workflow previews the job relationships and compatibility, then creates new drafts in a project you can access.</p>
+          </div>
+          <div class="changelog-feature-copy">
+            <h3>Supported steps</h3>
+            <p>Workflow saving covers eligible flows made up of particle import, 2D Reconstruction (DFR), Select 2D, and Average Spectrum. The jobs and their complete upstream inputs must be finished and have the required run records.</p>
+            <h3>Review before submitting</h3>
+            <p>Check the inputs and parameters in the loaded drafts before submission. Class selections require a new review after loading.</p>
+          </div>
+        </section>
+
+        <section class="changelog-improvements" aria-labelledby="changelog-v0-3-5-inspection-title">
+          <div class="changelog-section-heading">
+            <span class="changelog-feature-index">04</span>
+            <p class="section-kicker">Results and everyday work</p>
+            <h2 id="changelog-v0-3-5-inspection-title">Keep results, files, and settings close at hand.</h2>
+          </div>
+          <div class="changelog-improvement-list">
+            <article>
+              <span aria-hidden="true">A</span>
+              <div>
+                <h3>Adjust density previews</h3>
+                <p>Imported and reconstructed maps share central YZ / XZ / XY slice views. Adjust the displayed density range, color-scale midpoint, and preview smoothing when inspecting the map.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">B</span>
+              <div>
+                <h3>Inspect structures in the browser</h3>
+                <p>Interact with imported structures and switch between the available protein, glycan, and combined models generated by EModelG.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">C</span>
+              <div>
+                <h3>Find results and files in dedicated tabs</h3>
+                <p>Use Overview to inspect results and Downloads to obtain files. Review remains available for jobs that need a decision, alongside Event Log for execution history.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">D</span>
+              <div>
+                <h3>CryoSieve Auto Mask</h3>
+                <p>The new Auto Mask option is enabled by default. It generates an FSC mask from the first reconstruction and reuses it during that CryoSieve job, reducing manual setup.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">E</span>
+              <div>
+                <h3>Set CPU resources explicitly</h3>
+                <p>Several jobs now expose CPU-count settings. Restack Particles adds lane and CPU selection, with execution fixed to one node and zero GPUs.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">F</span>
+              <div>
+                <h3>Adapt the interface to your working habits</h3>
+                <p>Choose how text outputs open or download, configure keyboard operation of job menus, and control whether unavailable actions are shown.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
         <section class="changelog-release-actions" aria-labelledby="changelog-v0-3-5-actions-title">
           <div>
             <p class="section-kicker">Current release</p>
-            <h2 id="changelog-v0-3-5-actions-title">Download CoCo v0.3.5.</h2>
+            <h2 id="changelog-v0-3-5-actions-title">Start with CoCo v0.3.5.</h2>
+            <p>Set up the runtime, connect your data, and prepare the resources your workflows need.</p>
           </div>
           <div class="changelog-action-links">
             <a class="button button-primary" href="/downloads/coco-0.3.5.tar.gz" download>Download CoCo v0.3.5</a>

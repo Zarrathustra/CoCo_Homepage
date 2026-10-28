@@ -1328,6 +1328,121 @@
     margin: 0;
   }
 
+  .module-page--emodelg .module-page-section {
+    display: grid;
+    gap: 0.9rem;
+    min-width: 0;
+  }
+
+  .module-page--emodelg .module-page-section p,
+  .module-page--emodelg .module-feature-list {
+    margin-top: 0;
+  }
+
+  .modeling-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: 1.3rem;
+    margin-block: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .modeling-steps li {
+    display: grid;
+    gap: 0.5rem;
+    align-content: start;
+    min-width: 0;
+    padding-block: 0.9rem;
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .modeling-steps li > span {
+    color: var(--leaf-deep);
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  .modeling-steps p {
+    font-size: 0.9rem;
+  }
+
+  .emodelg-example {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: clamp(1.4rem, 4vw, 3rem);
+    align-items: start;
+    margin-top: 0.5rem;
+  }
+
+  .emodelg-example > * {
+    min-width: 0;
+  }
+
+  .research-metrics {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .research-metrics > div {
+    padding: clamp(1rem, 2.6vw, 1.4rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: oklch(95.8% 0.025 142 / 0.56);
+  }
+
+  .research-metrics dt {
+    color: var(--ink-muted);
+    font-size: 0.82rem;
+    font-weight: 720;
+  }
+
+  .research-metrics dd {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0.35rem 0 0;
+  }
+
+  .research-metrics dd strong {
+    color: var(--leaf-deep);
+    font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+    line-height: 1.15;
+  }
+
+  .research-metrics dd span {
+    max-width: 44ch;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+  }
+
+  .emodelg-example .video-caption {
+    margin-top: 0.8rem;
+  }
+
+  .modeling-modes {
+    margin: 0;
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .modeling-modes > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: 0.65rem 2rem;
+    padding-block: 1.1rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .modeling-modes dt {
+    font-weight: 720;
+    color: var(--ink);
+  }
+
+  .modeling-modes dd {
+    margin: 0;
+    color: var(--ink-muted);
+  }
+
   .module-page-section h2 {
     max-width: none;
     font-family: var(--font-sans);
@@ -1626,11 +1741,6 @@
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-soft);
-  }
-
-  .module-page-figure--example {
-    max-width: 800px;
-    margin-inline: auto;
   }
 
   .module-page-figure--half {
