@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, including CryoSieve, CryoPROS, and EModelG.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
-    <link rel="stylesheet" href="styles.css?v=7d87596583e5">
+    <link rel="stylesheet" href="styles.css?v=e33af7d18510">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -22,28 +22,27 @@
         <div class="nav-links" aria-label="Page sections">
           <a href="#overview">Overview</a>
           <div class="nav-dropdown">
-            <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-controls="module-quick-links">
               Modules
               <svg aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
                 <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
-            <div class="nav-dropdown-menu" role="menu" aria-label="Module quick links">
-              <a href="#cryosieve" data-nav="cryosieve" role="menuitem">
+            <div class="nav-dropdown-menu" id="module-quick-links" hidden>
+              <a href="#cryosieve" data-nav="cryosieve">
                 <strong>CryoSieve</strong>
                 <span>Particle sorting &amp; sieving</span>
               </a>
-              <a href="#cryopros" data-nav="cryopros" role="menuitem">
+              <a href="#cryopros" data-nav="cryopros">
                 <strong>CryoPROS</strong>
                 <span>Preferred orientation correction</span>
               </a>
-              <a href="#emodelg" data-nav="emodelg" role="menuitem">
+              <a href="#emodelg" data-nav="emodelg">
                 <strong>EModelG</strong>
                 <span>Glycan &amp; protein backbone modeling</span>
               </a>
             </div>
           </div>
-          <a href="#download">Download</a>
           <a href="#references">References</a>
         </div>
         <a class="button button-primary nav-cta" href="#download">Download CoCo v0.3.5</a>
@@ -3192,16 +3191,29 @@ modules.lock</code></pre>
 
     <script>
       (function () {
+        var siteHeader = document.querySelector('.site-header');
+
+        function updateHeaderOffset() {
+          document.documentElement.style.setProperty(
+            '--header-scroll-offset',
+            Math.ceil(siteHeader.getBoundingClientRect().height + 16) + 'px'
+          );
+        }
+
+        new ResizeObserver(updateHeaderOffset).observe(siteHeader);
+
         var dropdown = document.querySelector('.nav-dropdown');
         var trigger = dropdown.querySelector('.nav-dropdown-trigger');
         var menu = dropdown.querySelector('.nav-dropdown-menu');
 
         function dropdownOpen() {
+          menu.hidden = false;
           dropdown.classList.add('nav-dropdown--open');
           trigger.setAttribute('aria-expanded', 'true');
         }
 
         function dropdownClose() {
+          menu.hidden = true;
           dropdown.classList.remove('nav-dropdown--open');
           trigger.setAttribute('aria-expanded', 'false');
         }
@@ -3215,23 +3227,27 @@ modules.lock</code></pre>
           }
         });
 
-        document.addEventListener('click', function (e) {
+        function closeDropdownOutside(e) {
           if (!dropdown.contains(e.target)) {
             dropdownClose();
           }
-        });
+        }
+
+        // iOS does not always synthesize click when tapping a non-interactive area.
+        document.addEventListener('pointerdown', closeDropdownOutside);
+        document.addEventListener('click', closeDropdownOutside);
 
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Escape' && dropdown.classList.contains('nav-dropdown--open')) {
-            dropdownClose();
+            e.preventDefault();
             trigger.focus();
+            dropdownClose();
           }
         });
 
-        menu.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape') {
+        dropdown.addEventListener('focusout', function (e) {
+          if (!dropdown.contains(e.relatedTarget)) {
             dropdownClose();
-            trigger.focus();
           }
         });
 
@@ -3292,6 +3308,19 @@ modules.lock</code></pre>
         }
 
         if (cocoGuiCard && cocoGuiStateButtons.length) {
+          // Download every preview before interaction without decoding eight 5K images at once.
+          Object.keys(cocoGuiViews).forEach(function (layout) {
+            ['light', 'dark'].forEach(function (theme) {
+              var src = cocoGuiViews[layout][theme];
+              if (src === cocoGuiImage.getAttribute('src')) return;
+              var preload = document.createElement('link');
+              preload.rel = 'preload';
+              preload.as = 'image';
+              preload.href = src;
+              preload.setAttribute('fetchpriority', 'low');
+              document.head.appendChild(preload);
+            });
+          });
           setCocoGuiState('light', 'structure');
           for (var i = 0; i < cocoGuiStateButtons.length; i += 1) {
             cocoGuiStateButtons[i].addEventListener('click', function () {
@@ -3409,6 +3438,7 @@ modules.lock</code></pre>
 
           if (viewName === currentView) {
             dropdownClose();
+            updateHeaderOffset();
             if (scrollTarget) {
               var sameViewTarget = document.querySelector(scrollTarget);
               if (sameViewTarget) sameViewTarget.scrollIntoView({ behavior: motionBehavior() });
@@ -3434,6 +3464,7 @@ modules.lock</code></pre>
 
             newEl.hidden = false;
             newEl.classList.add('view-enter');
+            updateHeaderOffset();
 
             void newEl.offsetWidth;
             newEl.classList.add('view-enter-active');
@@ -3481,6 +3512,7 @@ modules.lock</code></pre>
               targetEl.hidden = false;
             }
           }
+          updateHeaderOffset();
           if (scrollTarget) {
             var target = document.querySelector(scrollTarget);
             if (target) target.scrollIntoView({ behavior: 'instant' });

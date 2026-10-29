@@ -50,7 +50,7 @@ index.html
 
 1. Hero：CoCo 定位、主 CTA、模块入口 CTA、事实列表。
 2. Relationship panel：用步骤说明 CoCo 工作区、任务依赖、重点模块和下游处理的关系。
-3. CoCo GUI preview：展示 Light/Dark 与 Structure/DAG/2D/EModelG 的八种界面组合，默认 Light + Structure。主题和视图独立切换，使用单张预览图片按选择加载。
+3. CoCo GUI preview：展示 Light/Dark 与 Structure/DAG/2D/EModelG 的八种界面组合，默认 Light + Structure。初始化时预加载全部八张原图，默认图优先，其余七张低优先级预加载；主题和视图独立切换，始终使用单张图片展示，避免同时解码八张 5K 图片。
 4. Modules：三行 ledger 式重点模块入口，不将其表述为 CoCo 的全部能力。
 5. Download：唯一主下载目标，提供 `Download CoCo v0.3.5`、安装指南与轻量 Change Log 入口。
 6. Publications：CryoSieve、CryoPROS 和 EModelG 的三篇主要论文，首页不再列出 Code 栏。模块详情页中的既有 GitHub 链接继续保留。
@@ -64,7 +64,9 @@ index.html
 - 支持三个公开模块、当前日志、日志目录、历史日志和四个安装版本的 hash 深链接。
 - 各安装指南使用版本前缀的内部锚点，例如 `#install-v0-2-0-runtime`。旧 `#install` 与 `#install-*` 章节链接兼容映射到最新指南；最新指南没有对应章节时定位页首，同页操作也适用。未知版本不会被误判为最新指南。
 - 支持浏览器前进、后退。
-- 导航栏 Modules 下拉菜单支持点击、hover/focus-within 和 Escape 关闭。
+- Header 仅保留一个 `Download CoCo v0.3.5` 下载入口。手机导航保留两行，窄屏可换行，触控目标至少 48px。
+- Modules 使用点击、触控或键盘明确展开，支持再次点击、点击外部、焦点移出和 Escape 关闭；隐藏菜单不会进入 Tab 顺序，Escape 返回触发按钮。
+- Header 实际高度通过 `ResizeObserver` 同步到页面滚动偏移，主页与各版本安装章节均预留 16px 间距，适应换页与横竖屏变化。
 - CoCo GUI preview 支持 Light/Dark 和 Structure/DAG/2D/EModelG 独立切换，同步各组按钮的 `aria-pressed` 状态与预览描述；小于 36rem 时视图按钮排列为 2×2。
 - 模块 ledger 行支持鼠标点击与键盘 Enter/Space 激活。
 - 从模块页点击首页锚点时，会先切回 home view，再滚动到目标区块。
@@ -179,6 +181,19 @@ http://localhost:8080
 ```bash
 mvn test
 ```
+
+浏览器回归入口为 `.impeccable-artifacts/inspect-homepage.mjs`。它启动仅监听本机的静态服务，用 WebKit / Chromium 检查全部 12 个公开视图、菜单触控和键盘操作、八张预览图的提前加载与切换、图片加载失败后的交互、锚点与浏览器历史。覆盖 iPhone 15 Pro（竖屏、横屏、393×852 可用视口）、iPhone SE、Pro Max、iPad Mini、Galaxy S24、Pixel 7，以及 1280/1440px 桌面，共 15 个配置；这是设备仿真，不代表真机测试。
+
+Playwright 可单独安装在临时目录，无需为网站增加 npm 构建流程。使用匹配版本的浏览器：
+
+```bash
+npm install --prefix /tmp/coco-browser-check playwright@1.58.0
+node /tmp/coco-browser-check/node_modules/playwright/cli.js install chromium webkit
+PLAYWRIGHT_MODULE=/tmp/coco-browser-check/node_modules/playwright \
+  node .impeccable-artifacts/inspect-homepage.mjs
+```
+
+已有可被 Node 解析的 Playwright 时可直接运行 `node .impeccable-artifacts/inspect-homepage.mjs`。脚本默认在系统临时目录保存截图和 `results.json`，失败返回非零退出码；`COCO_TEST_OUTPUT_DIR` 可指定报告目录，`COCO_TEST_PROFILE=iphone-15-pro` 可单独重跑该配置。测试只提供网页资产，不访问发布包或生产统计数据。
 
 打包为可运行 JAR：
 
