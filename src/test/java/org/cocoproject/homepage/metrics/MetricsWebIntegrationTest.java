@@ -67,6 +67,7 @@ class MetricsWebIntegrationTest {
     private static final String MISSING_VERSION = "v0.1.9";
     private static final String MISSING_FILE = "missing-release.tar.gz";
     private static final String UNREGISTERED_FILE = "unregistered-release.tar.gz";
+    private static final String OUTSIDE_DOWNLOAD_FILE = "outside-download-root.txt";
     private static final String ADMIN_TOKEN = "test-metrics-admin-token";
     private static final ZoneId METRICS_ZONE = ZoneId.of("Asia/Shanghai");
     private static final byte[] RELEASE_CONTENT = createReleaseContent();
@@ -75,6 +76,9 @@ class MetricsWebIntegrationTest {
     private static final List<String> EMODELG_FILES = List.of(
             "emodelg-so3-2.2.0-20261011.tar.gz",
             "emodelg-models-2.2.0-20261011.tar.gz");
+    private static final List<String> COCOFOLD_FILES = List.of(
+            "cocofold-models-protenix-1.0.2-r1.tar.gz",
+            "cocofold-common-protenix-1.0.2-r1.tar.gz");
     private static final Path TEST_ROOT = createTestFixtures();
     private static final Path DOWNLOAD_DIRECTORY = TEST_ROOT.resolve("downloads");
     private static final Path DATABASE_PATH = TEST_ROOT.resolve("coco-metrics.db");
@@ -265,6 +269,62 @@ class MetricsWebIntegrationTest {
                 "/emodelg/%2e%2e%2f" + RELEASE_FILE)) {
             mockMvc.perform(get(URI.create(path)))
                     .andExpect(status().isNotFound());
+        }
+        assertEquals(0, downloadCount(RELEASE_VERSION));
+    }
+
+    @Test
+    void cocofoldBundlesSupportDownloadHeadAndRangesWithoutReleaseMetrics() throws Exception {
+        for (String fileName : COCOFOLD_FILES) {
+            byte[] expected = Files.readAllBytes(DOWNLOAD_DIRECTORY.resolve("cocofold").resolve(fileName));
+            for (String prefix : List.of("/cocofold/", "/downloads/cocofold/")) {
+                String path = prefix + fileName;
+                mockMvc.perform(get(path))
+                        .andExpect(status().isOk())
+                        .andExpect(header().longValue(HttpHeaders.CONTENT_LENGTH, expected.length))
+                        .andExpect(content().bytes(expected))
+                        .andExpect(header().doesNotExist(HttpHeaders.SET_COOKIE));
+
+                mockMvc.perform(request(HttpMethod.HEAD, path))
+                        .andExpect(status().isOk())
+                        .andExpect(header().longValue(HttpHeaders.CONTENT_LENGTH, expected.length))
+                        .andExpect(header().string(HttpHeaders.ACCEPT_RANGES, "bytes"))
+                        .andExpect(content().bytes(new byte[0]))
+                        .andExpect(header().doesNotExist(HttpHeaders.SET_COOKIE));
+
+                for (int start : List.of(0, 8)) {
+                    int end = start + 7;
+                    mockMvc.perform(get(path).header(HttpHeaders.RANGE, "bytes=" + start + "-" + end))
+                            .andExpect(status().isPartialContent())
+                            .andExpect(header().longValue(HttpHeaders.CONTENT_LENGTH, 8))
+                            .andExpect(header().string(HttpHeaders.CONTENT_RANGE,
+                                    "bytes " + start + "-" + end + "/" + expected.length))
+                            .andExpect(content().bytes(Arrays.copyOfRange(expected, start, end + 1)))
+                            .andExpect(header().doesNotExist(HttpHeaders.SET_COOKIE));
+                }
+            }
+        }
+        mockMvc.perform(get("/api/stats/releases/" + RELEASE_VERSION))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.allReleaseDownloads").value(0));
+    }
+
+    @Test
+    void cocofoldPathsRejectMissingFilesAndPathsOutsideTheirRoots() throws Exception {
+        // The alias is rooted at downloads/cocofold; the generic route is rooted at downloads.
+        for (String path : List.of(
+                "/cocofold/missing.tar.gz",
+                "/downloads/cocofold/missing.tar.gz",
+                "/cocofold/" + RELEASE_FILE,
+                "/downloads/cocofold/" + RELEASE_FILE,
+                "/cocofold/../" + RELEASE_FILE,
+                "/cocofold/%2e%2e/" + RELEASE_FILE,
+                "/cocofold/%2e%2e%2f" + RELEASE_FILE,
+                "/downloads/cocofold/../../" + OUTSIDE_DOWNLOAD_FILE,
+                "/downloads/cocofold/%2e%2e/%2e%2e/" + OUTSIDE_DOWNLOAD_FILE,
+                "/downloads/cocofold/%2e%2e%2f%2e%2e%2f" + OUTSIDE_DOWNLOAD_FILE)) {
+            mockMvc.perform(get(URI.create(path)))
+                    .andExpect(result -> assertEquals(404, result.getResponse().getStatus(), path));
         }
         assertEquals(0, downloadCount(RELEASE_VERSION));
     }
@@ -470,12 +530,17 @@ class MetricsWebIntegrationTest {
     private static Path createTestFixtures() {
         try {
             Path root = Files.createTempDirectory("coco-metrics-web-test-");
+            Files.writeString(root.resolve(OUTSIDE_DOWNLOAD_FILE), "must remain outside all download roots");
             Path downloads = Files.createDirectories(root.resolve("downloads"));
             Files.write(downloads.resolve(RELEASE_FILE), RELEASE_CONTENT);
             Files.write(downloads.resolve(UNREGISTERED_FILE), UNREGISTERED_CONTENT);
             Path emodelg = Files.createDirectories(downloads.resolve("emodelg"));
             for (String fileName : EMODELG_FILES) {
                 Files.write(emodelg.resolve(fileName), ("test bundle: " + fileName).getBytes(StandardCharsets.UTF_8));
+            }
+            Path cocofold = Files.createDirectories(downloads.resolve("cocofold"));
+            for (String fileName : COCOFOLD_FILES) {
+                Files.write(cocofold.resolve(fileName), ("test bundle: " + fileName).getBytes(StandardCharsets.UTF_8));
             }
             return root;
         } catch (IOException exception) {

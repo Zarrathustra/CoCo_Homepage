@@ -214,7 +214,7 @@ java -jar target/coco-homepage-0.3.5.jar
 - `coco_logo.png`
 - `img/**`
 
-CoCo 发布包和辅助资源包不会进入 JAR。Spring Boot 将 `/downloads/**` 映射到外部下载目录，并将 `/emodelg/**` 兼容映射到该目录的 `emodelg/` 子目录：
+CoCo 发布包和辅助资源包不会进入 JAR。Spring Boot 将 `/downloads/**` 映射到外部下载目录，并将 `/emodelg/**` 和 `/cocofold/**` 分别映射到该目录的 `emodelg/` 和 `cocofold/` 子目录：
 
 ```text
 /opt/coco-homepage/
@@ -225,9 +225,15 @@ CoCo 发布包和辅助资源包不会进入 JAR。Spring Boot 将 `/downloads/*
     ├── coco-0.2.0.tar.gz
     ├── coco-0.3.2.tar.gz
     ├── coco-0.3.5.tar.gz
-    └── emodelg/
-        ├── emodelg-so3-2.2.0-20261011.tar.gz
-        └── emodelg-models-2.2.0-20261011.tar.gz
+    ├── emodelg/
+    │   ├── emodelg-so3-2.2.0-20261011.tar.gz
+    │   └── emodelg-models-2.2.0-20261011.tar.gz
+    └── cocofold/
+        ├── cocofold-models-protenix-1.0.2-r1.tar.gz
+        ├── cocofold-common-protenix-1.0.2-r1.tar.gz
+        ├── LICENSE-Protenix.txt
+        ├── SHA256SUMS
+        └── assets-manifest.json
 ```
 
 生产环境可以这样启动：
@@ -246,9 +252,18 @@ java -jar /opt/coco-homepage/coco-homepage-0.3.5.jar
 
 ### 辅助资源下载路由
 
-CoCo 的 Environment Check 使用 `https://cocoproject.org.cn/emodelg/` 下载资源。服务器文件仍放在 `COCO_DOWNLOAD_DIR/emodelg/`，无需复制到第二个目录。每个文件同时支持 `/emodelg/<文件名>` 和 `/downloads/emodelg/<文件名>`，直接返回原始文件，并支持 `GET`、`HEAD` 和字节范围请求。这些资源不注册为 CoCo release，也不计入首页下载总量。
+辅助资源直接返回原始文件，支持 `GET`、`HEAD` 和字节范围请求。它们不注册为 CoCo release，也不计入首页下载总量。
 
-兼容路由由 Java 提供，因此上线时需替换网站 JAR 并重启应用，仅更新 HTML 不会加载该路由。反向代理应将 `/emodelg/` 和 `/downloads/` 请求交给该应用，或将两者映射到上述相同的实际文件。部署后检查两个 CoCo 使用的地址：
+兼容路由由 Java 提供，因此上线时需替换网站 JAR 并重启应用，仅更新 HTML 不会加载该路由。反向代理应将 `/downloads/`、`/emodelg/` 和 `/cocofold/` 请求交给该应用，或按下表映射到相同的实际文件，并保留 `HEAD` 和 `Range` 支持。
+
+| 服务器目录 | 应用使用的 URL 前缀 | 同文件的下载路径 |
+| --- | --- | --- |
+| `COCO_DOWNLOAD_DIR/emodelg/` | `/emodelg/` | `/downloads/emodelg/` |
+| `COCO_DOWNLOAD_DIR/cocofold/` | `/cocofold/` | `/downloads/cocofold/` |
+
+#### EModelG
+
+CoCo 的 Environment Check 使用 `https://cocoproject.org.cn/emodelg/` 下载资源。服务器文件放在 `COCO_DOWNLOAD_DIR/emodelg/`，无需复制到第二个目录。部署后检查两个 CoCo 使用的地址：
 
 ```bash
 curl --fail --head https://cocoproject.org.cn/emodelg/emodelg-so3-2.2.0-20261011.tar.gz
@@ -256,6 +271,41 @@ curl --fail --head https://cocoproject.org.cn/emodelg/emodelg-models-2.2.0-20261
 ```
 
 应返回 `200`，对应 `Content-Length` 分别为 `395653505` 和 `1115143034`。网站已展示 EModelG 产品介绍；v0.3.5 安装指南包含资源下载与 Phenix 配置说明。上述资源路由与 CoCo 主下载分别维护。
+
+#### CoCoFold / Protenix
+
+资源版本为 `protenix-1.0.2-r1`。以下五个文件已集中在本地 `/Users/hmx/Protenix_Resources/cocofold/`；将整个 `cocofold/` 目录上传到服务器的 `COCO_DOWNLOAD_DIR/` 下，形成 `COCO_DOWNLOAD_DIR/cocofold/`：
+
+- `cocofold-models-protenix-1.0.2-r1.tar.gz`
+- `cocofold-common-protenix-1.0.2-r1.tar.gz`
+- `LICENSE-Protenix.txt`
+- `SHA256SUMS`
+- `assets-manifest.json`
+
+两份压缩包和许可证随资源一同提供；校验文件与 manifest 用于人工核对，应用以 CoCo 和 CoCoShed 内嵌的可信目录为准。保留压缩包的原文件名和字节，不解包、不重新打包。`checkpoint/`、`common/`、根目录散装 `.pt`、`provenance/` 和验证报告保留在本地，无需上传。辅助资源版本不改变首页的 CoCo 发布版本。
+
+| 压缩包 | 大小（字节） | SHA-256 |
+| --- | ---: | --- |
+| `cocofold-models-protenix-1.0.2-r1.tar.gz` | 1385704778 | `632103ac260533d18642da61e976bbf1625f5193fda07f74559b6d4f81fa56cd` |
+| `cocofold-common-protenix-1.0.2-r1.tar.gz` | 214999422 | `098fa612694445adef02720f25a106ffc66042d986e7a99292eec4d7ff83a6e5` |
+
+上传后在服务器的 `downloads/cocofold/` 目录校验（使用自定义 `COCO_DOWNLOAD_DIR` 时替换路径）：
+
+```bash
+cd /opt/coco-homepage/downloads/cocofold
+sha256sum -c SHA256SUMS
+```
+
+macOS 可使用 `shasum -a 256 -c SHA256SUMS`。部署新 JAR 并重启后检查实际公开地址：
+
+```bash
+curl --fail --head https://cocoproject.org.cn/cocofold/cocofold-models-protenix-1.0.2-r1.tar.gz
+curl --fail --head https://cocoproject.org.cn/cocofold/cocofold-common-protenix-1.0.2-r1.tar.gz
+curl --fail --silent --show-error --range 0-15 --dump-header - --output /dev/null https://cocoproject.org.cn/cocofold/cocofold-models-protenix-1.0.2-r1.tar.gz
+curl --fail --silent --show-error --range 8-15 --dump-header - --output /dev/null https://cocoproject.org.cn/cocofold/cocofold-common-protenix-1.0.2-r1.tar.gz
+```
+
+两个 HEAD 请求应返回 `200`、`Accept-Ranges: bytes` 和上表对应的 `Content-Length`。两个 Range 请求应返回 `206`，`Content-Range` 分别为 `bytes 0-15/1385704778` 和 `bytes 8-15/214999422`。将 URL 前缀替换为 `/downloads/cocofold/` 时应得到同样的结果。
 
 ## 访问与下载统计
 

@@ -31,8 +31,9 @@ public class DownloadResourceConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         addDownloadLocation(registry, "/downloads/**", downloadDirectory);
-        // CoCo's Environment Check uses /emodelg/ for these externally hosted bundles.
+        // CoCo's resource catalogs use these aliases for externally hosted bundles.
         addDownloadLocation(registry, "/emodelg/**", downloadDirectory.resolve("emodelg"));
+        addDownloadLocation(registry, "/cocofold/**", downloadDirectory.resolve("cocofold"));
     }
 
     private static void addDownloadLocation(
