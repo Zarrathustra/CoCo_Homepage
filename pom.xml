@@ -50,6 +50,12 @@
           <include>img/**</include>
           <include>fonts/**</include>
         </includes>
+        <excludes>
+          <exclude>img/Structure_*.png</exclude>
+          <exclude>img/DAG_*.png</exclude>
+          <exclude>img/2D_Reconstruction_*.png</exclude>
+          <exclude>img/EModelG_*.png</exclude>
+        </excludes>
       </resource>
       <resource>
         <directory>src/main/resources</directory>

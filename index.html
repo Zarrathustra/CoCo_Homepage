@@ -14,7 +14,7 @@
     <header class="site-header" aria-label="Primary navigation">
       <nav class="nav-shell">
         <a class="brand-mark" href="#top" data-nav="home" aria-label="CoCo Project home">
-          <img src="coco_logo.png" alt="CoCo coconut logo" width="46" height="46">
+          <img src="img/coco-logo-144.webp" alt="CoCo coconut logo" width="46" height="46">
           <span>
             <strong><span class="brand-name">CoCo</span> <span class="brand-project">Project</span></strong>
             <small class="brand-tagline"><span class="co-source-cryo">Cryo</span>-EM <span class="co-source-copilot">Co</span>pilot</small>
@@ -86,11 +86,13 @@
             <figure class="coco-gui-figure" role="img" aria-label="CoCo GUI preview: Structure view in light mode">
               <img
                 class="coco-gui-image"
-                src="img/Structure_Light.png"
+                src="img/gui/Structure_Light-1600.webp"
+                srcset="img/gui/Structure_Light-1600.webp 1600w, img/gui/Structure_Light-2560.webp 2560w"
+                sizes="(min-width: 82rem) 1180px, 92vw"
                 alt=""
-                width="5120"
-                height="2880"
-                fetchpriority="high"
+                width="1600"
+                height="900"
+                loading="lazy"
                 decoding="async"
                 aria-hidden="true"
               >
@@ -476,7 +478,7 @@
           </div>
           <figure>
             <a href="img/emodelg-structural-examples.png" target="_blank" rel="noopener" aria-label="Open the full-size structural examples">
-              <img src="img/emodelg-structural-examples.png" alt="Three structural examples: a protein assembly, a glycosylated protein with a close-up of its glycan, and a glycan-rich complex" class="module-page-hero-img" width="757" height="192" decoding="async">
+              <img src="img/emodelg-structural-examples.png" alt="Three structural examples: a protein assembly, a glycosylated protein with a close-up of its glycan, and a glycan-rich complex" class="module-page-hero-img" width="757" height="192" loading="lazy" decoding="async">
             </a>
             <figcaption class="video-caption">From protein structures to glycoproteins and glycan-rich complexes.</figcaption>
           </figure>
@@ -3113,7 +3115,7 @@ modules.lock</code></pre>
       <div class="footer-card">
         <div class="footer-main">
           <div class="footer-brand">
-            <img src="coco_logo.png" alt="" width="42" height="30" aria-hidden="true">
+            <img src="img/coco-logo-144.webp" alt="" width="32" height="32" aria-hidden="true" loading="lazy" decoding="async">
             <span>CoCo Project</span>
           </div>
           <p>A shared cryo-EM workspace for data preparation, reconstruction, and analysis with CryoSieve, CryoPROS, and EModelG.</p>
@@ -3205,25 +3207,67 @@ modules.lock</code></pre>
         var cocoGuiViews = {
           structure: {
             label: 'Structure view',
-            light: 'img/Structure_Light.png',
-            dark: 'img/Structure_Dark.png'
+            light: 'Structure_Light',
+            dark: 'Structure_Dark'
           },
           dag: {
             label: 'DAG workflow',
-            light: 'img/DAG_Light.png',
-            dark: 'img/DAG_Dark.png'
+            light: 'DAG_Light',
+            dark: 'DAG_Dark'
           },
           '2d': {
             label: '2D reconstruction',
-            light: 'img/2D_Reconstruction_Light.png',
-            dark: 'img/2D_Reconstruction_Dark.png'
+            light: '2D_Reconstruction_Light',
+            dark: '2D_Reconstruction_Dark'
           },
           emodelg: {
             label: 'EModelG modeling',
-            light: 'img/EModelG_Light.png',
-            dark: 'img/EModelG_Dark.png'
+            light: 'EModelG_Light',
+            dark: 'EModelG_Dark'
           }
         };
+        var cocoGuiShown = 'Structure_Light';
+        var cocoGuiWarmed = { Structure_Light: true };
+        var cocoGuiConnection = navigator.connection || {};
+        var cocoGuiSaveData = Boolean(cocoGuiConnection.saveData) || /(^|-)2g$/.test(cocoGuiConnection.effectiveType || '');
+
+        function cocoGuiSrcset(name) {
+          return 'img/gui/' + name + '-1600.webp 1600w, img/gui/' + name + '-2560.webp 2560w';
+        }
+
+        function cocoGuiTheme() {
+          return cocoGuiCard.getAttribute('data-coco-gui-theme') === 'dark' ? 'dark' : 'light';
+        }
+
+        function cocoGuiLayout() {
+          var layout = cocoGuiCard.getAttribute('data-coco-gui-layout');
+          return Object.prototype.hasOwnProperty.call(cocoGuiViews, layout) ? layout : 'structure';
+        }
+
+        // Fetch a preview only when it is likely to be shown next; the image picks its width from sizes.
+        function warmCocoGuiImage(name) {
+          if (!name || cocoGuiWarmed[name]) return;
+          cocoGuiWarmed[name] = true;
+          var probe = new Image();
+          probe.decoding = 'async';
+          probe.sizes = cocoGuiImage.getAttribute('sizes');
+          probe.srcset = cocoGuiSrcset(name);
+        }
+
+        function warmCocoGuiTheme(theme) {
+          if (cocoGuiSaveData) return;
+          Object.keys(cocoGuiViews).forEach(function (layout) {
+            warmCocoGuiImage(cocoGuiViews[layout][theme]);
+          });
+        }
+
+        function whenIdle(callback) {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(callback, { timeout: 4000 });
+          } else {
+            window.setTimeout(callback, 1200);
+          }
+        }
 
         function setCocoGuiState(theme, layout) {
           if (!cocoGuiCard) return;
@@ -3234,8 +3278,11 @@ modules.lock</code></pre>
           cocoGuiCard.setAttribute('data-coco-gui-theme', nextTheme);
           cocoGuiCard.setAttribute('data-coco-gui-layout', nextLayout);
 
-          if (cocoGuiImage && cocoGuiImage.getAttribute('src') !== nextView[nextTheme]) {
-            cocoGuiImage.setAttribute('src', nextView[nextTheme]);
+          if (cocoGuiImage && cocoGuiShown !== nextView[nextTheme]) {
+            cocoGuiShown = nextView[nextTheme];
+            cocoGuiWarmed[cocoGuiShown] = true;
+            cocoGuiImage.setAttribute('srcset', cocoGuiSrcset(cocoGuiShown));
+            cocoGuiImage.setAttribute('src', 'img/gui/' + cocoGuiShown + '-1600.webp');
           }
 
           if (cocoGuiFigure) {
@@ -3255,26 +3302,30 @@ modules.lock</code></pre>
         }
 
         if (cocoGuiCard && cocoGuiStateButtons.length) {
-          // Download every preview before interaction without decoding eight 5K images at once.
-          Object.keys(cocoGuiViews).forEach(function (layout) {
-            ['light', 'dark'].forEach(function (theme) {
-              var src = cocoGuiViews[layout][theme];
-              if (src === cocoGuiImage.getAttribute('src')) return;
-              var preload = document.createElement('link');
-              preload.rel = 'preload';
-              preload.as = 'image';
-              preload.href = src;
-              preload.setAttribute('fetchpriority', 'low');
-              document.head.appendChild(preload);
-            });
-          });
           setCocoGuiState('light', 'structure');
           for (var i = 0; i < cocoGuiStateButtons.length; i += 1) {
             cocoGuiStateButtons[i].addEventListener('click', function () {
-              var nextTheme = this.getAttribute('data-coco-gui-theme-option') || cocoGuiCard.getAttribute('data-coco-gui-theme');
-              var nextLayout = this.getAttribute('data-coco-gui-layout-option') || cocoGuiCard.getAttribute('data-coco-gui-layout');
+              var nextTheme = this.getAttribute('data-coco-gui-theme-option') || cocoGuiTheme();
+              var nextLayout = this.getAttribute('data-coco-gui-layout-option') || cocoGuiLayout();
               setCocoGuiState(nextTheme, nextLayout);
+              whenIdle(function () { warmCocoGuiTheme(cocoGuiTheme()); });
             });
+            ['pointerenter', 'focus'].forEach(function (eventName) {
+              cocoGuiStateButtons[i].addEventListener(eventName, function () {
+                var theme = this.getAttribute('data-coco-gui-theme-option') || cocoGuiTheme();
+                var layout = this.getAttribute('data-coco-gui-layout-option') || cocoGuiLayout();
+                warmCocoGuiImage(cocoGuiViews[layout][theme]);
+              });
+            });
+          }
+
+          if ('IntersectionObserver' in window) {
+            var cocoGuiObserver = new IntersectionObserver(function (entries) {
+              if (!entries[0].isIntersecting) return;
+              cocoGuiObserver.disconnect();
+              whenIdle(function () { warmCocoGuiTheme(cocoGuiTheme()); });
+            }, { rootMargin: '200px 0px' });
+            cocoGuiObserver.observe(cocoGuiCard);
           }
         }
 
