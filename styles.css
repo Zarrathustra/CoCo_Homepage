@@ -277,7 +277,7 @@
     display: block;
     margin-top: 0.18rem;
     color: var(--ink-soft);
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: 0.045em;
@@ -507,8 +507,8 @@
   }
 
   .download-stat {
-    color: var(--ink-soft);
-    font-size: 0.78rem;
+    color: var(--ink-muted);
+    font-size: 0.8125rem;
     font-variant-numeric: tabular-nums;
     font-weight: 500;
     line-height: 1.5rem;
@@ -1669,7 +1669,7 @@
 
   .release-version-path small {
     color: var(--ink-soft);
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
   }
@@ -1887,7 +1887,7 @@
 
   .changelog-improvement-list article > span {
     color: var(--coconut);
-    font-size: 0.74rem;
+    font-size: 0.75rem;
     font-weight: 700;
   }
 
@@ -2084,7 +2084,7 @@
 
   .install-hero-facts dt {
     color: var(--ink-soft);
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.11em;
     text-transform: uppercase;
@@ -2269,7 +2269,7 @@
 
   .install-code-label {
     color: oklch(82% 0.0394 145);
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.11em;
     text-transform: uppercase;
@@ -2281,12 +2281,13 @@
     margin: 0;
     overflow-x: auto;
     color: inherit;
-    font-size: 0.86rem;
+    font-size: 0.8rem;
     line-height: 1.55;
   }
 
   .install-command code {
     color: inherit;
+    font-size: inherit;
     white-space: pre;
   }
 
@@ -2803,8 +2804,8 @@
     }
 
     .install-hero-facts dt {
-      font-size: 0.58rem;
-      letter-spacing: 0.07em;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
     }
 
     .install-hero-facts dd {
@@ -2898,7 +2899,7 @@
       margin-top: 0.05rem;
       padding: 0.2rem 0.44rem;
       border-radius: 999px;
-      font-size: 0.68rem;
+      font-size: 0.75rem;
     }
 
     .install-section--protocol .install-code-label {
@@ -3027,7 +3028,7 @@
 
   @media (max-width: 22rem) {
     .install-command pre {
-      font-size: 0.74rem;
+      font-size: 0.75rem;
     }
   }
 
@@ -3360,6 +3361,21 @@
     .coco-gui-segmented button,
     .coco-gui-theme button {
       min-height: 48px;
+    }
+
+    .brand-mark {
+      min-height: 44px;
+    }
+
+    .citation-link {
+      padding-block: 0.7rem;
+      margin-block: -0.7rem;
+    }
+
+    .download-note a,
+    .footer-contact a,
+    .footer-legal a {
+      padding-block: 0.8rem;
     }
   }
 

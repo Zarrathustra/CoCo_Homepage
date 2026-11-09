@@ -172,6 +172,8 @@ The palette is Sage Paper: faintly tinted paper neutrals and green-grey ink carr
 
 **The Calm Hierarchy Rule.** Use size, weight, and measure for hierarchy. Do not add decorative type effects, gradient text, or noisy emphasis.
 
+**The 12px Floor Rule.** No text renders below 0.75rem. Nunito Sans has a small x-height, so labels, metadata, and mobile overrides must respect the floor.
+
 **The No Mono Costume Rule.** Do not use monospace as shorthand for scientific software. This brand is technical through structure, not terminal styling.
 
 ## 4. Elevation

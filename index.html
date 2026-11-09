@@ -6,7 +6,7 @@
     <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, including CryoSieve, CryoPROS, and EModelG.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
     <link rel="preload" href="fonts/nunito-sans-var.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=fa42ed0d4ed8">
+    <link rel="stylesheet" href="styles.css?v=d8451047c0d8">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -166,7 +166,7 @@
       <section class="download-section" id="download" aria-labelledby="download-title">
         <div class="download-panel">
           <div class="download-copy">
-            <div class="section-kicker">Primary action</div>
+            <div class="section-kicker">Current release</div>
             <h2 id="download-title">One download. A connected workflow.</h2>
             <div class="download-actions">
               <a class="button button-primary" href="/downloads/coco-0.3.5.tar.gz" download>Download CoCo v0.3.5</a>
@@ -1026,12 +1026,12 @@ app.auth.users-file=auth/users.json</code></pre>
             </div>
             <p>Keep the same installation path and backend working directory across upgrades. With default settings, these directories inside <code>coco/</code> contain persistent operator state:</p>
             <ul class="install-inline-list">
-              <li><code>projectConfig/</code> — registered project references.</li>
-              <li><code>pageParam/</code> — saved page parameters and scheduler lanes.</li>
-              <li><code>path/</code> — external connection settings.</li>
-              <li><code>auth/</code> — users, CryoSPARC sessions, profiles, and path mappings.</li>
-              <li><code>settings/</code> — artifact-signing key and SSD cache settings.</li>
-              <li><code>bookmarks/</code> and <code>user-settings/</code> — filesystem bookmarks and user preferences.</li>
+              <li><code>projectConfig/</code>: registered project references.</li>
+              <li><code>pageParam/</code>: saved page parameters and scheduler lanes.</li>
+              <li><code>path/</code>: external connection settings.</li>
+              <li><code>auth/</code>: users, CryoSPARC sessions, profiles, and path mappings.</li>
+              <li><code>settings/</code>: artifact-signing key and SSD cache settings.</li>
+              <li><code>bookmarks/</code> and <code>user-settings/</code>: filesystem bookmarks and user preferences.</li>
             </ul>
             <p>If the user-store or artifact-signing-key location is overridden, back up its actual path. CryoSPARC account state follows the user-store parent directory. Project and job data may be outside the installation; back up those directories too. <code>projectConfig/</code> stores references to them.</p>
             <ol class="install-numbered-list">
