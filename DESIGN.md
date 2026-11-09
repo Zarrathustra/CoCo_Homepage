@@ -220,11 +220,12 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 
 ### Navigation
 
-- **Style:** Sticky top navigation with a warm translucent paper background and a single line divider.
-- **Typography:** Semibold sans, compact and readable.
+- **Style:** One sticky header for every view: solid paper background, a single line divider, and the same content width as the page sections.
+- **Layout:** Brand on the left, text links right-aligned, then the Download CoCo pill. The brand reads "CoCo" (600) and "Project" (400), with an uppercase "Cryo-EM Copilot" tagline whose Cryo and Co are tinted slate and coconut.
+- **Typography:** Nunito Sans 500 for links, without pill backgrounds.
 - **Dropdown:** Rounded panel, soft shadow, paper fill. Module options are grouped as title plus concise descriptor.
-- **States:** Hover uses leaf-soft backgrounds and leaf-deep text. Keyboard focus must remain visible.
-- **Mobile:** Navigation wraps instead of collapsing into a modal. Keep touch targets at least 48px on coarse pointers.
+- **States:** Hover turns link text leaf-deep; dropdown items use leaf-soft backgrounds. Keyboard focus must remain visible.
+- **Mobile:** Links wrap to a second row instead of collapsing into a modal. Below 30rem the header CTA shows "Download" and keeps the version in its accessible name. Keep touch targets at least 48px on coarse pointers.
 
 ### Module Ledger
 
