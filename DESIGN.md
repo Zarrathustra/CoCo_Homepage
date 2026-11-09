@@ -218,6 +218,12 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 - **Border:** Quiet Pencil Line borders. No thick side stripes.
 - **Internal Padding:** Use fluid padding for major panels and compact fixed padding for rows, tags, and citations.
 
+### First Screen
+
+- **Structure:** Eyebrow, three-line display title, two-line lede, the Download CoCo pill with its Linux mark and version note, then an Explore modules text link. A decorative density-map gallery (`aria-hidden`, WebP at 1x and 2x) sits beside the copy.
+- **Layout:** The first screen shares the page container, so its left edge matches the header and every section. From 58rem it is two columns (copy 0.9fr, gallery 1.1fr); below that the gallery follows the copy at no more than 34rem wide.
+- **Scale:** Sizes grow with the viewport and stop at their 1440px values, because the container stops growing there. Use `clamp()` and rem, never artboard units or absolute positioning.
+
 ### Navigation
 
 - **Style:** One sticky header for every view: solid paper background, a single line divider, and the same content width as the page sections.
