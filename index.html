@@ -6,7 +6,7 @@
     <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, including CryoSieve, CryoPROS, and EModelG.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
     <link rel="preload" href="fonts/nunito-sans-var.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=8ab89afa77c3">
+    <link rel="stylesheet" href="styles.css?v=fa42ed0d4ed8">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -76,13 +76,15 @@
         </div>
       </section>
 
-      <section class="hero-section" id="workspace" aria-label="CoCo graphical workspace preview">
+      <section class="hero-section" id="workspace" aria-labelledby="workspace-title">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">CoCo GUI</div>
+            <h2 id="workspace-title">Projects, jobs, and results in your browser.</h2>
+          </div>
+        </div>
         <div class="hero-grid">
-          <div class="workbench-card coco-gui-card" data-coco-gui-theme="light" data-coco-gui-layout="structure" aria-label="CoCo GUI preview">
-            <div class="workbench-toolbar" aria-hidden="true">
-              <span></span><span></span><span></span>
-              <strong>CoCo GUI</strong>
-            </div>
+          <div class="workbench-card coco-gui-card" data-coco-gui-theme="light" data-coco-gui-layout="structure">
             <figure class="coco-gui-figure" role="img" aria-label="CoCo GUI preview: Structure view in light mode">
               <img
                 class="coco-gui-image"
@@ -98,15 +100,16 @@
               >
             </figure>
             <div class="coco-gui-controls">
-              <div class="coco-gui-segmented" role="group" aria-label="CoCo GUI preview color mode">
-                <button type="button" data-coco-gui-theme-option="light" aria-pressed="true">Light</button>
-                <button type="button" data-coco-gui-theme-option="dark" aria-pressed="false">Dark</button>
-              </div>
               <div class="coco-gui-segmented coco-gui-segmented--views" role="group" aria-label="CoCo GUI preview view">
                 <button type="button" data-coco-gui-layout-option="structure" aria-pressed="true">Structure</button>
-                <button type="button" data-coco-gui-layout-option="dag" aria-pressed="false">DAG</button>
-                <button type="button" data-coco-gui-layout-option="2d" aria-pressed="false">2D</button>
+                <button type="button" data-coco-gui-layout-option="dag" aria-pressed="false">Job graph</button>
+                <button type="button" data-coco-gui-layout-option="2d" aria-pressed="false">2D classes</button>
                 <button type="button" data-coco-gui-layout-option="emodelg" aria-pressed="false">EModelG</button>
+              </div>
+              <p class="coco-gui-caption" aria-live="polite">Structure: open an imported or modeled structure with its sequence, 3D view, and summary beside the job details.</p>
+              <div class="coco-gui-theme" role="group" aria-label="CoCo GUI preview color mode">
+                <button type="button" data-coco-gui-theme-option="light" aria-pressed="true">Light</button>
+                <button type="button" data-coco-gui-theme-option="dark" aria-pressed="false">Dark</button>
               </div>
             </div>
           </div>
@@ -3204,24 +3207,29 @@ modules.lock</code></pre>
         var cocoGuiFigure = document.querySelector('.coco-gui-figure');
         var cocoGuiImage = document.querySelector('.coco-gui-image');
         var cocoGuiStateButtons = document.querySelectorAll('[data-coco-gui-theme-option], [data-coco-gui-layout-option]');
+        var cocoGuiCaption = document.querySelector('.coco-gui-caption');
         var cocoGuiViews = {
           structure: {
             label: 'Structure view',
+            caption: 'Structure: open an imported or modeled structure with its sequence, 3D view, and summary beside the job details.',
             light: 'Structure_Light',
             dark: 'Structure_Dark'
           },
           dag: {
-            label: 'DAG workflow',
+            label: 'Job graph',
+            caption: 'Job graph (DAG): see how the jobs in a project connect, from particle import to downstream analysis.',
             light: 'DAG_Light',
             dark: 'DAG_Dark'
           },
           '2d': {
-            label: '2D reconstruction',
+            label: '2D class averages',
+            caption: '2D classes: review class averages from 2D reconstruction, with the particle count and resolution of each class.',
             light: '2D_Reconstruction_Light',
             dark: '2D_Reconstruction_Dark'
           },
           emodelg: {
             label: 'EModelG modeling',
+            caption: 'EModelG: inspect a protein or glycan model built from a reconstructed density map.',
             light: 'EModelG_Light',
             dark: 'EModelG_Dark'
           }
@@ -3290,6 +3298,10 @@ modules.lock</code></pre>
               'aria-label',
               'CoCo GUI preview: ' + nextView.label + ' in ' + nextTheme + ' mode'
             );
+          }
+
+          if (cocoGuiCaption && cocoGuiCaption.textContent !== nextView.caption) {
+            cocoGuiCaption.textContent = nextView.caption;
           }
 
           for (var i = 0; i < cocoGuiStateButtons.length; i += 1) {

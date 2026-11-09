@@ -525,46 +525,6 @@
     box-shadow: var(--shadow);
   }
 
-  .workbench-toolbar {
-    position: relative;
-    z-index: 1;
-    min-height: 58px;
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.9rem 1rem;
-    border-bottom: 1px solid var(--line);
-    background: oklch(97% 0.0083 100 / 0.88);
-  }
-
-  .workbench-toolbar span {
-    width: 0.68rem;
-    height: 0.68rem;
-    border-radius: 50%;
-    background: var(--line-strong);
-  }
-
-  .workbench-toolbar span:nth-child(1) {
-    background: var(--coconut);
-  }
-
-  .workbench-toolbar span:nth-child(2) {
-    background: var(--leaf);
-  }
-
-  .workbench-toolbar span:nth-child(3) {
-    background: var(--slate);
-  }
-
-  .workbench-toolbar strong {
-    margin-left: 0.42rem;
-    color: var(--ink-muted);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
   .coco-gui-card {
     grid-column: 1 / -1;
     isolation: isolate;
@@ -600,11 +560,54 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.75rem clamp(0.75rem, 2vw, 1.25rem);
     width: 100%;
-    padding: 0.62rem clamp(0.72rem, 2vw, 1rem);
+    padding: 0.75rem clamp(0.75rem, 2vw, 1.1rem);
     border-top: 1px solid var(--line);
     background: oklch(97% 0.0077 100);
+  }
+
+  .coco-gui-caption {
+    flex: 1 1 18rem;
+    min-width: 0;
+    max-width: 62ch;
+    color: var(--ink-muted);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .coco-gui-theme {
+    display: inline-flex;
+    gap: 0.1rem;
+    margin-left: auto;
+    padding: 0.15rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper);
+  }
+
+  .coco-gui-theme button {
+    min-height: 1.85rem;
+    padding: 0.2rem 0.65rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition:
+      background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      color 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .coco-gui-theme button:hover {
+    color: var(--ink);
+  }
+
+  .coco-gui-theme button[aria-pressed="true"] {
+    background: var(--paper-warm);
+    color: var(--ink);
   }
 
   .coco-gui-segmented {
@@ -2569,6 +2572,14 @@
       align-items: flex-start;
     }
 
+    .coco-gui-caption {
+      flex: none;
+    }
+
+    .coco-gui-theme {
+      margin-left: 0;
+    }
+
     .coco-gui-segmented--views {
       width: 100%;
       grid-auto-flow: row;
@@ -3346,7 +3357,8 @@
     .nav-dropdown-trigger,
     .install-version-switcher a,
     .changelog-all-link,
-    .coco-gui-segmented button {
+    .coco-gui-segmented button,
+    .coco-gui-theme button {
       min-height: 48px;
     }
   }

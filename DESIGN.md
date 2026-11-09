@@ -239,11 +239,11 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 - **Interaction:** Rows are clickable with subtle background change and visible focus outline.
 - **Status:** CTFA is deferred until it is visible in CoCo. Public rows and navigation feature CryoSieve, CryoPROS, and EModelG. Retain the neutral row treatment and existing module accents.
 
-### Workbench Map
+### GUI Preview
 
-- **Style:** The signature component. It combines a GUI-like container, topographic contour lines, connector paths, and three featured module branches around the CoCo hub.
-- **Behavior:** Module nodes are keyboard accessible and scale slightly on hover.
-- **Rule:** The map must explain relationship first. It is not decorative wallpaper.
+- **Style:** A headed section with one large workbench card: the CoCo screenshot at 16:9, then a controls bar. No extra window chrome; the screenshots already include the browser toolbar.
+- **Controls:** A dark segmented group switches Structure, Job graph, 2D classes, and EModelG. A one-sentence live caption explains the current view and spells out abbreviations such as DAG. Light/Dark is a small paper-toned toggle at the end of the bar, visibly secondary to the view group.
+- **Rule:** The preview shows what CoCo looks like in use. Captions describe only what the screenshot shows.
 
 ### Figures and Tables
 
