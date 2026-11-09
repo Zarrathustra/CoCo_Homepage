@@ -48,6 +48,7 @@
           <include>styles.css</include>
           <include>coco_logo.png</include>
           <include>img/**</include>
+          <include>fonts/**</include>
         </includes>
       </resource>
       <resource>

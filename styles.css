@@ -1,5 +1,38 @@
 @layer reset, base, components, layout, responsive;
 
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("fonts/nunito-sans-var.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CoCo Serif is a subset of Charis SIL (SIL OFL 1.1), renamed for its reserved font name. */
+@font-face {
+  font-family: "CoCo Serif";
+  src: url("fonts/coco-serif-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CoCo Serif";
+  src: url("fonts/coco-serif-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CoCo Serif";
+  src: url("fonts/coco-serif-bold-italic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 @layer reset {
   *,
   *::before,
@@ -50,41 +83,41 @@
 @layer base {
   :root {
     color-scheme: light;
-    --paper: oklch(98.2% 0.012 88);
-    --paper-soft: oklch(96.1% 0.018 92);
-    --paper-warm: oklch(93.7% 0.026 84);
-    --ink: oklch(23% 0.036 71);
-    --ink-muted: oklch(42% 0.03 80);
-    --ink-soft: oklch(55% 0.026 92);
-    --line: oklch(84% 0.033 88);
-    --line-strong: oklch(72% 0.052 82);
-    --coconut: oklch(42% 0.105 58);
-    --coconut-deep: oklch(31% 0.078 52);
-    --coconut-soft: oklch(89% 0.048 72);
-    --leaf: oklch(50% 0.112 144);
-    --leaf-deep: oklch(35% 0.083 145);
-    --leaf-soft: oklch(91% 0.055 140);
-    --slate: oklch(45% 0.065 218);
-    --slate-soft: oklch(91% 0.035 216);
-    --focus: oklch(54% 0.15 142);
-    --shadow: 0 24px 70px oklch(38% 0.058 70 / 0.14);
-    --shadow-soft: 0 12px 38px oklch(38% 0.058 70 / 0.09);
+    --paper: oklch(97.5% 0.008 99);
+    --paper-soft: oklch(96% 0.01 101);
+    --paper-warm: oklch(93.6% 0.013 102);
+    --ink: oklch(32.3% 0.027 161);
+    --ink-muted: oklch(42% 0.024 155);
+    --ink-soft: oklch(51.6% 0.02 145);
+    --line: oklch(88% 0.014 110);
+    --line-strong: oklch(74% 0.024 115);
+    --coconut: oklch(43.7% 0.071 61);
+    --coconut-deep: oklch(32% 0.052 57);
+    --coconut-soft: oklch(90% 0.03 75);
+    --leaf: oklch(48% 0.075 152);
+    --leaf-deep: oklch(40.3% 0.061 152);
+    --leaf-soft: oklch(92.5% 0.03 150);
+    --slate: oklch(48% 0.071 214);
+    --slate-soft: oklch(92% 0.025 214);
+    --focus: oklch(52% 0.11 152);
+    --shadow: 0 24px 70px oklch(32% 0.026 155 / 0.12);
+    --shadow-soft: 0 12px 38px oklch(32% 0.026 155 / 0.08);
     --radius-xl: 34px;
     --radius-lg: 24px;
     --radius-md: 16px;
     --radius-sm: 10px;
     --space-page: clamp(1rem, 4vw, 4rem);
     --max-width: 1180px;
-    --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --font-serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
+    --font-sans: "Nunito Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-serif: Charter, "Bitstream Charter", "CoCo Serif", Cambria, serif;
   }
 
   body {
     min-height: 100vh;
     background:
-      radial-gradient(circle at 18% 12%, oklch(94% 0.045 139 / 0.38), transparent 30rem),
-      radial-gradient(circle at 86% 7%, oklch(94% 0.035 219 / 0.30), transparent 28rem),
-      linear-gradient(180deg, oklch(99.1% 0.010 92) 0%, oklch(98.0% 0.014 92) 52%, oklch(96.3% 0.018 88) 100%);
+      radial-gradient(circle at 18% 12%, oklch(94% 0.0328 146 / 0.38), transparent 30rem),
+      radial-gradient(circle at 86% 7%, oklch(94% 0.035 215 / 0.30), transparent 28rem),
+      linear-gradient(180deg, oklch(99.1% 0.0055 100) 0%, oklch(98% 0.0077 100) 52%, oklch(96.3% 0.0099 100) 100%);
     color: var(--ink);
     font-family: var(--font-sans);
     font-size: 16px;
@@ -100,14 +133,14 @@
     pointer-events: none;
     content: "";
     background-image:
-      linear-gradient(oklch(72% 0.032 88 / 0.055) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(72% 0.032 88 / 0.055) 1px, transparent 1px);
+      linear-gradient(oklch(72% 0.016 112 / 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(72% 0.016 112 / 0.055) 1px, transparent 1px);
     background-size: 44px 44px;
     mask-image: linear-gradient(180deg, black, transparent 72%);
   }
 
   ::selection {
-    background: oklch(83% 0.078 139 / 0.78);
+    background: oklch(83% 0.0569 146 / 0.78);
     color: var(--coconut-deep);
   }
 
@@ -124,7 +157,7 @@
   h2,
   h3 {
     color: var(--ink);
-    letter-spacing: -0.025em;
+    letter-spacing: -0.012em;
     line-height: 1.12;
     text-wrap: balance;
   }
@@ -133,19 +166,19 @@
     max-width: 18ch;
     font-family: var(--font-serif);
     font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-    font-weight: 650;
+    font-weight: 400;
   }
 
   h2 {
     max-width: 20ch;
     font-family: var(--font-serif);
     font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    font-weight: 650;
+    font-weight: 400;
   }
 
   h3 {
     font-size: clamp(1.25rem, 1.6vw, 1.45rem);
-    font-weight: 720;
+    font-weight: 600;
   }
 
   p {
@@ -166,7 +199,7 @@
     background: var(--paper);
     box-shadow: var(--shadow-soft);
     color: var(--ink);
-    font-weight: 750;
+    font-weight: 600;
     transform: translateY(-160%);
     transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -180,8 +213,8 @@
     top: 0;
     z-index: 10;
     padding: max(0.5rem, env(safe-area-inset-top)) var(--space-page) 0.5rem;
-    background: linear-gradient(180deg, oklch(98.2% 0.012 88 / 0.96), oklch(98.2% 0.012 88 / 0.82));
-    border-bottom: 1px solid oklch(84% 0.033 88 / 0.72);
+    background: linear-gradient(180deg, oklch(98.2% 0.0066 100 / 0.96), oklch(98.2% 0.0066 100 / 0.82));
+    border-bottom: 1px solid oklch(84% 0.0182 100 / 0.72);
   }
 
   .nav-shell {
@@ -210,13 +243,13 @@
   .brand-mark img,
   .footer-brand img {
     object-fit: contain;
-    filter: drop-shadow(0 8px 16px oklch(36% 0.08 58 / 0.15));
+    filter: drop-shadow(0 8px 16px oklch(36% 0.0544 61 / 0.15));
   }
 
   .brand-mark strong,
   .footer-brand span {
     display: block;
-    font-weight: 820;
+    font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.05;
   }
@@ -226,7 +259,7 @@
     margin-top: 0.16rem;
     color: var(--ink-soft);
     font-size: 0.78rem;
-    font-weight: 680;
+    font-weight: 600;
     letter-spacing: 0.025em;
     text-transform: uppercase;
   }
@@ -251,7 +284,7 @@
     gap: 0.1rem;
     color: var(--ink-muted);
     font-size: 0.82rem;
-    font-weight: 720;
+    font-weight: 600;
     line-height: 1;
   }
 
@@ -284,7 +317,7 @@
     background: transparent;
     color: var(--ink-muted);
     font-size: inherit;
-    font-weight: 720;
+    font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
     transition:
@@ -316,10 +349,10 @@
     padding: 0.45rem;
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    background: oklch(98.8% 0.012 88 / 0.98);
+    background: oklch(98.8% 0.0066 100 / 0.98);
     box-shadow:
-      0 20px 48px oklch(38% 0.058 70 / 0.13),
-      0 0 0 1px oklch(72% 0.032 88 / 0.18);
+      0 20px 48px oklch(38% 0.0261 155 / 0.13),
+      0 0 0 1px oklch(72% 0.016 112 / 0.18);
     z-index: 20;
   }
 
@@ -342,7 +375,7 @@
     display: block;
     color: var(--ink);
     font-size: 0.93rem;
-    font-weight: 760;
+    font-weight: 600;
     letter-spacing: -0.015em;
   }
 
@@ -355,7 +388,7 @@
     display: block;
     color: var(--ink-soft);
     font-size: 0.78rem;
-    font-weight: 620;
+    font-weight: 500;
     line-height: 1.3;
   }
 
@@ -376,7 +409,7 @@
     border-radius: 999px;
     padding: 0.75rem 1.15rem;
     font-size: 0.95rem;
-    font-weight: 760;
+    font-weight: 600;
     line-height: 1.25;
     text-align: center;
     transition:
@@ -406,18 +439,18 @@
 
   .button-primary {
     background: var(--leaf-deep);
-    box-shadow: 0 6px 16px oklch(35% 0.083 145 / 0.14);
-    color: oklch(97% 0.018 132);
+    box-shadow: 0 6px 16px oklch(35% 0.0606 152 / 0.14);
+    color: oklch(97% 0.0131 139);
   }
 
   .button-primary:hover {
     background: var(--leaf);
-    box-shadow: 0 8px 20px oklch(35% 0.083 145 / 0.2);
+    box-shadow: 0 8px 20px oklch(35% 0.0606 152 / 0.2);
   }
 
   .button-secondary {
     border-color: var(--line-strong);
-    background: oklch(97% 0.016 88 / 0.78);
+    background: oklch(97% 0.0088 100 / 0.78);
     color: var(--coconut-deep);
   }
 
@@ -440,7 +473,7 @@
   .section-kicker {
     color: var(--leaf-deep);
     font-size: 0.78rem;
-    font-weight: 850;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
@@ -449,7 +482,7 @@
     display: inline-block;
     margin-right: 0.04em;
     font-style: italic;
-    font-weight: 760;
+    font-weight: 600;
     letter-spacing: -0.06em;
     white-space: nowrap;
   }
@@ -486,7 +519,7 @@
     color: var(--ink-soft);
     font-size: 0.78rem;
     font-variant-numeric: tabular-nums;
-    font-weight: 620;
+    font-weight: 500;
     line-height: 1.5rem;
   }
 
@@ -506,7 +539,7 @@
   .hero-facts dt {
     color: var(--ink-soft);
     font-size: 0.73rem;
-    font-weight: 820;
+    font-weight: 700;
     letter-spacing: 0.11em;
     text-transform: uppercase;
   }
@@ -515,7 +548,7 @@
     margin-top: 0.16rem;
     color: var(--ink);
     font-size: 1.02rem;
-    font-weight: 760;
+    font-weight: 600;
   }
 
   .workbench-card {
@@ -524,7 +557,7 @@
     border: 1px solid var(--line);
     border-radius: var(--radius-xl);
     background:
-      linear-gradient(180deg, oklch(98% 0.012 88), oklch(94.4% 0.026 86)),
+      linear-gradient(180deg, oklch(98% 0.0066 100), oklch(94.4% 0.0143 100)),
       var(--paper-soft);
     box-shadow: var(--shadow);
   }
@@ -538,7 +571,7 @@
     gap: 0.45rem;
     padding: 0.9rem 1rem;
     border-bottom: 1px solid var(--line);
-    background: oklch(97% 0.015 88 / 0.88);
+    background: oklch(97% 0.0083 100 / 0.88);
   }
 
   .workbench-toolbar span {
@@ -564,7 +597,7 @@
     margin-left: 0.42rem;
     color: var(--ink-muted);
     font-size: 0.78rem;
-    font-weight: 850;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -573,8 +606,8 @@
     grid-column: 1 / -1;
     isolation: isolate;
     background:
-      radial-gradient(circle at 88% 18%, oklch(88% 0.055 140 / 0.48), transparent 16rem),
-      linear-gradient(180deg, oklch(97.4% 0.015 88), oklch(94% 0.024 86));
+      radial-gradient(circle at 88% 18%, oklch(88% 0.0401 147 / 0.48), transparent 16rem),
+      linear-gradient(180deg, oklch(97.4% 0.0083 100), oklch(94% 0.0132 100));
   }
 
   .coco-gui-figure {
@@ -586,8 +619,8 @@
     margin: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 50%, oklch(96% 0.015 88), transparent 72%),
-      oklch(92.5% 0.022 88);
+      radial-gradient(circle at 50% 50%, oklch(96% 0.0083 100), transparent 72%),
+      oklch(92.5% 0.0121 100);
   }
 
   .coco-gui-image {
@@ -608,7 +641,7 @@
     width: 100%;
     padding: 0.62rem clamp(0.72rem, 2vw, 1rem);
     border-top: 1px solid var(--line);
-    background: oklch(97% 0.014 88);
+    background: oklch(97% 0.0077 100);
   }
 
   .coco-gui-segmented {
@@ -617,10 +650,10 @@
     grid-auto-columns: minmax(3.2rem, auto);
     gap: 0.18rem;
     padding: 0.22rem;
-    border: 1px solid oklch(93% 0.018 88 / 0.24);
+    border: 1px solid oklch(93% 0.0099 100 / 0.24);
     border-radius: 999px;
-    background: oklch(22% 0.03 74 / 0.88);
-    box-shadow: 0 12px 28px oklch(24% 0.046 72 / 0.24);
+    background: oklch(22% 0.0135 155 / 0.88);
+    box-shadow: 0 12px 28px oklch(24% 0.0207 155 / 0.24);
   }
 
   .coco-gui-segmented button {
@@ -629,10 +662,10 @@
     border: 0;
     border-radius: 999px;
     background: transparent;
-    color: oklch(91% 0.013 88);
+    color: oklch(91% 0.0072 100);
     cursor: pointer;
     font-size: 0.78rem;
-    font-weight: 850;
+    font-weight: 700;
     white-space: nowrap;
     transition:
       background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -640,13 +673,13 @@
   }
 
   .coco-gui-segmented button:hover {
-    background: oklch(96% 0.013 88 / 0.14);
+    background: oklch(96% 0.0072 100 / 0.14);
   }
 
   .coco-gui-segmented button[aria-pressed="true"] {
-    background: oklch(96% 0.013 88);
+    background: oklch(96% 0.0072 100);
     color: var(--coconut-deep);
-    box-shadow: 0 2px 8px oklch(12% 0.025 72 / 0.18);
+    box-shadow: 0 2px 8px oklch(12% 0.0113 155 / 0.18);
   }
 
   .workflow-map {
@@ -658,11 +691,11 @@
   }
 
   .map-bg {
-    fill: oklch(96.8% 0.018 88);
+    fill: oklch(96.8% 0.0099 100);
   }
 
   .grid-line {
-    stroke: oklch(76% 0.035 89 / 0.34);
+    stroke: oklch(76% 0.0175 112 / 0.34);
     stroke-width: 1;
   }
 
@@ -672,27 +705,27 @@
   }
 
   .contour-a {
-    stroke: oklch(53% 0.088 57 / 0.2);
+    stroke: oklch(53% 0.0598 60 / 0.2);
   }
 
   .contour-b {
-    stroke: oklch(48% 0.088 145 / 0.2);
+    stroke: oklch(48% 0.0642 152 / 0.2);
   }
 
   .contour-c {
-    stroke: oklch(50% 0.06 218 / 0.2);
+    stroke: oklch(50% 0.06 214 / 0.2);
   }
 
   .connector-lines path {
     fill: none;
-    stroke: oklch(42% 0.062 83 / 0.34);
+    stroke: oklch(42% 0.0279 155 / 0.34);
     stroke-dasharray: 7 9;
     stroke-linecap: round;
     stroke-width: 3.5;
   }
 
   .hub-shadow {
-    fill: oklch(35% 0.07 58 / 0.11);
+    fill: oklch(35% 0.0476 61 / 0.11);
     transform: translate(7px, 12px);
   }
 
@@ -701,7 +734,7 @@
   }
 
   .hub-rim {
-    fill: oklch(92% 0.036 98);
+    fill: oklch(92% 0.0198 100);
   }
 
   .hub-leaf {
@@ -709,55 +742,55 @@
   }
 
   .hub-leaf-b {
-    fill: oklch(57% 0.11 136);
+    fill: oklch(57% 0.0803 143);
   }
 
   .hub-title {
     fill: var(--coconut-deep);
     font-family: var(--font-serif);
     font-size: 34px;
-    font-weight: 750;
+    font-weight: 600;
   }
 
   .hub-subtitle {
     fill: var(--ink-muted);
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
 
   .module-node rect {
-    fill: oklch(98% 0.012 88 / 0.96);
+    fill: oklch(98% 0.0066 100 / 0.96);
     stroke: var(--line-strong);
     stroke-width: 1.6;
   }
 
   .module-sieve rect {
-    fill: oklch(94% 0.045 74 / 0.96);
+    fill: oklch(94% 0.0306 77 / 0.96);
   }
 
   .module-pros rect,
   .module-ctfa rect {
-    fill: oklch(93% 0.044 151 / 0.96);
+    fill: oklch(93% 0.0321 158 / 0.96);
   }
 
   .node-label {
     fill: var(--ink);
     font-size: 24px;
-    font-weight: 850;
+    font-weight: 700;
   }
 
   .node-body {
     fill: var(--ink-muted);
     font-size: 17px;
-    font-weight: 760;
+    font-weight: 600;
   }
 
   .node-meta {
     fill: var(--ink-soft);
     font-size: 14px;
-    font-weight: 760;
+    font-weight: 600;
     letter-spacing: 0.03em;
   }
 
@@ -770,7 +803,7 @@
   .annotation text {
     fill: var(--coconut-deep);
     font-size: 17px;
-    font-weight: 780;
+    font-weight: 600;
   }
 
   .section-heading,
@@ -792,8 +825,8 @@
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     background:
-      radial-gradient(circle at 14% 18%, oklch(91% 0.048 72 / 0.34), transparent 16rem),
-      linear-gradient(180deg, oklch(98.1% 0.012 88 / 0.92), oklch(95.7% 0.019 90 / 0.9));
+      radial-gradient(circle at 14% 18%, oklch(91% 0.0326 75 / 0.34), transparent 16rem),
+      linear-gradient(180deg, oklch(98.1% 0.0066 100 / 0.92), oklch(95.7% 0.0105 100 / 0.9));
     box-shadow: var(--shadow-soft);
   }
 
@@ -826,10 +859,10 @@
   .footer-legal a,
   .footer-contact a {
     color: var(--coconut-deep);
-    font-weight: 700;
+    font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 0.22em;
-    text-decoration-color: oklch(72% 0.052 82 / 0.45);
+    text-decoration-color: oklch(72% 0.026 112 / 0.45);
   }
 
   .footer-legal a:hover,
@@ -860,8 +893,8 @@
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     background:
-      radial-gradient(circle at 92% 8%, oklch(91% 0.046 140 / 0.5), transparent 10rem),
-      linear-gradient(180deg, oklch(98% 0.012 88 / 0.9), oklch(95% 0.022 86 / 0.82));
+      radial-gradient(circle at 92% 8%, oklch(91% 0.0336 147 / 0.5), transparent 10rem),
+      linear-gradient(180deg, oklch(98% 0.0066 100 / 0.9), oklch(95% 0.0121 100 / 0.82));
     box-shadow: var(--shadow-soft);
   }
 
@@ -892,7 +925,7 @@
     left: 1.08rem;
     width: 1px;
     content: "";
-    background: linear-gradient(180deg, var(--line-strong), oklch(72% 0.052 82 / 0.18));
+    background: linear-gradient(180deg, var(--line-strong), oklch(72% 0.026 112 / 0.18));
   }
 
   .relationship-steps li {
@@ -910,16 +943,16 @@
     height: 2.15rem;
     display: grid;
     place-items: center;
-    border: 1px solid oklch(72% 0.052 82 / 0.38);
+    border: 1px solid oklch(72% 0.026 112 / 0.38);
     border-radius: 50%;
-    background: oklch(97.4% 0.016 88);
+    background: oklch(97.4% 0.0088 100);
     color: var(--coconut-deep);
     font-size: 0.76rem;
-    font-weight: 850;
+    font-weight: 700;
   }
 
   .relationship-steps__branch span {
-    border-color: oklch(67% 0.064 218 / 0.4);
+    border-color: oklch(67% 0.064 214 / 0.4);
     background: var(--slate-soft);
     color: var(--slate);
   }
@@ -961,7 +994,7 @@
     border-radius: 50%;
     background: var(--paper-soft);
     color: var(--coconut-deep);
-    font-weight: 850;
+    font-weight: 700;
   }
 
   .module-copy p {
@@ -980,10 +1013,10 @@
   .download-note {
     border: 1px solid var(--line);
     border-radius: 999px;
-    background: oklch(97% 0.017 88 / 0.78);
+    background: oklch(97% 0.0094 100 / 0.78);
     color: var(--ink-muted);
     font-size: 0.86rem;
-    font-weight: 760;
+    font-weight: 600;
   }
 
   .module-tags span {
@@ -997,15 +1030,15 @@
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-xl);
     background:
-      linear-gradient(135deg, oklch(95% 0.04 140 / 0.72), transparent 48%),
-      linear-gradient(180deg, oklch(97.6% 0.016 88), oklch(93.8% 0.026 84));
+      linear-gradient(135deg, oklch(95% 0.0292 147 / 0.72), transparent 48%),
+      linear-gradient(180deg, oklch(97.6% 0.0088 100), oklch(93.8% 0.0143 100));
     box-shadow: var(--shadow-soft);
   }
 
   .download-panel::before {
     right: -3.5rem;
     bottom: -5rem;
-    background: oklch(76% 0.079 58 / 0.18);
+    background: oklch(76% 0.0537 61 / 0.18);
     filter: blur(5rem);
   }
 
@@ -1029,7 +1062,7 @@
   .download-note a {
     color: var(--coconut-deep);
     text-decoration: underline;
-    text-decoration-color: oklch(72% 0.052 82 / 0.56);
+    text-decoration-color: oklch(72% 0.026 112 / 0.56);
     text-underline-offset: 0.2em;
   }
 
@@ -1067,8 +1100,8 @@
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     background:
-      radial-gradient(circle at 8% 0%, oklch(91% 0.048 72 / 0.22), transparent 16rem),
-      linear-gradient(180deg, oklch(98.1% 0.012 88 / 0.82), oklch(96.1% 0.018 92 / 0.72));
+      radial-gradient(circle at 8% 0%, oklch(91% 0.0326 75 / 0.22), transparent 16rem),
+      linear-gradient(180deg, oklch(98.1% 0.0066 100 / 0.82), oklch(96.1% 0.0099 100 / 0.72));
   }
 
   .reference-publication {
@@ -1168,7 +1201,7 @@
     padding: 0.46rem 0.7rem;
     border-radius: 999px;
     font-size: 0.88rem;
-    font-weight: 720;
+    font-weight: 600;
     transition:
       background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
       color 180ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -1204,24 +1237,24 @@
 
   .module-page--sieve .module-page-hero {
     background:
-      radial-gradient(circle at 28% 18%, oklch(89% 0.048 72 / 0.68), transparent 26rem),
-      linear-gradient(180deg, oklch(97% 0.018 80), oklch(94.4% 0.026 82));
-    border: 1px solid oklch(82% 0.042 76 / 0.55);
+      radial-gradient(circle at 28% 18%, oklch(89% 0.0326 75 / 0.68), transparent 26rem),
+      linear-gradient(180deg, oklch(97% 0.0099 100), oklch(94.4% 0.0143 100));
+    border: 1px solid oklch(82% 0.0231 100 / 0.55);
   }
 
   .module-page--pros .module-page-hero,
   .module-page--ctfa .module-page-hero,
   .module-page--emodelg .module-page-hero {
     background:
-      radial-gradient(circle at 72% 22%, oklch(91% 0.055 140 / 0.62), transparent 26rem),
-      linear-gradient(180deg, oklch(97.6% 0.016 108), oklch(94.4% 0.026 112));
-    border: 1px solid oklch(80% 0.052 142 / 0.5);
+      radial-gradient(circle at 72% 22%, oklch(91% 0.0401 147 / 0.62), transparent 26rem),
+      linear-gradient(180deg, oklch(97.6% 0.0088 100), oklch(94.4% 0.0143 100));
+    border: 1px solid oklch(80% 0.038 149 / 0.5);
   }
 
   .module-page-kicker {
     color: var(--leaf-deep);
     font-size: 0.78rem;
-    font-weight: 850;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
@@ -1239,8 +1272,8 @@
     max-width: 18ch;
     font-family: var(--font-serif);
     font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-    font-weight: 650;
-    letter-spacing: -0.025em;
+    font-weight: 400;
+    letter-spacing: -0.012em;
     line-height: 1.12;
     color: var(--ink);
     text-wrap: balance;
@@ -1262,21 +1295,21 @@
     border: 1px solid var(--line-strong);
     border-radius: 999px;
     font-size: 0.82rem;
-    font-weight: 800;
+    font-weight: 700;
   }
 
   .module-page--sieve .module-page-version {
-    background: oklch(94% 0.045 74 / 0.65);
+    background: oklch(94% 0.0306 77 / 0.65);
     color: var(--coconut-deep);
-    border-color: oklch(76% 0.062 68 / 0.45);
+    border-color: oklch(76% 0.0422 71 / 0.45);
   }
 
   .module-page--pros .module-page-version,
   .module-page--ctfa .module-page-version,
   .module-page--emodelg .module-page-version {
-    background: oklch(93% 0.044 151 / 0.6);
+    background: oklch(93% 0.0321 158 / 0.6);
     color: var(--leaf-deep);
-    border-color: oklch(76% 0.068 148 / 0.4);
+    border-color: oklch(76% 0.0496 155 / 0.4);
   }
 
   .module-page-body {
@@ -1323,7 +1356,7 @@
   .modeling-steps li > span {
     color: var(--leaf-deep);
     font-size: 0.78rem;
-    font-weight: 850;
+    font-weight: 700;
   }
 
   .modeling-steps p {
@@ -1352,13 +1385,13 @@
     padding: clamp(1rem, 2.6vw, 1.4rem);
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    background: oklch(95.8% 0.025 142 / 0.56);
+    background: oklch(95.8% 0.0182 149 / 0.56);
   }
 
   .research-metrics dt {
     color: var(--ink-muted);
     font-size: 0.82rem;
-    font-weight: 720;
+    font-weight: 600;
   }
 
   .research-metrics dd {
@@ -1397,7 +1430,7 @@
   }
 
   .modeling-modes dt {
-    font-weight: 720;
+    font-weight: 600;
     color: var(--ink);
   }
 
@@ -1410,7 +1443,7 @@
     max-width: none;
     font-family: var(--font-sans);
     font-size: clamp(1.25rem, 1.6vw, 1.45rem);
-    font-weight: 720;
+    font-weight: 600;
     color: var(--ink);
   }
 
@@ -1450,8 +1483,8 @@
     padding: clamp(1rem, 3vw, 1.5rem);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    background: oklch(96.7% 0.021 82 / 0.68);
-    box-shadow: 0 16px 42px oklch(38% 0.058 70 / 0.07);
+    background: oklch(96.7% 0.0116 100 / 0.68);
+    box-shadow: 0 16px 42px oklch(38% 0.0261 155 / 0.07);
   }
 
   .module-page--sieve .module-page-section--publication .citation-block {
@@ -1475,7 +1508,7 @@
   .module-page--sieve .module-page-section .module-page-validated-note {
     margin-top: clamp(0.8rem, 2vw, 1.2rem);
     color: var(--ink);
-    font-weight: 760;
+    font-weight: 600;
   }
 
   .module-page--sieve .demo-table-wrap {
@@ -1512,8 +1545,8 @@
     padding: clamp(1rem, 3vw, 1.5rem);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    background: oklch(96.8% 0.021 112 / 0.66);
-    box-shadow: 0 16px 42px oklch(38% 0.058 70 / 0.07);
+    background: oklch(96.8% 0.0116 100 / 0.66);
+    box-shadow: 0 16px 42px oklch(38% 0.0261 155 / 0.07);
   }
 
   .module-page--pros .module-page-section--publication .citation-block {
@@ -1531,7 +1564,7 @@
   }
 
   .module-page--pros .module-page-hero-img {
-    border: 1px solid oklch(80% 0.052 142 / 0.42);
+    border: 1px solid oklch(80% 0.038 149 / 0.42);
     transform: rotate(-0.35deg);
   }
 
@@ -1581,7 +1614,7 @@
     border: 1px solid var(--line);
     border-radius: 999px;
     font-size: 0.86rem;
-    font-weight: 760;
+    font-weight: 600;
   }
 
   .module-page--sieve .module-page-tags {
@@ -1591,14 +1624,14 @@
   }
 
   .module-page--sieve .module-page-tags span {
-    background: oklch(94% 0.04 74 / 0.55);
+    background: oklch(94% 0.0272 77 / 0.55);
     color: var(--coconut-deep);
   }
 
   .module-page--pros .module-page-tags span,
   .module-page--ctfa .module-page-tags span,
   .module-page--emodelg .module-page-tags span {
-    background: oklch(93% 0.04 151 / 0.5);
+    background: oklch(93% 0.0292 158 / 0.5);
     color: var(--leaf-deep);
   }
 
@@ -1623,7 +1656,7 @@
 
   .module-row--link:hover,
   .module-row--current {
-    background: oklch(97.4% 0.018 88 / 0.85);
+    background: oklch(97.4% 0.0099 100 / 0.85);
   }
 
   .module-row--current .module-index {
@@ -1651,7 +1684,7 @@
   }
 
   .module-page--sieve .module-page-hero-img {
-    border: 1px solid oklch(82% 0.042 76 / 0.48);
+    border: 1px solid oklch(82% 0.0231 100 / 0.48);
     transform: rotate(0.45deg);
   }
 
@@ -1662,7 +1695,7 @@
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-soft);
-    background: oklch(94% 0.02 84);
+    background: oklch(94% 0.011 100);
   }
 
   .video-embed::before {
@@ -1689,7 +1722,7 @@
     color: var(--coconut-deep);
     text-decoration: underline;
     text-underline-offset: 0.2em;
-    text-decoration-color: oklch(72% 0.052 82 / 0.5);
+    text-decoration-color: oklch(72% 0.026 112 / 0.5);
   }
 
   .video-caption a:hover {
@@ -1723,7 +1756,7 @@
     margin-top: 0.65rem;
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    background: oklch(98% 0.012 88 / 0.72);
+    background: oklch(98% 0.0066 100 / 0.72);
   }
 
   .demo-table {
@@ -1740,7 +1773,7 @@
     padding: 0.72rem 0.9rem;
     color: var(--ink-muted);
     font-size: 0.78rem;
-    font-weight: 850;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     text-align: left;
@@ -1750,7 +1783,7 @@
   .demo-table td {
     padding: 0.62rem 0.9rem;
     color: var(--ink);
-    border-bottom: 1px solid oklch(84% 0.02 88 / 0.5);
+    border-bottom: 1px solid oklch(84% 0.011 100 / 0.5);
     white-space: nowrap;
   }
 
@@ -1762,7 +1795,7 @@
     color: var(--coconut-deep);
     text-decoration: underline;
     text-underline-offset: 0.2em;
-    text-decoration-color: oklch(72% 0.052 82 / 0.5);
+    text-decoration-color: oklch(72% 0.026 112 / 0.5);
   }
 
   .demo-table a:hover {
@@ -1776,7 +1809,7 @@
     margin-top: 0.55rem;
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    background: oklch(96% 0.02 82 / 0.65);
+    background: oklch(96% 0.011 100 / 0.65);
   }
 
   .citation-block p {
@@ -1792,10 +1825,10 @@
     width: fit-content;
     color: var(--coconut-deep);
     font-size: 0.86rem;
-    font-weight: 760;
+    font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 0.2em;
-    text-decoration-color: oklch(72% 0.052 82 / 0.5);
+    text-decoration-color: oklch(72% 0.026 112 / 0.5);
   }
 
   .citation-link:hover {
@@ -1844,8 +1877,8 @@
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-xl);
     background:
-      linear-gradient(135deg, oklch(94.8% 0.04 145 / 0.72), transparent 52%),
-      linear-gradient(180deg, oklch(98% 0.012 88), oklch(94.2% 0.025 86));
+      linear-gradient(135deg, oklch(94.8% 0.0292 152 / 0.72), transparent 52%),
+      linear-gradient(180deg, oklch(98% 0.0066 100), oklch(94.2% 0.0138 100));
     box-shadow: var(--shadow-soft);
   }
 
@@ -1858,7 +1891,7 @@
     max-width: 16ch;
     font-family: var(--font-serif);
     font-size: clamp(2.1rem, 4.4vw, 3.5rem);
-    font-weight: 650;
+    font-weight: 400;
     line-height: 1.12;
   }
 
@@ -1876,7 +1909,7 @@
     padding: 1rem;
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    background: oklch(98% 0.012 88 / 0.74);
+    background: oklch(98% 0.0066 100 / 0.74);
   }
 
   .release-version-path > span {
@@ -1887,7 +1920,7 @@
   .release-version-path small {
     color: var(--ink-soft);
     font-size: 0.7rem;
-    font-weight: 820;
+    font-weight: 700;
     text-transform: uppercase;
   }
 
@@ -1968,7 +2001,7 @@
     border-radius: 999px;
     color: var(--ink-muted);
     font-size: 0.75rem;
-    font-weight: 720;
+    font-weight: 600;
   }
 
   .changelog-status--current {
@@ -1991,7 +2024,7 @@
     align-items: center;
     color: var(--coconut-deep);
     font-size: 0.88rem;
-    font-weight: 720;
+    font-weight: 600;
     text-decoration: underline;
     text-decoration-color: var(--line-strong);
     text-underline-offset: 0.22em;
@@ -2035,7 +2068,7 @@
     background: var(--paper);
     color: var(--coconut-deep);
     font-size: 0.78rem;
-    font-weight: 850;
+    font-weight: 700;
   }
 
   .changelog-detail-list {
@@ -2051,7 +2084,7 @@
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    background: oklch(96.5% 0.012 215);
+    background: oklch(96.5% 0.012 211);
     box-shadow: var(--shadow-soft);
   }
 
@@ -2105,7 +2138,7 @@
   .changelog-improvement-list article > span {
     color: var(--coconut);
     font-size: 0.74rem;
-    font-weight: 850;
+    font-weight: 700;
   }
 
   .changelog-improvement-list article > div {
@@ -2128,7 +2161,7 @@
     padding: clamp(1.4rem, 4vw, 2.4rem);
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-lg);
-    background: oklch(96.2% 0.026 92 / 0.78);
+    background: oklch(96.2% 0.0143 100 / 0.78);
   }
 
   .changelog-release-actions > div:first-child {
@@ -2143,7 +2176,7 @@
     align-items: center;
     color: var(--coconut-deep);
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 600;
     text-decoration: underline;
     text-decoration-color: var(--line-strong);
     text-underline-offset: 0.2em;
@@ -2174,13 +2207,13 @@
 
   .install-page--archived .install-page-hero {
     background:
-      linear-gradient(180deg, oklch(97% 0.012 88), oklch(93.8% 0.018 88));
+      linear-gradient(180deg, oklch(97% 0.0066 100), oklch(93.8% 0.0099 100));
   }
 
   .install-page--archived .install-release-badge {
     border-style: dashed;
     border-color: var(--line-strong);
-    background: oklch(94.5% 0.012 88 / 0.72);
+    background: oklch(94.5% 0.0066 100 / 0.72);
     color: var(--ink-muted);
   }
 
@@ -2218,7 +2251,7 @@
     background: var(--paper);
     color: var(--ink-muted);
     font-size: 0.82rem;
-    font-weight: 720;
+    font-weight: 600;
   }
 
   .install-version-switcher a:hover,
@@ -2239,9 +2272,9 @@
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-xl);
     background:
-      radial-gradient(circle at 88% 14%, oklch(91% 0.055 140 / 0.52), transparent 24rem),
-      radial-gradient(circle at 8% 100%, oklch(89% 0.048 72 / 0.32), transparent 24rem),
-      linear-gradient(180deg, oklch(98% 0.012 88), oklch(94.2% 0.025 86));
+      radial-gradient(circle at 88% 14%, oklch(91% 0.0401 147 / 0.52), transparent 24rem),
+      radial-gradient(circle at 8% 100%, oklch(89% 0.0326 75 / 0.32), transparent 24rem),
+      linear-gradient(180deg, oklch(98% 0.0066 100), oklch(94.2% 0.0138 100));
     box-shadow: var(--shadow-soft);
   }
 
@@ -2255,9 +2288,9 @@
     max-width: 15ch;
     font-family: var(--font-serif);
     font-size: clamp(2.1rem, 4.4vw, 3.5rem);
-    font-weight: 650;
+    font-weight: 400;
     line-height: 1.12;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.012em;
   }
 
   .install-page-lede {
@@ -2269,12 +2302,12 @@
   .install-release-badge {
     width: fit-content;
     padding: 0.42rem 0.82rem;
-    border: 1px solid oklch(76% 0.068 148 / 0.42);
+    border: 1px solid oklch(76% 0.0496 155 / 0.42);
     border-radius: 999px;
-    background: oklch(93% 0.044 151 / 0.62);
+    background: oklch(93% 0.0321 158 / 0.62);
     color: var(--leaf-deep);
     font-size: 0.84rem;
-    font-weight: 830;
+    font-weight: 700;
   }
 
   .install-hero-facts {
@@ -2282,9 +2315,9 @@
     gap: 0.8rem;
     align-content: start;
     padding: clamp(1rem, 3vw, 1.3rem);
-    border: 1px solid oklch(84% 0.033 88 / 0.72);
+    border: 1px solid oklch(84% 0.0182 100 / 0.72);
     border-radius: var(--radius-lg);
-    background: oklch(98% 0.012 88 / 0.64);
+    background: oklch(98% 0.0066 100 / 0.64);
   }
 
   .install-hero-facts div {
@@ -2302,7 +2335,7 @@
   .install-hero-facts dt {
     color: var(--ink-soft);
     font-size: 0.72rem;
-    font-weight: 850;
+    font-weight: 700;
     letter-spacing: 0.11em;
     text-transform: uppercase;
   }
@@ -2310,7 +2343,7 @@
   .install-hero-facts dd {
     color: var(--ink);
     font-size: 1rem;
-    font-weight: 760;
+    font-weight: 600;
   }
 
   .install-guide-layout {
@@ -2325,15 +2358,15 @@
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     background:
-      radial-gradient(circle at 90% 10%, oklch(91% 0.035 216 / 0.34), transparent 12rem),
-      oklch(97.4% 0.016 88 / 0.78);
+      radial-gradient(circle at 90% 10%, oklch(91% 0.035 212 / 0.34), transparent 12rem),
+      oklch(97.4% 0.0088 100 / 0.78);
   }
 
   .install-toc h2 {
     max-width: none;
     font-family: var(--font-sans);
     font-size: 0.82rem;
-    font-weight: 850;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
@@ -2354,10 +2387,10 @@
     padding: 0.34rem 0.58rem;
     border: 1px solid var(--line);
     border-radius: 999px;
-    background: oklch(98% 0.012 88 / 0.72);
+    background: oklch(98% 0.0066 100 / 0.72);
     color: var(--ink-muted);
     font-size: 0.82rem;
-    font-weight: 720;
+    font-weight: 600;
   }
 
   .install-toc-list a:hover,
@@ -2378,13 +2411,13 @@
     padding: clamp(1.1rem, 3vw, 1.6rem);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    background: oklch(98% 0.012 88 / 0.62);
+    background: oklch(98% 0.0066 100 / 0.62);
   }
 
   .install-section--protocol {
     background:
-      radial-gradient(circle at 12% 10%, oklch(89% 0.048 72 / 0.26), transparent 16rem),
-      linear-gradient(180deg, oklch(98.2% 0.012 88 / 0.88), oklch(96.1% 0.018 92 / 0.78));
+      radial-gradient(circle at 12% 10%, oklch(89% 0.0326 75 / 0.26), transparent 16rem),
+      linear-gradient(180deg, oklch(98.2% 0.0066 100 / 0.88), oklch(96.1% 0.0099 100 / 0.78));
     box-shadow: var(--shadow-soft);
   }
 
@@ -2397,7 +2430,7 @@
     max-width: 24ch;
     font-family: var(--font-serif);
     font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    font-weight: 650;
+    font-weight: 400;
     line-height: 1.12;
   }
 
@@ -2418,9 +2451,9 @@
   .install-section p > code,
   .install-section li > code {
     padding: 0.08rem 0.28rem;
-    border: 1px solid oklch(84% 0.033 88 / 0.75);
+    border: 1px solid oklch(84% 0.0182 100 / 0.75);
     border-radius: 0.38rem;
-    background: oklch(95.8% 0.018 88 / 0.78);
+    background: oklch(95.8% 0.0099 100 / 0.78);
     color: var(--coconut-deep);
   }
 
@@ -2449,12 +2482,12 @@
     height: 2.4rem;
     display: grid;
     place-items: center;
-    border: 1px solid oklch(72% 0.052 82 / 0.42);
+    border: 1px solid oklch(72% 0.026 112 / 0.42);
     border-radius: 50%;
-    background: oklch(97.4% 0.016 88);
+    background: oklch(97.4% 0.0088 100);
     color: var(--coconut-deep);
     font-size: 0.78rem;
-    font-weight: 850;
+    font-weight: 700;
   }
 
   .install-command {
@@ -2466,28 +2499,28 @@
     padding: 0.72rem;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
-    border: 1px solid oklch(72% 0.052 82 / 0.36);
+    border: 1px solid oklch(72% 0.026 112 / 0.36);
     border-radius: var(--radius-md);
     background:
-      linear-gradient(180deg, oklch(31% 0.035 74), oklch(25% 0.032 74));
-    color: oklch(94% 0.014 92);
+      linear-gradient(180deg, oklch(31% 0.0263 155), oklch(25% 0.024 155));
+    color: oklch(94% 0.0077 100);
   }
 
   .install-command--tree {
     background:
-      linear-gradient(180deg, oklch(34% 0.03 92), oklch(28% 0.028 92));
+      linear-gradient(180deg, oklch(34% 0.0225 155), oklch(28% 0.021 155));
   }
 
   .install-command--avoid {
-    border-color: oklch(72% 0.052 82 / 0.54);
+    border-color: oklch(72% 0.026 112 / 0.54);
     background:
-      linear-gradient(180deg, oklch(36% 0.045 58), oklch(29% 0.038 58));
+      linear-gradient(180deg, oklch(36% 0.0306 61), oklch(29% 0.0285 155));
   }
 
   .install-code-label {
-    color: oklch(82% 0.054 138);
+    color: oklch(82% 0.0394 145);
     font-size: 0.7rem;
-    font-weight: 850;
+    font-weight: 700;
     letter-spacing: 0.11em;
     text-transform: uppercase;
   }
@@ -2537,16 +2570,16 @@
     padding: 0.55rem 0.72rem;
     border: 1px solid var(--line);
     border-radius: var(--radius-sm);
-    background: oklch(97% 0.017 88 / 0.7);
+    background: oklch(97% 0.0094 100 / 0.7);
   }
 
   .install-note {
     display: grid;
     gap: 0.5rem;
     padding: 0.9rem 1rem;
-    border: 1px solid oklch(72% 0.052 82 / 0.44);
+    border: 1px solid oklch(72% 0.026 112 / 0.44);
     border-radius: var(--radius-md);
-    background: oklch(96.4% 0.024 82 / 0.72);
+    background: oklch(96.4% 0.0132 100 / 0.72);
   }
 
   .install-note strong {
@@ -2558,7 +2591,7 @@
   }
 
   .install-note--caution {
-    background: oklch(95.4% 0.028 72 / 0.76);
+    background: oklch(95.4% 0.0154 100 / 0.76);
   }
 
   .install-troubleshooting-list {
@@ -2745,7 +2778,7 @@
     .changelog-page-back {
       padding-block: 0.38rem;
       margin-bottom: 0.7rem;
-      border-bottom-color: oklch(84% 0.033 88 / 0.55);
+      border-bottom-color: oklch(84% 0.0182 100 / 0.55);
     }
 
     .changelog-page-back .module-back-link {
@@ -2824,7 +2857,7 @@
     .install-page-back {
       padding-block: 0.38rem;
       margin-bottom: 0.7rem;
-      border-bottom-color: oklch(84% 0.033 88 / 0.55);
+      border-bottom-color: oklch(84% 0.0182 100 / 0.55);
     }
 
     .install-page-back .module-back-link {
@@ -2836,11 +2869,11 @@
     .install-page-hero {
       gap: 0.75rem;
       padding: 0.95rem;
-      border-color: oklch(84% 0.033 88 / 0.78);
+      border-color: oklch(84% 0.0182 100 / 0.78);
       border-radius: var(--radius-md);
       background:
-        radial-gradient(circle at 92% 8%, oklch(91% 0.055 140 / 0.24), transparent 10rem),
-        linear-gradient(180deg, oklch(98% 0.012 88), oklch(96% 0.018 88));
+        radial-gradient(circle at 92% 8%, oklch(91% 0.0401 147 / 0.24), transparent 10rem),
+        linear-gradient(180deg, oklch(98% 0.0066 100), oklch(96% 0.0099 100));
       box-shadow: none;
     }
 
@@ -2895,7 +2928,7 @@
       padding: 0.38rem 0.5rem;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: oklch(98% 0.012 88 / 0.62);
+      background: oklch(98% 0.0066 100 / 0.62);
     }
 
     .install-hero-facts div:last-child {
@@ -2934,8 +2967,8 @@
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
       background:
-        radial-gradient(circle at 12% 8%, oklch(89% 0.048 72 / 0.18), transparent 11rem),
-        linear-gradient(180deg, oklch(98.2% 0.012 88 / 0.9), oklch(96.1% 0.018 92 / 0.7));
+        radial-gradient(circle at 12% 8%, oklch(89% 0.0326 75 / 0.18), transparent 11rem),
+        linear-gradient(180deg, oklch(98.2% 0.0066 100 / 0.9), oklch(96.1% 0.0099 100 / 0.7));
       box-shadow: none;
     }
 
@@ -2983,7 +3016,7 @@
     }
 
     .install-protocol {
-      border-block-color: oklch(72% 0.052 82 / 0.44);
+      border-block-color: oklch(72% 0.026 112 / 0.44);
     }
 
     .install-step {
@@ -3119,7 +3152,7 @@
     .install-toc-list a {
       min-height: 34px;
       padding: 0.26rem 0.5rem;
-      background: oklch(98% 0.012 88 / 0.66);
+      background: oklch(98% 0.0066 100 / 0.66);
       font-size: 0.76rem;
       white-space: nowrap;
     }
@@ -3484,14 +3517,14 @@
   .coco-first-screen,
   body:has(#main:not([hidden])) .site-header {
     --coco-unit: min(0.0520833333vw, 1px);
-    --coco-paper: oklch(97.5250% 0.007999 98.8778);
-    --coco-ink: oklch(32.2643% 0.027400 161.2620);
-    --coco-muted: oklch(51.6083% 0.019725 145.2822);
-    --coco-green: oklch(40.2724% 0.061346 152.3704);
-    --coco-blue: oklch(48.0731% 0.070693 213.7557);
-    --coco-brown: oklch(43.7119% 0.071134 61.0297);
-    --coco-line: oklch(90.0097% 0.013473 111.2936);
-    font-family: "Avenir Next", var(--font-sans);
+    --coco-paper: var(--paper);
+    --coco-ink: var(--ink);
+    --coco-muted: var(--ink-soft);
+    --coco-green: var(--leaf-deep);
+    --coco-blue: var(--slate);
+    --coco-brown: var(--coconut);
+    --coco-line: var(--line);
+    font-family: var(--font-sans);
     color: var(--coco-ink);
     background: transparent;
   }
