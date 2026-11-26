@@ -18,12 +18,14 @@ CoCo 面向结构生物学实验室、cryo-EM 研究者、研究生、PI 和科�
 
 | 模块 | 当前状态 | 页面内容 |
 | --- | --- | --- |
-| CryoSieve | 已展示，`v1.3.0` | 单颗粒 cryo-EM 粒子排序与筛选模块，用于移除不必要粒子并提升重构质量；包含 GitHub、论文、featured image、main figure 和 EMPIAR demo 表格。 |
-| CryoPROS | 已展示，`v1.0.1` | 使用 AI 生成辅助粒子并进行 co-refinement 的 preferred-orientation correction 框架；包含 GitHub、论文和 featured image。 |
+| CryoSieve | 已展示 | 单颗粒 cryo-EM 粒子排序与筛选模块，用于移除不必要粒子并提升重构质量；包含 GitHub、论文、featured image、EMPIAR 验证数据表、四步筛选流程和带图注的 main figure。 |
+| CryoPROS | 已展示 | 使用 AI 生成辅助粒子并进行 co-refinement 的 preferred-orientation correction 框架；包含 GitHub、论文、WebP featured image，以及 Prep / Train / Generate / Export to CryoSPARC 四个任务步骤。 |
 | CTFA | 暂不公开 | 因 CoCo 界面中尚不可见，菜单、首页介绍和详情路由暂时隐藏；既有文案保留在惰性 template 中。 |
-| EModelG | CoCo 内置模块 | 从 cryo-EM 密度自动构建糖链与蛋白主链模型；包含两条建模流程、三张科研实例图、指标评价条件、三种模式、使用步骤和 Science 论文引用，没有独立下载或单独版本号。 |
-| CoCoFold & CoCoFlex | v0.3.10 模块预览 | `#cocofold-cocoflex` 展示 CoCoFold、CoCoFold2 论文，预留 CoCoFlex 论文链接。Movie 1、3、4 取自 `materials/v0.3.10/cocofold-cocoflex/movies/`，随网站 JAR 打包，播放器默认 1.5 倍速。 |
-| Structure Validation | v0.3.10 模块预览 | `#structure-validation` 展示结构质量检查的四组指标、可放大的结果截图和带英文旁白的操作演示。 |
+| EModelG | 已展示 | 从 cryo-EM 密度自动构建糖链与蛋白主链模型；包含页内目录、两条建模流程、三张科研实例图、指标评价条件、三种模式、使用步骤和 Science 论文引用，没有独立下载。 |
+| CoCoFold & CoCoFlex | 已展示 | `#cocofold-cocoflex` 包含 CoCoFold 说明、三段 CoCoFlex 静音演示（可见标题与说明，自定义控件显示时长，默认 1.5 倍速），并按模块分组列出 CoCoFold、CoCoFold2 论文，预留 CoCoFlex 论文链接。影片取自 `materials/v0.3.10/cocofold-cocoflex/movies/`，随网站 JAR 打包。 |
+| Structure Validation | 已展示 | `#structure-validation` 展示裁切后的 Residue Findings 截图（可打开完整原图）、四组评估及所需输入、带英文旁白的操作演示和四步使用流程。旁白暂无字幕。 |
+
+五个模块页使用同一结构：返回模块列表、hero、关键信息一览、模块内容、“在 CoCo 中使用”步骤、引用，以及含 `Download CoCo`、安装或设置指南和上一页／下一页的结尾区。模块页不写任何版本信息（模块版本、CoCo 版本或预览状态），切换视图时同步更新浏览器标题。
 
 ## 页面结构
 
@@ -103,8 +105,9 @@ index.html
 │   ├── coco-v0.3.2-deferred-job.png
 │   ├── cryosieve_featured_image.jpg
 │   ├── cryosieve_main_figure.jpg
-│   ├── cryopros_featured_image.png
-│   ├── cryopros_main_figure.png
+│   ├── cryopros_featured_image.png      source master, excluded from the JAR
+│   ├── cryopros-featured-960.webp / -1920.webp
+│   ├── cryopros_main_figure.png         currently unused
 │   ├── emodelg-glycan-example.png
 │   ├── emodelg-protein-example.png
 │   ├── emodelg-structural-examples.png

@@ -58,6 +58,7 @@
           <exclude>img/DAG_*.png</exclude>
           <exclude>img/2D_Reconstruction_*.png</exclude>
           <exclude>img/EModelG_*.png</exclude>
+          <exclude>img/cryopros_featured_image.png</exclude>
         </excludes>
       </resource>
       <resource>
