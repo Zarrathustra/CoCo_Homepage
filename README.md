@@ -59,9 +59,9 @@ index.html
 1. Hero：CoCo 定位、主 CTA、模块入口 CTA、事实列表。
 2. Relationship panel：用步骤说明 CoCo 工作区、任务依赖、重点模块和下游处理的关系。
 3. CoCo GUI preview：展示 Light/Dark 与 Structure/DAG/2D/EModelG 的八种界面组合，默认 Light + Structure。图片以 1600w / 2560w WebP 按需加载：卡片接近视口且浏览器空闲时预热当前主题的其他视图，悬停或聚焦按钮时预热对应图片，Save-Data 或 2G 下不预热；始终只显示单张图片。截图早于 v0.3.10 界面，重拍待后续安排。
-4. Modules：五行 ledger 式重点模块入口，不将其表述为 CoCo 的全部能力。
+4. Modules：五行 ledger 式重点模块入口，不将其表述为 CoCo 的全部能力。顺序依次为 CoCoFold & CoCoFlex、CryoSieve、CryoPROS、EModelG、Structure Validation；Modules 菜单与模块页的上一页／下一页使用相同顺序。
 5. Download：唯一主下载目标，提供 `Download CoCo v0.3.10`、安装指南与轻量 Change Log 入口。
-6. Publications：按四个模块分组的论文和预印本，首页不再列出 Code 栏。模块详情页中的既有 GitHub 链接继续保留。
+6. Publications：按四个模块分组的论文和预印本，顺序与模块列表一致（CoCoFold & CoCoFlex、CryoSieve、CryoPROS、EModelG），首页不再列出 Code 栏。模块详情页中的既有 GitHub 链接继续保留。
 7. Change Log：`#changelog` 展示 v0.3.10 的六个部分（从 movie 到 2D 分类的预处理链、Atomic Model 分组、Map／Mask 与参考数据、Workspace 与作业编辑、结果与设置、升级注意事项），`#changelogs` 提供倒序版本目录。`#changelog-v0-3-5` 保留 v0.3.5 的新增任务、工作流复用、查看与配置改进；`#changelog-v0-3-2` 保留任务自动接续、批量操作、DFR／SGD 重构和独立 CryoSPARC 导出的完整内容及两张配图；`#changelog-v0-2-0` 保留原正文及两张配图。所有日志详情均链接当前下载及对应版本指南。
 8. Install guides：v0.3.10 提供完整指南，v0.3.5、v0.3.2、v0.2.0、v0.1.0 保留历史正文与版本章节锚点；所有指南顶部可切换版本。
 9. Footer：版权、备案、公安备案、电话、地址与邮箱。

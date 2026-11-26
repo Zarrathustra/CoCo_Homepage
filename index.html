@@ -30,6 +30,10 @@
               </svg>
             </button>
             <div class="nav-dropdown-menu" id="module-quick-links" hidden>
+              <a href="#cocofold-cocoflex" data-nav="cocofold-cocoflex">
+                <strong>CoCoFold &amp; CoCoFlex</strong>
+                <span>Protein structures &amp; conformational motion</span>
+              </a>
               <a href="#cryosieve" data-nav="cryosieve">
                 <strong>CryoSieve</strong>
                 <span>Particle sorting &amp; sieving</span>
@@ -41,10 +45,6 @@
               <a href="#emodelg" data-nav="emodelg">
                 <strong>EModelG</strong>
                 <span>Glycan &amp; protein backbone modeling</span>
-              </a>
-              <a href="#cocofold-cocoflex" data-nav="cocofold-cocoflex">
-                <strong>CoCoFold &amp; CoCoFlex</strong>
-                <span>Protein structures &amp; conformational motion</span>
               </a>
               <a href="#structure-validation" data-nav="structure-validation">
                 <strong>Structure Validation</strong>
@@ -133,8 +133,20 @@
         </div>
 
         <div class="module-ledger">
-          <article class="module-row module-row--link" id="module-row-cryosieve" data-nav="cryosieve" tabindex="0" aria-labelledby="cryosieve-title">
+          <article class="module-row module-row--link" id="module-row-cocofold-cocoflex" data-nav="cocofold-cocoflex" tabindex="0" aria-labelledby="cocofold-cocoflex-title">
             <div class="module-index">01</div>
+            <div class="module-copy">
+              <h3 id="cocofold-cocoflex-title">CoCoFold &amp; CoCoFlex</h3>
+              <p>CoCoFold refines predicted protein structures using a limited set of cryo-EM particle images. CoCoFlex builds atomic models of the different conformations captured across particles.</p>
+            </div>
+            <div class="module-tags" aria-label="CoCoFold and CoCoFlex attributes">
+              <span>Structure refinement</span>
+              <span>Conformational motion</span>
+            </div>
+          </article>
+
+          <article class="module-row module-row--link" id="module-row-cryosieve" data-nav="cryosieve" tabindex="0" aria-labelledby="cryosieve-title">
+            <div class="module-index">02</div>
             <div class="module-copy">
               <h3 id="cryosieve-title">CryoSieve</h3>
               <p>Particle sorting and sieving for single-particle cryo-EM. CryoSieve helps remove unnecessary particles from final stacks so reconstruction quality can improve.</p>
@@ -146,7 +158,7 @@
           </article>
 
           <article class="module-row module-row--link" id="module-row-cryopros" data-nav="cryopros" tabindex="0" aria-labelledby="cryopros-title">
-            <div class="module-index">02</div>
+            <div class="module-index">03</div>
             <div class="module-copy">
               <h3 id="cryopros-title">CryoPROS</h3>
               <p>A preferred-orientation correction framework for single-particle cryo-EM, using AI-generated auxiliary particles and co-refinement.</p>
@@ -158,7 +170,7 @@
           </article>
 
           <article class="module-row module-row--link" id="module-row-emodelg" data-nav="emodelg" tabindex="0" aria-labelledby="emodelg-title">
-            <div class="module-index">03</div>
+            <div class="module-index">04</div>
             <div class="module-copy">
               <h3 id="emodelg-title">EModelG</h3>
               <p>Automated glycan and protein backbone modeling from cryo-EM density. EModelG combines AI detection with density-guided modeling to support studies of proteins, glycoproteins, and glycan-rich complexes.</p>
@@ -166,18 +178,6 @@
             <div class="module-tags" aria-label="EModelG attributes">
               <span>Glycan modeling</span>
               <span>Protein backbone</span>
-            </div>
-          </article>
-
-          <article class="module-row module-row--link" id="module-row-cocofold-cocoflex" data-nav="cocofold-cocoflex" tabindex="0" aria-labelledby="cocofold-cocoflex-title">
-            <div class="module-index">04</div>
-            <div class="module-copy">
-              <h3 id="cocofold-cocoflex-title">CoCoFold &amp; CoCoFlex</h3>
-              <p>CoCoFold refines predicted protein structures using a limited set of cryo-EM particle images. CoCoFlex builds atomic models of the different conformations captured across particles.</p>
-            </div>
-            <div class="module-tags" aria-label="CoCoFold and CoCoFlex attributes">
-              <span>Structure refinement</span>
-              <span>Conformational motion</span>
             </div>
           </article>
 
@@ -227,6 +227,19 @@
           </div>
         </div>
         <div class="reference-publications" aria-label="Module publications">
+          <article class="reference-publication reference-publication--fold-flex" aria-labelledby="reference-fold-flex-title">
+            <h3 id="reference-fold-flex-title">CoCoFold &amp; CoCoFlex</h3>
+            <div class="reference-publication-body">
+              <div class="citation-block">
+                <p>“Fine-tuning AlphaFold with limited cryo-EM observations”</p>
+                <a href="https://www.nature.com/articles/s42004-026-01899-7" target="_blank" rel="noopener" class="citation-link">CoCoFold · Communications Chemistry, 2026</a>
+              </div>
+              <div class="citation-block">
+                <p>“CoCoFold2: scalable latent refinement of diffusion-based protein structure predictions from limited-particle cryo-EM data”</p>
+                <a href="https://langtaosha.org.cn/lts/en/preprint/view/338" target="_blank" rel="noopener" class="citation-link">CoCoFold2 · LangTaoSha preprint, 2026</a>
+              </div>
+            </div>
+          </article>
           <article class="reference-publication reference-publication--sieve" aria-labelledby="reference-cryosieve-title">
             <h3 id="reference-cryosieve-title">CryoSieve</h3>
             <div class="reference-publication-body">
@@ -255,19 +268,6 @@
                 <a href="https://doi.org/10.1126/science.aef4958" target="_blank" rel="noopener" class="citation-link">Science, 2026</a>
               </div>
               <p class="reference-note">If EModelG contributes to your work, please cite the paper above.</p>
-            </div>
-          </article>
-          <article class="reference-publication reference-publication--fold-flex" aria-labelledby="reference-fold-flex-title">
-            <h3 id="reference-fold-flex-title">CoCoFold &amp; CoCoFlex</h3>
-            <div class="reference-publication-body">
-              <div class="citation-block">
-                <p>“Fine-tuning AlphaFold with limited cryo-EM observations”</p>
-                <a href="https://www.nature.com/articles/s42004-026-01899-7" target="_blank" rel="noopener" class="citation-link">CoCoFold · Communications Chemistry, 2026</a>
-              </div>
-              <div class="citation-block">
-                <p>“CoCoFold2: scalable latent refinement of diffusion-based protein structure predictions from limited-particle cryo-EM data”</p>
-                <a href="https://langtaosha.org.cn/lts/en/preprint/view/338" target="_blank" rel="noopener" class="citation-link">CoCoFold2 · LangTaoSha preprint, 2026</a>
-              </div>
             </div>
           </article>
         </div>
@@ -401,6 +401,7 @@
             </div>
           </div>
           <nav class="module-pager" aria-label="Other modules">
+            <a class="module-pager-link" href="#cocofold-cocoflex" data-nav="cocofold-cocoflex" rel="prev"><span>Previous module</span> <strong>CoCoFold &amp; CoCoFlex</strong></a>
             <a class="module-pager-link module-pager-link--next" href="#cryopros" data-nav="cryopros" rel="next"><span>Next module</span> <strong>CryoPROS</strong></a>
           </nav>
         </section>
@@ -704,7 +705,7 @@
           </div>
           <nav class="module-pager" aria-label="Other modules">
             <a class="module-pager-link" href="#cryopros" data-nav="cryopros" rel="prev"><span>Previous module</span> <strong>CryoPROS</strong></a>
-            <a class="module-pager-link module-pager-link--next" href="#cocofold-cocoflex" data-nav="cocofold-cocoflex" rel="next"><span>Next module</span> <strong>CoCoFold &amp; CoCoFlex</strong></a>
+            <a class="module-pager-link module-pager-link--next" href="#structure-validation" data-nav="structure-validation" rel="next"><span>Next module</span> <strong>Structure Validation</strong></a>
           </nav>
         </section>
       </div>
@@ -836,8 +837,7 @@
             </div>
           </div>
           <nav class="module-pager" aria-label="Other modules">
-            <a class="module-pager-link" href="#emodelg" data-nav="emodelg" rel="prev"><span>Previous module</span> <strong>EModelG</strong></a>
-            <a class="module-pager-link module-pager-link--next" href="#structure-validation" data-nav="structure-validation" rel="next"><span>Next module</span> <strong>Structure Validation</strong></a>
+            <a class="module-pager-link module-pager-link--next" href="#cryosieve" data-nav="cryosieve" rel="next"><span>Next module</span> <strong>CryoSieve</strong></a>
           </nav>
         </section>
       </div>
@@ -948,7 +948,7 @@
             </div>
           </div>
           <nav class="module-pager" aria-label="Other modules">
-            <a class="module-pager-link" href="#cocofold-cocoflex" data-nav="cocofold-cocoflex" rel="prev"><span>Previous module</span> <strong>CoCoFold &amp; CoCoFlex</strong></a>
+            <a class="module-pager-link" href="#emodelg" data-nav="emodelg" rel="prev"><span>Previous module</span> <strong>EModelG</strong></a>
           </nav>
         </section>
       </div>
