@@ -2581,12 +2581,6 @@
     height: 1.15em;
   }
 
-  .coco-download-arrow {
-    flex: none;
-    width: 1em;
-    height: 1.15em;
-  }
-
   .coco-hero-release {
     display: grid;
     gap: 0.2rem;
@@ -2607,7 +2601,7 @@
   .coco-explore-link {
     display: inline-flex;
     align-items: center;
-    gap: 1.25em;
+    gap: 0.45em;
     min-height: 44px;
     margin-top: clamp(1rem, 2vw, 1.8rem);
     color: var(--leaf-deep);
@@ -2622,8 +2616,13 @@
 
   .coco-explore-link svg {
     flex: none;
-    width: 1.1em;
+    width: 0.9em;
     height: auto;
+    transition: transform 160ms ease;
+  }
+
+  .coco-explore-link:hover svg {
+    transform: translateX(3px);
   }
 
   .coco-density-gallery {
@@ -3486,7 +3485,8 @@
     .button:hover,
     .nav-links a:hover,
     .nav-dropdown-trigger:hover,
-    .coco-gui-segmented button:hover {
+    .coco-gui-segmented button:hover,
+    .coco-explore-link:hover svg {
       transform: none;
     }
   }
@@ -3499,6 +3499,10 @@
       transition-duration: 0.001ms !important;
       animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;
+    }
+
+    .coco-explore-link:hover svg {
+      transform: none;
     }
   }
 }
