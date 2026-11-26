@@ -6,7 +6,7 @@
     <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, with featured modules for particle analysis and structural modeling.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
     <link rel="preload" href="fonts/nunito-sans-var.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=6b4cafb4bd90">
+    <link rel="stylesheet" href="styles.css?v=963ad4135ac0">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -521,14 +521,18 @@
           <div>
             <p class="module-page-kicker">From density to structure</p>
             <h1 class="module-page-title">EModelG</h1>
-            <p class="module-page-lede">Bring glycan and protein modeling into your cryo-EM workflow. EModelG combines AI detection, density fitting, and structural restraints to turn reconstructed maps into models for studying proteins, glycoproteins, and glycan-rich complexes.</p>
+            <p class="module-page-lede">EModelG builds glycan and protein backbone models from cryo-EM density. It combines AI detection, density fitting, and structural restraints to model proteins, glycosylated proteins, and glycans.</p>
             <span class="module-page-version">Included in CoCo v0.3.5</span>
           </div>
           <figure>
-            <a href="img/emodelg-structural-examples.png" target="_blank" rel="noopener" aria-label="Open the full-size structural examples">
-              <img src="img/emodelg-structural-examples.png" alt="Three structural examples: a protein assembly, a glycosylated protein with a close-up of its glycan, and a glycan-rich complex" class="module-page-hero-img" width="757" height="192" loading="lazy" decoding="async">
+            <a href="img/emodelg-workflow-1910.webp" target="_blank" rel="noopener">
+              <img src="img/emodelg-workflow-960.webp"
+                   srcset="img/emodelg-workflow-960.webp 960w, img/emodelg-workflow-1910.webp 1910w"
+                   sizes="(min-width: 58rem) min(49vw, 580px), 88vw"
+                   alt="EModelG uses a cryo-EM map to model a protein, a glycosylated protein, or a glycan. Open the full-size workflow diagram."
+                   class="module-page-hero-img" width="1910" height="1510" loading="lazy" decoding="async">
             </a>
-            <figcaption class="video-caption">From protein structures to glycoproteins and glycan-rich complexes.</figcaption>
+            <figcaption class="video-caption">A protein sequence, structural template, or symmetry information can guide modeling when available.</figcaption>
           </figure>
         </div>
       </header>

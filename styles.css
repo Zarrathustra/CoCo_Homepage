@@ -3257,6 +3257,7 @@
       grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.72fr);
     }
 
+    .module-page--emodelg .module-page-hero-grid,
     .module-page--fold-flex .module-page-hero-grid,
     .module-page--validation .module-page-hero-grid {
       grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
