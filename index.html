@@ -674,8 +674,7 @@
           <p class="module-page-lede">CoCoFold refines Protenix-v1 structure predictions against a limited set of cryo-EM particle images. CoCoFlex models how a protein’s shape varies across particles. In CAHRA Challenge 2, its atomic models trace a domain opening through a range of angles.</p>
         </div>
         <figure class="fold-flex-movie">
-          <video controls muted playsinline preload="none" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-1.webp" aria-labelledby="fold-flex-movie-1" aria-description="The gray reference and colored CoCoFlex model are paired by domain opening angle.">
-            <source src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_1.mp4" type="video/mp4">
+          <video controls muted playsinline preload="metadata" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-1.webp" aria-labelledby="fold-flex-movie-1" aria-description="The gray reference and colored CoCoFlex model are paired by domain opening angle." data-src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_1.mp4">
             <a href="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_1.mp4">Open CAHRA Challenge 2 (MP4)</a>
           </video>
           <figcaption class="video-caption" id="fold-flex-movie-1">CAHRA Challenge 2</figcaption>
@@ -688,15 +687,13 @@
           <p>In the HER2 complex, the models show the trastuzumab Fab bending at its elbow. In the TRPV1 channel, four ankyrin-repeat domains twist together around the pore.</p>
           <div class="fold-flex-movie-pair">
             <figure class="fold-flex-movie">
-              <video controls muted playsinline preload="none" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-3.webp" aria-labelledby="fold-flex-movie-3" aria-description="Trastuzumab and pertuzumab Fab fragments move relative to HER2. The side-by-side trastuzumab views align on HER2 and on the Fab variable domains.">
-                <source src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_3.mp4" type="video/mp4">
+              <video controls muted playsinline preload="metadata" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-3.webp" aria-labelledby="fold-flex-movie-3" aria-description="Trastuzumab and pertuzumab Fab fragments move relative to HER2. The side-by-side trastuzumab views align on HER2 and on the Fab variable domains." data-src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_3.mp4">
                 <a href="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_3.mp4">Open HER2–Fab conformational motions (MP4)</a>
               </video>
               <figcaption class="video-caption" id="fold-flex-movie-3">HER2–Fab conformational motions</figcaption>
             </figure>
             <figure class="fold-flex-movie">
-              <video controls muted playsinline preload="none" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-4.webp" aria-labelledby="fold-flex-movie-4" aria-description="Top and side views follow the highlighted ankyrin-repeat domains along the second latent principal component.">
-                <source src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_4.mp4" type="video/mp4">
+              <video controls muted playsinline preload="metadata" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-4.webp" aria-labelledby="fold-flex-movie-4" aria-description="Top and side views follow the highlighted ankyrin-repeat domains along the second latent principal component." data-src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_4.mp4">
                 <a href="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_4.mp4">Open TRPV1 tetramer motion (MP4)</a>
               </video>
               <figcaption class="video-caption" id="fold-flex-movie-4">TRPV1 tetramer motion</figcaption>
@@ -739,8 +736,7 @@
         <section class="module-page-section" aria-labelledby="validation-walkthrough-title">
           <h2 id="validation-walkthrough-title">Reviewing a structure against its density map</h2>
           <p>Follow a clash from the results table to its location in the model. Turn on the surrounding density, step through nearby findings, and export a filtered table as CSV with its evaluation scope and filters recorded in JSON.</p>
-          <video class="validation-walkthrough" controls playsinline preload="none" width="2560" height="1440" data-poster="img/structure-validation/walkthrough.webp" aria-labelledby="validation-walkthrough-title">
-            <source src="materials/v0.3.10/structure-validation/movies/Structure_Validation_EN.mp4" type="video/mp4">
+          <video class="validation-walkthrough" controls playsinline preload="metadata" width="2560" height="1440" data-poster="img/structure-validation/walkthrough.webp" aria-labelledby="validation-walkthrough-title" data-src="materials/v0.3.10/structure-validation/movies/Structure_Validation_EN.mp4">
             <a href="materials/v0.3.10/structure-validation/movies/Structure_Validation_EN.mp4">Open the Structure Validation walkthrough (MP4)</a>
           </video>
         </section>
@@ -3686,11 +3682,13 @@ modules.lock</code></pre>
           updateNavState(viewName);
         }
 
-        // Prepare movies only when their view opens, preserving a visitor's subsequent speed choice.
+        // Assigning src starts metadata loading on first entry to the module.
         function prepareMovies(view) {
-          view.querySelectorAll('video[data-poster]').forEach(function (movie) {
+          view.querySelectorAll('video[data-src]').forEach(function (movie) {
             movie.poster = movie.dataset.poster;
             movie.removeAttribute('data-poster');
+            movie.src = movie.dataset.src;
+            movie.removeAttribute('data-src');
             if (!movie.closest('.fold-flex-movie')) return;
             movie.defaultPlaybackRate = 1.5;
             movie.playbackRate = 1.5;
@@ -3703,6 +3701,23 @@ modules.lock</code></pre>
             var position = controls.querySelector('input');
             var speed = controls.querySelector('select');
             var fullscreen = controls.querySelector('[data-action="fullscreen"]');
+
+            var waitingAt = null;
+
+            function showBuffering() {
+              if (movie.paused) return;
+              waitingAt = movie.currentTime;
+              playButton.textContent = 'Loading…';
+              playButton.setAttribute('aria-label', 'Loading… Cancel playback');
+              playButton.title = 'Cancel playback';
+            }
+
+            function showPlaybackAction(label) {
+              waitingAt = null;
+              playButton.textContent = label;
+              playButton.removeAttribute('aria-label');
+              playButton.removeAttribute('title');
+            }
 
             function togglePlayback() {
               if (!movie.paused) {
@@ -3717,15 +3732,22 @@ modules.lock</code></pre>
             }
             playButton.addEventListener('click', togglePlayback);
             movie.addEventListener('click', togglePlayback);
-            movie.addEventListener('play', function () { playButton.textContent = 'Pause'; });
-            movie.addEventListener('pause', function () { playButton.textContent = 'Play'; });
+            movie.addEventListener('play', showBuffering);
+            movie.addEventListener('waiting', showBuffering);
+            movie.addEventListener('pause', function () { showPlaybackAction('Play'); });
             movie.addEventListener('durationchange', function () {
               if (Number.isFinite(movie.duration)) {
                 position.max = movie.duration;
                 position.disabled = false;
               }
             });
-            movie.addEventListener('timeupdate', function () { position.value = movie.currentTime; });
+            movie.addEventListener('timeupdate', function () {
+              position.value = movie.currentTime;
+              if (waitingAt !== null && !movie.paused && !movie.seeking &&
+                  movie.readyState >= movie.HAVE_FUTURE_DATA && movie.currentTime > waitingAt) {
+                showPlaybackAction('Pause');
+              }
+            });
             position.addEventListener('input', function () { movie.currentTime = Number(position.value); });
             speed.addEventListener('change', function () { movie.playbackRate = Number(speed.value); });
             fullscreen.hidden = !document.fullscreenEnabled;
