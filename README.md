@@ -22,7 +22,7 @@ CoCo 面向结构生物学实验室、cryo-EM 研究者、研究生、PI 和科�
 | CryoPROS | 已展示 | 使用 AI 生成辅助粒子并进行 co-refinement 的 preferred-orientation correction 框架；包含 GitHub、论文、WebP featured image，以及 Align（已接受的 3D Alignment）/ Prep / Train / Generate 四个任务步骤，Generate 后可用独立任务导出到 CryoSPARC。 |
 | CTFA | 仅在更新日志中介绍 | CoCo v0.3.10 已开放 CTFA；按决定，网站只在 v0.3.10 更新日志的预处理链中介绍它，不增加模块页、首页条目或菜单。既有文案保留在惰性 template 中。 |
 | EModelG | 已展示 | 从 cryo-EM 密度自动构建糖链与蛋白主链模型；包含页内目录、两条建模流程、三张科研实例图、指标评价条件、三种模式、使用步骤（含 EMDB 导入和 Structure Validation）和 Science 论文引用，没有独立下载。 |
-| CoCoFold & CoCoFlex | 已展示 | `#cocofold-cocoflex` 包含 CoCoFold 说明（Protenix 1.0.2 Base / Mini、Whole / Grouped）、CoCoFlex 说明、三段 CoCoFlex 静音研究示例（可见标题与说明，自定义控件显示时长，默认 1.5 倍速）、从 Import Sequence 到 Structure Validation 的六步使用流程和资源准备说明，并按模块分组列出 CoCoFold、CoCoFold2 论文，预留 CoCoFlex 论文链接。影片取自 `materials/v0.3.10/cocofold-cocoflex/movies/`，随网站 JAR 打包。 |
+| CoCoFold & CoCoFlex | 已展示 | `#cocofold-cocoflex` 包含 CoCoFold 说明（Protenix 1.0.2 Base / Mini、Whole / Grouped）、CoCoFlex 说明、三段 CoCoFlex 静音研究示例（可见标题与说明，自定义控件显示时长，默认 1.5 倍速）、从 Import Sequence 到 Structure Validation 的六步使用流程和资源准备说明，并按模块分组列出 CoCoFold、CoCoFold2 论文与 CoCoFlex 预印本（LangTaoSha，`https://langtaosha.org.cn/lts/en/preprint/view/403`）。首页 Publications 的 CoCoFold & CoCoFlex 卡片同样列出这三篇。影片取自 `materials/v0.3.10/cocofold-cocoflex/movies/`，随网站 JAR 打包。 |
 | Structure Validation | 已展示 | `#structure-validation` 展示裁切后的 Residue Findings 截图（可打开完整原图）、四组评估及所需输入、指标只报告不评级的说明、带英文旁白的操作演示和四步使用流程。旁白暂无字幕。 |
 
 五个模块页使用同一结构：返回模块列表、hero、关键信息一览、模块内容、“在 CoCo 中使用”步骤、引用，以及含 `Download CoCo`、安装或设置指南和上一页／下一页的结尾区。模块页不写任何版本信息（模块版本、CoCo 版本或预览状态），切换视图时同步更新浏览器标题。
