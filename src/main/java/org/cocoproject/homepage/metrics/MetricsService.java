@@ -23,6 +23,7 @@ public class MetricsService {
             "cryopros",
             "ctfa",
             "emodelg",
+            "cocofold-cocoflex",
             "changelog",
             "changelogs",
             "changelog-v0-3-2",

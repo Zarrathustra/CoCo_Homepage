@@ -339,6 +339,7 @@ class MetricsWebIntegrationTest {
                 "cryopros",
                 "ctfa",
                 "emodelg",
+                "cocofold-cocoflex",
                 "changelog",
                 "changelogs",
                 "changelog-v0-3-2",

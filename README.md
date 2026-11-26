@@ -1,6 +1,6 @@
 # CoCo Project Homepage
 
-CoCo Project Homepage 是 CoCo 项目的官方网站首页，用于介绍 CoCo 作为 cryo-EM 数据准备、重构与分析的统一工作区，并重点说明 CryoSieve、CryoPROS 和 EModelG 在工作流中的作用。
+CoCo Project Homepage 是 CoCo 项目的官方网站首页，用于介绍 CoCo 作为 cryo-EM 数据准备、重构与分析的统一工作区，并重点说明 四个重点模块在工作流中的作用。
 
 页面前端没有 npm、框架或构建流程；生产环境由 Spring Boot 提供静态页面、外部发布包和长期统计服务。纯静态服务器仍可用于布局预览，但不会记录访问或下载统计。
 
@@ -9,7 +9,7 @@ CoCo Project Homepage 是 CoCo 项目的官方网站首页，用于介绍 CoCo �
 CoCo 面向结构生物学实验室、cryo-EM 研究者、研究生、PI 和科学软件用户。首页重点传达三点：
 
 - CoCo 是统一 GUI 入口。
-- CryoSieve、CryoPROS 和 EModelG 是重点介绍的分析模块；CoCo 还包含数据导入、粒子挑选与提取、分类、重构和 CryoSPARC 导出等任务。
+- CryoSieve、CryoPROS、EModelG 和 CoCoFold & CoCoFlex 是重点介绍的分析模块；CoCo 还包含数据导入、粒子挑选与提取、分类、重构和 CryoSPARC 导出等任务。
 - 页面主要转化目标是 `Download CoCo v0.3.5`，而不是分别下载各模块。
 
 当前发布版本为 `v0.3.5`，首页主按钮通过 `/downloads/coco-0.3.5.tar.gz` 下载外部发布包。`#install-v0-3-5` 展示该版完整安装指南；`#changelog` 按 v0.3.5 brochure 展示完整更新日志。`#install` 保留为最新指南兼容入口，`#changelogs` 列出所有日志；v0.3.2、v0.2.0 的完整日志分别保留在 `#changelog-v0-3-2`、`#changelog-v0-2-0`。历史安装指南保留 v0.3.2、v0.2.0、v0.1.0，每个指南顶部均可切换版本。
@@ -22,6 +22,7 @@ CoCo 面向结构生物学实验室、cryo-EM 研究者、研究生、PI 和科�
 | CryoPROS | 已展示，`v1.0.1` | 使用 AI 生成辅助粒子并进行 co-refinement 的 preferred-orientation correction 框架；包含 GitHub、论文和 featured image。 |
 | CTFA | 暂不公开 | 因 CoCo 界面中尚不可见，菜单、首页介绍和详情路由暂时隐藏；既有文案保留在惰性 template 中。 |
 | EModelG | CoCo 内置模块 | 从 cryo-EM 密度自动构建糖链与蛋白主链模型；包含两条建模流程、三张科研实例图、指标评价条件、三种模式、使用步骤和 Science 论文引用，没有独立下载或单独版本号。 |
+| CoCoFold & CoCoFlex | v0.3.10 模块预览 | `#cocofold-cocoflex` 展示 CoCoFold、CoCoFold2 论文，预留 CoCoFlex 论文链接。Movie 1、3、4 取自 `materials/v0.3.10/cocofold-cocoflex/movies/`，随网站 JAR 打包，播放器默认 1.5 倍速。 |
 
 ## 页面结构
 
@@ -35,6 +36,7 @@ index.html
   div[data-view=cryopros]   CryoPROS sub-page
   template#deferred-ctfa    deferred CTFA content, outside active routing
   div[data-view=emodelg]    EModelG sub-page
+  div[data-view=cocofold-cocoflex]  CoCoFold & CoCoFlex sub-page
   div[data-view=install-v0-3-5]  CoCo v0.3.5 installation guide
   div[data-view=install-v0-3-2]  archived v0.3.2 guide
   div[data-view=install-v0-2-0]  archived v0.2.0 guide
@@ -51,9 +53,9 @@ index.html
 1. Hero：CoCo 定位、主 CTA、模块入口 CTA、事实列表。
 2. Relationship panel：用步骤说明 CoCo 工作区、任务依赖、重点模块和下游处理的关系。
 3. CoCo GUI preview：展示 Light/Dark 与 Structure/DAG/2D/EModelG 的八种界面组合，默认 Light + Structure。初始化时预加载全部八张原图，默认图优先，其余七张低优先级预加载；主题和视图独立切换，始终使用单张图片展示，避免同时解码八张 5K 图片。
-4. Modules：三行 ledger 式重点模块入口，不将其表述为 CoCo 的全部能力。
+4. Modules：四行 ledger 式重点模块入口，不将其表述为 CoCo 的全部能力。
 5. Download：唯一主下载目标，提供 `Download CoCo v0.3.5`、安装指南与轻量 Change Log 入口。
-6. Publications：CryoSieve、CryoPROS 和 EModelG 的三篇主要论文，首页不再列出 Code 栏。模块详情页中的既有 GitHub 链接继续保留。
+6. Publications：按四个模块分组的论文和预印本，首页不再列出 Code 栏。模块详情页中的既有 GitHub 链接继续保留。
 7. Change Log：`#changelog` 展示 v0.3.5 的新增任务、工作流复用、查看与配置改进，`#changelogs` 提供倒序版本目录。`#changelog-v0-3-2` 保留任务自动接续、批量操作、DFR／SGD 重构和独立 CryoSPARC 导出的完整内容及两张配图；`#changelog-v0-2-0` 保留原正文及两张配图。所有日志详情均链接当前下载及对应版本指南。
 8. Install guides：v0.3.5 提供完整指南，v0.3.2、v0.2.0、v0.1.0 保留历史正文与版本章节锚点；所有指南顶部可切换版本。
 9. Footer：版权、备案、公安备案、电话、地址与邮箱。
@@ -61,7 +63,7 @@ index.html
 主要交互：
 
 - 首页、模块子页、Change Log 和四个版本的安装页面之间使用 hash 路由切换。
-- 支持三个公开模块、当前日志、日志目录、历史日志和四个安装版本的 hash 深链接。
+- 支持四个公开模块、当前日志、日志目录、历史日志和四个安装版本的 hash 深链接。
 - 各安装指南使用版本前缀的内部锚点，例如 `#install-v0-2-0-runtime`。旧 `#install` 与 `#install-*` 章节链接兼容映射到最新指南；最新指南没有对应章节时定位页首，同页操作也适用。未知版本不会被误判为最新指南。
 - 支持浏览器前进、后退。
 - Header 仅保留一个 `Download CoCo v0.3.5` 下载入口。手机导航保留两行，窄屏可换行，触控目标至少 48px。
@@ -392,7 +394,7 @@ v0.3.2、v0.2.0 历史指南分别依据 CoCo 对应 release tag 的 `INSTALL.md
 
 ## 编辑说明
 
-- 首页和 v0.3.5 安装指南展示 CryoSieve、CryoPROS 和 EModelG；CTFA 因产品界面暂不可见而隐藏。CryoSieve 使用内置 DFR 重构及后处理，CryoPROS 采用 Prep / Train / Generate 与独立导出任务。主下载为 v0.3.5，更新日志按 brochure 编写；历史安装说明及更新日志保持对应版本内容。
+- v0.3.5 安装指南展示 CryoSieve、CryoPROS 和 EModelG；CTFA 因产品界面暂不可见而隐藏。CryoSieve 使用内置 DFR 重构及后处理，CryoPROS 采用 Prep / Train / Generate 与独立导出任务。主下载为 v0.3.5，更新日志按 brochure 编写；历史安装说明及更新日志保持对应版本内容。
 - EModelG 和 v0.3.5 更新日志以 `/Users/hmx/Git/Documents/Lab_Managing/CoCo_Project/v0.3.5/CoCo_v0.3.5_brochure.pdf` / `.tex` 为正文依据，英文重组内容并沿用网站样式。三张科研实例图来自 brochure 的 `assets/`；两个算法流程用可访问的 HTML 步骤表示。正式引用保留 Science DOI `10.1126/science.aef4958`。
 - 功能范围依据同目录 `版本差异核对.md`：v0.3.2 标签提交 `a38abf5353224f177a55fe0c9273c13d37efe54d` 与 v0.3.5 beta 快照 `87e70ed7770eb7d8837a18f54700255f76c275ba`；不将后者称为发布 tag。新增六种可见任务。工作流保存仅涵盖符合条件且完成的颗粒导入、二维 DFR、Select 2D、Average Spectrum 流程；载入生成草稿，选类需重新审核。
 - 研究指标保持评价范围：0.643 Å 平均全原子 RMSD 属于另一个无蛋白糖链案例，0.891 AUPRC 使用 4 Å 位点匹配阈值，PLL-1 的 2.87 Å 为实验密度图分辨率、0.87 TM-score 的比较对象为 AlphaFold 模型；不表示版本间性能提升。研究来源详见 brochure 的核对文件。
@@ -411,8 +413,8 @@ v0.3.2、v0.2.0 历史指南分别依据 CoCo 对应 release tag 的 `INSTALL.md
 - 温和、专业、偏学术的页面语气。
 - Warm paper / research atlas 视觉风格。
 - CoCo 作为中心 GUI hub。
-- CryoSieve、CryoPROS 和 EModelG 围绕 CoCo 作为模块能力展示。
-- 使用柔和的 coconut、leaf、slate 与 warm ink 色彩体系；首页三个模块使用相同的中性配色，EModelG 详情页沿用 CryoPROS 的绿色，不使用独立紫色。
+- CryoSieve、CryoPROS、EModelG 和 CoCoFold & CoCoFlex 围绕 CoCo 作为模块能力展示。
+- 使用柔和的 coconut、leaf、slate 与 warm ink 色彩体系；首页四个模块使用相同的中性配色，EModelG 详情页沿用 CryoPROS 的绿色，不使用独立紫色。
 - 保持 `Download CoCo v0.3.5` 作为唯一主行动，不让模块链接、GitHub 或论文引用与它竞争。
 
 ## 可访问性

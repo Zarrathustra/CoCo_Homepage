@@ -239,7 +239,7 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 
 - **Style:** A ruled ledger, not an identical card grid. Each module row has an index, description, and tags.
 - **Interaction:** Rows are clickable with subtle background change and visible focus outline.
-- **Status:** CTFA is deferred until it is visible in CoCo. Public rows and navigation feature CryoSieve, CryoPROS, and EModelG. Retain the neutral row treatment and existing module accents.
+- **Status:** CTFA is deferred until it is visible in CoCo. Public rows and navigation feature CryoSieve, CryoPROS, EModelG, and the combined CoCoFold & CoCoFlex module. Retain the neutral row treatment and existing module accents.
 
 ### GUI Preview
 

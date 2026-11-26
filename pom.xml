@@ -49,6 +49,7 @@
           <include>coco_logo.png</include>
           <include>img/**</include>
           <include>fonts/**</include>
+          <include>materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_*.mp4</include>
         </includes>
         <excludes>
           <exclude>img/Structure_*.png</exclude>

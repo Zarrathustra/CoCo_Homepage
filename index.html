@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, including CryoSieve, CryoPROS, and EModelG.">
+    <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, with featured modules for particle analysis and structural modeling.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
     <link rel="preload" href="fonts/nunito-sans-var.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=d8451047c0d8">
+    <link rel="stylesheet" href="styles.css?v=2616cb14ec27">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -41,6 +41,10 @@
               <a href="#emodelg" data-nav="emodelg">
                 <strong>EModelG</strong>
                 <span>Glycan &amp; protein backbone modeling</span>
+              </a>
+              <a href="#cocofold-cocoflex" data-nav="cocofold-cocoflex">
+                <strong>CoCoFold &amp; CoCoFlex</strong>
+                <span>Protein structures &amp; conformational motion</span>
               </a>
             </div>
           </div>
@@ -160,6 +164,18 @@
               <span>Protein backbone</span>
             </div>
           </article>
+
+          <article class="module-row module-row--link" id="module-row-cocofold-cocoflex" data-nav="cocofold-cocoflex" tabindex="0" aria-labelledby="cocofold-cocoflex-title">
+            <div class="module-index">04</div>
+            <div class="module-copy">
+              <h3 id="cocofold-cocoflex-title">CoCoFold &amp; CoCoFlex</h3>
+              <p>CoCoFold refines predicted protein structures using a limited set of cryo-EM particle images. CoCoFlex builds atomic models of the different conformations captured across particles.</p>
+            </div>
+            <div class="module-tags" aria-label="CoCoFold and CoCoFlex attributes">
+              <span>Structure refinement</span>
+              <span>Conformational motion</span>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -191,7 +207,7 @@
         <div class="section-heading compact">
           <div>
             <div class="section-kicker">Publications</div>
-            <h2 id="references-title">Publications for CryoSieve, CryoPROS and EModelG.</h2>
+            <h2 id="references-title">Research behind the featured modules.</h2>
           </div>
         </div>
         <div class="reference-publications" aria-label="Module publications">
@@ -223,6 +239,19 @@
                 <a href="https://doi.org/10.1126/science.aef4958" target="_blank" rel="noopener" class="citation-link">Science, 2026</a>
               </div>
               <p class="reference-note">If EModelG contributes to your work, please cite the paper above.</p>
+            </div>
+          </article>
+          <article class="reference-publication reference-publication--fold-flex" aria-labelledby="reference-fold-flex-title">
+            <h3 id="reference-fold-flex-title">CoCoFold &amp; CoCoFlex</h3>
+            <div class="reference-publication-body">
+              <div class="citation-block">
+                <p>“Fine-tuning AlphaFold with limited cryo-EM observations”</p>
+                <a href="https://www.nature.com/articles/s42004-026-01899-7" target="_blank" rel="noopener" class="citation-link">CoCoFold · Communications Chemistry, 2026</a>
+              </div>
+              <div class="citation-block">
+                <p>“CoCoFold2: scalable latent refinement of diffusion-based protein structure predictions from limited-particle cryo-EM data”</p>
+                <a href="https://langtaosha.org.cn/lts/en/preprint/view/338" target="_blank" rel="noopener" class="citation-link">CoCoFold2 · LangTaoSha preprint, 2026</a>
+              </div>
             </div>
           </article>
         </div>
@@ -602,6 +631,74 @@
           <span>Protein backbone</span>
           <span>Density guided</span>
         </aside>
+      </div>
+    </div>
+
+    <template id="silent-movie-controls">
+      <div class="silent-movie-controls" role="group">
+        <button type="button" data-action="play">Play</button>
+        <input type="range" min="0" max="0" value="0" step="0.1" aria-label="Playback position in seconds" disabled>
+        <select aria-label="Playback speed">
+          <option value="0.5">0.5×</option>
+          <option value="1">1×</option>
+          <option value="1.5" selected>1.5×</option>
+          <option value="2">2×</option>
+        </select>
+        <button type="button" data-action="fullscreen">Full screen</button>
+      </div>
+    </template>
+    <div id="view-cocofold-cocoflex" class="module-page module-page--fold-flex" data-view="cocofold-cocoflex" hidden>
+      <nav class="module-page-back" aria-label="Module navigation">
+        <a href="#modules" class="module-back-link"><span aria-hidden="true">←</span> Back to modules</a>
+      </nav>
+      <header class="module-page-hero module-page-hero-grid">
+        <div>
+          <p class="module-page-kicker">CoCo v0.3.10 module preview</p>
+          <h1 class="module-page-title">CoCoFold &amp; CoCoFlex</h1>
+          <p class="module-page-lede">CoCoFold refines Protenix-v1 structure predictions against a limited set of cryo-EM particle images. CoCoFlex models how a protein’s shape varies across particles. In CAHRA Challenge 2, its atomic models trace a domain opening through a range of angles.</p>
+        </div>
+        <figure class="fold-flex-movie">
+          <video controls muted playsinline preload="none" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-1.webp" aria-labelledby="fold-flex-movie-1" aria-description="The gray reference and colored CoCoFlex model are paired by domain opening angle.">
+            <source src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_1.mp4" type="video/mp4">
+            <a href="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_1.mp4">Open CAHRA Challenge 2 (MP4)</a>
+          </video>
+          <figcaption class="video-caption" id="fold-flex-movie-1">CAHRA Challenge 2</figcaption>
+        </figure>
+      </header>
+      <div class="module-page-body">
+        <section class="module-page-section" aria-labelledby="fold-flex-motion-title">
+          <h2 id="fold-flex-motion-title">Modeling continuous motion with CoCoFlex</h2>
+          <p>CoCoFlex assigns each particle a position in a shared space of conformations. These positions guide a pretrained structure generator, which supplies atomic detail while the particle images constrain how the structures vary.</p>
+          <p>In the HER2 complex, the models show the trastuzumab Fab bending at its elbow. In the TRPV1 channel, four ankyrin-repeat domains twist together around the pore.</p>
+          <div class="fold-flex-movie-pair">
+            <figure class="fold-flex-movie">
+              <video controls muted playsinline preload="none" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-3.webp" aria-labelledby="fold-flex-movie-3" aria-description="Trastuzumab and pertuzumab Fab fragments move relative to HER2. The side-by-side trastuzumab views align on HER2 and on the Fab variable domains.">
+                <source src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_3.mp4" type="video/mp4">
+                <a href="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_3.mp4">Open HER2–Fab conformational motions (MP4)</a>
+              </video>
+              <figcaption class="video-caption" id="fold-flex-movie-3">HER2–Fab conformational motions</figcaption>
+            </figure>
+            <figure class="fold-flex-movie">
+              <video controls muted playsinline preload="none" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-4.webp" aria-labelledby="fold-flex-movie-4" aria-description="Top and side views follow the highlighted ankyrin-repeat domains along the second latent principal component.">
+                <source src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_4.mp4" type="video/mp4">
+                <a href="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_4.mp4">Open TRPV1 tetramer motion (MP4)</a>
+              </video>
+              <figcaption class="video-caption" id="fold-flex-movie-4">TRPV1 tetramer motion</figcaption>
+            </figure>
+          </div>
+        </section>
+        <section class="module-page-section" aria-labelledby="fold-flex-publications-title">
+          <h2 id="fold-flex-publications-title">Publications</h2>
+          <div class="citation-block">
+            <p>“Fine-tuning AlphaFold with limited cryo-EM observations”</p>
+            <a href="https://www.nature.com/articles/s42004-026-01899-7" target="_blank" rel="noopener" class="citation-link">CoCoFold · Communications Chemistry, 2026</a>
+          </div>
+          <div class="citation-block">
+            <p>“CoCoFold2: scalable latent refinement of diffusion-based protein structure predictions from limited-particle cryo-EM data”</p>
+            <a href="https://langtaosha.org.cn/lts/en/preprint/view/338" target="_blank" rel="noopener" class="citation-link">CoCoFold2 · LangTaoSha preprint, 2026</a>
+          </div>
+          <p class="reference-note">CoCoFlex publication link forthcoming.</p>
+        </section>
       </div>
     </div>
 
@@ -3121,7 +3218,7 @@ modules.lock</code></pre>
             <img src="img/coco-logo-144.webp" alt="" width="32" height="32" aria-hidden="true" loading="lazy" decoding="async">
             <span>CoCo Project</span>
           </div>
-          <p>A shared cryo-EM workspace for data preparation, reconstruction, and analysis with CryoSieve, CryoPROS, and EModelG.</p>
+          <p>A shared cryo-EM workspace for data preparation, reconstruction, and analysis with tools for particle analysis, model building, and conformational studies.</p>
         </div>
 
         <div class="footer-legal">
@@ -3342,7 +3439,7 @@ modules.lock</code></pre>
         }
 
         var CURRENT_INSTALL_VIEW = 'install-v0-3-5';
-        var VIEWS = ['home', 'cryosieve', 'cryopros', 'emodelg', 'install-v0-3-5', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0', 'changelog', 'changelogs', 'changelog-v0-3-2', 'changelog-v0-2-0'];
+        var VIEWS = ['home', 'cryosieve', 'cryopros', 'emodelg', 'cocofold-cocoflex', 'install-v0-3-5', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0', 'changelog', 'changelogs', 'changelog-v0-3-2', 'changelog-v0-2-0'];
         var currentView = 'home';
         var transitioning = false;
         var scrollTarget = null;
@@ -3466,6 +3563,7 @@ modules.lock</code></pre>
           var exitDelay = reduceMotion ? 0 : 200;
           var cleanupDelay = reduceMotion ? 0 : 280;
 
+          oldEl.querySelectorAll('video').forEach(function (movie) { movie.pause(); });
           oldEl.classList.add('view-exit');
 
           setTimeout(function () {
@@ -3473,6 +3571,7 @@ modules.lock</code></pre>
             oldEl.hidden = true;
 
             newEl.hidden = false;
+            prepareMovies(newEl);
             newEl.classList.add('view-enter');
             updateHeaderOffset();
 
@@ -3520,6 +3619,7 @@ modules.lock</code></pre>
             if (homeEl && targetEl) {
               homeEl.hidden = true;
               targetEl.hidden = false;
+              prepareMovies(targetEl);
             }
           }
           updateHeaderOffset();
@@ -3530,6 +3630,58 @@ modules.lock</code></pre>
           }
           currentView = viewName;
           updateNavState(viewName);
+        }
+
+        // Prepare movies only when their view opens, preserving a visitor's subsequent speed choice.
+        function prepareMovies(view) {
+          view.querySelectorAll('video[data-poster]').forEach(function (movie) {
+            movie.poster = movie.dataset.poster;
+            movie.defaultPlaybackRate = 1.5;
+            movie.playbackRate = 1.5;
+            movie.removeAttribute('data-poster');
+            var figure = movie.closest('figure');
+            var controls = document.getElementById('silent-movie-controls').content.firstElementChild.cloneNode(true);
+            controls.setAttribute('aria-labelledby', figure.querySelector('figcaption').id);
+            movie.after(controls);
+            movie.controls = false;
+            var playButton = controls.querySelector('[data-action="play"]');
+            var position = controls.querySelector('input');
+            var speed = controls.querySelector('select');
+            var fullscreen = controls.querySelector('[data-action="fullscreen"]');
+
+            function togglePlayback() {
+              if (!movie.paused) {
+                movie.pause();
+                return;
+              }
+              movie.play().catch(function (error) {
+                if (error.name === 'AbortError') return;
+                var fallback = movie.querySelector('a').cloneNode(true);
+                controls.replaceChildren(fallback);
+              });
+            }
+            playButton.addEventListener('click', togglePlayback);
+            movie.addEventListener('click', togglePlayback);
+            movie.addEventListener('play', function () { playButton.textContent = 'Pause'; });
+            movie.addEventListener('pause', function () { playButton.textContent = 'Play'; });
+            movie.addEventListener('durationchange', function () {
+              if (Number.isFinite(movie.duration)) {
+                position.max = movie.duration;
+                position.disabled = false;
+              }
+            });
+            movie.addEventListener('timeupdate', function () { position.value = movie.currentTime; });
+            position.addEventListener('input', function () { movie.currentTime = Number(position.value); });
+            speed.addEventListener('change', function () { movie.playbackRate = Number(speed.value); });
+            fullscreen.hidden = !document.fullscreenEnabled;
+            fullscreen.addEventListener('click', function () {
+              if (document.fullscreenElement === figure) document.exitFullscreen();
+              else figure.requestFullscreen();
+            });
+            figure.addEventListener('fullscreenchange', function () {
+              fullscreen.textContent = document.fullscreenElement === figure ? 'Exit full screen' : 'Full screen';
+            });
+          });
         }
 
         function updateNavState(viewName) {
