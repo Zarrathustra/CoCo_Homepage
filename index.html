@@ -6,7 +6,7 @@
     <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, with featured modules for particle analysis and structural modeling.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
     <link rel="preload" href="fonts/nunito-sans-var.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=2616cb14ec27">
+    <link rel="stylesheet" href="styles.css?v=6b4cafb4bd90">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -45,6 +45,10 @@
               <a href="#cocofold-cocoflex" data-nav="cocofold-cocoflex">
                 <strong>CoCoFold &amp; CoCoFlex</strong>
                 <span>Protein structures &amp; conformational motion</span>
+              </a>
+              <a href="#structure-validation" data-nav="structure-validation">
+                <strong>Structure Validation</strong>
+                <span>Model geometry &amp; map agreement</span>
               </a>
             </div>
           </div>
@@ -174,6 +178,18 @@
             <div class="module-tags" aria-label="CoCoFold and CoCoFlex attributes">
               <span>Structure refinement</span>
               <span>Conformational motion</span>
+            </div>
+          </article>
+
+          <article class="module-row module-row--link" id="module-row-structure-validation" data-nav="structure-validation" tabindex="0" aria-labelledby="structure-validation-title">
+            <div class="module-index">05</div>
+            <div class="module-copy">
+              <h3 id="structure-validation-title">Structure Validation</h3>
+              <p>Check model geometry, agreement with the density map, map resolution, and sequence coverage. Select a residue to inspect a finding in its structural context.</p>
+            </div>
+            <div class="module-tags" aria-label="Structure Validation attributes">
+              <span>Model quality</span>
+              <span>Residue findings</span>
             </div>
           </article>
         </div>
@@ -698,6 +714,44 @@
             <a href="https://langtaosha.org.cn/lts/en/preprint/view/338" target="_blank" rel="noopener" class="citation-link">CoCoFold2 · LangTaoSha preprint, 2026</a>
           </div>
           <p class="reference-note">CoCoFlex publication link forthcoming.</p>
+        </section>
+      </div>
+    </div>
+
+    <div id="view-structure-validation" class="module-page module-page--validation" data-view="structure-validation" hidden>
+      <nav class="module-page-back" aria-label="Module navigation">
+        <a href="#modules" class="module-back-link"><span aria-hidden="true">←</span> Back to modules</a>
+      </nav>
+      <header class="module-page-hero module-page-hero-grid">
+        <div>
+          <p class="module-page-kicker">CoCo v0.3.10 module preview</p>
+          <h1 class="module-page-title">Structure Validation</h1>
+          <p class="module-page-lede">Find where an atomic model needs a closer look. CoCo links geometry outliers and atomic clashes to residues in the 3D viewer. With a density map, you can inspect the experimental evidence around each site.</p>
+        </div>
+        <figure>
+          <a href="materials/v0.3.10/structure-validation/images/Structure_Validation.png" target="_blank" rel="noopener" aria-label="Open the full-size Structure Validation screenshot">
+            <img class="module-page-hero-img" src="img/structure-validation/atomic-model-overview.webp" width="1600" height="842" loading="lazy" decoding="async" alt="Atomic Model summary above a 3D structure with flagged residues in magenta and findings along chains A and B">
+          </a>
+          <figcaption class="video-caption">Atomic-model assessment with residue findings mapped to two chains.</figcaption>
+        </figure>
+      </header>
+      <div class="module-page-body">
+        <section class="module-page-section" aria-labelledby="validation-walkthrough-title">
+          <h2 id="validation-walkthrough-title">Reviewing a structure against its density map</h2>
+          <p>Follow a clash from the results table to its location in the model. Turn on the surrounding density, step through nearby findings, and export a filtered table as CSV with its evaluation scope and filters recorded in JSON.</p>
+          <video class="validation-walkthrough" controls playsinline preload="none" width="2560" height="1440" data-poster="img/structure-validation/walkthrough.webp" aria-labelledby="validation-walkthrough-title">
+            <source src="materials/v0.3.10/structure-validation/movies/Structure_Validation_EN.mp4" type="video/mp4">
+            <a href="materials/v0.3.10/structure-validation/movies/Structure_Validation_EN.mp4">Open the Structure Validation walkthrough (MP4)</a>
+          </video>
+        </section>
+        <section class="module-page-section" aria-labelledby="validation-groups-title">
+          <h2 id="validation-groups-title">Choose what to assess</h2>
+          <dl class="modeling-modes">
+            <div><dt>Atomic Model</dt><dd>Review the MolProbity score and inspect clashes, Ramachandran and rotamer outliers, and deviations in bond geometry.</dd></div>
+            <div><dt>Map–Model</dt><dd>Examine global and per-residue Q-scores alongside the EMRinger score to assess agreement between the model and the map.</dd></div>
+            <div><dt>Map</dt><dd>Inspect Fourier shell correlation curves from paired half-maps and compare resolution across directions.</dd></div>
+            <div><dt>Sequence</dt><dd>Compare modeled chains with a reference sequence to check coverage and locate missing or mismatched residues.</dd></div>
+          </dl>
         </section>
       </div>
     </div>
@@ -3439,7 +3493,7 @@ modules.lock</code></pre>
         }
 
         var CURRENT_INSTALL_VIEW = 'install-v0-3-5';
-        var VIEWS = ['home', 'cryosieve', 'cryopros', 'emodelg', 'cocofold-cocoflex', 'install-v0-3-5', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0', 'changelog', 'changelogs', 'changelog-v0-3-2', 'changelog-v0-2-0'];
+        var VIEWS = ['home', 'cryosieve', 'cryopros', 'emodelg', 'cocofold-cocoflex', 'structure-validation', 'install-v0-3-5', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0', 'changelog', 'changelogs', 'changelog-v0-3-2', 'changelog-v0-2-0'];
         var currentView = 'home';
         var transitioning = false;
         var scrollTarget = null;
@@ -3636,9 +3690,10 @@ modules.lock</code></pre>
         function prepareMovies(view) {
           view.querySelectorAll('video[data-poster]').forEach(function (movie) {
             movie.poster = movie.dataset.poster;
+            movie.removeAttribute('data-poster');
+            if (!movie.closest('.fold-flex-movie')) return;
             movie.defaultPlaybackRate = 1.5;
             movie.playbackRate = 1.5;
-            movie.removeAttribute('data-poster');
             var figure = movie.closest('figure');
             var controls = document.getElementById('silent-movie-controls').content.firstElementChild.cloneNode(true);
             controls.setAttribute('aria-labelledby', figure.querySelector('figcaption').id);

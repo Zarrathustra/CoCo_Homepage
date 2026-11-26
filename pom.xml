@@ -50,6 +50,8 @@
           <include>img/**</include>
           <include>fonts/**</include>
           <include>materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_*.mp4</include>
+          <include>materials/v0.3.10/structure-validation/images/Structure_Validation.png</include>
+          <include>materials/v0.3.10/structure-validation/movies/Structure_Validation_EN.mp4</include>
         </includes>
         <excludes>
           <exclude>img/Structure_*.png</exclude>

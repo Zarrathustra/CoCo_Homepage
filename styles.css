@@ -989,7 +989,8 @@
   .module-page--pros .module-github-link:hover,
   .module-page--ctfa .module-back-link:hover,
   .module-page--emodelg .module-back-link:hover,
-  .module-page--fold-flex .module-back-link:hover {
+  .module-page--fold-flex .module-back-link:hover,
+  .module-page--validation .module-back-link:hover {
     background: var(--leaf-soft);
     color: var(--leaf-deep);
   }
@@ -1011,7 +1012,8 @@
   .module-page--pros .module-page-hero,
   .module-page--ctfa .module-page-hero,
   .module-page--emodelg .module-page-hero,
-  .module-page--fold-flex .module-page-hero {
+  .module-page--fold-flex .module-page-hero,
+  .module-page--validation .module-page-hero {
     background:
       radial-gradient(circle at 72% 22%, oklch(91% 0.0401 147 / 0.62), transparent 26rem),
       linear-gradient(180deg, oklch(97.6% 0.0088 100), oklch(94.4% 0.0143 100));
@@ -1439,6 +1441,25 @@
   .module-page--sieve .module-page-hero-img {
     border: 1px solid oklch(82% 0.0231 100 / 0.48);
     transform: rotate(0.45deg);
+  }
+
+  .module-page--validation figure {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .validation-walkthrough {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--paper-soft);
+  }
+
+  .module-page--validation .modeling-modes {
+    margin-top: 1rem;
   }
 
   .fold-flex-movie {
@@ -3236,7 +3257,8 @@
       grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.72fr);
     }
 
-    .module-page--fold-flex .module-page-hero-grid {
+    .module-page--fold-flex .module-page-hero-grid,
+    .module-page--validation .module-page-hero-grid {
       grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
     }
 

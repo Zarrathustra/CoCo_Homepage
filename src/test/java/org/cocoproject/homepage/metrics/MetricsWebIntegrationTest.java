@@ -340,6 +340,7 @@ class MetricsWebIntegrationTest {
                 "ctfa",
                 "emodelg",
                 "cocofold-cocoflex",
+                "structure-validation",
                 "changelog",
                 "changelogs",
                 "changelog-v0-3-2",
