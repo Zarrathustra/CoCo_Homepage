@@ -12,8 +12,9 @@ const { chromium, webkit, devices } = require(process.env.PLAYWRIGHT_MODULE || '
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const output = process.env.COCO_TEST_OUTPUT_DIR || await mkdtemp(path.join(tmpdir(), 'coco-browser-check-'));
 await mkdir(output, { recursive: true });
-const views = ['home', 'cryosieve', 'cryopros', 'emodelg', 'changelog', 'changelogs',
-  'changelog-v0-3-2', 'changelog-v0-2-0', 'install-v0-3-5', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0'];
+const views = ['home', 'cryosieve', 'cryopros', 'emodelg', 'cocofold-cocoflex', 'structure-validation',
+  'changelog', 'changelogs', 'changelog-v0-3-5', 'changelog-v0-3-2', 'changelog-v0-2-0',
+  'install-v0-3-10', 'install-v0-3-5', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0'];
 const previews = {
   structure: ['Structure', 'Structure view'], dag: ['DAG', 'DAG workflow'],
   '2d': ['2D_Reconstruction', '2D reconstruction'], emodelg: ['EModelG', 'EModelG modeling'],
@@ -225,16 +226,16 @@ async function checkNavigation(page, touch) {
     await navigate(page, id);
     await checkAnchor(page, id);
   }
-  for (const version of ['0-3-5', '0-3-2', '0-2-0', '0-1-0']) {
+  for (const version of ['0-3-10', '0-3-5', '0-3-2', '0-2-0', '0-1-0']) {
     const view = `install-v${version}`;
     await navigate(page, `${view}-runtime`);
     await checkAnchor(page, `${view}-runtime`);
     await activate(page, `[data-view="${view}"] .install-toc a[href="#${view}-start"]`, touch);
     await checkAnchor(page, `${view}-start`);
   }
-  for (const [hash, target] of [['install', 'install-v0-3-5-top'], ['install-runtime', 'install-v0-3-5-runtime'], ['install-login', 'install-v0-3-5-top']]) {
+  for (const [hash, target] of [['install', 'install-v0-3-10-top'], ['install-runtime', 'install-v0-3-10-runtime'], ['install-login', 'install-v0-3-10-top']]) {
     await navigate(page, hash);
-    await activeView(page, 'install-v0-3-5');
+    await activeView(page, 'install-v0-3-10');
     await checkAnchor(page, target);
   }
 }
