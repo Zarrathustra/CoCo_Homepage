@@ -541,10 +541,19 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     margin: 0;
+    padding: 0;
+    border: 0;
+    cursor: zoom-in;
+    touch-action: manipulation;
     overflow: hidden;
     background:
       radial-gradient(circle at 50% 50%, oklch(96% 0.0083 100), transparent 72%),
       oklch(92.5% 0.0121 100);
+  }
+
+  .coco-gui-figure:focus-visible,
+  .gui-inspector-viewport:focus-visible {
+    outline-offset: -4px;
   }
 
   .coco-gui-image {
@@ -569,12 +578,118 @@
   }
 
   .coco-gui-caption {
-    flex: 1 1 18rem;
+    flex: 1 0 100%;
     min-width: 0;
-    max-width: 62ch;
     color: var(--ink-muted);
     font-size: 0.92rem;
     line-height: 1.45;
+  }
+
+  .coco-gui-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+  }
+
+  .coco-gui-zoom,
+  .gui-inspector-toolbar button {
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .coco-gui-zoom:hover,
+  .gui-inspector-toolbar button:enabled:hover {
+    background: var(--paper-warm);
+  }
+
+  html:has(.gui-inspector[open]) { overflow: hidden; }
+
+  .gui-inspector {
+    position: fixed;
+    inset: 0;
+    width: min(94vw, 96rem);
+    height: 90dvh;
+    max-width: none;
+    max-height: none;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+  }
+
+  .gui-inspector[open] {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gui-inspector::backdrop { background: rgb(19 28 25 / 76%); }
+
+  .gui-inspector-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.55rem 0.85rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .gui-inspector-toolbar h3 {
+    flex: 1;
+    font-size: clamp(1.05rem, 2vw, 1.45rem);
+  }
+
+  .gui-inspector-scale {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  .gui-inspector-scale button { min-width: 2.2rem; }
+  .gui-inspector-scale button:disabled { opacity: 0.45; cursor: default; }
+
+  .gui-inspector-viewport {
+    overflow: auto;
+    touch-action: manipulation;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    background: var(--paper-warm);
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .gui-inspector-viewport:active { cursor: grabbing; }
+  .gui-inspector-viewport.is-fit { cursor: default; }
+  .gui-inspector-viewport.is-fit img { cursor: zoom-in; }
+
+  .gui-inspector-canvas {
+    display: grid;
+    place-items: center;
+    width: max-content;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .gui-inspector-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+  }
+
+  .gui-inspector-frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .coco-gui-theme {
@@ -2714,8 +2829,10 @@
       flex: none;
     }
 
-    .coco-gui-theme {
+    .coco-gui-actions {
       margin-left: 0;
+      width: 100%;
+      justify-content: space-between;
     }
 
     .coco-gui-segmented--views {
@@ -2724,6 +2841,8 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       border-radius: var(--radius-md);
     }
+
+    .coco-gui-segmented--views button:last-child { grid-column: 1 / -1; }
 
     .download-actions,
     .changelog-action-links,
@@ -3461,9 +3580,13 @@
     .install-version-switcher a,
     .changelog-all-link,
     .coco-gui-segmented button,
+    .coco-gui-zoom,
+    .gui-inspector-toolbar button,
     .coco-gui-theme button {
       min-height: 48px;
     }
+
+    .gui-inspector-toolbar button { min-width: 48px; }
 
     .brand-mark {
       min-height: 44px;
@@ -3479,6 +3602,18 @@
     .footer-legal a {
       padding-block: 0.8rem;
     }
+  }
+
+  @media (max-width: 40rem), (pointer: coarse) and (max-height: 32rem) {
+    .gui-inspector {
+      width: 100%;
+      height: 100dvh;
+      border: 0;
+      border-radius: 0;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+
+    .gui-inspector-toolbar { gap: 0.4rem; padding: 0.35rem 0.5rem; }
   }
 
   @media (hover: none) {

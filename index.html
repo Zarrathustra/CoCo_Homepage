@@ -6,7 +6,7 @@
     <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, with featured modules for particle analysis and structural modeling.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
     <link rel="preload" href="fonts/nunito-sans-var.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=eef52d1df8fe">
+    <link rel="stylesheet" href="styles.css?v=2a9396635b4c">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -92,35 +92,44 @@
         </div>
         <div class="hero-grid">
           <div class="workbench-card coco-gui-card" data-coco-gui-theme="light" data-coco-gui-layout="structure">
-            <figure class="coco-gui-figure" role="img" aria-label="CoCo GUI preview: Structure view in light mode">
-              <img
-                class="coco-gui-image"
-                src="img/gui/Structure_Light-1600.webp"
-                srcset="img/gui/Structure_Light-1600.webp 1600w, img/gui/Structure_Light-2560.webp 2560w"
-                sizes="(min-width: 82rem) 1180px, 92vw"
-                alt=""
-                width="1600"
-                height="900"
-                loading="lazy"
-                decoding="async"
-                aria-hidden="true"
-              >
-            </figure>
+            <button class="coco-gui-figure" type="button" aria-haspopup="dialog" aria-controls="gui-inspector" aria-label="Zoom in on Structure prediction in light mode">
+              <img class="coco-gui-image" src="img/gui/v0.3.10/Structure_Prediction_Light-1600.webp"
+                srcset="img/gui/v0.3.10/Structure_Prediction_Light-1600.webp 1600w, img/gui/v0.3.10/Structure_Prediction_Light-2560.webp 2560w"
+                sizes="(min-width: 82rem) 1180px, 92vw" alt="" width="1600" height="900" loading="lazy" decoding="async">
+            </button>
             <div class="coco-gui-controls">
               <div class="coco-gui-segmented coco-gui-segmented--views" role="group" aria-label="CoCo GUI preview view">
-                <button type="button" data-coco-gui-layout-option="structure" aria-pressed="true">Structure</button>
+                <button type="button" data-coco-gui-layout-option="structure" aria-pressed="true">Structure prediction</button>
                 <button type="button" data-coco-gui-layout-option="dag" aria-pressed="false">Job graph</button>
                 <button type="button" data-coco-gui-layout-option="2d" aria-pressed="false">2D classes</button>
                 <button type="button" data-coco-gui-layout-option="emodelg" aria-pressed="false">EModelG</button>
+                <button type="button" data-coco-gui-layout-option="cocofold" aria-pressed="false">CoCoFold</button>
               </div>
-              <p class="coco-gui-caption" aria-live="polite">Structure: open an imported or modeled structure with its sequence, 3D view, and summary beside the job details.</p>
-              <div class="coco-gui-theme" role="group" aria-label="CoCo GUI preview color mode">
-                <button type="button" data-coco-gui-theme-option="light" aria-pressed="true">Light</button>
-                <button type="button" data-coco-gui-theme-option="dark" aria-pressed="false">Dark</button>
+              <div class="coco-gui-actions">
+                <div class="coco-gui-theme" role="group" aria-label="CoCo GUI preview color mode">
+                  <button type="button" data-coco-gui-theme-option="light" aria-pressed="true">Light</button>
+                  <button type="button" data-coco-gui-theme-option="dark" aria-pressed="false">Dark</button>
+                </div>
+                <button class="coco-gui-zoom" type="button" aria-haspopup="dialog" aria-controls="gui-inspector">Zoom in</button>
               </div>
+              <p class="coco-gui-caption" aria-live="polite">Explore the predicted structure alongside its confidence scores and chain sequences.</p>
             </div>
           </div>
         </div>
+        <dialog id="gui-inspector" class="gui-inspector" aria-labelledby="gui-inspector-title">
+          <div class="gui-inspector-toolbar">
+            <h3 id="gui-inspector-title">Structure prediction</h3>
+            <div class="gui-inspector-scale" role="group" aria-label="Screenshot magnification">
+              <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+              <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
+              <button type="button" data-zoom="fit" aria-label="Fit whole screenshot">Fit</button>
+            </div>
+            <button type="button" data-zoom="close">Close</button>
+          </div>
+          <div class="gui-inspector-viewport" role="region" aria-label="Screenshot detail. Drag or use the arrow keys to pan." tabindex="0" autofocus>
+            <div class="gui-inspector-canvas"><div class="gui-inspector-frame"><img width="5120" height="2880" alt="" draggable="false"></div></div>
+          </div>
+        </dialog>
       </section>
 
       <section class="modules-section" id="modules" aria-labelledby="modules-title">
@@ -4414,39 +4423,29 @@ modules.lock</code></pre>
         var cocoGuiImage = document.querySelector('.coco-gui-image');
         var cocoGuiStateButtons = document.querySelectorAll('[data-coco-gui-theme-option], [data-coco-gui-layout-option]');
         var cocoGuiCaption = document.querySelector('.coco-gui-caption');
+        var cocoGuiDirectory = 'img/gui/v0.3.10/';
         var cocoGuiViews = {
-          structure: {
-            label: 'Structure view',
-            caption: 'Structure: open an imported or modeled structure with its sequence, 3D view, and summary beside the job details.',
-            light: 'Structure_Light',
-            dark: 'Structure_Dark'
-          },
-          dag: {
-            label: 'Job graph',
-            caption: 'Job graph (DAG): see how the jobs in a project connect, from particle import to downstream analysis.',
-            light: 'DAG_Light',
-            dark: 'DAG_Dark'
-          },
-          '2d': {
-            label: '2D class averages',
-            caption: '2D classes: review class averages from 2D reconstruction, with the particle count and resolution of each class.',
-            light: '2D_Reconstruction_Light',
-            dark: '2D_Reconstruction_Dark'
-          },
-          emodelg: {
-            label: 'EModelG modeling',
-            caption: 'EModelG: inspect a protein or glycan model built from a reconstructed density map.',
-            light: 'EModelG_Light',
-            dark: 'EModelG_Dark'
-          }
+          structure: { label: 'Structure prediction', stem: 'Structure_Prediction',
+            caption: 'Explore the predicted structure alongside its confidence scores and chain sequences.' },
+          dag: { label: 'Job graph', stem: 'DAG',
+            caption: 'Follow job dependencies and check progress in the directed acyclic graph (DAG).' },
+          '2d': { label: '2D classes', stem: '2D_Classification',
+            caption: 'Compare class averages with the particle count and resolution shown beneath each image.' },
+          emodelg: { label: 'EModelG', stem: 'EModelG',
+            caption: 'Inspect the reconstructed protein model together with its chains and modeling summary.' },
+          cocofold: { label: 'CoCoFold', stem: 'CoCoFold',
+            caption: 'Compare the initial and refined models side by side and follow the refinement curves.' }
         };
-        var cocoGuiShown = 'Structure_Light';
-        var cocoGuiWarmed = { Structure_Light: true };
+        function cocoGuiStem(layout, theme) {
+          return cocoGuiViews[layout].stem + (theme === 'dark' ? '_Dark' : '_Light');
+        }
+        var cocoGuiShown = cocoGuiStem('structure', 'light');
+        var cocoGuiWarmed = new Set([cocoGuiShown]);
         var cocoGuiConnection = navigator.connection || {};
         var cocoGuiSaveData = Boolean(cocoGuiConnection.saveData) || /(^|-)2g$/.test(cocoGuiConnection.effectiveType || '');
 
         function cocoGuiSrcset(name) {
-          return 'img/gui/' + name + '-1600.webp 1600w, img/gui/' + name + '-2560.webp 2560w';
+          return cocoGuiDirectory + name + '-1600.webp 1600w, ' + cocoGuiDirectory + name + '-2560.webp 2560w';
         }
 
         function cocoGuiTheme() {
@@ -4460,8 +4459,8 @@ modules.lock</code></pre>
 
         // Fetch a preview only when it is likely to be shown next; the image picks its width from sizes.
         function warmCocoGuiImage(name) {
-          if (!name || cocoGuiWarmed[name]) return;
-          cocoGuiWarmed[name] = true;
+          if (cocoGuiSaveData || cocoGuiWarmed.has(name)) return;
+          cocoGuiWarmed.add(name);
           var probe = new Image();
           probe.decoding = 'async';
           probe.sizes = cocoGuiImage.getAttribute('sizes');
@@ -4471,7 +4470,7 @@ modules.lock</code></pre>
         function warmCocoGuiTheme(theme) {
           if (cocoGuiSaveData) return;
           Object.keys(cocoGuiViews).forEach(function (layout) {
-            warmCocoGuiImage(cocoGuiViews[layout][theme]);
+            warmCocoGuiImage(cocoGuiStem(layout, theme));
           });
         }
 
@@ -4492,17 +4491,18 @@ modules.lock</code></pre>
           cocoGuiCard.setAttribute('data-coco-gui-theme', nextTheme);
           cocoGuiCard.setAttribute('data-coco-gui-layout', nextLayout);
 
-          if (cocoGuiImage && cocoGuiShown !== nextView[nextTheme]) {
-            cocoGuiShown = nextView[nextTheme];
-            cocoGuiWarmed[cocoGuiShown] = true;
+          var stem = cocoGuiStem(nextLayout, nextTheme);
+          if (cocoGuiImage && cocoGuiShown !== stem) {
+            cocoGuiShown = stem;
+            cocoGuiWarmed.add(stem);
             cocoGuiImage.setAttribute('srcset', cocoGuiSrcset(cocoGuiShown));
-            cocoGuiImage.setAttribute('src', 'img/gui/' + cocoGuiShown + '-1600.webp');
+            cocoGuiImage.setAttribute('src', cocoGuiDirectory + cocoGuiShown + '-1600.webp');
           }
 
           if (cocoGuiFigure) {
             cocoGuiFigure.setAttribute(
               'aria-label',
-              'CoCo GUI preview: ' + nextView.label + ' in ' + nextTheme + ' mode'
+              'Zoom in on ' + nextView.label + ' in ' + nextTheme + ' mode'
             );
           }
 
@@ -4532,7 +4532,7 @@ modules.lock</code></pre>
               cocoGuiStateButtons[i].addEventListener(eventName, function () {
                 var theme = this.getAttribute('data-coco-gui-theme-option') || cocoGuiTheme();
                 var layout = this.getAttribute('data-coco-gui-layout-option') || cocoGuiLayout();
-                warmCocoGuiImage(cocoGuiViews[layout][theme]);
+                warmCocoGuiImage(cocoGuiStem(layout, theme));
               });
             });
           }
@@ -4545,6 +4545,121 @@ modules.lock</code></pre>
             }, { rootMargin: '200px 0px' });
             cocoGuiObserver.observe(cocoGuiCard);
           }
+          initGuiInspector();
+        }
+
+        function initGuiInspector() {
+          const dialog = document.getElementById('gui-inspector');
+          const viewport = dialog.querySelector('.gui-inspector-viewport');
+          const frame = viewport.querySelector('.gui-inspector-frame');
+          const image = viewport.querySelector('img');
+          const title = dialog.querySelector('h3');
+          const zoomIn = dialog.querySelector('[data-zoom="in"]');
+          const zoomOut = dialog.querySelector('[data-zoom="out"]');
+          const fit = dialog.querySelector('[data-zoom="fit"]');
+          const startWidth = 2560;
+          const maxWidth = 5120;
+          let width = startWidth;
+          let fitted = false;
+          let opener;
+          let drag;
+          let pendingPoint;
+
+          function fitWidth() {
+            return Math.min(viewport.clientWidth, viewport.clientHeight * 16 / 9);
+          }
+
+          function pointOnImage(element, x, y) {
+            const rect = element.getBoundingClientRect();
+            return { x: (x - rect.left) / rect.width, y: (y - rect.top) / rect.height };
+          }
+
+          function centerAfterResize() {
+            // WebKit can still expose the old scroll area inside a tap handler.
+            if (!pendingPoint || Math.abs(frame.getBoundingClientRect().width - width) > 0.1) return;
+            viewport.scrollTo(width * pendingPoint.x - viewport.clientWidth / 2,
+              width * 9 / 16 * pendingPoint.y - viewport.clientHeight / 2);
+            pendingPoint = null;
+          }
+          new ResizeObserver(centerAfterResize).observe(frame);
+
+          function setWidth(nextWidth, point) {
+            const minimum = fitWidth();
+            if (!point) {
+              const rect = viewport.getBoundingClientRect();
+              point = pointOnImage(frame, rect.left + viewport.clientWidth / 2, rect.top + viewport.clientHeight / 2);
+            }
+            width = Math.max(minimum, Math.min(nextWidth, maxWidth));
+            frame.style.width = width + 'px';
+            pendingPoint = point;
+            centerAfterResize();
+            fitted = width === minimum;
+            viewport.classList.toggle('is-fit', fitted);
+            zoomOut.disabled = fit.disabled = fitted;
+            zoomIn.disabled = width >= maxWidth;
+          }
+
+          function open(event) {
+            opener = event.currentTarget;
+            const point = opener === cocoGuiFigure && event.detail > 0
+              ? pointOnImage(cocoGuiImage, event.clientX, event.clientY) : { x: 0.5, y: 0.5 };
+            const view = cocoGuiViews[cocoGuiLayout()];
+            title.textContent = view.label;
+            image.alt = view.caption + ' ' + (cocoGuiTheme() === 'dark' ? 'Dark' : 'Light') + ' mode.';
+            const stem = cocoGuiShown;
+            const source = cocoGuiDirectory + stem;
+            image.src = cocoGuiImage.currentSrc.includes('/' + source + '-') ? cocoGuiImage.currentSrc : source + '-1600.webp';
+            dialog.showModal();
+            setWidth(startWidth, point);
+
+            // Keep the preview in place until the detail image is decoded, including on slow connections.
+            const detail = new Image();
+            detail.src = source + '-5120.webp';
+            detail.decode().then(function () {
+              if (dialog.open && cocoGuiShown === stem) image.src = detail.src;
+            }).catch(function () { /* The same area remains available at preview resolution. */ });
+          }
+
+          cocoGuiFigure.addEventListener('click', open);
+          cocoGuiCard.querySelector('.coco-gui-zoom').addEventListener('click', open);
+          zoomIn.addEventListener('click', () => setWidth(width * 2));
+          zoomOut.addEventListener('click', () => setWidth(width / 2));
+          fit.addEventListener('click', () => setWidth(fitWidth(), { x: 0.5, y: 0.5 }));
+          image.addEventListener('click', function (event) {
+            if (fitted) setWidth(startWidth, pointOnImage(image, event.clientX, event.clientY));
+          });
+          dialog.querySelector('[data-zoom="close"]').addEventListener('click', () => dialog.close());
+          dialog.addEventListener('close', function () {
+            if (dialog.open) return;
+            pendingPoint = null;
+            drag = null;
+            image.removeAttribute('src');
+            opener.focus({ preventScroll: true });
+          });
+          window.addEventListener('popstate', function () { if (dialog.open) dialog.close(); });
+          new ResizeObserver(function () {
+            if (dialog.open && (fitted || width < fitWidth())) setWidth(fitWidth(), { x: 0.5, y: 0.5 });
+          }).observe(viewport);
+
+          // Touch uses native two-axis scrolling. Only mouse dragging needs a pointer handler.
+          viewport.addEventListener('pointerdown', function (event) {
+            if (fitted || event.pointerType !== 'mouse' || event.button !== 0) return;
+            drag = { x: event.clientX, y: event.clientY, left: viewport.scrollLeft, top: viewport.scrollTop };
+            viewport.setPointerCapture(event.pointerId);
+          });
+          viewport.addEventListener('pointermove', function (event) {
+            if (!drag || event.pointerType !== 'mouse') return;
+            viewport.scrollLeft = drag.left + drag.x - event.clientX;
+            viewport.scrollTop = drag.top + drag.y - event.clientY;
+          });
+          viewport.addEventListener('lostpointercapture', function () { drag = null; });
+          dialog.addEventListener('keydown', function (event) {
+            const steps = { ArrowLeft: [-80, 0], ArrowRight: [80, 0], ArrowUp: [0, -80], ArrowDown: [0, 80] };
+            const step = steps[event.key];
+            if (!step || event.altKey || event.metaKey || event.ctrlKey) return;
+            event.preventDefault();
+            viewport.scrollBy(step[0], step[1]);
+          });
         }
 
         var CURRENT_INSTALL_VIEW = 'install-v0-3-10';
@@ -4736,7 +4851,25 @@ modules.lock</code></pre>
           updateHeaderOffset();
           if (scrollTarget) {
             var target = document.querySelector(scrollTarget);
-            if (target) target.scrollIntoView({ behavior: 'instant' });
+            if (target) {
+              target.scrollIntoView({ behavior: 'instant' });
+              // The hero and sticky header can change height when the web fonts arrive.
+              if (viewName === 'home') {
+                const initialHash = location.hash;
+                const input = new AbortController();
+                const observer = new ResizeObserver(function () {
+                  if (location.hash !== initialHash) return stop();
+                  updateHeaderOffset();
+                  target.scrollIntoView({ behavior: 'instant' });
+                });
+                function stop() { observer.disconnect(); input.abort(); }
+                for (const type of ['pointerdown', 'wheel', 'keydown', 'popstate']) {
+                  window.addEventListener(type, stop, { passive: true, signal: input.signal });
+                }
+                observer.observe(document.getElementById('main'));
+                observer.observe(siteHeader);
+              }
+            }
             scrollTarget = null;
           }
           currentView = viewName;

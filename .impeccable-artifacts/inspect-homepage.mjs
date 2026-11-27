@@ -16,10 +16,9 @@ const views = ['home', 'cryosieve', 'cryopros', 'emodelg', 'cocofold-cocoflex', 
   'changelog', 'changelogs', 'changelog-v0-3-5', 'changelog-v0-3-2', 'changelog-v0-2-0',
   'install-v0-3-10', 'install-v0-3-5', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0'];
 const previews = {
-  structure: ['Structure', 'Structure view'], dag: ['DAG', 'DAG workflow'],
-  '2d': ['2D_Reconstruction', '2D reconstruction'], emodelg: ['EModelG', 'EModelG modeling'],
+  structure: ['Structure_Prediction', 'Structure prediction'], dag: ['DAG', 'Job graph'],
+  '2d': ['2D_Classification', '2D classes'], emodelg: ['EModelG', 'EModelG'], cocofold: ['CoCoFold', 'CoCoFold'],
 };
-const previewFiles = Object.values(previews).flatMap(([stem]) => [`${stem}_Light.png`, `${stem}_Dark.png`]);
 const profiles = [
   { name: 'iphone-15-pro', engine: 'webkit', ...devices['iPhone 15 Pro'] },
   { name: 'iphone-15-pro-full-height', engine: 'webkit', ...devices['iPhone 15 Pro'], viewport: { width: 393, height: 852 } },
@@ -44,7 +43,7 @@ const server = createServer(async (req, res) => {
   try {
     let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
     if (pathname === '/') pathname = '/index.html';
-    if (!/^\/(index\.html|styles\.css|coco_logo\.png|img\/[^/]+)$/.test(pathname)) {
+    if (pathname.split('/').includes('..') || !/^\/(index\.html|styles\.css|coco_logo\.png|img\/[\w./-]+\.(?:webp|png|svg|jpg)|fonts\/[\w.-]+\.woff2|materials\/v0\.3\.10\/structure-validation\/images\/Structure_Validation\.png)$/.test(pathname)) {
       res.writeHead(404).end();
       return;
     }
@@ -55,7 +54,7 @@ const server = createServer(async (req, res) => {
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('ETag', etag);
     if (req.headers['if-none-match'] === etag) { res.writeHead(304).end(); return; }
-    const types = { '.html': 'text/html', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
+    const types = { '.html': 'text/html', '.css': 'text/css', '.webp': 'image/webp', '.woff2': 'font/woff2', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
     res.setHeader('Content-Type', types[path.extname(filename)] || 'application/octet-stream');
     res.setHeader('Content-Length', info.size);
     if (req.method === 'HEAD') res.end();
@@ -132,7 +131,7 @@ async function checkMenu(page, touch, screenshotName) {
     return { text: link.innerText, hit: link.contains(hit), height: rect.height,
       inViewport: rect.left >= 0 && rect.right <= innerWidth && rect.top >= 0 && rect.bottom <= innerHeight };
   }));
-  assert.equal(links.length, 3);
+  assert.equal(links.length, 5);
   assert(links.every(l => l.hit && l.inViewport && (!touch || l.height >= 48)), JSON.stringify(links));
   if (screenshotName) await captureScreenshot(page, { path: path.join(output, screenshotName), scale: 'css' });
   await activate(page, trigger, touch);
@@ -158,16 +157,16 @@ async function checkMenu(page, touch, screenshotName) {
   await page.locator(trigger).focus();
   await page.keyboard.press('Space');
   await menuState(page, true);
-  for (let i = 0; i < 4; i++) await page.keyboard.press(tab);
+  for (let i = 0; i <= links.length; i++) await page.keyboard.press(tab);
   await menuState(page, false);
   assert.equal(await page.evaluate(() => document.activeElement.getAttribute('href')), '#references');
 }
 
 async function checkPreview(page, theme, layout) {
   await page.locator('.coco-gui-image').evaluate(img => img.decode());
-  const expected = `img/${previews[layout][0]}_${theme === 'dark' ? 'Dark' : 'Light'}.png`;
+  const expected = `img/gui/v0.3.10/${previews[layout][0]}_${theme === 'dark' ? 'Dark' : 'Light'}-1600.webp`;
   assert.equal(await page.locator('.coco-gui-image').getAttribute('src'), expected);
-  assert.equal(await page.locator('.coco-gui-figure').getAttribute('aria-label'), `CoCo GUI preview: ${previews[layout][1]} in ${theme} mode`);
+  assert.equal(await page.locator('.coco-gui-figure').getAttribute('aria-label'), `Zoom in on ${previews[layout][1]} in ${theme} mode`);
   assert.equal(await page.locator('[data-coco-gui-theme-option][aria-pressed="true"]').getAttribute('data-coco-gui-theme-option'), theme);
   assert.equal(await page.locator('[data-coco-gui-layout-option][aria-pressed="true"]').getAttribute('data-coco-gui-layout-option'), layout);
   assert.equal(await page.locator('[data-coco-gui-theme-option][aria-pressed="true"]').count(), 1);
@@ -176,15 +175,73 @@ async function checkPreview(page, theme, layout) {
   assert(Math.abs(box.width / box.height - 16 / 9) < 0.02);
 }
 
+async function checkInspector(page, theme, layout, touch) {
+  const trigger = page.locator('.coco-gui-figure');
+  const viewport = page.locator('.gui-inspector-viewport');
+  const image = viewport.locator('img');
+  const pick = async (locator, x, y) => {
+    const box = await locator.boundingBox();
+    const position = { x: Math.round(box.width * x), y: Math.round(box.height * y) };
+    if (touch) await locator.tap({ position });
+    else await locator.click({ position });
+  };
+  const checkPoint = async (x, y, width = 2560) => {
+    await page.waitForFunction(w => document.querySelector('.gui-inspector-frame img').clientWidth === w, width);
+    await settle(page);
+    const state = await viewport.evaluate(v => [v.scrollLeft, v.scrollTop, v.clientWidth, v.clientHeight, v.querySelector('img').clientWidth]);
+    assert.equal(state[4], width);
+    for (const [i, fraction, length] of [[0, x, width], [1, y, width * 9 / 16]]) {
+      const expected = Math.max(0, Math.min(length - state[i+2], length * fraction - state[i+2] / 2));
+      assert(Math.abs(state[i] - expected) <= 12, `position ${x},${y}: ${state}, expected ${expected} for axis ${i}`);
+    }
+  };
+  await trigger.evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+  const scrollY = await page.evaluate(() => window.scrollY);
+  const spot = layout === 'cocofold' ? [0.74, 0.35] : [0.42, 0.53];
+  await pick(trigger, ...spot);
+  const stem = `${previews[layout][0]}_${theme === 'dark' ? 'Dark' : 'Light'}`;
+  await page.waitForFunction(stem => {
+    const img = document.querySelector('dialog[open] img');
+    return img?.src.endsWith(stem + '-5120.webp') && img.complete && img.naturalWidth === 5120;
+  }, stem);
+  await checkPoint(...spot);
+  if (layout === 'cocofold' && theme === 'light') {
+    await activate(page, '[data-zoom="in"]', touch);
+    await activate(page, '[data-zoom="out"]', touch);
+    const start = await viewport.evaluate(v => v.scrollLeft);
+    await page.keyboard.press('ArrowLeft');
+    assert.equal(await viewport.evaluate(v => v.scrollLeft), start - 80);
+    if (!touch) {
+      const box = await viewport.boundingBox();
+      await page.mouse.move(box.x + 140, box.y + 140);
+      await page.mouse.down();
+      await page.mouse.move(box.x + 100, box.y + 140);
+      await page.mouse.up();
+      assert.equal(await viewport.evaluate(v => v.scrollLeft), start - 40);
+    }
+    for (const [x, y] of [[0.02, 0.02], [0.98, 0.02], [0.98, 0.98], [0.02, 0.98]]) {
+      await activate(page, '[data-zoom="fit"]', touch);
+      await pick(image, x, y);
+      await checkPoint(x, y);
+    }
+  }
+  if (touch) await activate(page, '[data-zoom="close"]', true);
+  else await page.keyboard.press('Escape');
+  await page.waitForFunction(() => document.activeElement.matches('.coco-gui-figure') && !document.querySelector('dialog[open]'));
+  assert(Math.abs(await page.evaluate(() => window.scrollY) - scrollY) <= 1);
+}
+
 async function checkPreviews(page, touch) {
-  // Resource completion is observed before any preview control is touched.
-  await page.waitForFunction(files => files.every(file => performance.getEntriesByType('resource')
-    .some(resource => resource.name.endsWith('/' + file))), previewFiles);
+  await page.locator('.coco-gui-figure').scrollIntoViewIfNeeded();
+  await checkPreview(page, 'light', 'structure');
+  const initial = await page.evaluate(() => performance.getEntriesByType('resource').map(e => e.name));
+  assert(!initial.some(url => /_Dark-|\-5120\.webp/.test(url)));
   for (const theme of ['light', 'dark']) {
     await activate(page, `[data-coco-gui-theme-option="${theme}"]`, touch);
     for (const layout of Object.keys(previews)) {
       await activate(page, `[data-coco-gui-layout-option="${layout}"]`, touch);
       await checkPreview(page, theme, layout);
+      await checkInspector(page, theme, layout, touch);
     }
   }
   await page.evaluate(() => {
@@ -220,7 +277,7 @@ async function checkNavigation(page, touch) {
   await page.goForward();
   await activeView(page, 'home');
   await checkAnchor(page, 'download');
-  for (const id of ['overview', 'references']) {
+  for (const id of ['workspace', 'references']) {
     await activate(page, `.nav-links > a[href="#${id}"]`, touch);
     await checkAnchor(page, id);
     await navigate(page, id);
@@ -277,7 +334,8 @@ async function checkLayout(page, view, touch) {
   }
   if (view === 'home' && layout.width < 576) {
     const buttons = await page.locator('[data-coco-gui-layout-option]').evaluateAll(es => es.map(e => e.getBoundingClientRect().toJSON()));
-    assert.equal(buttons.length, 4);
+    assert.equal(buttons.length, 5);
+    assert(buttons[4].top >= buttons[2].bottom);
     assert.equal(buttons[0].top, buttons[1].top);
     assert.equal(buttons[2].top, buttons[3].top);
     assert(buttons[2].top >= buttons[0].bottom && buttons[1].left >= buttons[0].right);
@@ -289,7 +347,7 @@ async function checkLayout(page, view, touch) {
 async function checkLoadingFailure(browser, contextOptions) {
   const context = await browser.newContext(contextOptions);
   try {
-    await context.route('**/DAG_Dark.png', route => route.abort());
+    await context.route('**/DAG_Dark-*.webp', route => route.abort());
     const page = await context.newPage();
     page.setDefaultTimeout(8000);
     const errors = [];
@@ -326,7 +384,7 @@ try {
       page.on('pageerror', e => errors.push(e.message));
       await navigate(page);
       await checkPreviews(page, options.hasTouch);
-      result.preloadedImages = previewFiles.length;
+      result.checkedScreenshots = 2 * Object.keys(previews).length;
       await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
       await checkMenu(page, options.hasTouch, `${name}-menu.png`);
       await checkNavigation(page, options.hasTouch);
@@ -343,8 +401,8 @@ try {
       await checkAnchor(page, 'download');
       await page.setViewportSize(options.viewport);
       await settle(page);
-      await activate(page, '.nav-links > a[href="#overview"]', options.hasTouch);
-      await checkAnchor(page, 'overview');
+      await activate(page, '.nav-links > a[href="#workspace"]', options.hasTouch);
+      await checkAnchor(page, 'workspace');
       // Also exercise the normal animation timings on every device.
       await page.emulateMedia({ reducedMotion: 'no-preference' });
       await navigate(page);

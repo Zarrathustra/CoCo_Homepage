@@ -58,7 +58,7 @@ index.html
 
 1. Hero：CoCo 定位、主 CTA、模块入口 CTA、事实列表。
 2. Relationship panel：用步骤说明 CoCo 工作区、任务依赖、重点模块和下游处理的关系。
-3. CoCo GUI preview：展示 Light/Dark 与 Structure/DAG/2D/EModelG 的八种界面组合，默认 Light + Structure。图片以 1600w / 2560w WebP 按需加载：卡片接近视口且浏览器空闲时预热当前主题的其他视图，悬停或聚焦按钮时预热对应图片，Save-Data 或 2G 下不预热；始终只显示单张图片。截图早于 v0.3.10 界面，重拍待后续安排。
+3. CoCo GUI preview 展示 v0.3.10 的五个视图，各有浅色和深色截图，默认打开浅色的 Structure prediction。首页按需加载 1600w / 2560w WebP，卡片接近视口后可在空闲时预热当前主题，也可在悬停或聚焦视图控件时预热。Save-Data 或 2G 下关闭预热。点截图可从所点位置放大，只有打开放大窗口才加载对应的 5120w WebP。
 4. Modules：五行 ledger 式重点模块入口，不将其表述为 CoCo 的全部能力。顺序依次为 CoCoFold & CoCoFlex、CryoSieve、CryoPROS、EModelG、Structure Validation；Modules 菜单与模块页的上一页／下一页使用相同顺序。
 5. Download：唯一主下载目标，提供 `Download CoCo v0.3.10`、安装指南与轻量 Change Log 入口。
 6. Publications：按四个模块分组的论文和预印本，顺序与模块列表一致（CoCoFold & CoCoFlex、CryoSieve、CryoPROS、EModelG），首页不再列出 Code 栏。模块详情页中的既有 GitHub 链接继续保留。
@@ -75,7 +75,7 @@ index.html
 - Header 仅保留一个 `Download CoCo v0.3.10` 下载入口。手机导航保留两行，窄屏可换行，触控目标至少 48px。
 - Modules 使用点击、触控或键盘明确展开，支持再次点击、点击外部、焦点移出和 Escape 关闭；隐藏菜单不会进入 Tab 顺序，Escape 返回触发按钮。
 - Header 实际高度通过 `ResizeObserver` 同步到页面滚动偏移，主页与各版本安装章节均预留 16px 间距，适应换页与横竖屏变化。
-- CoCo GUI preview 支持 Light/Dark 和 Structure/DAG/2D/EModelG 独立切换，同步各组按钮的 `aria-pressed` 状态与预览描述；小于 36rem 时视图按钮排列为 2×2。
+- GUI 预览可切换 Structure prediction、Job graph、2D classes、EModelG 和 CoCoFold。`Zoom in` 从中央打开，拖动或方向键可平移，`Fit` 回到全图后可重新点选。`Close` 或 `Esc` 关闭后焦点回到入口。
 - 模块 ledger 行支持鼠标点击与键盘 Enter/Space 激活。
 - 从模块页点击首页锚点时，会先切回 home view，再滚动到目标区块。
 - 支持 `prefers-reduced-motion: reduce`。
@@ -193,7 +193,7 @@ http://localhost:8080
 mvn test
 ```
 
-浏览器回归入口为 `.impeccable-artifacts/inspect-homepage.mjs`。它启动仅监听本机的静态服务，用 WebKit / Chromium 检查全部 16 个公开视图、菜单触控和键盘操作、八张预览图的提前加载与切换、图片加载失败后的交互、锚点与浏览器历史。覆盖 iPhone 15 Pro（竖屏、横屏、393×852 可用视口）、iPhone SE、Pro Max、iPad Mini、Galaxy S24、Pixel 7，以及 1280/1440px 桌面，共 15 个配置；这是设备仿真，不代表真机测试。
+浏览器回归入口为 `.impeccable-artifacts/inspect-homepage.mjs`。它启动仅监听本机的静态服务，用 WebKit / Chromium 检查全部 16 个公开视图、菜单触控和键盘操作、十张截图的主题切换、按需加载和局部放大、图片加载失败后的交互、锚点与浏览器历史。覆盖 iPhone 15 Pro（竖屏、横屏、393×852 可用视口）、iPhone SE、Pro Max、iPad Mini、Galaxy S24、Pixel 7，以及 1280/1440px 桌面，共 15 个配置；这是设备仿真，不代表真机测试。
 
 Playwright 可单独安装在临时目录，无需为网站增加 npm 构建流程。使用匹配版本的浏览器：
 

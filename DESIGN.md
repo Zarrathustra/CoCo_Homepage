@@ -245,7 +245,7 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 ### GUI Preview
 
 - **Style:** A headed section with one large workbench card: the CoCo screenshot at 16:9, then a controls bar. No extra window chrome; the screenshots already include the browser toolbar.
-- **Controls:** A dark segmented group switches Structure, Job graph, 2D classes, and EModelG. A one-sentence live caption explains the current view and spells out abbreviations such as DAG. Light/Dark is a small paper-toned toggle at the end of the bar, visibly secondary to the view group.
+- **Controls:** A dark segmented group switches Structure prediction, Job graph, 2D classes, EModelG, and CoCoFold. A one-sentence live caption explains the current view and spells out abbreviations such as DAG. Light/Dark and Zoom in are secondary controls. Clicking the screenshot opens the selected detail in a pannable viewer, full screen on phones. Fit shows the complete screenshot for another selection.
 - **Rule:** The preview shows what CoCo looks like in use. Captions describe only what the screenshot shows.
 
 ### Module Pages
