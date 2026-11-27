@@ -121,6 +121,53 @@ class MetricsDatabaseTest {
     }
 
     @Test
+    void addingV0310PreservesEarlierReleaseCountsAcrossRestarts() {
+        Path databasePath = tempDirectory.resolve("release-upgrade-v0310.db");
+        List<String> earlierVersions = List.of("v0.2.0", "v0.3.2", "v0.3.5");
+        TestDatabase original = database(databasePath,
+                "v0.2.0", "coco-0.2.0.tar.gz",
+                "v0.3.2", "coco-0.3.2.tar.gz",
+                "v0.3.5", "coco-0.3.5.tar.gz");
+        Instant now = Instant.parse("2026-11-26T02:00:00Z");
+        LocalDate today = LocalDate.parse("2026-11-26");
+        for (String version : earlierVersions) {
+            original.metrics.recordDownload("existing-visitor",
+                    original.catalog.findByVersion(version).orElseThrow(),
+                    now, today, Duration.ofSeconds(30));
+        }
+
+        TestDatabase upgraded = database(databasePath,
+                "v0.2.0", "coco-0.2.0.tar.gz",
+                "v0.3.2", "coco-0.3.2.tar.gz",
+                "v0.3.5", "coco-0.3.5.tar.gz",
+                "v0.3.10", "coco-0.3.10.tar.gz");
+        for (String version : earlierVersions) {
+            assertThat(upgraded.metrics.releaseStatistics(version).releaseDownloads()).isEqualTo(1);
+        }
+        assertThat(upgraded.metrics.releaseStatistics("v0.3.10"))
+                .satisfies(statistics -> {
+                    assertThat(statistics.releaseDownloads()).isZero();
+                    assertThat(statistics.allReleaseDownloads()).isEqualTo(3);
+                });
+
+        upgraded.metrics.recordDownload("existing-visitor",
+                upgraded.catalog.findByVersion("v0.3.10").orElseThrow(),
+                now, today, Duration.ofSeconds(30));
+        TestDatabase restarted = database(databasePath,
+                "v0.2.0", "coco-0.2.0.tar.gz",
+                "v0.3.2", "coco-0.3.2.tar.gz",
+                "v0.3.5", "coco-0.3.5.tar.gz",
+                "v0.3.10", "coco-0.3.10.tar.gz");
+        for (String version : List.of("v0.2.0", "v0.3.2", "v0.3.5", "v0.3.10")) {
+            assertThat(restarted.metrics.releaseStatistics(version))
+                    .satisfies(statistics -> {
+                        assertThat(statistics.releaseDownloads()).isEqualTo(1);
+                        assertThat(statistics.allReleaseDownloads()).isEqualTo(4);
+                    });
+        }
+    }
+
+    @Test
     void countsUniqueVisitorsPerViewAndDate() {
         TestDatabase testDatabase = database(
                 tempDirectory.resolve("views.db"),

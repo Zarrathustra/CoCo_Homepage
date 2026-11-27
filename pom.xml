@@ -13,7 +13,7 @@
 
   <groupId>org.cocoproject</groupId>
   <artifactId>coco-homepage</artifactId>
-  <version>0.3.5</version>
+  <version>0.3.10</version>
   <name>CoCo Homepage</name>
   <description>Runnable JAR distribution for the CoCo Project homepage.</description>
 
@@ -49,12 +49,16 @@
           <include>coco_logo.png</include>
           <include>img/**</include>
           <include>fonts/**</include>
+          <include>materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_*.mp4</include>
+          <include>materials/v0.3.10/structure-validation/images/Structure_Validation.png</include>
+          <include>materials/v0.3.10/structure-validation/movies/Structure_Validation_EN.mp4</include>
         </includes>
         <excludes>
           <exclude>img/Structure_*.png</exclude>
           <exclude>img/DAG_*.png</exclude>
           <exclude>img/2D_Reconstruction_*.png</exclude>
           <exclude>img/EModelG_*.png</exclude>
+          <exclude>img/cryopros_featured_image.png</exclude>
         </excludes>
       </resource>
       <resource>

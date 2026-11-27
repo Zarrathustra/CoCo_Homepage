@@ -209,8 +209,8 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 ### Chips
 
 - **Style:** Small pill badges with paper fill, quiet borders, and semibold text.
-- **Module Color:** Homepage module chips share neutral paper fills. Detail-page chips use coconut tints for CryoSieve and leaf tints for CryoPROS and EModelG.
-- **Use:** Use chips for attributes and status. Do not turn every metadata phrase into a chip.
+- **Module Color:** Homepage module chips share neutral paper fills. Module detail pages do not use attribute chips; their facts live in the at-a-glance list.
+- **Use:** Use chips for attributes and status. Do not turn every metadata phrase into a chip, and do not style non-interactive labels like buttons.
 
 ### Cards / Containers
 
@@ -223,6 +223,7 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 ### First Screen
 
 - **Structure:** Eyebrow, three-line display title, two-line lede, the Download CoCo pill with its Linux mark and version note, then an Explore modules text link. A decorative density-map gallery (`aria-hidden`, WebP at 1x and 2x) sits beside the copy.
+- **Icons:** The Download CoCo pill carries only the Linux mark before its label; it has no trailing arrow. Explore modules ends with one right arrow: a 45° line arrow whose stroke matches the text weight, 0.9em wide and 0.45em from the label. On hover it moves 3px right, and it stays still on touch devices and under reduced motion.
 - **Layout:** The first screen shares the page container, so its left edge matches the header and every section. From 58rem it is two columns (copy 0.9fr, gallery 1.1fr); below that the gallery follows the copy at no more than 34rem wide.
 - **Scale:** Sizes grow with the viewport and stop at their 1440px values, because the container stops growing there. Use `clamp()` and rem, never artboard units or absolute positioning.
 
@@ -239,13 +240,23 @@ Elevation is ambient tactile. Surfaces feel touchable because they cast soft, br
 
 - **Style:** A ruled ledger, not an identical card grid. Each module row has an index, description, and tags.
 - **Interaction:** Rows are clickable with subtle background change and visible focus outline.
-- **Status:** CTFA is deferred until it is visible in CoCo. Public rows and navigation feature CryoSieve, CryoPROS, and EModelG. Retain the neutral row treatment and existing module accents.
+- **Status:** CTFA is deferred until it is visible in CoCo. Public rows and navigation feature CryoSieve, CryoPROS, EModelG, the combined CoCoFold & CoCoFlex module, and Structure Validation. Retain the neutral row treatment and existing module accents.
 
 ### GUI Preview
 
 - **Style:** A headed section with one large workbench card: the CoCo screenshot at 16:9, then a controls bar. No extra window chrome; the screenshots already include the browser toolbar.
-- **Controls:** A dark segmented group switches Structure, Job graph, 2D classes, and EModelG. A one-sentence live caption explains the current view and spells out abbreviations such as DAG. Light/Dark is a small paper-toned toggle at the end of the bar, visibly secondary to the view group.
+- **Controls:** A dark segmented group switches Structure prediction, Job graph, 2D classes, EModelG, and CoCoFold. A one-sentence live caption explains the current view and spells out abbreviations such as DAG. Light/Dark and Zoom in are secondary controls. Clicking the screenshot opens the selected detail in a pannable viewer, full screen on phones. Fit shows the complete screenshot for another selection.
 - **Rule:** The preview shows what CoCo looks like in use. Captions describe only what the screenshot shows.
+
+### Module Pages
+
+- **Structure:** Every module page follows the same order: a Back to modules bar (with an optional GitHub or setup-guide link on the right), a hero with the "CoCo analysis module" kicker, title, lede, and figure, an at-a-glance fact list, module content, a "Use … in CoCo" step panel, publications, and a closing panel. Content forms may differ by module; the order and navigation do not.
+- **No versions:** Module pages carry no version information: no module versions, CoCo release labels, or preview status.
+- **At a glance:** A ruled `dl` of two to four short facts (inputs, outputs, compute, jobs). Use only facts the page already supports, and omit unknown fields. Four columns from 58rem, two below, one below 36rem.
+- **Steps:** Numbered ruled columns describe algorithms; the same steps inside a paper-tinted panel describe what the user does in CoCo. Below 36rem steps become compact rows with the number beside the title.
+- **Research results:** Each case has an `h3`, its figure, and only result metrics as large numbers. Input conditions such as map resolution belong in the figure caption.
+- **Closing panel:** One Download CoCo primary button, a secondary installation or setup guide link, and quiet previous/next module links in homepage order.
+- **Media:** Hero images use a quiet border, soft shadow, and no rotation. Silent movies show a visible title and one-sentence description, with play, position, elapsed / total time, speed, and full-screen controls.
 
 ### Figures and Tables
 

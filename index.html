@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, including CryoSieve, CryoPROS, and EModelG.">
+    <meta name="description" content="CoCo brings cryo-EM data preparation, reconstruction, and analysis into one graphical workspace, with featured modules for particle analysis and structural modeling.">
     <title>CoCo Project | Unified GUI for cryo-EM analysis modules</title>
     <link rel="preload" href="fonts/nunito-sans-var.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=d8451047c0d8">
+    <link rel="stylesheet" href="styles.css?v=2a9396635b4c">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -30,6 +30,10 @@
               </svg>
             </button>
             <div class="nav-dropdown-menu" id="module-quick-links" hidden>
+              <a href="#cocofold-cocoflex" data-nav="cocofold-cocoflex">
+                <strong>CoCoFold &amp; CoCoFlex</strong>
+                <span>Protein structures &amp; conformational motion</span>
+              </a>
               <a href="#cryosieve" data-nav="cryosieve">
                 <strong>CryoSieve</strong>
                 <span>Particle sorting &amp; sieving</span>
@@ -42,11 +46,15 @@
                 <strong>EModelG</strong>
                 <span>Glycan &amp; protein backbone modeling</span>
               </a>
+              <a href="#structure-validation" data-nav="structure-validation">
+                <strong>Structure Validation</strong>
+                <span>Model geometry &amp; map agreement</span>
+              </a>
             </div>
           </div>
           <a href="#references">References</a>
         </div>
-        <a class="button button-primary nav-cta" href="#download"><span>Download</span> <span class="nav-cta-detail">CoCo v0.3.5</span></a>
+        <a class="button button-primary nav-cta" href="#download"><span>Download</span> <span class="nav-cta-detail">CoCo v0.3.10</span></a>
       </nav>
     </header>
 
@@ -62,13 +70,12 @@
             </h1>
             <p class="coco-hero-lede"><span>Prepare, reconstruct and analyze.</span> <span>One graphical workspace.</span></p>
             <div class="coco-hero-actions">
-              <a class="button button-primary coco-download-button" href="#download" aria-label="Download CoCo for Linux, version 0.3.5"><svg class="coco-linux-icon" fill="currentColor" aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.166-.267.248.248 0 00-.183-.064h-.021c-.071.006-.13.04-.186.132a.552.552 0 00-.12.27.944.944 0 00-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268.01.009.02.018.034.024-.07.057-.117.07-.176.136a.304.304 0 01-.131.068 2.62 2.62 0 01-.275-.402 1.772 1.772 0 01-.155-.667 1.759 1.759 0 01.08-.668 1.43 1.43 0 01.283-.535c.128-.133.26-.2.418-.2zm1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.571.571 0 01.016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.139 1.139 0 01-.448-.067 3.566 3.566 0 01-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71-.07-.268-.005-.47.193-.6.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.043c-.06-.003-.12 0-.18 0h-.016c.151-.467-.182-.825-1.065-1.224-.915-.4-1.646-.336-1.77.465-.008.043-.013.066-.018.135-.068.023-.139.053-.209.064-.43.268-.662.669-.793 1.187-.13.533-.17 1.156-.205 1.869v.003c-.02.334-.17.838-.319 1.35-1.5 1.072-3.58 1.538-5.348.334a2.645 2.645 0 00-.402-.533 1.45 1.45 0 00-.275-.333c.182 0 .338-.03.465-.067a.615.615 0 00.314-.334c.108-.267 0-.697-.345-1.163-.345-.467-.931-.995-1.788-1.521-.63-.4-.986-.87-1.15-1.396-.165-.534-.143-1.085-.015-1.645.245-1.07.873-2.11 1.274-2.763.107-.065.037.135-.408.974-.396.751-1.14 2.497-.122 3.854a8.123 8.123 0 01.647-2.876c.564-1.278 1.743-3.504 1.836-5.268.048.036.217.135.289.202.218.133.38.333.59.465.21.201.477.335.876.335.039.003.075.006.11.006.412 0 .73-.134.997-.268.29-.134.52-.334.74-.4h.005c.467-.135.835-.402 1.044-.7zm2.185 8.958c.037.6.343 1.245.882 1.377.588.134 1.434-.333 1.791-.765l.211-.01c.315-.007.577.01.847.268l.003.003c.208.199.305.53.391.876.085.4.154.78.409 1.066.486.527.645.906.636 1.14l.003-.007v.018l-.003-.012c-.015.262-.185.396-.498.595-.63.401-1.746.712-2.457 1.57-.618.737-1.37 1.14-2.036 1.191-.664.053-1.237-.2-1.574-.898l-.005-.003c-.21-.4-.12-1.025.056-1.69.176-.668.428-1.344.463-1.897.037-.714.076-1.335.195-1.814.12-.465.308-.797.641-.984l.045-.022zm-10.814.049h.01c.053 0 .105.005.157.014.376.055.706.333 1.023.752l.91 1.664.003.003c.243.533.754 1.064 1.189 1.637.434.598.77 1.131.729 1.57v.006c-.057.744-.48 1.148-1.125 1.294-.645.135-1.52.002-2.395-.464-.968-.536-2.118-.469-2.857-.602-.369-.066-.61-.2-.723-.4-.11-.2-.113-.602.123-1.23v-.004l.002-.003c.117-.334.03-.752-.027-1.118-.055-.401-.083-.71.043-.94.16-.334.396-.4.69-.533.294-.135.64-.202.915-.47h.002v-.002c.256-.268.445-.601.668-.838.19-.201.38-.336.663-.336zm7.159-9.074c-.435.201-.945.535-1.488.535-.542 0-.97-.267-1.28-.466-.154-.134-.28-.268-.373-.335-.164-.134-.144-.333-.074-.333.109.016.129.134.199.2.096.066.215.2.36.333.292.2.68.467 1.167.467.485 0 1.053-.267 1.398-.466.195-.135.445-.334.648-.467.156-.136.149-.267.279-.267.128.016.034.134-.147.332a8.097 8.097 0 01-.69.468zm-1.082-1.583V5.64c-.006-.02.013-.042.029-.05.074-.043.18-.027.26.004.063 0 .16.067.15.135-.006.049-.085.066-.135.066-.055 0-.092-.043-.141-.068-.052-.018-.146-.008-.163-.065zm-.551 0c-.02.058-.113.049-.166.066-.047.025-.086.068-.14.068-.05 0-.13-.02-.136-.068-.01-.066.088-.133.15-.133.08-.031.184-.047.259-.005.019.009.036.03.03.05v.02h.003z"/></svg>
+              <a class="button button-primary coco-download-button" href="#download" aria-label="Download CoCo for Linux, version 0.3.10"><svg class="coco-linux-icon" fill="currentColor" aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.166-.267.248.248 0 00-.183-.064h-.021c-.071.006-.13.04-.186.132a.552.552 0 00-.12.27.944.944 0 00-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268.01.009.02.018.034.024-.07.057-.117.07-.176.136a.304.304 0 01-.131.068 2.62 2.62 0 01-.275-.402 1.772 1.772 0 01-.155-.667 1.759 1.759 0 01.08-.668 1.43 1.43 0 01.283-.535c.128-.133.26-.2.418-.2zm1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.571.571 0 01.016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.139 1.139 0 01-.448-.067 3.566 3.566 0 01-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71-.07-.268-.005-.47.193-.6.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.043c-.06-.003-.12 0-.18 0h-.016c.151-.467-.182-.825-1.065-1.224-.915-.4-1.646-.336-1.77.465-.008.043-.013.066-.018.135-.068.023-.139.053-.209.064-.43.268-.662.669-.793 1.187-.13.533-.17 1.156-.205 1.869v.003c-.02.334-.17.838-.319 1.35-1.5 1.072-3.58 1.538-5.348.334a2.645 2.645 0 00-.402-.533 1.45 1.45 0 00-.275-.333c.182 0 .338-.03.465-.067a.615.615 0 00.314-.334c.108-.267 0-.697-.345-1.163-.345-.467-.931-.995-1.788-1.521-.63-.4-.986-.87-1.15-1.396-.165-.534-.143-1.085-.015-1.645.245-1.07.873-2.11 1.274-2.763.107-.065.037.135-.408.974-.396.751-1.14 2.497-.122 3.854a8.123 8.123 0 01.647-2.876c.564-1.278 1.743-3.504 1.836-5.268.048.036.217.135.289.202.218.133.38.333.59.465.21.201.477.335.876.335.039.003.075.006.11.006.412 0 .73-.134.997-.268.29-.134.52-.334.74-.4h.005c.467-.135.835-.402 1.044-.7zm2.185 8.958c.037.6.343 1.245.882 1.377.588.134 1.434-.333 1.791-.765l.211-.01c.315-.007.577.01.847.268l.003.003c.208.199.305.53.391.876.085.4.154.78.409 1.066.486.527.645.906.636 1.14l.003-.007v.018l-.003-.012c-.015.262-.185.396-.498.595-.63.401-1.746.712-2.457 1.57-.618.737-1.37 1.14-2.036 1.191-.664.053-1.237-.2-1.574-.898l-.005-.003c-.21-.4-.12-1.025.056-1.69.176-.668.428-1.344.463-1.897.037-.714.076-1.335.195-1.814.12-.465.308-.797.641-.984l.045-.022zm-10.814.049h.01c.053 0 .105.005.157.014.376.055.706.333 1.023.752l.91 1.664.003.003c.243.533.754 1.064 1.189 1.637.434.598.77 1.131.729 1.57v.006c-.057.744-.48 1.148-1.125 1.294-.645.135-1.52.002-2.395-.464-.968-.536-2.118-.469-2.857-.602-.369-.066-.61-.2-.723-.4-.11-.2-.113-.602.123-1.23v-.004l.002-.003c.117-.334.03-.752-.027-1.118-.055-.401-.083-.71.043-.94.16-.334.396-.4.69-.533.294-.135.64-.202.915-.47h.002v-.002c.256-.268.445-.601.668-.838.19-.201.38-.336.663-.336zm7.159-9.074c-.435.201-.945.535-1.488.535-.542 0-.97-.267-1.28-.466-.154-.134-.28-.268-.373-.335-.164-.134-.144-.333-.074-.333.109.016.129.134.199.2.096.066.215.2.36.333.292.2.68.467 1.167.467.485 0 1.053-.267 1.398-.466.195-.135.445-.334.648-.467.156-.136.149-.267.279-.267.128.016.034.134-.147.332a8.097 8.097 0 01-.69.468zm-1.082-1.583V5.64c-.006-.02.013-.042.029-.05.074-.043.18-.027.26.004.063 0 .16.067.15.135-.006.049-.085.066-.135.066-.055 0-.092-.043-.141-.068-.052-.018-.146-.008-.163-.065zm-.551 0c-.02.058-.113.049-.166.066-.047.025-.086.068-.14.068-.05 0-.13-.02-.136-.068-.01-.066.088-.133.15-.133.08-.031.184-.047.259-.005.019.009.036.03.03.05v.02h.003z"/></svg>
                 <span>Download CoCo</span>
-                <svg class="coco-download-arrow" aria-hidden="true" width="24" height="28" viewBox="0 0 24 28" fill="none"><path d="M12 2v24m-8-8 8 8 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
-              <div class="coco-hero-release" aria-label="Current release, version 0.3.5"><strong>v0.3.5</strong><span>Current release</span></div>
+              <div class="coco-hero-release" aria-label="Current release, version 0.3.10"><strong>v0.3.10</strong><span>Current release</span></div>
             </div>
-            <a class="coco-explore-link" href="#modules">Explore modules <svg aria-hidden="true" width="26" height="20" viewBox="0 0 26 20" fill="none"><path d="M2 10h22m-8-7 8 7-8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="coco-explore-link" href="#modules">Explore modules <svg aria-hidden="true" width="20" height="16" viewBox="0 0 20 16" fill="none"><path d="M1.5 8h17m-7-7 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
           <div class="coco-density-gallery" aria-hidden="true">
             <img src="img/hero-density-gallery-863.webp" srcset="img/hero-density-gallery-863.webp 863w, img/hero-density-gallery-1726.webp 1726w" sizes="(min-width: 74rem) 650px, (min-width: 58rem) 54vw, 100vw" alt="" width="863" height="723" decoding="async" fetchpriority="high">
@@ -85,35 +92,44 @@
         </div>
         <div class="hero-grid">
           <div class="workbench-card coco-gui-card" data-coco-gui-theme="light" data-coco-gui-layout="structure">
-            <figure class="coco-gui-figure" role="img" aria-label="CoCo GUI preview: Structure view in light mode">
-              <img
-                class="coco-gui-image"
-                src="img/gui/Structure_Light-1600.webp"
-                srcset="img/gui/Structure_Light-1600.webp 1600w, img/gui/Structure_Light-2560.webp 2560w"
-                sizes="(min-width: 82rem) 1180px, 92vw"
-                alt=""
-                width="1600"
-                height="900"
-                loading="lazy"
-                decoding="async"
-                aria-hidden="true"
-              >
-            </figure>
+            <button class="coco-gui-figure" type="button" aria-haspopup="dialog" aria-controls="gui-inspector" aria-label="Zoom in on Structure prediction in light mode">
+              <img class="coco-gui-image" src="img/gui/v0.3.10/Structure_Prediction_Light-1600.webp"
+                srcset="img/gui/v0.3.10/Structure_Prediction_Light-1600.webp 1600w, img/gui/v0.3.10/Structure_Prediction_Light-2560.webp 2560w"
+                sizes="(min-width: 82rem) 1180px, 92vw" alt="" width="1600" height="900" loading="lazy" decoding="async">
+            </button>
             <div class="coco-gui-controls">
               <div class="coco-gui-segmented coco-gui-segmented--views" role="group" aria-label="CoCo GUI preview view">
-                <button type="button" data-coco-gui-layout-option="structure" aria-pressed="true">Structure</button>
+                <button type="button" data-coco-gui-layout-option="structure" aria-pressed="true">Structure prediction</button>
                 <button type="button" data-coco-gui-layout-option="dag" aria-pressed="false">Job graph</button>
                 <button type="button" data-coco-gui-layout-option="2d" aria-pressed="false">2D classes</button>
                 <button type="button" data-coco-gui-layout-option="emodelg" aria-pressed="false">EModelG</button>
+                <button type="button" data-coco-gui-layout-option="cocofold" aria-pressed="false">CoCoFold</button>
               </div>
-              <p class="coco-gui-caption" aria-live="polite">Structure: open an imported or modeled structure with its sequence, 3D view, and summary beside the job details.</p>
-              <div class="coco-gui-theme" role="group" aria-label="CoCo GUI preview color mode">
-                <button type="button" data-coco-gui-theme-option="light" aria-pressed="true">Light</button>
-                <button type="button" data-coco-gui-theme-option="dark" aria-pressed="false">Dark</button>
+              <div class="coco-gui-actions">
+                <div class="coco-gui-theme" role="group" aria-label="CoCo GUI preview color mode">
+                  <button type="button" data-coco-gui-theme-option="light" aria-pressed="true">Light</button>
+                  <button type="button" data-coco-gui-theme-option="dark" aria-pressed="false">Dark</button>
+                </div>
+                <button class="coco-gui-zoom" type="button" aria-haspopup="dialog" aria-controls="gui-inspector">Zoom in</button>
               </div>
+              <p class="coco-gui-caption" aria-live="polite">Explore the predicted structure alongside its confidence scores and chain sequences.</p>
             </div>
           </div>
         </div>
+        <dialog id="gui-inspector" class="gui-inspector" aria-labelledby="gui-inspector-title">
+          <div class="gui-inspector-toolbar">
+            <h3 id="gui-inspector-title">Structure prediction</h3>
+            <div class="gui-inspector-scale" role="group" aria-label="Screenshot magnification">
+              <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+              <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
+              <button type="button" data-zoom="fit" aria-label="Fit whole screenshot">Fit</button>
+            </div>
+            <button type="button" data-zoom="close">Close</button>
+          </div>
+          <div class="gui-inspector-viewport" role="region" aria-label="Screenshot detail. Drag or use the arrow keys to pan." tabindex="0" autofocus>
+            <div class="gui-inspector-canvas"><div class="gui-inspector-frame"><img width="5120" height="2880" alt="" draggable="false"></div></div>
+          </div>
+        </dialog>
       </section>
 
       <section class="modules-section" id="modules" aria-labelledby="modules-title">
@@ -125,8 +141,20 @@
         </div>
 
         <div class="module-ledger">
-          <article class="module-row module-row--link" id="module-row-cryosieve" data-nav="cryosieve" tabindex="0" aria-labelledby="cryosieve-title">
+          <article class="module-row module-row--link" id="module-row-cocofold-cocoflex" data-nav="cocofold-cocoflex" tabindex="0" aria-labelledby="cocofold-cocoflex-title">
             <div class="module-index">01</div>
+            <div class="module-copy">
+              <h3 id="cocofold-cocoflex-title">CoCoFold &amp; CoCoFlex</h3>
+              <p>CoCoFold refines predicted protein structures using a limited set of cryo-EM particle images. CoCoFlex builds atomic models of the different conformations captured across particles.</p>
+            </div>
+            <div class="module-tags" aria-label="CoCoFold and CoCoFlex attributes">
+              <span>Structure refinement</span>
+              <span>Conformational motion</span>
+            </div>
+          </article>
+
+          <article class="module-row module-row--link" id="module-row-cryosieve" data-nav="cryosieve" tabindex="0" aria-labelledby="cryosieve-title">
+            <div class="module-index">02</div>
             <div class="module-copy">
               <h3 id="cryosieve-title">CryoSieve</h3>
               <p>Particle sorting and sieving for single-particle cryo-EM. CryoSieve helps remove unnecessary particles from final stacks so reconstruction quality can improve.</p>
@@ -138,7 +166,7 @@
           </article>
 
           <article class="module-row module-row--link" id="module-row-cryopros" data-nav="cryopros" tabindex="0" aria-labelledby="cryopros-title">
-            <div class="module-index">02</div>
+            <div class="module-index">03</div>
             <div class="module-copy">
               <h3 id="cryopros-title">CryoPROS</h3>
               <p>A preferred-orientation correction framework for single-particle cryo-EM, using AI-generated auxiliary particles and co-refinement.</p>
@@ -150,7 +178,7 @@
           </article>
 
           <article class="module-row module-row--link" id="module-row-emodelg" data-nav="emodelg" tabindex="0" aria-labelledby="emodelg-title">
-            <div class="module-index">03</div>
+            <div class="module-index">04</div>
             <div class="module-copy">
               <h3 id="emodelg-title">EModelG</h3>
               <p>Automated glycan and protein backbone modeling from cryo-EM density. EModelG combines AI detection with density-guided modeling to support studies of proteins, glycoproteins, and glycan-rich complexes.</p>
@@ -158,6 +186,18 @@
             <div class="module-tags" aria-label="EModelG attributes">
               <span>Glycan modeling</span>
               <span>Protein backbone</span>
+            </div>
+          </article>
+
+          <article class="module-row module-row--link" id="module-row-structure-validation" data-nav="structure-validation" tabindex="0" aria-labelledby="structure-validation-title">
+            <div class="module-index">05</div>
+            <div class="module-copy">
+              <h3 id="structure-validation-title">Structure Validation</h3>
+              <p>Check model geometry, agreement with the density map, map resolution, and sequence coverage. Select a residue to inspect a finding in its structural context.</p>
+            </div>
+            <div class="module-tags" aria-label="Structure Validation attributes">
+              <span>Model quality</span>
+              <span>Residue findings</span>
             </div>
           </article>
         </div>
@@ -169,18 +209,18 @@
             <div class="section-kicker">Current release</div>
             <h2 id="download-title">One download. A connected workflow.</h2>
             <div class="download-actions">
-              <a class="button button-primary" href="/downloads/coco-0.3.5.tar.gz" download>Download CoCo v0.3.5</a>
-              <a class="button button-secondary" href="#install-v0-3-5" data-nav="install-v0-3-5">Installation guide</a>
+              <a class="button button-primary" href="/downloads/coco-0.3.10.tar.gz" download>Download CoCo v0.3.10</a>
+              <a class="button button-secondary" href="#install-v0-3-10" data-nav="install-v0-3-10">Installation guide</a>
             </div>
             <div class="download-stat-slot">
               <p class="download-stat" data-total-downloads aria-live="polite" aria-atomic="true" hidden></p>
             </div>
           </div>
           <div class="download-checklist" id="download-details" aria-label="Download confidence notes">
-            <p class="download-note">Packaged CoCo v0.3.5 release. <a href="#changelog" data-nav="changelog">View change log</a></p>
+            <p class="download-note">Packaged CoCo v0.3.10 release. <a href="#changelog" data-nav="changelog">View change log</a></p>
             <ul>
-              <li>Use Linux x86_64 with Java 8+ and host Python 3.</li>
-              <li>Install the managed runtime; GPU jobs need an NVIDIA driver compatible with CUDA 12.1.</li>
+              <li>Use Linux x86_64 with glibc 2.28+, Java 8+, and host Python 3.</li>
+              <li>Install the managed runtime; GPU jobs need an NVIDIA driver compatible with CUDA 12.6.</li>
               <li>Configure CryoSPARC for workflows that use it.</li>
             </ul>
           </div>
@@ -191,10 +231,27 @@
         <div class="section-heading compact">
           <div>
             <div class="section-kicker">Publications</div>
-            <h2 id="references-title">Publications for CryoSieve, CryoPROS and EModelG.</h2>
+            <h2 id="references-title">Research behind the featured modules.</h2>
           </div>
         </div>
         <div class="reference-publications" aria-label="Module publications">
+          <article class="reference-publication reference-publication--fold-flex" aria-labelledby="reference-fold-flex-title">
+            <h3 id="reference-fold-flex-title">CoCoFold &amp; CoCoFlex</h3>
+            <div class="reference-publication-body">
+              <div class="citation-block">
+                <p>“Fine-tuning AlphaFold with limited cryo-EM observations”</p>
+                <a href="https://www.nature.com/articles/s42004-026-01899-7" target="_blank" rel="noopener" class="citation-link">CoCoFold · Communications Chemistry, 2026</a>
+              </div>
+              <div class="citation-block">
+                <p>“CoCoFold2: scalable latent refinement of diffusion-based protein structure predictions from limited-particle cryo-EM data”</p>
+                <a href="https://langtaosha.org.cn/lts/en/preprint/view/338" target="_blank" rel="noopener" class="citation-link">CoCoFold2 · LangTaoSha preprint, 2026</a>
+              </div>
+              <div class="citation-block">
+                <p>“CoCoFlex: steering a pretrained structure generator with cryo-EM particle images to model continuous conformational variation”</p>
+                <a href="https://langtaosha.org.cn/lts/en/preprint/view/403" target="_blank" rel="noopener" class="citation-link">CoCoFlex · LangTaoSha preprint, 2026</a>
+              </div>
+            </div>
+          </article>
           <article class="reference-publication reference-publication--sieve" aria-labelledby="reference-cryosieve-title">
             <h3 id="reference-cryosieve-title">CryoSieve</h3>
             <div class="reference-publication-body">
@@ -231,13 +288,13 @@
 
     <div id="view-cryosieve" class="module-page module-page--sieve" data-view="cryosieve" hidden>
       <nav class="module-page-back" aria-label="Module navigation">
-        <a href="#home" class="module-back-link" data-nav="home">
+        <a href="#modules" class="module-back-link">
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          Back to CoCo
+          Back to modules
         </a>
-        <a href="https://github.com/mxhulab/cryosieve" class="module-github-link" target="_blank" rel="noopener">
+        <a href="https://github.com/mxhulab/cryosieve" class="module-side-link" target="_blank" rel="noopener">
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path d="M8 6.5V9.5C8 9.76522 7.89464 10.0196 7.70711 10.2071C7.51957 10.3946 7.26522 10.5 7 10.5H2.5C2.23478 10.5 1.98043 10.3946 1.79289 10.2071C1.60536 10.0196 1.5 9.76522 1.5 9.5V5C1.5 4.73478 1.60536 4.48043 1.79289 4.29289C1.98043 4.10536 2.23478 4 2.5 4H5.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M7.5 1.5H10.5V4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -247,40 +304,40 @@
         </a>
       </nav>
 
-      <header class="module-page-hero">
-        <div class="module-page-hero-grid">
-          <div>
-            <p class="module-page-kicker">CoCo wrapped module</p>
-            <h1 class="module-page-title">CryoSieve</h1>
-            <p class="module-page-lede">An advanced particle sorting and sieving solution for single-particle cryo-EM analysis. CryoSieve eliminates unnecessary particles from final stacks, producing cleaner density maps with measurably higher resolution.</p>
-            <span class="module-page-version">v1.3.0</span>
-          </div>
+      <header class="module-page-hero module-page-hero-grid">
+        <div>
+          <p class="module-page-kicker">CoCo analysis module</p>
+          <h1 class="module-page-title">CryoSieve</h1>
+          <p class="module-page-lede">Particle sorting and sieving for single-particle cryo-EM. CryoSieve removes unnecessary particles from a final stack, so the remaining subset can yield cleaner density maps.</p>
+        </div>
+        <figure>
           <img
             src="./img/cryosieve_featured_image.jpg"
             alt="CryoSieve particle sieving overview: 3D density maps showing before-and-after particle selection"
             class="module-page-hero-img"
-            width="600"
-            height="338"
+            width="1920"
+            height="1080"
             loading="lazy"
             decoding="async"
           >
-        </div>
+        </figure>
       </header>
 
       <div class="module-page-body">
-        <section class="module-page-section module-page-section--overview">
-          <h2>What it does</h2>
-          <p>CryoSieve is an advanced software solution designed for particle sorting and sieving in single-particle analysis for cryo-EM. Supported by extensive experimental results, it has demonstrated superior performance compared to other cryo-EM particle sorting algorithms. For certain datasets, the precision of CryoSieve's particle subset selection approaches the theoretical limit.</p>
-          <ul class="module-feature-list">
-            <li>Iterative sieving across multiple rounds with progressively refined density maps</li>
-            <li>Superior particle retention ratio compared to alternative sorting algorithms</li>
-            <li>Multi-GPU support for accelerated processing of large particle stacks</li>
-            <li>Resolution improvement that approaches theoretical limits for select datasets</li>
-          </ul>
+        <dl class="module-facts" aria-label="CryoSieve at a glance">
+          <div><dt>Input</dt><dd>Particles</dd></div>
+          <div><dt>Output</dt><dd>Selected particles for downstream reconstruction or CryoSPARC refinement</dd></div>
+          <div><dt>Reconstruction</dt><dd>Bundled DFR reconstruction and postprocessing</dd></div>
+          <div><dt>Compute</dt><dd>Multi-GPU support</dd></div>
+        </dl>
 
-          <p class="module-page-validated-note">Validated on publicly available cryo-EM datasets from EMPIAR:</p>
+        <section class="module-page-section" aria-labelledby="cryosieve-overview-title">
+          <h2 id="cryosieve-overview-title">What it does</h2>
+          <p>CryoSieve works on the final particle stack of a single-particle analysis. It identifies particles that degrade the final resolution and removes them, keeping a smaller subset for further reconstruction and refinement.</p>
+          <h3 id="cryosieve-datasets-title">Validation datasets</h3>
+          <p>CryoSieve has been validated on eight publicly available cryo-EM datasets from EMPIAR.</p>
           <div class="demo-table-wrap">
-            <table class="demo-table">
+            <table class="demo-table" aria-labelledby="cryosieve-datasets-title">
               <thead>
                 <tr>
                   <th scope="col">Dataset</th>
@@ -303,51 +360,75 @@
           </div>
         </section>
 
-        <section class="module-page-section module-page-section--process">
-          <h2>How it works</h2>
-          <p>The sieving process involves iterative rounds of 3D reconstruction and particle filtering. In each round, CryoSieve analyzes the reconstructed density map, identifies particles that degrade the final resolution, and removes them. The high-pass cutoff frequency typically increases with each iteration, progressively refining the particle subset.</p>
+        <section class="module-page-section" aria-labelledby="cryosieve-process-title">
+          <h2 id="cryosieve-process-title">How it works</h2>
+          <p>Sieving runs as iterative rounds of 3D reconstruction and particle filtering, progressively refining the particle subset.</p>
+          <ol class="modeling-steps" aria-label="CryoSieve sieving rounds">
+            <li><span aria-hidden="true">01</span><strong>Reconstruct</strong><p>Build a 3D reconstruction from the current particle subset.</p></li>
+            <li><span aria-hidden="true">02</span><strong>Analyze the map</strong><p>Use the reconstructed density map to identify particles that degrade the final resolution.</p></li>
+            <li><span aria-hidden="true">03</span><strong>Sieve</strong><p>Remove those particles from the subset.</p></li>
+            <li><span aria-hidden="true">04</span><strong>Repeat</strong><p>Raise the high-pass cutoff frequency, typically with each round, and continue with the remaining particles.</p></li>
+          </ol>
+          <figure class="module-page-figure-block">
+            <img
+              src="./img/cryosieve_main_figure.jpg"
+              alt="Paired density maps for TRPA1, hemagglutinin, LAT1, TSHR-Gs, TRPM8, pfCRT, apoferritin, and streptavidin, each with resolution labels, a contour level, and a particle-count ratio bar"
+              class="module-page-figure"
+              width="800"
+              height="1040"
+              loading="lazy"
+              decoding="async"
+            >
+            <figcaption class="video-caption">Results on the eight EMPIAR datasets. Each pair of density maps is labeled with its resolution, contour level, and particle-count ratio.</figcaption>
+          </figure>
         </section>
 
-        <img
-          src="./img/cryosieve_main_figure.jpg"
-          alt="CryoSieve main figure: iterative particle sieving workflow and density map refinement stages"
-          class="module-page-figure module-page-figure--main"
-          width="800"
-          height="1040"
-          loading="lazy"
-          decoding="async"
-        >
+        <section class="module-page-section module-page-section--use" aria-labelledby="cryosieve-use-title">
+          <h2 id="cryosieve-use-title">Use CryoSieve in CoCo</h2>
+          <ol class="modeling-steps" aria-label="Using CryoSieve in CoCo">
+            <li><span aria-hidden="true">01</span><strong>Connect particles</strong><p>Create a CryoSieve job from particle input in the CoCo workbench.</p></li>
+            <li><span aria-hidden="true">02</span><strong>Run sieving</strong><p>CoCo runs sieving with its bundled DFR reconstruction and postprocessing tools in the managed runtime. No external RELION executables are required.</p></li>
+            <li><span aria-hidden="true">03</span><strong>Continue</strong><p>Feed the selected particles into downstream reconstruction or CryoSPARC refinement jobs.</p></li>
+          </ol>
+        </section>
 
-        <section class="module-page-section module-page-section--publication">
-          <h2>Publication</h2>
+        <section class="module-page-section" aria-labelledby="cryosieve-publication-title">
+          <h2 id="cryosieve-publication-title">Publication</h2>
           <div class="citation-block">
             <p>"A minority of final stacks yields superior amplitude in single-particle cryo-EM"</p>
             <a href="https://www.nature.com/articles/s41467-023-43555-x" target="_blank" rel="noopener" class="citation-link">Nature Communications, 2023</a>
           </div>
-          <p class="video-caption">If CryoSieve contributes to your work, please cite the paper above. Full demo datasets and expected results are available at <a href="https://github.com/mxhulab/cryosieve-demos" target="_blank" rel="noopener">cryosieve-demos</a>.</p>
+          <p class="module-page-note">If CryoSieve contributes to your work, please cite the paper above. Demo datasets and expected results are available at <a href="https://github.com/mxhulab/cryosieve-demos" target="_blank" rel="noopener">cryosieve-demos</a>.</p>
         </section>
 
-        <section class="module-page-section module-page-section--fit">
-          <h2>How it fits in CoCo</h2>
-          <p>Create a CryoSieve job from particle input in the CoCo workbench. CoCo runs sieving with its bundled DFR reconstruction and postprocessing tools in the managed runtime. Selected particles can feed downstream reconstruction or CryoSPARC refinement jobs; no external RELION executables are required.</p>
+        <section class="module-page-end" aria-labelledby="cryosieve-end-title">
+          <div class="module-page-end-panel">
+            <div class="module-page-end-copy">
+              <h2 id="cryosieve-end-title">CryoSieve runs inside CoCo.</h2>
+              <p>Download CoCo, then follow the installation guide to set up the managed runtime.</p>
+            </div>
+            <div class="module-page-end-actions">
+              <a class="button button-primary" href="/downloads/coco-0.3.10.tar.gz" download>Download CoCo</a>
+              <a class="button button-secondary" href="#install-v0-3-10" data-nav="install-v0-3-10">Installation guide</a>
+            </div>
+          </div>
+          <nav class="module-pager" aria-label="Other modules">
+            <a class="module-pager-link" href="#cocofold-cocoflex" data-nav="cocofold-cocoflex" rel="prev"><span>Previous module</span> <strong>CoCoFold &amp; CoCoFlex</strong></a>
+            <a class="module-pager-link module-pager-link--next" href="#cryopros" data-nav="cryopros" rel="next"><span>Next module</span> <strong>CryoPROS</strong></a>
+          </nav>
         </section>
-
-        <aside class="module-page-tags" aria-label="CryoSieve attributes">
-          <span>Particle sieving</span>
-          <span>Density-map support</span>
-        </aside>
       </div>
     </div>
 
     <div id="view-cryopros" class="module-page module-page--pros" data-view="cryopros" hidden>
       <nav class="module-page-back" aria-label="Module navigation">
-        <a href="#home" class="module-back-link" data-nav="home">
+        <a href="#modules" class="module-back-link">
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          Back to CoCo
+          Back to modules
         </a>
-        <a href="https://github.com/mxhulab/cryopros" class="module-github-link" target="_blank" rel="noopener">
+        <a href="https://github.com/mxhulab/cryopros" class="module-side-link" target="_blank" rel="noopener">
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path d="M8 6.5V9.5C8 9.76522 7.89464 10.0196 7.70711 10.2071C7.51957 10.3946 7.26522 10.5 7 10.5H2.5C2.23478 10.5 1.98043 10.3946 1.79289 10.2071C1.60536 10.0196 1.5 9.76522 1.5 9.5V5C1.5 4.73478 1.60536 4.48043 1.79289 4.29289C1.98043 4.10536 2.23478 4 2.5 4H5.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M7.5 1.5H10.5V4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -357,61 +438,77 @@
         </a>
       </nav>
 
-      <header class="module-page-hero">
-        <div class="module-page-hero-grid">
-          <div>
-            <p class="module-page-kicker">CoCo wrapped module</p>
-            <h1 class="module-page-title">CryoPROS</h1>
-            <p class="module-page-lede">A preferred-orientation correction framework for single-particle cryo-EM, using AI-generated auxiliary particles and co-refinement of synthesized and experimental data.</p>
-            <span class="module-page-version">v1.0.1</span>
-          </div>
+      <header class="module-page-hero module-page-hero-grid">
+        <div>
+          <p class="module-page-kicker">CoCo analysis module</p>
+          <h1 class="module-page-title">CryoPROS</h1>
+          <p class="module-page-lede">Preferred-orientation correction for single-particle cryo-EM. CryoPROS generates auxiliary particles with AI and co-refines them with experimental particles to correct misalignment caused by preferred orientation.</p>
+        </div>
+        <figure>
           <img
-            src="img/cryopros_featured_image.png"
-            alt="CryoPROS overview: AI-generated auxiliary particle workflow and orientation correction results"
+            src="img/cryopros-featured-960.webp"
+            srcset="img/cryopros-featured-960.webp 960w, img/cryopros-featured-1920.webp 1920w"
+            sizes="(min-width: 58rem) min(49vw, 580px), 88vw"
+            alt="Two density-map comparisons with arrows: model-to-map FSC resolution goes from 23.95 Å to 3.49 Å and from 8.39 Å to 3.98 Å"
             class="module-page-hero-img"
-            width="600"
-            height="338"
+            width="1920"
+            height="700"
             loading="lazy"
             decoding="async"
           >
-        </div>
+        </figure>
       </header>
 
       <div class="module-page-body">
-        <section class="module-page-section module-page-section--overview">
-          <h2>What it does</h2>
-          <p>CryoPROS addresses misalignment errors caused by preferred orientation in single-particle cryo-EM. It uses AI to generate auxiliary particles and performs co-refinement between synthesized and experimental data, correcting orientation bias that would otherwise degrade reconstruction.</p>
-          <ul class="module-feature-list">
-            <li>AI-generated auxiliary particles for orientation diversity</li>
-            <li>Preferred-orientation correction across tilted views</li>
-            <li>Co-refinement of synthesized and experimental particle data</li>
-            <li>Misalignment error reduction for higher-fidelity maps</li>
-          </ul>
+        <dl class="module-facts" aria-label="CryoPROS at a glance">
+          <div><dt>Input</dt><dd>An accepted 3D Alignment of particles with a volume or structure</dd></div>
+          <div><dt>CoCo jobs</dt><dd>Prep, Train, and Generate</dd></div>
+          <div><dt>Output</dt><dd>AI-generated auxiliary particles</dd></div>
+          <div><dt>Refinement</dt><dd>Separate Export to CryoSPARC job</dd></div>
+        </dl>
+
+        <section class="module-page-section" aria-labelledby="cryopros-overview-title">
+          <h2 id="cryopros-overview-title">What it does</h2>
+          <p>When particles adopt a preferred orientation, some views are underrepresented, and the resulting misalignment errors degrade the reconstruction.</p>
+          <p>CryoPROS uses AI to generate auxiliary particles that compensate for this orientation bias. Co-refining the synthesized and experimental particles produces a more isotropic orientation distribution and reduces misalignment errors.</p>
         </section>
 
-        <section class="module-page-section module-page-section--process">
-          <h2>How it works</h2>
-          <p>CryoPROS uses AI to generate auxiliary particles that compensate for preferred-orientation bias during cryo-EM reconstruction. These synthetic particles are co-refined with experimental data, producing a more isotropic orientation distribution and reducing misalignment errors.</p>
+        <section class="module-page-section module-page-section--use" aria-labelledby="cryopros-use-title">
+          <h2 id="cryopros-use-title">Use CryoPROS in CoCo</h2>
+          <p>CoCo organizes CryoPROS as connected jobs that run in the managed runtime. The workflow starts from a 3D Alignment of your particles with a volume or structure.</p>
+          <ol class="modeling-steps" aria-label="Using CryoPROS in CoCo">
+            <li><span aria-hidden="true">01</span><strong>Align</strong><p>Create a 3D Alignment with one particle set and one volume or structure, review its candidates, and accept one.</p></li>
+            <li><span aria-hidden="true">02</span><strong>Prep</strong><p>Create Prep from the alignment. It brings the reference into the particle frame and corrects particle handedness when the accepted candidate requires it.</p></li>
+            <li><span aria-hidden="true">03</span><strong>Train</strong><p>Train the model on the prepared inputs.</p></li>
+            <li><span aria-hidden="true">04</span><strong>Generate</strong><p>Generate auxiliary particles. Export them with a separate Export to CryoSPARC job for further refinement.</p></li>
+          </ol>
         </section>
 
-        <section class="module-page-section module-page-section--publication">
-          <h2>Publication</h2>
+        <section class="module-page-section" aria-labelledby="cryopros-publication-title">
+          <h2 id="cryopros-publication-title">Publication</h2>
           <div class="citation-block">
             <p>"CryoPROS: Correcting misalignment caused by preferred orientation using AI-generated auxiliary particles"</p>
             <a href="https://doi.org/10.1038/s41467-025-59797-w" target="_blank" rel="noopener" class="citation-link">Nature Communications, 2025</a>
           </div>
-          <p class="video-caption">If CryoPROS contributes to your work, please cite the paper above.</p>
+          <p class="module-page-note">If CryoPROS contributes to your work, please cite the paper above.</p>
         </section>
 
-        <section class="module-page-section module-page-section--fit">
-          <h2>How it fits in CoCo</h2>
-          <p>CoCo organizes CryoPROS as connected Prep, Train, and Generate jobs. Use the managed runtime to prepare inputs, train the model, and generate auxiliary particles. A separate Export to CryoSPARC job can transfer completed outputs for further refinement.</p>
+        <section class="module-page-end" aria-labelledby="cryopros-end-title">
+          <div class="module-page-end-panel">
+            <div class="module-page-end-copy">
+              <h2 id="cryopros-end-title">CryoPROS runs inside CoCo.</h2>
+              <p>Download CoCo, then follow the installation guide to set up the managed runtime.</p>
+            </div>
+            <div class="module-page-end-actions">
+              <a class="button button-primary" href="/downloads/coco-0.3.10.tar.gz" download>Download CoCo</a>
+              <a class="button button-secondary" href="#install-v0-3-10" data-nav="install-v0-3-10">Installation guide</a>
+            </div>
+          </div>
+          <nav class="module-pager" aria-label="Other modules">
+            <a class="module-pager-link" href="#cryosieve" data-nav="cryosieve" rel="prev"><span>Previous module</span> <strong>CryoSieve</strong></a>
+            <a class="module-pager-link module-pager-link--next" href="#emodelg" data-nav="emodelg" rel="next"><span>Next module</span> <strong>EModelG</strong></a>
+          </nav>
         </section>
-
-        <aside class="module-page-tags" aria-label="CryoPROS attributes">
-          <span>Orientation correction</span>
-          <span>Co-refinement</span>
-        </aside>
       </div>
     </div>
 
@@ -419,11 +516,11 @@
     <template id="deferred-ctfa">
     <div id="view-ctfa" class="module-page module-page--ctfa" data-view="ctfa" hidden>
       <nav class="module-page-back" aria-label="Module navigation">
-        <a href="#home" class="module-back-link" data-nav="home">
+        <a href="#modules" class="module-back-link">
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          Back to CoCo
+          Back to modules
         </a>
       </nav>
 
@@ -431,7 +528,6 @@
         <p class="module-page-kicker">CoCo analysis module</p>
         <h1 class="module-page-title">CTFA</h1>
         <p class="module-page-lede">Estimate the contrast transfer function of micrographs and inspect fitted parameters and Thon-ring diagnostics within the CoCo workflow.</p>
-        <span class="module-page-version">Included in CoCo</span>
       </header>
 
       <div class="module-page-body">
@@ -449,47 +545,64 @@
           <h2>How it fits in CoCo</h2>
           <p>Create a CTFA job from imported micrographs, select a compute lane, and review the resulting estimates in CoCo. Connect the output to Blob Picker or Filament Picker, then continue with particle extraction. CTFA runs in the managed CoCo runtime.</p>
         </section>
-
-        <aside class="module-page-tags" aria-label="CTFA attributes">
-          <span>CTF estimation</span>
-          <span>Micrograph inspection</span>
-        </aside>
       </div>
     </div>
 
     </template>
 
-    <!-- EModelG: CoCo_v0.3.5_brochure.pdf / .tex, pages 2–4; research scope and sources in 版本差异核对.md. Scientific images are unchanged brochure assets. -->
+    <!-- EModelG: CoCo_v0.3.5_brochure.pdf / .tex, pages 2–4; research scope and sources in 版本差异核对.md. Scientific images are unchanged brochure assets. CoCo integration steps checked against beta snapshot 4dbafa9b051a758ecbe580e6039fa96fe47a40df (v0.3.10). -->
     <div id="view-emodelg" class="module-page module-page--emodelg" data-view="emodelg" hidden>
       <nav class="module-page-back" aria-label="Module navigation">
-        <a href="#home" class="module-back-link" data-nav="home">
+        <a href="#modules" class="module-back-link">
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          Back to CoCo
+          Back to modules
         </a>
-        <a href="#install-v0-3-5-emodelg" class="module-back-link">EModelG setup</a>
+        <a href="#install-v0-3-10-emodelg" class="module-side-link">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2.5 1.5H7.5L9.5 3.5V10.5H2.5V1.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M4.25 6H7.75M4.25 8H7.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          Setup guide
+        </a>
       </nav>
 
-      <header class="module-page-hero">
-        <div class="module-page-hero-grid">
-          <div>
-            <p class="module-page-kicker">From density to structure</p>
-            <h1 class="module-page-title">EModelG</h1>
-            <p class="module-page-lede">Bring glycan and protein modeling into your cryo-EM workflow. EModelG combines AI detection, density fitting, and structural restraints to turn reconstructed maps into models for studying proteins, glycoproteins, and glycan-rich complexes.</p>
-            <span class="module-page-version">Included in CoCo v0.3.5</span>
-          </div>
-          <figure>
-            <a href="img/emodelg-structural-examples.png" target="_blank" rel="noopener" aria-label="Open the full-size structural examples">
-              <img src="img/emodelg-structural-examples.png" alt="Three structural examples: a protein assembly, a glycosylated protein with a close-up of its glycan, and a glycan-rich complex" class="module-page-hero-img" width="757" height="192" loading="lazy" decoding="async">
-            </a>
-            <figcaption class="video-caption">From protein structures to glycoproteins and glycan-rich complexes.</figcaption>
-          </figure>
+      <header class="module-page-hero module-page-hero-grid">
+        <div>
+          <p class="module-page-kicker">CoCo analysis module</p>
+          <h1 class="module-page-title">EModelG</h1>
+          <p class="module-page-lede">EModelG builds glycan and protein backbone models from cryo-EM density. It combines AI detection, density fitting, and structural restraints to model proteins, glycosylated proteins, and glycans.</p>
         </div>
+        <figure>
+          <a href="img/emodelg-workflow-1910.webp" target="_blank" rel="noopener">
+            <img src="img/emodelg-workflow-960.webp"
+                 srcset="img/emodelg-workflow-960.webp 960w, img/emodelg-workflow-1910.webp 1910w"
+                 sizes="(min-width: 58rem) min(49vw, 580px), 88vw"
+                 alt="EModelG uses a cryo-EM map to model a protein, a glycosylated protein, or a glycan. Open the full-size workflow diagram."
+                 class="module-page-hero-img" width="1910" height="1510" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="video-caption">A protein sequence, structural template, or symmetry information can guide modeling when available.</figcaption>
+        </figure>
       </header>
 
       <div class="module-page-body">
-        <section class="module-page-section" aria-labelledby="emodelg-glycan-title">
+        <dl class="module-facts" aria-label="EModelG at a glance">
+          <div><dt>Input</dt><dd>A cryo-EM density map (MRC, MAP, or CCP4 file, or an EMDB entry), or a CoCo DFR / SGD 3D reconstruction</dd></div>
+          <div><dt>Optional guidance</dt><dd>Protein sequence, structural template, or symmetry information</dd></div>
+          <div><dt>Output</dt><dd>Protein, glycosylated protein, or glycan models</dd></div>
+          <div><dt>Compute</dt><dd>One node with one GPU; glycan (+ protein) modeling also needs Phenix</dd></div>
+        </dl>
+
+        <nav class="module-page-toc" aria-label="On this page">
+          <a href="#emodelg-glycan">Glycan modeling</a>
+          <a href="#emodelg-protein">Protein backbone modeling</a>
+          <a href="#emodelg-modes">Modeling modes</a>
+          <a href="#emodelg-start">Use EModelG in CoCo</a>
+          <a href="#emodelg-publication">Publication</a>
+        </nav>
+
+        <section class="module-page-section" id="emodelg-glycan" aria-labelledby="emodelg-glycan-title">
           <p class="section-kicker">Glycan modeling</p>
           <h2 id="emodelg-glycan-title">Build complex glycans within the density.</h2>
           <p>Glycan diversity, flexibility, and complex linkages make structural modeling challenging. EModelG connects candidate-site detection with template fitting, joint optimization, and chain refinement to provide a structural starting point for glycofibrils, glycoproteins, and glycan-rich complexes.</p>
@@ -504,6 +617,7 @@
             <li><strong>Optimize with chemical restraints.</strong> Combine density correlation, glycosidic bond distances and torsion angles, and atomic clashes when refining conformations and connectivity.</li>
             <li><strong>Connect models to structural questions.</strong> Examine glycan folding, assembly, and contacts between proteins and glycans.</li>
           </ul>
+          <h3 id="emodelg-glycan-results-title">Glycan research results</h3>
           <div class="emodelg-example">
             <figure>
               <a href="img/emodelg-glycan-example.png" target="_blank" rel="noopener" aria-label="Open the full-size GF-1L2R5 glycan modeling example">
@@ -511,23 +625,20 @@
               </a>
               <figcaption class="video-caption">GF-1L2R5, 2.53 Å. Gray: experimental density; pink: automated glycan model; white: manual glycan model; blue: protein. <a href="https://doi.org/10.65215/bkvrt910" target="_blank" rel="noopener">CryoSeek research example</a>.</figcaption>
             </figure>
-            <div>
-              <dl class="research-metrics" aria-label="Glycan research results">
-                <div>
-                  <dt>Mean all-atom RMSD</dt>
-                  <dd><strong>0.643 Å</strong><span>Automated versus manual models in a separate protein-free glycan case.</span></dd>
-                </div>
-                <div>
-                  <dt>Glycan-site detection AUPRC</dt>
-                  <dd><strong>0.891</strong><span>Reported on the study test set with a 4 Å site-matching threshold.</span></dd>
-                </div>
-              </dl>
-              <p class="video-caption">These results use their respective study conditions. The RMSD value belongs to the separate protein-free case, rather than the GF-1L2R5 example shown here.</p>
-            </div>
+            <dl class="research-metrics" aria-labelledby="emodelg-glycan-results-title">
+              <div>
+                <dt>Mean all-atom RMSD</dt>
+                <dd><strong>0.643 Å</strong><span>Automated versus manual models in a separate protein-free glycan case, not the GF-1L2R5 example shown.</span></dd>
+              </div>
+              <div>
+                <dt>Glycan-site detection AUPRC</dt>
+                <dd><strong>0.891</strong><span>Reported on the study test set with a 4 Å site-matching threshold.</span></dd>
+              </div>
+            </dl>
           </div>
         </section>
 
-        <section class="module-page-section" aria-labelledby="emodelg-protein-title">
+        <section class="module-page-section" id="emodelg-protein" aria-labelledby="emodelg-protein-title">
           <p class="section-kicker">Protein backbone modeling</p>
           <h2 id="emodelg-protein-title">Trace continuous backbones in their structural context.</h2>
           <p>EModelG combines AI detection, backbone tracing, and density validation to retain reliable long fragments and extend models using symmetry clues derived from peptide chains.</p>
@@ -542,29 +653,25 @@
             <li><strong>Anchor each extension.</strong> Extend from fixed seeds using peptide-derived symmetry, with local density and backbone anchors limiting accumulated drift.</li>
             <li><strong>Model independently or analyze together.</strong> Build protein models alone or combine them with glycans, using density, geometry, and clash checks to support interpretation.</li>
           </ul>
-          <h3 id="emodelg-example-title">PLL-1 research example</h3>
+          <h3 id="emodelg-protein-results-title">Protein research results</h3>
           <div class="emodelg-example">
             <figure>
               <a href="img/emodelg-protein-example.png" target="_blank" rel="noopener" aria-label="Open the full-size PLL-1 protein modeling example">
                 <img src="img/emodelg-protein-example.png" alt="PLL-1 cryo-EM density at 2.87 Å with protein subunits in pink and yellow and a close-up of the automated model in transparent white density" class="module-page-figure" width="1600" height="1026" loading="lazy" decoding="async">
               </a>
-              <figcaption class="video-caption">PLL-1 protein example. Pink and yellow identify two protein subunits; transparent white shows the experimental density. <a href="https://doi.org/10.65215/bkvrt910" target="_blank" rel="noopener">CryoSeek research example</a>.</figcaption>
+              <figcaption class="video-caption">PLL-1 protein example with a 2.87 Å experimental map. Pink and yellow identify two protein subunits; transparent white shows the experimental density. <a href="https://doi.org/10.65215/bkvrt910" target="_blank" rel="noopener">CryoSeek research example</a>.</figcaption>
             </figure>
-            <dl class="research-metrics" aria-label="PLL-1 research results">
-              <div>
-                <dt>Experimental map resolution</dt>
-                <dd><strong>2.87 Å</strong><span>The cryo-EM density map used for the PLL-1 protein case.</span></dd>
-              </div>
+            <dl class="research-metrics" aria-labelledby="emodelg-protein-results-title">
               <div>
                 <dt>TM-score</dt>
-                <dd><strong>0.87</strong><span>The automated model compared with the corresponding AlphaFold prediction.</span></dd>
+                <dd><strong>0.87</strong><span>The automated PLL-1 model compared with the corresponding AlphaFold prediction.</span></dd>
               </div>
             </dl>
           </div>
-          <p class="video-caption">Research metrics describe the individual cases and their evaluation conditions. Review generated models against the experimental density before further structural interpretation.</p>
+          <p class="module-page-note">Research metrics describe individual study cases under their own evaluation conditions. Review generated models against the experimental density before further structural interpretation.</p>
         </section>
 
-        <section class="module-page-section" aria-labelledby="emodelg-modes-title">
+        <section class="module-page-section" id="emodelg-modes" aria-labelledby="emodelg-modes-title">
           <p class="section-kicker">Three modeling modes</p>
           <h2 id="emodelg-modes-title">Choose the mode for your research question.</h2>
           <dl class="modeling-modes">
@@ -574,39 +681,296 @@
           </dl>
         </section>
 
-        <section class="module-page-section" aria-labelledby="emodelg-start-title">
+        <section class="module-page-section module-page-section--use" id="emodelg-start" aria-labelledby="emodelg-start-title">
           <p class="section-kicker">Start with a density map</p>
-          <h2 id="emodelg-start-title">From input to a model you can inspect.</h2>
+          <h2 id="emodelg-start-title">Use EModelG in CoCo</h2>
           <ol class="modeling-steps" aria-label="Using EModelG in CoCo">
-            <li><span aria-hidden="true">01</span><strong>Connect your data</strong><p>Use Import Volume for a server-accessible MRC, MAP, or CCP4 file, including a CryoSPARC path, or connect a CoCo DFR / SGD 3D reconstruction.</p></li>
+            <li><span aria-hidden="true">01</span><strong>Connect your data</strong><p>Use Import Volume for a server-accessible MRC, MAP, or CCP4 file, including a CryoSPARC path, or for an EMDB entry. You can also connect a CoCo DFR / SGD 3D reconstruction.</p></li>
             <li><span aria-hidden="true">02</span><strong>Set up the job</strong><p>Choose the map, modeling mode, and compute lane, then confirm the resolution. To preserve existing glycans, connect a glycan-only structure job.</p></li>
-            <li><span aria-hidden="true">03</span><strong>Review and continue</strong><p>Inspect the structures, model summary, and review messages. Switch between available models and download the files for further analysis.</p></li>
+            <li><span aria-hidden="true">03</span><strong>Review and continue</strong><p>Inspect the structures, chains, model summary, and review messages. Switch between available models, download the files, or select an EModelG model in a Structure Validation job.</p></li>
           </ol>
           <div class="install-note">
             <strong>Prepare the modeling environment</strong>
-            <p>Set up EModelG resources in Settings → Environment Check. Glycan (+ protein) modeling also needs Phenix. EModelG runs on one node with one GPU; select an available GPU lane. Follow the <a href="#install-v0-3-5-emodelg">EModelG setup guide</a> for configuration.</p>
+            <p>Set up EModelG resources in Settings → Environment Check. Glycan (+ protein) modeling also needs Phenix. EModelG runs on one node with one GPU; select an available GPU lane. Follow the <a href="#install-v0-3-10-emodelg">EModelG setup guide</a> for configuration.</p>
           </div>
         </section>
 
-        <section class="module-page-section" aria-labelledby="emodelg-publication-title">
+        <section class="module-page-section" id="emodelg-publication" aria-labelledby="emodelg-publication-title">
           <h2 id="emodelg-publication-title">Publication</h2>
           <div class="citation-block">
             <p>"Structural N- and O-glycans revealed by high-resolution cryo-EM analysis of tubular mastigonemes"</p>
             <a href="https://doi.org/10.1126/science.aef4958" target="_blank" rel="noopener" class="citation-link">Science, 2026</a>
           </div>
-          <p>If EModelG contributes to your work, please cite this paper.</p>
+          <p class="module-page-note">If EModelG contributes to your work, please cite the paper above.</p>
         </section>
 
-        <aside class="module-page-tags" aria-label="EModelG attributes">
-          <span>Glycan modeling</span>
-          <span>Protein backbone</span>
-          <span>Density guided</span>
-        </aside>
+        <section class="module-page-end" aria-labelledby="emodelg-end-title">
+          <div class="module-page-end-panel">
+            <div class="module-page-end-copy">
+              <h2 id="emodelg-end-title">EModelG runs inside CoCo.</h2>
+              <p>Download CoCo, then follow the EModelG setup guide to prepare its resources.</p>
+            </div>
+            <div class="module-page-end-actions">
+              <a class="button button-primary" href="/downloads/coco-0.3.10.tar.gz" download>Download CoCo</a>
+              <a class="button button-secondary" href="#install-v0-3-10-emodelg">EModelG setup guide</a>
+            </div>
+          </div>
+          <nav class="module-pager" aria-label="Other modules">
+            <a class="module-pager-link" href="#cryopros" data-nav="cryopros" rel="prev"><span>Previous module</span> <strong>CryoPROS</strong></a>
+            <a class="module-pager-link module-pager-link--next" href="#structure-validation" data-nav="structure-validation" rel="next"><span>Next module</span> <strong>Structure Validation</strong></a>
+          </nav>
+        </section>
       </div>
     </div>
 
-    <!-- CoCo v0.3.5 source snapshot: 11bab54eaaa8514589de9314d92be2ff5d607e6f; INSTALL.md, PACK.md, packaging scripts, backend/pom.xml, frontend Settings and EModelG integration. -->
-    <div id="view-install-v0-3-5" class="install-page" data-view="install-v0-3-5" hidden>
+    <template id="silent-movie-controls">
+      <div class="silent-movie-controls" role="group">
+        <button type="button" data-action="play">Play</button>
+        <input type="range" min="0" max="0" value="0" step="0.1" aria-label="Playback position" disabled>
+        <span class="silent-movie-time" aria-hidden="true">0:00 / 0:00</span>
+        <select aria-label="Playback speed">
+          <option value="0.5">0.5×</option>
+          <option value="1">1×</option>
+          <option value="1.5" selected>1.5×</option>
+          <option value="2">2×</option>
+        </select>
+        <button type="button" data-action="fullscreen">Full screen</button>
+      </div>
+    </template>
+    <div id="view-cocofold-cocoflex" class="module-page module-page--fold-flex" data-view="cocofold-cocoflex" hidden>
+      <nav class="module-page-back" aria-label="Module navigation">
+        <a href="#modules" class="module-back-link">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to modules
+        </a>
+      </nav>
+      <header class="module-page-hero module-page-hero-grid">
+        <div>
+          <p class="module-page-kicker">CoCo analysis module</p>
+          <h1 class="module-page-title">CoCoFold &amp; CoCoFlex</h1>
+          <p class="module-page-lede">CoCoFold refines Protenix structure predictions against a limited set of cryo-EM particle images. CoCoFlex models how a protein’s shape varies across particles. In CAHRA Challenge 2, its atomic models trace a domain opening through a range of angles.</p>
+        </div>
+        <figure class="fold-flex-movie">
+          <video controls muted playsinline preload="metadata" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-1.webp" aria-labelledby="fold-flex-movie-1-title" aria-describedby="fold-flex-movie-1-desc" data-src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_1.mp4">
+            <a href="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_1.mp4">Open CAHRA Challenge 2 (MP4)</a>
+          </video>
+          <figcaption>
+            <strong id="fold-flex-movie-1-title">CAHRA Challenge 2</strong>
+            <span id="fold-flex-movie-1-desc">The gray reference and colored CoCoFlex model are paired by domain opening angle.</span>
+          </figcaption>
+        </figure>
+      </header>
+      <div class="module-page-body">
+        <dl class="module-facts" aria-label="CoCoFold and CoCoFlex at a glance">
+          <div><dt>CoCoFold input</dt><dd>A Protenix structure prediction aligned to cryo-EM particles with 3D poses</dd></div>
+          <div><dt>CoCoFold output</dt><dd>A refined atomic model, with intermediate models</dd></div>
+          <div><dt>CoCoFlex input</dt><dd>A CoCoFold refinement and its particles</dd></div>
+          <div><dt>CoCoFlex output</dt><dd>An ensemble of atomic models for the conformations captured across particles</dd></div>
+          <div><dt>Compute</dt><dd>One node: one GPU per CoCoFold model or chain group; one or more GPUs for CoCoFlex</dd></div>
+        </dl>
+
+        <section class="module-page-section" aria-labelledby="fold-flex-refine-title">
+          <h2 id="fold-flex-refine-title">Refining predicted structures with CoCoFold</h2>
+          <p>CoCoFold starts from a Protenix 1.0.2 structure prediction, made with the Base or Mini model, that a 3D Alignment has placed in the particle frame. It keeps the pretrained diffusion decoder fixed and optimizes the decoder’s latent input, so that projections of the model, with the contrast transfer function applied, agree with the particle images under a Fourier ring correlation objective.</p>
+          <p>Whole mode refines the complete prediction on one GPU. Grouped mode assigns every chain to one group and refines each group on its own GPU within one node. Results compare the refined and initial models in synchronized viewers, step through intermediate models, and plot loss and Fourier ring correlation during refinement.</p>
+          <p>The first CoCoFold paper fine-tunes AlphaFold with limited cryo-EM observations. CoCoFold2 applies scalable latent refinement to diffusion-based structure predictions from limited-particle data; CoCo implements this approach with Protenix.</p>
+        </section>
+
+        <section class="module-page-section" aria-labelledby="fold-flex-motion-title">
+          <h2 id="fold-flex-motion-title">Modeling continuous motion with CoCoFlex</h2>
+          <p>CoCoFlex assigns each particle a position in a shared space of conformations. These positions guide a pretrained structure generator, which supplies atomic detail while the particle images constrain how the structures vary.</p>
+          <p>In CoCo, CoCoFlex continues from a CoCoFold refinement and inherits its particles and poses. After training, it samples ensemble members from the learned space, 100 by default. Results play back the ensemble members, ordered by principal component, latent coordinate, or sampling order. They also show latent-space density plots, training curves, and per-residue Cα RMSF for each chain.</p>
+          <p>The research examples below show what the models capture. In the HER2 complex, the models show the trastuzumab Fab bending at its elbow. In the TRPV1 channel, four ankyrin-repeat domains twist together around the pore.</p>
+          <div class="fold-flex-movie-pair">
+            <figure class="fold-flex-movie">
+              <video controls muted playsinline preload="metadata" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-3.webp" aria-labelledby="fold-flex-movie-3-title" aria-describedby="fold-flex-movie-3-desc" data-src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_3.mp4">
+                <a href="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_3.mp4">Open HER2–Fab conformational motions (MP4)</a>
+              </video>
+              <figcaption>
+                <strong id="fold-flex-movie-3-title">HER2–Fab conformational motions</strong>
+                <span id="fold-flex-movie-3-desc">Trastuzumab and pertuzumab Fab fragments move relative to HER2. The side-by-side trastuzumab views align on HER2 and on the Fab variable domains.</span>
+              </figcaption>
+            </figure>
+            <figure class="fold-flex-movie">
+              <video controls muted playsinline preload="metadata" width="1920" height="1080" data-poster="img/cocofold-cocoflex/movie-4.webp" aria-labelledby="fold-flex-movie-4-title" aria-describedby="fold-flex-movie-4-desc" data-src="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_4.mp4">
+                <a href="materials/v0.3.10/cocofold-cocoflex/movies/Supplementary_Video_4.mp4">Open TRPV1 tetramer motion (MP4)</a>
+              </video>
+              <figcaption>
+                <strong id="fold-flex-movie-4-title">TRPV1 tetramer motion</strong>
+                <span id="fold-flex-movie-4-desc">Top and side views follow the highlighted ankyrin-repeat domains along the second latent principal component.</span>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="module-page-section module-page-section--use" aria-labelledby="fold-flex-use-title">
+          <h2 id="fold-flex-use-title">Use CoCoFold and CoCoFlex in CoCo</h2>
+          <p>The jobs connect from a sequence to a refined model and its ensemble. CoCo creates the refinement input only for standard, unmodified, protein-only targets.</p>
+          <ol class="modeling-steps" aria-label="Using CoCoFold and CoCoFlex in CoCo">
+            <li><span aria-hidden="true">01</span><strong>Import Sequence</strong><p>Define the target’s protein chains and copy counts in a form, from FASTA, or as Protenix JSON.</p></li>
+            <li><span aria-hidden="true">02</span><strong>Structure Prediction</strong><p>Predict candidates with the Protenix Base or Mini model; choose Mini when CoCoFlex will follow. MSAs can come from the Protenix MSA service or your own files, or be omitted.</p></li>
+            <li><span aria-hidden="true">03</span><strong>3D Alignment</strong><p>Align the prediction with a particle set that has complete 3D poses, review the candidate transforms, and accept one.</p></li>
+            <li><span aria-hidden="true">04</span><strong>CoCoFold Refine</strong><p>Create the refinement from the accepted alignment, choose Whole or Grouped mode, and compare the refined model with the initial one.</p></li>
+            <li><span aria-hidden="true">05</span><strong>CoCoFlex</strong><p>Learn an ensemble from a CoCoFold refinement that used the Mini model in Whole mode.</p></li>
+            <li><span aria-hidden="true">06</span><strong>Relax and validate</strong><p>Run Structure Relaxation on the refined model, then check the relaxed model with Structure Validation.</p></li>
+          </ol>
+          <div class="install-note">
+            <strong>Prepare structure prediction</strong>
+            <p>Download and verify CoCoFold Resources in Settings → Environment Check, and check the Protenix MSA Service if you use MSA Server mode. Structure Prediction, CoCoFold Refine, and CoCoFlex run on GPU lanes. Follow the <a href="#install-v0-3-10-cocofold">CoCoFold setup guide</a> for configuration.</p>
+          </div>
+        </section>
+
+        <section class="module-page-section" aria-labelledby="fold-flex-publications-title">
+          <h2 id="fold-flex-publications-title">Publications</h2>
+          <h3>CoCoFold</h3>
+          <div class="citation-block">
+            <p>“Fine-tuning AlphaFold with limited cryo-EM observations”</p>
+            <a href="https://www.nature.com/articles/s42004-026-01899-7" target="_blank" rel="noopener" class="citation-link">CoCoFold · Communications Chemistry, 2026</a>
+          </div>
+          <div class="citation-block">
+            <p>“CoCoFold2: scalable latent refinement of diffusion-based protein structure predictions from limited-particle cryo-EM data”</p>
+            <a href="https://langtaosha.org.cn/lts/en/preprint/view/338" target="_blank" rel="noopener" class="citation-link">CoCoFold2 · LangTaoSha preprint, 2026</a>
+          </div>
+          <h3>CoCoFlex</h3>
+          <div class="citation-block">
+            <p>“CoCoFlex: steering a pretrained structure generator with cryo-EM particle images to model continuous conformational variation”</p>
+            <a href="https://langtaosha.org.cn/lts/en/preprint/view/403" target="_blank" rel="noopener" class="citation-link">CoCoFlex · LangTaoSha preprint, 2026</a>
+          </div>
+        </section>
+
+        <section class="module-page-end" aria-labelledby="fold-flex-end-title">
+          <div class="module-page-end-panel">
+            <div class="module-page-end-copy">
+              <h2 id="fold-flex-end-title">CoCoFold and CoCoFlex run inside CoCo.</h2>
+              <p>Download CoCo, then follow the CoCoFold setup guide to prepare the structure prediction resources.</p>
+            </div>
+            <div class="module-page-end-actions">
+              <a class="button button-primary" href="/downloads/coco-0.3.10.tar.gz" download>Download CoCo</a>
+              <a class="button button-secondary" href="#install-v0-3-10-cocofold">CoCoFold setup guide</a>
+            </div>
+          </div>
+          <nav class="module-pager" aria-label="Other modules">
+            <a class="module-pager-link module-pager-link--next" href="#cryosieve" data-nav="cryosieve" rel="next"><span>Next module</span> <strong>CryoSieve</strong></a>
+          </nav>
+        </section>
+      </div>
+    </div>
+
+    <div id="view-structure-validation" class="module-page module-page--validation" data-view="structure-validation" hidden>
+      <nav class="module-page-back" aria-label="Module navigation">
+        <a href="#modules" class="module-back-link">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to modules
+        </a>
+      </nav>
+      <header class="module-page-hero module-page-hero-grid">
+        <div>
+          <p class="module-page-kicker">CoCo analysis module</p>
+          <h1 class="module-page-title">Structure Validation</h1>
+          <p class="module-page-lede">Find where an atomic model needs a closer look. CoCo links geometry outliers and atomic clashes to residues in the 3D viewer. With a density map, you can inspect the experimental evidence around each site.</p>
+        </div>
+        <figure>
+          <a href="materials/v0.3.10/structure-validation/images/Structure_Validation.png" target="_blank" rel="noopener">
+            <img class="module-page-hero-img"
+                 src="img/structure-validation/residue-findings-640.webp"
+                 srcset="img/structure-validation/residue-findings-640.webp 640w, img/structure-validation/residue-findings-1280.webp 1280w"
+                 sizes="(min-width: 58rem) min(49vw, 580px), 88vw"
+                 width="1280" height="1093" loading="lazy" decoding="async"
+                 alt="Residue Findings panel with findings marked along chains A and B, filters by finding type, and a list of flagged residues. Open the full-size Structure Validation screenshot.">
+          </a>
+          <figcaption class="video-caption">Residue findings along chains A and B, filtered by type and listed by residue.</figcaption>
+        </figure>
+      </header>
+      <div class="module-page-body">
+        <dl class="module-facts" aria-label="Structure Validation at a glance">
+          <div><dt>Input</dt><dd>An atomic model from Import Structure, EModelG, or Structure Relaxation</dd></div>
+          <div><dt>Optional</dt><dd>A density map, paired half-maps, or a protein sequence</dd></div>
+          <div><dt>Review</dt><dd>Findings linked to residues in the 3D viewer</dd></div>
+          <div><dt>Export</dt><dd>Figures as PNG, SVG, or PDF; filtered tables as CSV, with evaluation scope and filters in JSON</dd></div>
+          <div><dt>Compute</dt><dd>One node with one GPU, in the managed runtime</dd></div>
+        </dl>
+
+        <section class="module-page-section" aria-labelledby="validation-groups-title">
+          <h2 id="validation-groups-title">Choose what to assess</h2>
+          <dl class="validation-groups">
+            <div>
+              <dt>Atomic Model</dt>
+              <dd>
+                <p>Review the MolProbity score and inspect clashes, Ramachandran and rotamer outliers, C-beta deviations, chirality outliers, and deviations in bond lengths and angles.</p>
+                <p class="validation-needs"><span>Needs</span> An atomic model</p>
+              </dd>
+            </div>
+            <div>
+              <dt>Map–Model</dt>
+              <dd>
+                <p>Examine global and per-residue Q-scores alongside the EMRinger score to assess agreement between the model and the map.</p>
+                <p class="validation-needs"><span>Needs</span> The atomic model and a density map</p>
+              </dd>
+            </div>
+            <div>
+              <dt>Map</dt>
+              <dd>
+                <p>Inspect unmasked, masked, and corrected Fourier shell correlation curves from paired half-maps, with resolutions at FSC 0.143, and conical FSC curves in 13 directions.</p>
+                <p class="validation-needs"><span>Needs</span> Paired half-maps from a CoCo 3D reconstruction or an EMDB import</p>
+              </dd>
+            </div>
+            <div>
+              <dt>Sequence</dt>
+              <dd>
+                <p>Compare modeled protein chains with a reference sequence to check identity and coverage, and locate missing or mismatched residues.</p>
+                <p class="validation-needs"><span>Needs</span> The atomic model and a protein sequence from Import Sequence</p>
+              </dd>
+            </div>
+          </dl>
+          <p class="module-page-note">Values are reported, not graded: the report applies no pass or fail thresholds. Interpret each metric in the context of the model, the map, and its resolution.</p>
+        </section>
+
+        <section class="module-page-section" aria-labelledby="validation-walkthrough-title">
+          <h2 id="validation-walkthrough-title">Reviewing a structure against its density map</h2>
+          <p>This narrated walkthrough follows a clash from the results table to its location in the model, then turns on the surrounding density and steps through nearby findings.</p>
+          <video class="validation-walkthrough" controls playsinline preload="metadata" width="2560" height="1440" data-poster="img/structure-validation/walkthrough.webp" aria-labelledby="validation-walkthrough-title" data-src="materials/v0.3.10/structure-validation/movies/Structure_Validation_EN.mp4">
+            <a href="materials/v0.3.10/structure-validation/movies/Structure_Validation_EN.mp4">Open the Structure Validation walkthrough (MP4)</a>
+          </video>
+        </section>
+
+        <section class="module-page-section module-page-section--use" aria-labelledby="validation-use-title">
+          <h2 id="validation-use-title">Use Structure Validation in CoCo</h2>
+          <ol class="modeling-steps" aria-label="Using Structure Validation in CoCo">
+            <li><span aria-hidden="true">01</span><strong>Connect inputs</strong><p>Connect the atomic model from Import Structure, EModelG, or Structure Relaxation. For map-based checks, add a CoCo 3D reconstruction or an Import Volume job; for the Sequence group, add an Import Sequence job.</p></li>
+            <li><span aria-hidden="true">02</span><strong>Choose groups</strong><p>Select which assessment groups the job calculates.</p></li>
+            <li><span aria-hidden="true">03</span><strong>Review findings</strong><p>Follow a finding from the results table to its residue in the model, turn on the surrounding density, and step through nearby findings.</p></li>
+            <li><span aria-hidden="true">04</span><strong>Export</strong><p>Save figures as PNG, SVG, or PDF. Export a filtered table as CSV, with its evaluation scope and filters recorded in JSON.</p></li>
+          </ol>
+          <div class="install-note">
+            <strong>No extra setup</strong>
+            <p>Structure Validation calculates its metrics with cctbx and Gemmi, bundled in the managed runtime; it does not need Phenix or downloaded resources. Each job runs on one node with one GPU, so select a GPU lane.</p>
+          </div>
+        </section>
+
+        <section class="module-page-end" aria-labelledby="validation-end-title">
+          <div class="module-page-end-panel">
+            <div class="module-page-end-copy">
+              <h2 id="validation-end-title">Structure Validation runs inside CoCo.</h2>
+              <p>Download CoCo, then follow the installation guide to set up the managed runtime.</p>
+            </div>
+            <div class="module-page-end-actions">
+              <a class="button button-primary" href="/downloads/coco-0.3.10.tar.gz" download>Download CoCo</a>
+              <a class="button button-secondary" href="#install-v0-3-10" data-nav="install-v0-3-10">Installation guide</a>
+            </div>
+          </div>
+          <nav class="module-pager" aria-label="Other modules">
+            <a class="module-pager-link" href="#emodelg" data-nav="emodelg" rel="prev"><span>Previous module</span> <strong>EModelG</strong></a>
+          </nav>
+        </section>
+      </div>
+    </div>
+
+    <!-- CoCo v0.3.10 beta snapshot: 4dbafa9b051a758ecbe580e6039fa96fe47a40df (backend/pom.xml 0.3.10; not a release tag), compared with tag v0.3.5. Sources: INSTALL.md, PACK.md, packaging scripts and runtime-environment.yml, backend application.properties and environment services, frontend Settings, exposed-job-types.txt, and contracts. Stale INSTALL.md CryoSPARC, bookmarks, and export-script passages are superseded by the code. -->
+    <div id="view-install-v0-3-10" class="install-page" data-view="install-v0-3-10" hidden>
       <nav class="install-page-back" aria-label="Install guide navigation">
         <a href="#home" class="module-back-link" data-nav="home">
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -616,6 +980,586 @@
         </a>
         <div class="install-version-switcher" role="group" aria-label="Installation guide version">
           <span>Version</span>
+          <a href="#install-v0-3-10" data-nav="install-v0-3-10" aria-current="page">v0.3.10</a>
+          <a href="#install-v0-3-5" data-nav="install-v0-3-5">v0.3.5</a>
+          <a href="#install-v0-3-2" data-nav="install-v0-3-2">v0.3.2</a>
+          <a href="#install-v0-2-0" data-nav="install-v0-2-0">v0.2.0</a>
+          <a href="#install-v0-1-0" data-nav="install-v0-1-0">v0.1.0</a>
+        </div>
+      </nav>
+      <header class="install-page-hero" id="install-v0-3-10-top">
+        <div class="install-page-hero-copy">
+          <p class="module-page-kicker">CoCo v0.3.10 release guide</p>
+          <h1 class="install-page-title">Install CoCo v0.3.10.</h1>
+          <p class="install-page-lede">Set up the Linux x86_64 release with its managed runtime, then connect the services, resources, and compute lanes your workflows need.</p>
+          <span class="install-release-badge">v0.3.10</span>
+        </div>
+        <dl class="install-hero-facts" aria-label="Release requirements summary">
+          <div><dt>Platform</dt><dd>Linux x86_64 · glibc 2.28+</dd></div>
+          <div><dt>Runtime</dt><dd>Java 8+ and Python 3</dd></div>
+          <div><dt>Default port</dt><dd>8078</dd></div>
+          <div><dt>Archive</dt><dd>coco-0.3.10.tar.gz</dd></div>
+        </dl>
+      </header>
+
+      <div class="install-guide-layout">
+        <aside class="install-toc" aria-labelledby="install-v0-3-10-toc-title">
+          <h2 id="install-v0-3-10-toc-title">Sections</h2>
+          <nav aria-label="Install guide table of contents">
+            <ol class="install-toc-list">
+              <li><a href="#install-v0-3-10-quickstart">Quick start</a></li>
+              <li><a href="#install-v0-3-10-prerequisites">Prerequisites</a></li>
+              <li><a href="#install-v0-3-10-unpack">Extract release</a></li>
+              <li><a href="#install-v0-3-10-runtime">Managed runtime</a></li>
+              <li><a href="#install-v0-3-10-start">Start CoCo</a></li>
+              <li><a href="#install-v0-3-10-verify">Verify installation</a></li>
+              <li><a href="#install-v0-3-10-configuration">Configuration</a></li>
+              <li><a href="#install-v0-3-10-dependencies">External services</a></li>
+              <li><a href="#install-v0-3-10-emodelg">EModelG setup</a></li>
+              <li><a href="#install-v0-3-10-cocofold">CoCoFold setup</a></li>
+              <li><a href="#install-v0-3-10-job-resources">Job resources</a></li>
+              <li><a href="#install-v0-3-10-local-gpu">Local GPU lanes</a></li>
+              <li><a href="#install-v0-3-10-slurm">SLURM lanes</a></li>
+              <li><a href="#install-v0-3-10-lsf">LSF lanes</a></li>
+              <li><a href="#install-v0-3-10-modules">Built-in modules</a></li>
+              <li><a href="#install-v0-3-10-runtime-behavior">Runtime behavior</a></li>
+              <li><a href="#install-v0-3-10-upgrades">Backups and upgrades</a></li>
+              <li><a href="#install-v0-3-10-workflows">Workflow checks</a></li>
+              <li><a href="#install-v0-3-10-troubleshooting">Troubleshooting</a></li>
+            </ol>
+          </nav>
+        </aside>
+
+        <div class="install-content">
+          <section class="install-section install-section--protocol" id="install-v0-3-10-quickstart" aria-labelledby="install-v0-3-10-quickstart-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Fast path</p>
+              <h2 id="install-v0-3-10-quickstart-title">Quick start protocol</h2>
+            </div>
+            <ol class="install-protocol">
+              <li class="install-step">
+                <span class="install-step__index">01</span>
+                <div>
+                  <h3>Extract the release</h3>
+                  <p>Begin in an empty release directory containing the archive. Check the <a href="#install-v0-3-10-prerequisites">Linux host prerequisites</a> before installing; this release requires glibc 2.28 or newer.</p>
+                  <div class="install-command">
+                    <span class="install-code-label">Terminal</span>
+                    <pre><code>tar -xzf coco-0.3.10.tar.gz
+cd coco</code></pre>
+                  </div>
+                </div>
+              </li>
+              <li class="install-step">
+                <span class="install-step__index">02</span>
+                <div>
+                  <h3>Install the managed runtime</h3>
+                  <div class="install-command">
+                    <span class="install-code-label">Terminal</span>
+                    <pre><code>bin/coco-install-runtime.sh</code></pre>
+                  </div>
+                </div>
+              </li>
+              <li class="install-step">
+                <span class="install-step__index">03</span>
+                <div>
+                  <h3>Start CoCo</h3>
+                  <div class="install-command">
+                    <span class="install-code-label">Terminal</span>
+                    <pre><code>java -jar backend/coco-0.3.10.jar</code></pre>
+                  </div>
+                </div>
+              </li>
+              <li class="install-step">
+                <span class="install-step__index">04</span>
+                <div>
+                  <h3>Open the interface</h3>
+                  <div class="install-command">
+                    <span class="install-code-label">Browser</span>
+                    <pre><code>http://localhost:8078</code></pre>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-prerequisites" aria-labelledby="install-v0-3-10-prerequisites-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Before install</p>
+              <h2 id="install-v0-3-10-prerequisites-title">Prerequisites</h2>
+            </div>
+            <p>The packaged application and managed runtime target Linux x86_64 (amd64) with glibc 2.28 or newer; v0.3.5 required glibc 2.17. Jobs activate the managed runtime on the host that runs them, so Local GPU hosts and SLURM or LSF compute nodes also need glibc 2.28 or newer. macOS is supported for source development, but cannot run this packaged runtime.</p>
+            <ul class="install-inline-list">
+              <li>A writable installation directory with space for the release, the extracted runtime, and any EModelG or CoCoFold resources you install.</li>
+              <li><code>bash</code>, <code>tar</code>, <code>gzip</code>, <code>awk</code>, and <code>date</code>.</li>
+              <li>Java 8 or newer to run the backend.</li>
+              <li>Host Python 3 for runtime archive validation. Set <code>PYTHON</code> to another Python 3 executable if needed.</li>
+              <li>For GPU workflows, an NVIDIA GPU and a host driver compatible with the bundled CUDA 12.6 runtime.</li>
+              <li>A desktop browser with a viewport of at least 1024 × 768 for the CoCo application.</li>
+              <li>Access to the external services, public archives, and shared storage used by your workflows.</li>
+            </ul>
+            <p>The managed runtime supplies Python 3.11 and the CUDA user-space dependencies. CryoSieve, CryoPROS, Structure Validation, and the other built-in modules use bundled CoCoShed packages. The installer also validates the bundled <code>setsid</code> executable.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-unpack" aria-labelledby="install-v0-3-10-unpack-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Release archive</p>
+              <h2 id="install-v0-3-10-unpack-title">Extract the release</h2>
+            </div>
+            <p>Place <code>coco-0.3.10.tar.gz</code> in an empty release directory and extract it there.</p>
+            <div class="install-command">
+              <span class="install-code-label">Terminal</span>
+              <pre><code>tar -xzf coco-0.3.10.tar.gz
+cd coco</code></pre>
+            </div>
+            <div class="install-command install-command--tree">
+              <span class="install-code-label">Main release paths</span>
+              <pre><code>coco/
+├── bin/
+│   ├── coco-install-runtime.sh
+│   ├── coco-validate-runtime-pack.py
+│   ├── coco-write-runtime-profile.py
+│   ├── coco_runtime_checks.py
+│   ├── coco-run-cocoshed-smoke.py
+│   └── coco-validate-native-compatibility.py
+├── backend/
+│   └── coco-0.3.10.jar
+├── cocoshed/
+│   ├── manifest.json
+│   ├── copra_model_quality/
+│   │   └── data/
+│   └── &lt;other compiled copra_* packages&gt;/
+├── runtime/
+│   ├── coco-version
+│   ├── runtime-environment.yml
+│   └── native-compatibility.json
+└── runtime-packs/
+    └── coco-runtime-0.3.10.tar.gz</code></pre>
+            </div>
+            <p><code>runtime/coco-version</code> selects the matching runtime pack and environment. The installer checks the bundled environment specification and the compiled package inventory in <code>cocoshed/manifest.json</code>. Structure Validation's Top8000, GeoStd, and CCD reference data ship under <code>cocoshed/copra_model_quality/data/</code>.</p>
+            <div class="install-note">
+              <strong>Use a fresh release directory</strong>
+              <p>Extracting over an older release can leave obsolete files behind. For an existing installation, follow <a href="#install-v0-3-10-upgrades">Backups and upgrades</a> to preserve state and saved paths.</p>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-runtime" aria-labelledby="install-v0-3-10-runtime-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Bundled environment</p>
+              <h2 id="install-v0-3-10-runtime-title">Install the managed runtime</h2>
+            </div>
+            <p>Run the installer from the extracted <code>coco/</code> directory.</p>
+            <div class="install-command">
+              <span class="install-code-label">Terminal</span>
+              <pre><code>bin/coco-install-runtime.sh</code></pre>
+            </div>
+            <p>The installer validates and extracts the runtime, checks the complete CoCoShed manifest, relocates the environment, and validates its commands, Python modules, and CUDA headers. It publishes these paths:</p>
+            <div class="install-command install-command--tree">
+              <span class="install-code-label">Installed paths</span>
+              <pre><code>runtime/envs/coco-runtime-0.3.10/
+runtime/coco-runtime-profile.json</code></pre>
+            </div>
+            <p>The runtime, profile, and CoCoShed files are updated together. A failed installation restores the previous installation.</p>
+            <h3>Installer options</h3>
+            <ul class="install-inline-list">
+              <li><code>--check-only</code> validates an existing environment and rewrites its profile. Use it for a later audit or diagnosis; a successful fresh installation has already completed validation.</li>
+              <li><code>--force</code> replaces the selected version's runtime and CoCoShed inventory from the bundled release.</li>
+              <li><code>--root /absolute/path/to/coco</code> specifies the installation root explicitly.</li>
+              <li><code>--run-cocoshed-smokes</code> adds optional functional diagnostics during installation or audit. Their results are reported separately from runtime readiness.</li>
+            </ul>
+            <p><code>--force</code> and <code>--check-only</code> cannot be combined. Manifest and exact-inventory validation always run.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-start" aria-labelledby="install-v0-3-10-start-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Launch</p>
+              <h2 id="install-v0-3-10-start-title">Start CoCo</h2>
+            </div>
+            <div class="install-command">
+              <span class="install-code-label">Terminal</span>
+              <pre><code>cd /absolute/path/to/coco
+java -jar backend/coco-0.3.10.jar</code></pre>
+            </div>
+            <p>Open <code>http://localhost:8078</code>. Always start from the same <code>coco/</code> working directory: project references, accounts, and site settings are stored relative to it. Run one active backend JVM for each project tree.</p>
+            <p>To use a different port, append <code>--server.port=8080</code>. If the runtime profile cannot be located automatically, specify it while keeping the same working directory:</p>
+            <div class="install-command">
+              <span class="install-code-label">Runtime profile override</span>
+              <pre><code>java -Dcoco.runtime.profile=/absolute/path/to/coco/runtime/coco-runtime-profile.json \
+  -jar backend/coco-0.3.10.jar</code></pre>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-verify" aria-labelledby="install-v0-3-10-verify-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Validation</p>
+              <h2 id="install-v0-3-10-verify-title">Verify the installation</h2>
+            </div>
+            <ol class="install-numbered-list">
+              <li>Confirm <code>runtime/envs/coco-runtime-0.3.10/</code> and <code>runtime/coco-runtime-profile.json</code> exist after installation.</li>
+              <li>Start CoCo and confirm the interface loads at <code>http://localhost:8078</code>.</li>
+              <li>Open Settings → Environment Check and confirm Managed CoCo Runtime reports <code>READY</code>.</li>
+              <li>Configure and check the external connections and resources needed by your workflows.</li>
+              <li>Configure a Local GPU, SLURM, or LSF lane for GPU jobs.</li>
+            </ol>
+            <div class="install-command">
+              <span class="install-code-label">Runtime status API</span>
+              <pre><code>GET /api/v1/managed-runtimes/current</code></pre>
+            </div>
+            <p>Job submission also checks the capabilities required by that job. For example, Import Structure requires <code>STRUCTURE</code>, Structure Validation requires <code>MODEL_QUALITY</code>, and Import Sequence and Structure Prediction require <code>PROTENIX_STRUCTURE_PREDICTION</code>. Global runtime readiness alone does not replace these checks. The Builder also hides some job types, such as Motion Correction and 3D Alignment, when the installed runtime does not report their capability.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-configuration" aria-labelledby="install-v0-3-10-configuration-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Application settings</p>
+              <h2 id="install-v0-3-10-configuration-title">Configure CoCo and authentication</h2>
+            </div>
+            <p>Default settings are bundled in the backend JAR and can be overridden with Spring Boot command-line properties.</p>
+            <div class="install-command">
+              <span class="install-code-label">Defaults</span>
+              <pre><code>server.port=8078
+server.servlet.session.timeout=24h
+app.auth.mode=DISABLED
+app.auth.users-file=auth/users.json</code></pre>
+            </div>
+            <ul class="install-inline-list">
+              <li><code>DISABLED</code> treats every client as the local administrator. Use it on a trusted single-user host or isolated network.</li>
+              <li><code>BOOTSTRAP</code> creates an administrator when the user store is missing or empty.</li>
+              <li><code>ENFORCED</code> requires login for the interface and API. Create the initial administrator before enabling it; an empty user store prevents startup.</li>
+            </ul>
+            <p>Run the following from the fixed <code>coco/</code> working directory. Replace <code>YOUR_TEMPORARY_PASSWORD</code> with your chosen password.</p>
+            <div class="install-command">
+              <span class="install-code-label">Bootstrap an administrator</span>
+              <pre><code>java -jar backend/coco-0.3.10.jar \
+  --app.auth.mode=BOOTSTRAP \
+  --app.auth.bootstrap-admin-username=admin \
+  --app.auth.bootstrap-admin-password='YOUR_TEMPORARY_PASSWORD' \
+  --app.auth.bootstrap-admin-must-change-password=true</code></pre>
+            </div>
+            <ol class="install-numbered-list">
+              <li>Open <code>http://localhost:8078/projects</code>.</li>
+              <li>Sign in at <code>/login</code> with the administrator account.</li>
+              <li>Change the temporary password at <code>/account/password</code> when prompted.</li>
+              <li>Continue to <code>/projects</code>.</li>
+            </ol>
+            <p>Changing the bootstrap password in later launches does not overwrite an existing account. For an intentional reset, use:</p>
+            <div class="install-command">
+              <span class="install-code-label">One-time password reset</span>
+              <pre><code>java -jar backend/coco-0.3.10.jar \
+  --app.auth.mode=BOOTSTRAP \
+  --app.auth.bootstrap-admin-username=admin \
+  --app.auth.reset-admin-password='YOUR_TEMPORARY_PASSWORD'</code></pre>
+            </div>
+            <p>Remove the reset flag from future launches after resetting the password. Preserve <code>auth/users.json</code>; it is the account database. The default login-session idle timeout is 24 hours.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-dependencies" aria-labelledby="install-v0-3-10-dependencies-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Site integration</p>
+              <h2 id="install-v0-3-10-dependencies-title">Connect external services</h2>
+            </div>
+            <p>Configure the services used by your workflows in Settings → Environment Check after the managed runtime reports <code>READY</code>. The page lists installation and service checks in one column and network connectivity checks in the other.</p>
+            <h3>CryoSPARC 4 or 5</h3>
+            <p>CoCo connects through the CryoSPARC master installation. Each user saves their own CryoSPARC profile in the <strong>CryoSPARC</strong> card:</p>
+            <ol class="install-numbered-list">
+              <li>Enter <strong>CryoSPARC Master Directory</strong>, the <code>cryosparc_master</code> directory accessible from the CoCo host. CoCo calls its <code>cryosparcm</code> executable.</li>
+              <li>Enter <strong>CryoSPARC Username</strong>, the email address of your CryoSPARC account.</li>
+              <li>Optionally enter <strong>CryoSPARC URL</strong>. CoCo shows it for browser links; connection checks do not use it.</li>
+              <li>Select <strong>Check connection</strong> and confirm the detected version, projects, lanes, and data access.</li>
+            </ol>
+            <p>CoCo does not accept or store CryoSPARC passwords, session tokens, or path mappings. CoCo and CryoSPARC must read project files at identical absolute paths on shared storage. The card is unavailable until the managed runtime reports <code>READY</code>.</p>
+            <p>Particle export and the CryoSieve refinement jobs work with CryoSPARC 4 or 5. Exporting micrographs or CTF results from Import Micrographs, Motion Correction, or CTFA requires CryoSPARC 4.</p>
+            <h3>CryoSeek WIT</h3>
+            <p>WIT jobs search CryoSeek and RCSB PDB for structures resembling a 2D average. They need HTTPS access from the CoCo server to the CryoSeek WIT service. In <strong>CryoSeek WIT Connectivity</strong>, an administrator can configure <strong>Proxy Command</strong> and select <strong>Save and run WIT probe</strong>.</p>
+            <p>The default command is <code>source /usr/local/bin/set_proxy.sh</code>. To use the server's inherited network environment without extra setup, enter the nonempty Bash no-op <code>:</code>.</p>
+            <h3>PDB and EMDB</h3>
+            <p>Import Structure can download a structure from RCSB PDB by its ID, and Import Volume can download an EMDB entry, including its half-maps when the entry provides a complete pair. In <strong>PDB &amp; EMDB Connectivity</strong>, an administrator can set an optional <strong>Proxy Command</strong>, shared by the probes and by these downloads, and select <strong>Save and run archive probes</strong>. Leave it blank for direct access.</p>
+            <p>The probes are diagnostic. They are not required for creating jobs, and the downloads still need network access from the host that runs the import.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-emodelg" aria-labelledby="install-v0-3-10-emodelg-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Structural modeling</p>
+              <h2 id="install-v0-3-10-emodelg-title">Set up EModelG</h2>
+            </div>
+            <p>The EModelG algorithm is bundled in CoCoShed. Its larger resource bundles are downloaded separately through Environment Check.</p>
+            <ol class="install-numbered-list">
+              <li>Open Settings → Environment Check → <strong>EModelG Resources</strong>.</li>
+              <li>Set <strong>Resource Directory</strong> to a writable installation root, for example <code>/shared/emodelg</code>. CoCo creates the version subdirectory automatically.</li>
+              <li>Use the default <strong>Download Base URL</strong>, <code>https://cocoproject.org.cn/emodelg/</code>, or an HTTPS mirror serving the same fixed archive filenames.</li>
+              <li>If needed, set the optional <strong>Proxy Command</strong> before downloading. Run the resource check and wait for download and verification to complete.</li>
+              <li>Make the installed resources accessible at the same configured path from the backend and the selected compute nodes.</li>
+            </ol>
+            <p>All EModelG modes require both resource bundles: 21 SO(3) libraries and three checkpoints. CoCo verifies them against its bundled catalog. The resource version, <code>2.2.0-20261011</code>, is unchanged from v0.3.5; after upgrading, rerun the resource check to confirm an existing installation.</p>
+            <h3>Phenix for glycan modeling</h3>
+            <p><strong>Glycan (+ protein) modeling</strong> (<code>full</code>) also requires a separately installed Phenix. In the <strong>Phenix</strong> card, set <strong>Installation Path</strong> and run <strong>Check</strong>. The optional <strong>Environment Command</strong> runs before Phenix activation during both the check and job execution.</p>
+            <p>Phenix and any paths used by its environment command must be accessible from the backend and compute nodes. <strong>Protein modeling</strong> and <strong>Protein modeling (preserve existing glycans)</strong> do not require Phenix.</p>
+            <div class="install-note">
+              <strong>One node and one GPU per EModelG job</strong>
+              <p>Select a lane with one available GPU. Preserve-existing-glycans mode requires a glycan-only input structure; a structure containing protein CA atoms is rejected. Clear or Restart begins a fresh attempt from the start.</p>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-cocofold" aria-labelledby="install-v0-3-10-cocofold-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Structure prediction</p>
+              <h2 id="install-v0-3-10-cocofold-title">Set up CoCoFold and structure prediction</h2>
+            </div>
+            <p>Structure Prediction runs Protenix 1.0.2 with its Base or Mini model. The model checkpoints and common data are downloaded separately through Environment Check. CoCoFold Refine and CoCoFlex continue from the prediction's outputs and have no resource card of their own.</p>
+            <ol class="install-numbered-list">
+              <li>As an administrator, open Settings → Environment Check → <strong>CoCoFold Resources</strong>.</li>
+              <li>Set <strong>Resource Directory</strong> to a writable installation root, for example <code>/shared/cocofold</code>. CoCo creates the <code>protenix-1.0.2-r1</code> subdirectory automatically. The default is <code>resources/cocofold</code> inside the installation.</li>
+              <li>Use the default <strong>Download Base URL</strong>, <code>https://cocoproject.org.cn/cocofold</code>, or an HTTPS mirror serving the same fixed archive filenames.</li>
+              <li>If needed, set the optional <strong>Proxy Command</strong>, then select <strong>Download and check</strong>. The check passes when all six resource files are verified.</li>
+              <li>Make the installed resources accessible at the same configured path from the backend and the compute nodes that run Structure Prediction.</li>
+            </ol>
+            <p>The two archives total about 1.6 GB and expand to about 2.7 GB; the download needs free space for both. CoCo verifies file sizes and SHA-256 checksums against its bundled catalog. Protenix is distributed under the Apache License 2.0; its license accompanies the resources as <a href="/cocofold/LICENSE-Protenix.txt">LICENSE-Protenix.txt</a>.</p>
+            <h3>Protenix MSA Service</h3>
+            <p>Structure Prediction's default MSA mode, <strong>MSA Server</strong>, requests multiple sequence alignments from the Protenix MSA service. The default <strong>MSA Service Endpoint</strong> is <code>https://protenix-server.com/api/msa</code>. In <strong>Protenix MSA Service</strong>, an administrator can change the endpoint, set an optional <strong>Proxy Command</strong>, and select <strong>Check</strong>.</p>
+            <p>The check runs on the CoCo host, but jobs make their MSA request from their allocated compute node, where the Proxy Command also runs. MSA Server mode sends the target's protein sequences to the configured service. The Provided, Import, and None modes make no remote request.</p>
+            <div class="install-note">
+              <strong>Refinement inputs and GPUs</strong>
+              <p>CoCoFold Refine continues from an accepted 3D Alignment between a prediction and particles with complete 3D poses. Its input is created only for standard, unmodified, protein-only targets. CoCoFlex requires a refinement that used the Mini model in Whole mode. Structure Prediction, CoCoFold Refine, and CoCoFlex run on GPU lanes; CoCoFold Refine and CoCoFlex use one node.</p>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-job-resources" aria-labelledby="install-v0-3-10-job-resources-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Execution settings</p>
+              <h2 id="install-v0-3-10-job-resources-title">Job resources and run location</h2>
+            </div>
+            <p>Each user sets <strong>Default CPUs per GPU</strong> in Settings → Preferences → Job Resources, from 1 to 12; the default is 6. When a job type has a CPU setting and the field is left empty, CoCo multiplies this value by the job's GPUs per node. Zero-GPU jobs use the single-GPU value. A resolved CPU budget overrides the lane's CPU settings.</p>
+            <ul class="install-inline-list">
+              <li>Import Movies, Import Micrographs, Import Particles, Import Volume, Import Structure, Import Sequence, Restack Particles, CSRefine, and CSRhBFactor run on <strong>Local (backend host)</strong> or on a selected lane.</li>
+              <li>Inspect Particles, Select 2D, WIT, and Export to CryoSPARC always run on the backend host.</li>
+              <li>GPU jobs require a Local GPU, SLURM, or LSF lane.</li>
+            </ul>
+            <p>Each job attempt uses one scheduler allocation.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-local-gpu" aria-labelledby="install-v0-3-10-local-gpu-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Host execution</p>
+              <h2 id="install-v0-3-10-local-gpu-title">Configure Local GPU lanes</h2>
+            </div>
+            <p>Open Settings → Cluster Configuration, create a <strong>Local GPU</strong> lane, and choose the concrete devices in <strong>Local GPU Pool</strong>. Refresh the inventory after hardware changes.</p>
+            <ul class="install-inline-list">
+              <li>The CoCo host needs the NVIDIA driver and <code>nvidia-smi</code> for GPU discovery.</li>
+              <li>The selected pool size limits the GPUs a job may request.</li>
+              <li>Local GPU execution uses one host; requests for more than one node are rejected.</li>
+              <li>Jobs run as the backend account. That account must be able to read inputs and the runtime, and write project and job outputs.</li>
+            </ul>
+            <p>Local GPU lanes do not require a scheduler client. CoCo activates the managed runtime for each job.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-slurm" aria-labelledby="install-v0-3-10-slurm-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Cluster execution</p>
+              <h2 id="install-v0-3-10-slurm-title">Configure SLURM lanes</h2>
+            </div>
+            <p>In Settings → Cluster Configuration, set <strong>Max GPUs per Node</strong> to the lane's per-node capacity. Choose node count, GPUs per node, and CPU budget in each job dialog.</p>
+            <p>Put fixed site settings such as partition, account, time, memory, and CPU defaults in <strong>Cluster Template</strong>. Adapt this example to your cluster:</p>
+            <div class="install-command">
+              <span class="install-code-label">Example cluster template</span>
+              <pre><code>#!/bin/bash
+#SBATCH --partition=&lt;gpu_partition&gt;
+#SBATCH --mem=128G
+#SBATCH --cpus-per-task=8</code></pre>
+            </div>
+            <p>CoCo generates job names, stdout/stderr paths, node/task layout, and GPU requests. Leave those directives out of the template. Shell lines in the template other than <code>#SBATCH</code> directives are placed after the directives CoCo generates. Use <strong>Local Environment</strong> for required site setup such as <code>module load</code> commands; load CUDA 12.6 modules if your site requires them.</p>
+            <p>For distributed <code>torchrun</code> jobs, CoCo starts one SLURM task per node, then one worker per requested GPU. Two nodes with four GPUs each use two SLURM tasks and eight GPU workers. CPU-only stages request tasks and CPUs without GPU directives.</p>
+            <p>The job's CPU budget is per node and shared by its GPU workers. A typed job CPU budget overrides lane CPU settings. Avoid activating another Conda environment or launching <code>torchrun</code> or <code>mpirun</code> in Local Environment.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-lsf" aria-labelledby="install-v0-3-10-lsf-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Cluster execution</p>
+              <h2 id="install-v0-3-10-lsf-title">Configure LSF lanes</h2>
+            </div>
+            <p>Use IBM Spectrum LSF 10.1 Fix Pack 9 or newer. Run the CoCo backend directly on the submission host, with these commands available to its service account in the same non-interactive startup environment:</p>
+            <div class="install-command">
+              <span class="install-code-label">Client check</span>
+              <pre><code>command -v bsub blaunch bjobs bhist bkill</code></pre>
+            </div>
+            <p>The cluster must enable <code>LSB_GPU_NEW_SYNTAX=extend</code> and provide task-level <code>CUDA_VISIBLE_DEVICES&lt;number&gt;</code> bindings. Ask the cluster administrator to verify these settings; GPU requests using <code>nocvd</code> are incompatible.</p>
+            <p>Set <strong>Max GPUs per Node</strong> to the lane's capacity. Keep only fixed queue, project, wall-time, memory, and site constraints in <strong>Cluster Template</strong>:</p>
+            <div class="install-command">
+              <span class="install-code-label">Example cluster template</span>
+              <pre><code>#!/bin/bash
+#BSUB -q &lt;gpu_queue&gt;
+#BSUB -P &lt;project_name&gt;
+#BSUB -W 24:00</code></pre>
+            </div>
+            <p>Leave job identity, log paths, slot and host counts, <code>span[...]</code>, and GPU requests to CoCo. Do not add <code>-outdir</code>, interactive submission flags, or GPU constraints in <code>-R</code>.</p>
+            <p>For jobs with a typed CPU budget, CoCo requests <code>nodes × CPUs per node</code> slots and places that CPU budget on each host. <code>blaunch</code> starts one launcher per allocated host, then one worker per requested GPU. CPU-only stages are submitted without GPU requests.</p>
+            <div class="install-note">
+              <strong>Shared paths and submission environment</strong>
+              <p>The backend and compute nodes must resolve the same absolute CoCo, runtime, CoCoShed, resource, project, and job paths. Initialize the LSF client before starting Java; a lane's Local Environment runs too late to configure backend submission commands.</p>
+            </div>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-modules" aria-labelledby="install-v0-3-10-modules-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Workflow tools</p>
+              <h2 id="install-v0-3-10-modules-title">Built-in modules</h2>
+            </div>
+            <p>The Builder groups the job types in this release as follows:</p>
+            <ul class="install-inline-list">
+              <li><strong>Import:</strong> Import Movies, Import Micrographs, Import Particles, Import Volume, Import Structure, and Import Sequence.</li>
+              <li><strong>Preprocessing:</strong> Motion Correction and CTFA.</li>
+              <li><strong>Picking:</strong> Blob Picker, Template Picker, Inspect Particles, and Extract Particles.</li>
+              <li><strong>Classification:</strong> 2D Classification (Classic).</li>
+              <li><strong>CryoSieve:</strong> CryoSieve, CSRefine, and CSRhBFactor.</li>
+              <li><strong>CryoPROS:</strong> CryoPROS Prep, Train, and Generate.</li>
+              <li><strong>Atomic Model:</strong> EModelG, Structure Prediction, CoCoFold Refine, CoCoFlex, Structure Relaxation, and Structure Validation.</li>
+              <li><strong>Tools:</strong> Restack Particles, 2D Reconstruction (DFR), Select 2D, Average Spectrum, Create Templates, Generate Mask, WIT, Export to CryoSPARC, 3D Reconstruction (DFR), 3D Alignment, and 3D Reconstruction (SGD).</li>
+            </ul>
+            <ul class="install-inline-list">
+              <li><strong>CryoSieve</strong> uses the bundled DFR reconstruction engine and CoCo postprocessing.</li>
+              <li><strong>CryoPROS Prep</strong> is created from an accepted 3D Alignment of particles with a volume or structure, then continues to Train and Generate. Export to CryoSPARC is a separate job.</li>
+              <li><strong>EModelG</strong> and <strong>CoCoFold</strong> need the resources described in <a href="#install-v0-3-10-emodelg">EModelG setup</a> and <a href="#install-v0-3-10-cocofold">CoCoFold setup</a>.</li>
+              <li><strong>Structure Relaxation</strong> runs restrained Amber energy minimization with OpenMM. Its force fields and tools are bundled in the runtime, and each job uses one GPU.</li>
+              <li><strong>Structure Validation</strong> calculates its metrics with the bundled cctbx and Gemmi; it does not need Phenix. Each job uses one node with one GPU.</li>
+              <li><strong>WIT</strong> needs the CryoSeek WIT connection described in <a href="#install-v0-3-10-dependencies">External services</a>.</li>
+            </ul>
+            <p>Inspect the deployed catalog through:</p>
+            <div class="install-command">
+              <span class="install-code-label">Job catalog API</span>
+              <pre><code>GET /api/v1/job-types</code></pre>
+            </div>
+            <p>The reconstruction job keys are <code>3D_RECONSTRUCTION_DFR</code> and <code>3D_RECONSTRUCTION_SGD</code>.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-runtime-behavior" aria-labelledby="install-v0-3-10-runtime-behavior-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Job execution</p>
+              <h2 id="install-v0-3-10-runtime-behavior-title">Runtime behavior</h2>
+            </div>
+            <p>You can prepare job drafts before the runtime is installed. Submission requires a <code>READY</code> runtime and the capabilities needed by the selected job.</p>
+            <p>Generated scripts activate the versioned runtime automatically for Local GPU, SLURM, and LSF execution. Legacy lane <code>activationCmd</code> settings are ignored. CoCo's private commands run as Python modules of the managed runtime; the installer adds no commands, such as the former <code>coco-volume-tools</code>, to the environment's <code>bin</code> directory.</p>
+            <p>Retain older <code>runtime/envs/coco-runtime-&lt;version&gt;/</code> directories when saved scripts still reference them. Their absolute paths are part of the saved execution context.</p>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-upgrades" aria-labelledby="install-v0-3-10-upgrades-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Installation lifecycle</p>
+              <h2 id="install-v0-3-10-upgrades-title">Backups and upgrades</h2>
+            </div>
+            <p>Keep the same installation path and backend working directory across upgrades. With default settings, these directories inside <code>coco/</code> contain persistent operator state:</p>
+            <ul class="install-inline-list">
+              <li><code>projectConfig/</code>: registered project references.</li>
+              <li><code>pageParam/</code>: saved page parameters and scheduler lanes.</li>
+              <li><code>path/</code>: connection, resource, and proxy settings saved by Environment Check.</li>
+              <li><code>auth/</code>: users and per-user CryoSPARC profiles.</li>
+              <li><code>settings/</code>: artifact-signing key and SSD cache settings.</li>
+              <li><code>user-settings/</code>: user preferences, stars, and pins.</li>
+              <li><code>workflows/</code>: the saved workflow library.</li>
+            </ul>
+            <p>If the user-store or artifact-signing-key location is overridden, back up its actual path. CryoSPARC profiles follow the user-store parent directory. Project and job data may be outside the installation; back up those directories too. <code>projectConfig/</code> stores references to them, and each project directory keeps its Workspace layout in <code>.coco/workspaces.json</code>.</p>
+            <ol class="install-numbered-list">
+              <li>Stop new submissions. Let active jobs finish or cancel them with the current backend, and confirm their terminal state.</li>
+              <li>Stop the backend JVM and back up application state, project/job data, and runtime trees you need to retain.</li>
+              <li>Extract the new release into an empty staging directory. Replace release-owned artifacts at the original installation path, accounting for obsolete files while preserving state and existing <code>runtime/envs/</code> trees.</li>
+              <li>Run the new runtime installer at the final installation path. For an existing selected-version environment, use <code>--check-only</code> for intentional reuse or <code>--force</code> to replace it. Resolve validation errors before restarting.</li>
+              <li>Restart from the same working directory and follow <a href="#install-v0-3-10-verify">Verify the installation</a>.</li>
+            </ol>
+            <p>Install the runtime at its final path; do not install it in a staging directory that will later be moved.</p>
+            <h3>Upgrading from v0.3.5</h3>
+            <ul class="install-inline-list">
+              <li>Before upgrading, confirm that the CoCo host and every host that runs jobs have glibc 2.28 or newer and an NVIDIA driver compatible with CUDA 12.6.</li>
+              <li>The installer creates <code>runtime/envs/coco-runtime-0.3.10/</code>. Keep <code>coco-runtime-0.3.5/</code> while saved scripts still reference it.</li>
+              <li>On first start, CoCo places the jobs of each existing project in a <strong>Default Workspace</strong>. Existing stars are assigned to the project's creator; pinned jobs are not carried over.</li>
+              <li>Every user enters a CryoSPARC Master Directory and runs <strong>Check connection</strong> again. Saved CryoSPARC passwords, sessions, remote-URL connections, and path mappings are no longer used.</li>
+              <li>Save or copy drafts and failed jobs from v0.3.5 before submitting or restarting them. Completed results remain viewable; jobs saved with retired settings are read-only and can be copied into a new job.</li>
+              <li>Rerun the EModelG resource check, and set up CoCoFold Resources and the Protenix MSA Service before using Structure Prediction.</li>
+            </ul>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-workflows" aria-labelledby="install-v0-3-10-workflows-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Optional acceptance</p>
+              <h2 id="install-v0-3-10-workflows-title">Workflow checks</h2>
+            </div>
+            <p>Choose end-to-end checks that apply to your site, especially after changing the runtime or compute lanes. These complement the <a href="#install-v0-3-10-verify">fresh-install verification</a>.</p>
+            <ol class="install-numbered-list">
+              <li>Import particles, then create Restack Particles, 3D Reconstruction (DFR), or CryoSieve jobs from the particle output.</li>
+              <li>Where CryoSPARC is configured, test CSRefine and CSRhBFactor from CryoSieve outputs.</li>
+              <li>Import movies, then connect Motion Correction → CTFA → Blob Picker → Inspect Particles → Extract Particles → 2D Classification (Classic) → Select 2D.</li>
+              <li>Align particles that have 3D poses with a volume or structure in 3D Alignment, accept a candidate, then connect CryoPROS Prep → Train → Generate.</li>
+              <li>Run Export to CryoSPARC from a completed CryoPROS Generate, Select 2D, or Extract Particles job. Confirm it creates and waits for one CryoSPARC Import Particles job.</li>
+              <li>For EModelG, verify the resources, submit a one-node, one-GPU job, and inspect the available structures, summary, and review warnings.</li>
+              <li>For structure prediction, verify CoCoFold Resources, connect Import Sequence → Structure Prediction, align the prediction with posed particles in 3D Alignment, and run CoCoFold Refine.</li>
+              <li>Run Structure Validation on an imported or relaxed structure with a 3D reconstruction, and review its residue findings.</li>
+              <li>Submit and monitor a representative job through each configured lane. Verify a multi-node LSF job and its <code>blaunch</code> startup before enabling that execution mode for users.</li>
+            </ol>
+          </section>
+
+          <section class="install-section" id="install-v0-3-10-troubleshooting" aria-labelledby="install-v0-3-10-troubleshooting-title">
+            <div class="install-section-heading">
+              <p class="section-kicker">Recovery</p>
+              <h2 id="install-v0-3-10-troubleshooting-title">Troubleshooting</h2>
+            </div>
+            <div class="install-troubleshooting-list">
+              <article>
+                <h3>Port 8078 is already in use</h3>
+                <p>Start from the fixed <code>coco/</code> directory with <code>java -jar backend/coco-0.3.10.jar --server.port=8080</code>, then open that port.</p>
+              </article>
+              <article>
+                <h3>The runtime fails on an older Linux host</h3>
+                <p>This release requires glibc 2.28 or newer. Run <code>ldd --version</code> on the CoCo host and on each host that runs jobs. Hosts with an older glibc cannot run the v0.3.10 runtime.</p>
+              </article>
+              <article>
+                <h3>Runtime pack or matching metadata is missing</h3>
+                <p>Use a complete release containing <code>runtime-packs/coco-runtime-0.3.10.tar.gz</code> and <code>runtime/runtime-environment.yml</code>. A provenance-field error can indicate mixed installer and runtime versions; deploy the matching backend, helpers, metadata, and CoCoShed together.</p>
+              </article>
+              <article>
+                <h3>Managed runtime is MISSING, ERROR, or INCOMPLETE</h3>
+                <p>Run <code>bin/coco-install-runtime.sh --check-only</code>. If files are missing or stale, reinstall with <code>--force</code>, then refresh Environment Check. Check-only reports undeclared CoCoShed artifacts instead of cleaning them. A runtime installed by an earlier release does not satisfy v0.3.10; run the bundled installer.</p>
+              </article>
+              <article>
+                <h3>A job type is missing from the Builder</h3>
+                <p>Confirm that Managed CoCo Runtime reports <code>READY</code>. The Builder hides job types whose runtime capabilities are missing; diagnose the installation with <code>--check-only</code>.</p>
+              </article>
+              <article>
+                <h3>The backend cannot find the runtime profile</h3>
+                <p>Confirm <code>runtime/coco-runtime-profile.json</code> exists and that Java starts from the extracted <code>coco/</code> directory. Use the explicit profile option under <a href="#install-v0-3-10-start">Start CoCo</a> if needed.</p>
+              </article>
+              <article>
+                <h3>A job from v0.3.5 cannot be submitted or restarted</h3>
+                <p>A message about an older execution layout or result protocol means the job was saved by an earlier release. Save it again or copy it before submitting or restarting.</p>
+              </article>
+              <article>
+                <h3>The CryoSPARC check fails, or project files cannot be read</h3>
+                <p>Confirm that the master directory is the <code>cryosparc_master</code> directory accessible from the CoCo host and that the username matches a CryoSPARC account. Verify shared mounts and permissions: CoCo and CryoSPARC must read project files at the same absolute paths.</p>
+              </article>
+              <article>
+                <h3>EModelG resources or Phenix checks fail</h3>
+                <p>Check the resource directory's permissions, HTTPS or proxy access, and mirror filenames. Rerun the resource check to download and verify both bundles. For full mode, verify Phenix and its environment command on the backend and compute nodes.</p>
+              </article>
+              <article>
+                <h3>CoCoFold resources or the MSA service check fails</h3>
+                <p>Check the resource directory's permissions and free space, HTTPS or proxy access, and mirror filenames, then rerun <strong>Download and check</strong>. For MSA Server mode, verify that compute nodes can reach the endpoint directly or through the Proxy Command, or choose the Import or None MSA mode.</p>
+              </article>
+              <article>
+                <h3>LSF submission, status, or cancellation fails</h3>
+                <p>Check <code>bsub</code>, <code>blaunch</code>, <code>bjobs</code>, <code>bhist</code>, and <code>bkill</code> as the backend account in its startup environment. Inspect <code>bjobs -l &lt;job_id&gt;</code> and <code>bhist -l &lt;job_id&gt;</code>. Verify site GPU bindings and shared paths, and remove conflicting template resource directives.</p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- CoCo v0.3.5 source snapshot: 11bab54eaaa8514589de9314d92be2ff5d607e6f; INSTALL.md, PACK.md, packaging scripts, backend/pom.xml, frontend Settings and EModelG integration. -->
+    <div id="view-install-v0-3-5" class="install-page install-page--archived" data-view="install-v0-3-5" hidden>
+      <nav class="install-page-back" aria-label="Install guide navigation">
+        <a href="#home" class="module-back-link" data-nav="home">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to CoCo
+        </a>
+        <div class="install-version-switcher" role="group" aria-label="Installation guide version">
+          <span>Version</span>
+          <a href="#install-v0-3-10" data-nav="install-v0-3-10">v0.3.10</a>
           <a href="#install-v0-3-5" data-nav="install-v0-3-5" aria-current="page">v0.3.5</a>
           <a href="#install-v0-3-2" data-nav="install-v0-3-2">v0.3.2</a>
           <a href="#install-v0-2-0" data-nav="install-v0-2-0">v0.2.0</a>
@@ -624,7 +1568,7 @@
       </nav>
       <header class="install-page-hero" id="install-v0-3-5-top">
         <div class="install-page-hero-copy">
-          <p class="module-page-kicker">CoCo v0.3.5 release guide</p>
+          <p class="module-page-kicker">Archived CoCo v0.3.5 release guide</p>
           <h1 class="install-page-title">Install CoCo v0.3.5.</h1>
           <p class="install-page-lede">Set up the Linux x86_64 release with its managed runtime, then connect the services and compute lanes your workflows need.</p>
           <span class="install-release-badge">v0.3.5</span>
@@ -1111,6 +2055,7 @@ app.auth.users-file=auth/users.json</code></pre>
         </a>
         <div class="install-version-switcher" role="group" aria-label="Installation guide version">
           <span>Version</span>
+          <a href="#install-v0-3-10" data-nav="install-v0-3-10">v0.3.10</a>
           <a href="#install-v0-3-5" data-nav="install-v0-3-5">v0.3.5</a>
           <a href="#install-v0-3-2" data-nav="install-v0-3-2" aria-current="page">v0.3.2</a>
           <a href="#install-v0-2-0" data-nav="install-v0-2-0">v0.2.0</a>
@@ -1620,6 +2565,7 @@ modules.lock</code></pre>
         </a>
         <div class="install-version-switcher" role="group" aria-label="Installation guide version">
           <span>Version</span>
+          <a href="#install-v0-3-10" data-nav="install-v0-3-10">v0.3.10</a>
           <a href="#install-v0-3-5" data-nav="install-v0-3-5">v0.3.5</a>
           <a href="#install-v0-3-2" data-nav="install-v0-3-2">v0.3.2</a>
           <a href="#install-v0-2-0" data-nav="install-v0-2-0" aria-current="page">v0.2.0</a>
@@ -2119,10 +3065,23 @@ modules.lock</code></pre>
       <div class="changelog-content">
         <ol class="changelog-index" aria-label="CoCo releases, newest first">
           <li>
-            <a class="changelog-index-entry" href="#changelog" data-nav="changelog" aria-labelledby="changelog-index-v035-version changelog-index-v035-title">
+            <a class="changelog-index-entry" href="#changelog" data-nav="changelog" aria-labelledby="changelog-index-v0310-version changelog-index-v0310-title">
+              <div class="changelog-index-version">
+                <strong id="changelog-index-v0310-version">v0.3.10</strong>
+                <span class="changelog-status changelog-status--current">Current release</span>
+              </div>
+              <div class="changelog-index-copy">
+                <h2 id="changelog-index-v0310-title">From movies to atomic models.</h2>
+                <p>Process movies through picking and 2D classification, predict and refine atomic models, validate structures, and organize jobs in Workspaces.</p>
+              </div>
+              <span class="changelog-index-link" aria-hidden="true">Read change log <span>&rarr;</span></span>
+            </a>
+          </li>
+          <li>
+            <a class="changelog-index-entry" href="#changelog-v0-3-5" data-nav="changelog-v0-3-5" aria-labelledby="changelog-index-v035-version changelog-index-v035-title">
               <div class="changelog-index-version">
                 <strong id="changelog-index-v035-version">v0.3.5</strong>
-                <span class="changelog-status changelog-status--current">Current release</span>
+                <span class="changelog-status">Archived release</span>
               </div>
               <div class="changelog-index-copy">
                 <h2 id="changelog-index-v035-title">From density to structure.</h2>
@@ -2161,8 +3120,264 @@ modules.lock</code></pre>
       </div>
     </div>
 
-    <!-- CoCo v0.3.5 release notes: CoCo_v0.3.5_brochure.pdf / .tex, pages 1 and 4; visibility and workflow scope checked in 版本差异核对.md against beta snapshot 87e70ed7770eb7d8837a18f54700255f76c275ba and v0.3.2 a38abf5353224f177a55fe0c9273c13d37efe54d. -->
+    <!-- CoCo v0.3.10 release notes: written from source at beta snapshot 4dbafa9b051a758ecbe580e6039fa96fe47a40df (not a release tag), compared with tag v0.3.5. Only Builder targets in frontend/exposed-job-types.txt and reachable UI are described; Import Binocular Movies, Filament Picker, and the HelicalSeeker jobs remain hidden in this build. -->
     <div id="view-changelog" class="changelog-page" data-view="changelog" hidden>
+      <nav class="changelog-page-back" aria-label="Change log navigation">
+        <a href="#home" class="module-back-link" data-nav="home">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to CoCo
+        </a>
+        <a href="#changelogs" class="module-back-link" data-nav="changelogs">All change logs</a>
+      </nav>
+      <header class="changelog-hero">
+        <div class="changelog-hero-copy">
+          <p class="module-page-kicker">Release notes</p>
+          <h1 class="changelog-title">What changed in CoCo v0.3.10.</h1>
+          <p class="changelog-lede">Take movies through motion correction, CTF estimation, picking, and 2D classification. Predict, refine, relax, and validate atomic models, and organize the work in project Workspaces.</p>
+        </div>
+        <div class="release-version-path" aria-label="CoCo v0.3.10, following v0.3.5">
+          <span><small>Previous</small><strong>v0.3.5</strong></span>
+          <svg aria-hidden="true" width="36" height="16" viewBox="0 0 36 16" fill="none">
+            <path d="M1 8H34M28 2L34 8L28 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="release-version-path__current"><small>Current</small><strong>v0.3.10</strong></span>
+        </div>
+      </header>
+
+      <div class="changelog-content">
+        <section class="changelog-intro" aria-labelledby="changelog-v0-3-10-intro-title">
+          <p class="section-kicker">From movies to models</p>
+          <h2 id="changelog-v0-3-10-intro-title">Run more of the cryo-EM workflow in one project.</h2>
+          <p>CoCo v0.3.10 adds nineteen job types to the Builder. Single-particle preprocessing now starts from raw movies, and a new Atomic Model group connects structure prediction, refinement, relaxation, and validation with EModelG. Workspaces, a job editor beside the job graph, and panel-based results change how projects are built and reviewed.</p>
+        </section>
+
+        <section class="changelog-improvements" aria-labelledby="changelog-v0-3-10-preprocessing-title">
+          <div class="changelog-section-heading">
+            <span class="changelog-feature-index">01</span>
+            <p class="section-kicker">Preprocessing</p>
+            <h2 id="changelog-v0-3-10-preprocessing-title">Go from movies to 2D classes.</h2>
+            <p>Import movies or micrographs and continue through each preprocessing step, with previews that update while jobs run.</p>
+          </div>
+          <div class="changelog-improvement-list">
+            <article>
+              <span aria-hidden="true">A</span>
+              <div>
+                <h3>Import Movies and Import Micrographs</h3>
+                <p>Import EER, TIFF, or MRC movies, or single-image micrographs, from a server-side glob pattern. The field shows the match count and example files before you create the job. Optics, gain and dark references, and defect files are recorded with the import.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">B</span>
+              <div>
+                <h3>Motion Correction</h3>
+                <p>Align movie frames on GPUs with global and local motion models, then inspect each corrected micrograph with its motion overlay. A movie that fails is recorded while the others continue.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">C</span>
+              <div>
+                <h3>CTFA</h3>
+                <p>Estimate CTF parameters for flat or tilted micrographs. Review each micrograph beside its 2D spectrum, with Thon-ring overlays, and its radial spectrum, ordered by CTF score.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">D</span>
+              <div>
+                <h3>Blob Picker and Template Picker</h3>
+                <p>Pick particles with multi-scale blob detection, or match projection templates from Create Templates or class averages from Select 2D. Picks and pick statistics appear as micrographs finish.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">E</span>
+              <div>
+                <h3>Inspect Particles and Extract Particles</h3>
+                <p>Set score thresholds, accept or reject individual picks, and exclude micrographs. Then extract particle stacks on GPUs with a chosen box size and boundary handling.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">F</span>
+              <div>
+                <h3>2D Classification (Classic)</h3>
+                <p>Classify imported, extracted, restacked, or selected particles. Step through the iterations, review class averages sorted by resolution, and continue to Select 2D.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="changelog-feature" aria-labelledby="changelog-v0-3-10-models-title">
+          <div class="changelog-feature-copy">
+            <span class="changelog-feature-index">02</span>
+            <p class="section-kicker">Atomic models</p>
+            <h2 id="changelog-v0-3-10-models-title">Predict, refine, and check atomic models.</h2>
+            <p>A new Atomic Model group in the Builder brings EModelG together with five new jobs, so a structure can move from prediction to validation within one project.</p>
+            <figure class="changelog-figure">
+              <a href="materials/v0.3.10/structure-validation/images/Structure_Validation.png" target="_blank" rel="noopener">
+                <img src="img/structure-validation/residue-findings-640.webp" srcset="img/structure-validation/residue-findings-640.webp 640w, img/structure-validation/residue-findings-1280.webp 1280w" sizes="(min-width: 74rem) 420px, 92vw" alt="Structure Validation Residue Findings panel with findings marked along chains A and B, filters by finding type, and a list of flagged residues. Open the full-size screenshot." width="1280" height="1093" loading="lazy" decoding="async">
+              </a>
+              <figcaption>Structure Validation links each finding to its residue and chain.</figcaption>
+            </figure>
+            <a href="#cocofold-cocoflex" class="module-back-link" data-nav="cocofold-cocoflex">Explore CoCoFold &amp; CoCoFlex <span aria-hidden="true">→</span></a>
+            <a href="#structure-validation" class="module-back-link" data-nav="structure-validation">Explore Structure Validation <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="changelog-feature-copy">
+            <h3>Import Sequence and Structure Prediction</h3>
+            <p>Define protein, DNA, RNA, ligand, and ion entities, then predict candidate structures with Protenix. Compare the candidates by ranking score, pLDDT, pTM, and ipTM.</p>
+            <h3>3D Alignment</h3>
+            <p>Align two volumes, structures, or particle reconstructions, review the candidate transforms, and accept one. The search can keep the original handedness, invert it, or try both.</p>
+            <h3>CoCoFold Refine and CoCoFlex</h3>
+            <p>Refine a prediction against the particles in its accepted alignment, then learn an ensemble of conformations from a refinement that used the Mini model in Whole mode.</p>
+            <h3>Structure Relaxation</h3>
+            <p>Run restrained Amber energy minimization with OpenMM on an imported, predicted, or refined model, and compare the relaxed model with its input.</p>
+            <h3>Structure Validation</h3>
+            <p>Assess model geometry, map–model agreement, half-map FSC, and sequence consistency for imported, EModelG, or relaxed models. Findings link to residues in the 3D viewer, and figures and tables can be exported.</p>
+          </div>
+        </section>
+
+        <section class="changelog-improvements" aria-labelledby="changelog-v0-3-10-maps-title">
+          <div class="changelog-section-heading">
+            <span class="changelog-feature-index">03</span>
+            <p class="section-kicker">Maps, masks, and references</p>
+            <h2 id="changelog-v0-3-10-maps-title">Bring in maps and identify your classes.</h2>
+          </div>
+          <div class="changelog-improvement-list">
+            <article>
+              <span aria-hidden="true">A</span>
+              <div>
+                <h3>Import from EMDB and your computer</h3>
+                <p>Import Volume can download an EMDB entry, with its half-maps when the entry provides a complete pair. Import Structure also accepts files uploaded from your computer, alongside PDB IDs and server files.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">B</span>
+              <div>
+                <h3>Generate Mask and Auto Mask</h3>
+                <p>Generate refine, FSC, and auto-tightened FSC masks from a final map and its half-maps. 3D Reconstruction (DFR) and (SGD) add an Auto Mask option, on by default, that applies the tightened mask to the FSC.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">C</span>
+              <div>
+                <h3>Create Templates</h3>
+                <p>Generate projection templates from one density map for Template Picker, with evenly spaced or helical directions.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">D</span>
+              <div>
+                <h3>WIT</h3>
+                <p>Search CryoSeek and RCSB PDB for structures resembling one 2D average from Select 2D or Average Spectrum. Each match shows its WIT probability, a preview, and a record link.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">E</span>
+              <div>
+                <h3>Select 2D and Average Spectrum</h3>
+                <p>Select 2D shows the selected and unselected sets and continues to Template Picker, WIT, 2D Classification, or 3D Alignment. Average Spectrum adds zoom, brightness, and contrast controls with a calibrated pointer readout.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="changelog-feature" aria-labelledby="changelog-v0-3-10-workspaces-title">
+          <div class="changelog-feature-copy">
+            <span class="changelog-feature-index">04</span>
+            <p class="section-kicker">Projects and authoring</p>
+            <h2 id="changelog-v0-3-10-workspaces-title">Organize projects into Workspaces.</h2>
+            <p>Each project now contains Workspaces, and a job can be linked into more than one. Existing projects open with their jobs in a Default Workspace.</p>
+          </div>
+          <div class="changelog-feature-copy">
+            <h3>Workspaces</h3>
+            <p>Archive or delete Workspaces, archive projects, and keep stars and pins for each user. The job graph shows one Workspace at a time: inputs from other Workspaces appear faded, and earlier ancestors fold into summaries.</p>
+            <h3>Create jobs beside the graph</h3>
+            <p>New, Edit, Copy, and next-step jobs open in a side panel next to the live job graph. Choose inputs by clicking jobs in the graph, and see the draft in place before you create it.</p>
+            <h3>Upload from your computer</h3>
+            <p>The file browser can upload structure and MSA files from your computer, up to 1 GiB.</p>
+          </div>
+        </section>
+
+        <section class="changelog-improvements" aria-labelledby="changelog-v0-3-10-results-title">
+          <div class="changelog-section-heading">
+            <span class="changelog-feature-index">05</span>
+            <p class="section-kicker">Results and settings</p>
+            <h2 id="changelog-v0-3-10-results-title">Read results and set up resources in fewer steps.</h2>
+          </div>
+          <div class="changelog-improvement-list">
+            <article>
+              <span aria-hidden="true">A</span>
+              <div>
+                <h3>Results in panels</h3>
+                <p>Every job's Overview is built from collapsible panels, with viewers sized to the window and a Downloads category selector. Reviews open with their panels and are completed from the job header.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">B</span>
+              <div>
+                <h3>One micrograph viewer</h3>
+                <p>Zoom, fit, adjust brightness and contrast, apply a lowpass filter on demand, and step through micrographs with a thumbnail browser and the keyboard.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">C</span>
+              <div>
+                <h3>Default CPUs per GPU</h3>
+                <p>Set a default CPU count per GPU in Preferences. CPU-only import and utility jobs can run on the backend host or on a lane.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">D</span>
+              <div>
+                <h3>A simpler CryoSPARC connection</h3>
+                <p>Each user enters the CryoSPARC master directory and username; passwords, sessions, and path mappings are no longer used. Export to CryoSPARC also accepts Extract Particles, and micrographs from Import Micrographs, Motion Correction, or CTFA for CryoSPARC 4.</p>
+              </div>
+            </article>
+            <article>
+              <span aria-hidden="true">E</span>
+              <div>
+                <h3>New Environment Check cards</h3>
+                <p>Download and verify CoCoFold Resources, and check access to PDB and EMDB and to the Protenix MSA service.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="changelog-feature" aria-labelledby="changelog-v0-3-10-upgrade-title">
+          <div class="changelog-feature-copy">
+            <span class="changelog-feature-index">06</span>
+            <p class="section-kicker">Before you upgrade</p>
+            <h2 id="changelog-v0-3-10-upgrade-title">Check these changes when upgrading from v0.3.5.</h2>
+            <p>The installation guide lists the full procedure under <a href="#install-v0-3-10-upgrades">Backups and upgrades</a>.</p>
+          </div>
+          <div class="changelog-feature-copy">
+            <ul class="changelog-detail-list">
+              <li>The CoCo host and every host that runs jobs need glibc 2.28 or newer and an NVIDIA driver compatible with CUDA 12.6. The managed runtime now uses Python 3.11.</li>
+              <li>Particle stacks are stored with bright particles. Import Particles and Restack Particles add a Particle Contrast setting, Bright by default; CryoSPARC imports read the sign from the source data. The CryoPROS Invert option is removed.</li>
+              <li>CryoPROS Prep is created from an accepted 3D Alignment of particles with a volume or structure.</li>
+              <li>Save or copy drafts and failed jobs from v0.3.5 before submitting or restarting them. Jobs saved with retired settings remain viewable but read-only.</li>
+              <li>The Active Jobs and Pinned Jobs pages are removed; pinned jobs and Workspaces appear in the left sidebar. Pins from v0.3.5 are not carried over.</li>
+              <li>Workflow saving still covers flows of Import Particles, 2D Reconstruction (DFR), Select 2D, and Average Spectrum. Loaded workflows open as drafts in the current Workspace.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="changelog-release-actions" aria-labelledby="changelog-v0-3-10-actions-title">
+          <div>
+            <p class="section-kicker">Current release</p>
+            <h2 id="changelog-v0-3-10-actions-title">Start with CoCo v0.3.10.</h2>
+            <p>Set up the runtime, connect your services, and prepare the resources your workflows need.</p>
+          </div>
+          <div class="changelog-action-links">
+            <a class="button button-primary" href="/downloads/coco-0.3.10.tar.gz" download>Download CoCo v0.3.10</a>
+            <a class="button button-secondary" href="#install-v0-3-10" data-nav="install-v0-3-10">v0.3.10 installation guide</a>
+            <a class="changelog-all-link" href="#changelogs" data-nav="changelogs">All change logs</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- CoCo v0.3.5 release notes: CoCo_v0.3.5_brochure.pdf / .tex, pages 1 and 4; visibility and workflow scope checked in 版本差异核对.md against beta snapshot 87e70ed7770eb7d8837a18f54700255f76c275ba and v0.3.2 a38abf5353224f177a55fe0c9273c13d37efe54d. -->
+    <div id="view-changelog-v0-3-5" class="changelog-page" data-view="changelog-v0-3-5" hidden>
       <nav class="changelog-page-back" aria-label="Change log navigation">
         <a href="#home" class="module-back-link" data-nav="home">
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -2178,12 +3393,12 @@ modules.lock</code></pre>
           <h1 class="changelog-title">What changed in CoCo v0.3.5.</h1>
           <p class="changelog-lede">Connect density maps to structural models with EModelG. Inspect and select 2D results, analyze power spectra, and reuse supported workflows within the same research workspace.</p>
         </div>
-        <div class="release-version-path" aria-label="CoCo v0.3.5, following v0.3.2">
+        <div class="release-version-path" aria-label="CoCo v0.3.5 release, following v0.3.2">
           <span><small>Previous</small><strong>v0.3.2</strong></span>
           <svg aria-hidden="true" width="36" height="16" viewBox="0 0 36 16" fill="none">
             <path d="M1 8H34M28 2L34 8L28 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span class="release-version-path__current"><small>Current</small><strong>v0.3.5</strong></span>
+          <span class="release-version-path__current"><small>Released</small><strong>v0.3.5</strong></span>
         </div>
       </header>
 
@@ -2320,12 +3535,11 @@ modules.lock</code></pre>
 
         <section class="changelog-release-actions" aria-labelledby="changelog-v0-3-5-actions-title">
           <div>
-            <p class="section-kicker">Current release</p>
-            <h2 id="changelog-v0-3-5-actions-title">Start with CoCo v0.3.5.</h2>
-            <p>Set up the runtime, connect your data, and prepare the resources your workflows need.</p>
+            <p class="section-kicker">Ready to update</p>
+            <h2 id="changelog-v0-3-5-actions-title">Install the current release or revisit the v0.3.5 guide.</h2>
           </div>
           <div class="changelog-action-links">
-            <a class="button button-primary" href="/downloads/coco-0.3.5.tar.gz" download>Download CoCo v0.3.5</a>
+            <a class="button button-primary" href="/downloads/coco-0.3.10.tar.gz" download>Download CoCo v0.3.10</a>
             <a class="button button-secondary" href="#install-v0-3-5" data-nav="install-v0-3-5">v0.3.5 installation guide</a>
             <a class="changelog-all-link" href="#changelogs" data-nav="changelogs">All change logs</a>
           </div>
@@ -2443,7 +3657,7 @@ modules.lock</code></pre>
             <h2 id="changelog-release-actions-title">Install the current release or revisit the v0.3.2 guide.</h2>
           </div>
           <div class="changelog-action-links">
-            <a class="button button-primary" href="/downloads/coco-0.3.5.tar.gz" download>Download CoCo v0.3.5</a>
+            <a class="button button-primary" href="/downloads/coco-0.3.10.tar.gz" download>Download CoCo v0.3.10</a>
             <a class="button button-secondary" href="#install-v0-3-2" data-nav="install-v0-3-2">v0.3.2 installation guide</a>
             <a class="changelog-all-link" href="#changelogs" data-nav="changelogs">All change logs</a>
           </div>
@@ -2573,7 +3787,7 @@ modules.lock</code></pre>
             <h2 id="changelog-v0-2-0-release-actions-title">Install the current release or revisit the previous guide.</h2>
           </div>
           <div class="changelog-action-links">
-            <a class="button button-primary" href="/downloads/coco-0.3.5.tar.gz" download>Download CoCo v0.3.5</a>
+            <a class="button button-primary" href="/downloads/coco-0.3.10.tar.gz" download>Download CoCo v0.3.10</a>
             <a class="button button-secondary" href="#install-v0-2-0" data-nav="install-v0-2-0">v0.2.0 installation guide</a>
             <a class="changelog-all-link" href="#changelogs" data-nav="changelogs">All change logs</a>
           </div>
@@ -2591,6 +3805,7 @@ modules.lock</code></pre>
         </a>
         <div class="install-version-switcher" role="group" aria-label="Installation guide version">
           <span>Version</span>
+          <a href="#install-v0-3-10" data-nav="install-v0-3-10">v0.3.10</a>
           <a href="#install-v0-3-5" data-nav="install-v0-3-5">v0.3.5</a>
           <a href="#install-v0-3-2" data-nav="install-v0-3-2">v0.3.2</a>
           <a href="#install-v0-2-0" data-nav="install-v0-2-0">v0.2.0</a>
@@ -3121,7 +4336,7 @@ modules.lock</code></pre>
             <img src="img/coco-logo-144.webp" alt="" width="32" height="32" aria-hidden="true" loading="lazy" decoding="async">
             <span>CoCo Project</span>
           </div>
-          <p>A shared cryo-EM workspace for data preparation, reconstruction, and analysis with CryoSieve, CryoPROS, and EModelG.</p>
+          <p>A shared cryo-EM workspace for data preparation, reconstruction, and analysis with tools for particle analysis, model building, and conformational studies.</p>
         </div>
 
         <div class="footer-legal">
@@ -3208,39 +4423,29 @@ modules.lock</code></pre>
         var cocoGuiImage = document.querySelector('.coco-gui-image');
         var cocoGuiStateButtons = document.querySelectorAll('[data-coco-gui-theme-option], [data-coco-gui-layout-option]');
         var cocoGuiCaption = document.querySelector('.coco-gui-caption');
+        var cocoGuiDirectory = 'img/gui/v0.3.10/';
         var cocoGuiViews = {
-          structure: {
-            label: 'Structure view',
-            caption: 'Structure: open an imported or modeled structure with its sequence, 3D view, and summary beside the job details.',
-            light: 'Structure_Light',
-            dark: 'Structure_Dark'
-          },
-          dag: {
-            label: 'Job graph',
-            caption: 'Job graph (DAG): see how the jobs in a project connect, from particle import to downstream analysis.',
-            light: 'DAG_Light',
-            dark: 'DAG_Dark'
-          },
-          '2d': {
-            label: '2D class averages',
-            caption: '2D classes: review class averages from 2D reconstruction, with the particle count and resolution of each class.',
-            light: '2D_Reconstruction_Light',
-            dark: '2D_Reconstruction_Dark'
-          },
-          emodelg: {
-            label: 'EModelG modeling',
-            caption: 'EModelG: inspect a protein or glycan model built from a reconstructed density map.',
-            light: 'EModelG_Light',
-            dark: 'EModelG_Dark'
-          }
+          structure: { label: 'Structure prediction', stem: 'Structure_Prediction',
+            caption: 'Explore the predicted structure alongside its confidence scores and chain sequences.' },
+          dag: { label: 'Job graph', stem: 'DAG',
+            caption: 'Follow job dependencies and check progress in the directed acyclic graph (DAG).' },
+          '2d': { label: '2D classes', stem: '2D_Classification',
+            caption: 'Compare class averages with the particle count and resolution shown beneath each image.' },
+          emodelg: { label: 'EModelG', stem: 'EModelG',
+            caption: 'Inspect the reconstructed protein model together with its chains and modeling summary.' },
+          cocofold: { label: 'CoCoFold', stem: 'CoCoFold',
+            caption: 'Compare the initial and refined models side by side and follow the refinement curves.' }
         };
-        var cocoGuiShown = 'Structure_Light';
-        var cocoGuiWarmed = { Structure_Light: true };
+        function cocoGuiStem(layout, theme) {
+          return cocoGuiViews[layout].stem + (theme === 'dark' ? '_Dark' : '_Light');
+        }
+        var cocoGuiShown = cocoGuiStem('structure', 'light');
+        var cocoGuiWarmed = new Set([cocoGuiShown]);
         var cocoGuiConnection = navigator.connection || {};
         var cocoGuiSaveData = Boolean(cocoGuiConnection.saveData) || /(^|-)2g$/.test(cocoGuiConnection.effectiveType || '');
 
         function cocoGuiSrcset(name) {
-          return 'img/gui/' + name + '-1600.webp 1600w, img/gui/' + name + '-2560.webp 2560w';
+          return cocoGuiDirectory + name + '-1600.webp 1600w, ' + cocoGuiDirectory + name + '-2560.webp 2560w';
         }
 
         function cocoGuiTheme() {
@@ -3254,8 +4459,8 @@ modules.lock</code></pre>
 
         // Fetch a preview only when it is likely to be shown next; the image picks its width from sizes.
         function warmCocoGuiImage(name) {
-          if (!name || cocoGuiWarmed[name]) return;
-          cocoGuiWarmed[name] = true;
+          if (cocoGuiSaveData || cocoGuiWarmed.has(name)) return;
+          cocoGuiWarmed.add(name);
           var probe = new Image();
           probe.decoding = 'async';
           probe.sizes = cocoGuiImage.getAttribute('sizes');
@@ -3265,7 +4470,7 @@ modules.lock</code></pre>
         function warmCocoGuiTheme(theme) {
           if (cocoGuiSaveData) return;
           Object.keys(cocoGuiViews).forEach(function (layout) {
-            warmCocoGuiImage(cocoGuiViews[layout][theme]);
+            warmCocoGuiImage(cocoGuiStem(layout, theme));
           });
         }
 
@@ -3286,17 +4491,18 @@ modules.lock</code></pre>
           cocoGuiCard.setAttribute('data-coco-gui-theme', nextTheme);
           cocoGuiCard.setAttribute('data-coco-gui-layout', nextLayout);
 
-          if (cocoGuiImage && cocoGuiShown !== nextView[nextTheme]) {
-            cocoGuiShown = nextView[nextTheme];
-            cocoGuiWarmed[cocoGuiShown] = true;
+          var stem = cocoGuiStem(nextLayout, nextTheme);
+          if (cocoGuiImage && cocoGuiShown !== stem) {
+            cocoGuiShown = stem;
+            cocoGuiWarmed.add(stem);
             cocoGuiImage.setAttribute('srcset', cocoGuiSrcset(cocoGuiShown));
-            cocoGuiImage.setAttribute('src', 'img/gui/' + cocoGuiShown + '-1600.webp');
+            cocoGuiImage.setAttribute('src', cocoGuiDirectory + cocoGuiShown + '-1600.webp');
           }
 
           if (cocoGuiFigure) {
             cocoGuiFigure.setAttribute(
               'aria-label',
-              'CoCo GUI preview: ' + nextView.label + ' in ' + nextTheme + ' mode'
+              'Zoom in on ' + nextView.label + ' in ' + nextTheme + ' mode'
             );
           }
 
@@ -3326,7 +4532,7 @@ modules.lock</code></pre>
               cocoGuiStateButtons[i].addEventListener(eventName, function () {
                 var theme = this.getAttribute('data-coco-gui-theme-option') || cocoGuiTheme();
                 var layout = this.getAttribute('data-coco-gui-layout-option') || cocoGuiLayout();
-                warmCocoGuiImage(cocoGuiViews[layout][theme]);
+                warmCocoGuiImage(cocoGuiStem(layout, theme));
               });
             });
           }
@@ -3339,13 +4545,129 @@ modules.lock</code></pre>
             }, { rootMargin: '200px 0px' });
             cocoGuiObserver.observe(cocoGuiCard);
           }
+          initGuiInspector();
         }
 
-        var CURRENT_INSTALL_VIEW = 'install-v0-3-5';
-        var VIEWS = ['home', 'cryosieve', 'cryopros', 'emodelg', 'install-v0-3-5', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0', 'changelog', 'changelogs', 'changelog-v0-3-2', 'changelog-v0-2-0'];
+        function initGuiInspector() {
+          const dialog = document.getElementById('gui-inspector');
+          const viewport = dialog.querySelector('.gui-inspector-viewport');
+          const frame = viewport.querySelector('.gui-inspector-frame');
+          const image = viewport.querySelector('img');
+          const title = dialog.querySelector('h3');
+          const zoomIn = dialog.querySelector('[data-zoom="in"]');
+          const zoomOut = dialog.querySelector('[data-zoom="out"]');
+          const fit = dialog.querySelector('[data-zoom="fit"]');
+          const startWidth = 2560;
+          const maxWidth = 5120;
+          let width = startWidth;
+          let fitted = false;
+          let opener;
+          let drag;
+          let pendingPoint;
+
+          function fitWidth() {
+            return Math.min(viewport.clientWidth, viewport.clientHeight * 16 / 9);
+          }
+
+          function pointOnImage(element, x, y) {
+            const rect = element.getBoundingClientRect();
+            return { x: (x - rect.left) / rect.width, y: (y - rect.top) / rect.height };
+          }
+
+          function centerAfterResize() {
+            // WebKit can still expose the old scroll area inside a tap handler.
+            if (!pendingPoint || Math.abs(frame.getBoundingClientRect().width - width) > 0.1) return;
+            viewport.scrollTo(width * pendingPoint.x - viewport.clientWidth / 2,
+              width * 9 / 16 * pendingPoint.y - viewport.clientHeight / 2);
+            pendingPoint = null;
+          }
+          new ResizeObserver(centerAfterResize).observe(frame);
+
+          function setWidth(nextWidth, point) {
+            const minimum = fitWidth();
+            if (!point) {
+              const rect = viewport.getBoundingClientRect();
+              point = pointOnImage(frame, rect.left + viewport.clientWidth / 2, rect.top + viewport.clientHeight / 2);
+            }
+            width = Math.max(minimum, Math.min(nextWidth, maxWidth));
+            frame.style.width = width + 'px';
+            pendingPoint = point;
+            centerAfterResize();
+            fitted = width === minimum;
+            viewport.classList.toggle('is-fit', fitted);
+            zoomOut.disabled = fit.disabled = fitted;
+            zoomIn.disabled = width >= maxWidth;
+          }
+
+          function open(event) {
+            opener = event.currentTarget;
+            const point = opener === cocoGuiFigure && event.detail > 0
+              ? pointOnImage(cocoGuiImage, event.clientX, event.clientY) : { x: 0.5, y: 0.5 };
+            const view = cocoGuiViews[cocoGuiLayout()];
+            title.textContent = view.label;
+            image.alt = view.caption + ' ' + (cocoGuiTheme() === 'dark' ? 'Dark' : 'Light') + ' mode.';
+            const stem = cocoGuiShown;
+            const source = cocoGuiDirectory + stem;
+            image.src = cocoGuiImage.currentSrc.includes('/' + source + '-') ? cocoGuiImage.currentSrc : source + '-1600.webp';
+            dialog.showModal();
+            setWidth(startWidth, point);
+
+            // Keep the preview in place until the detail image is decoded, including on slow connections.
+            const detail = new Image();
+            detail.src = source + '-5120.webp';
+            detail.decode().then(function () {
+              if (dialog.open && cocoGuiShown === stem) image.src = detail.src;
+            }).catch(function () { /* The same area remains available at preview resolution. */ });
+          }
+
+          cocoGuiFigure.addEventListener('click', open);
+          cocoGuiCard.querySelector('.coco-gui-zoom').addEventListener('click', open);
+          zoomIn.addEventListener('click', () => setWidth(width * 2));
+          zoomOut.addEventListener('click', () => setWidth(width / 2));
+          fit.addEventListener('click', () => setWidth(fitWidth(), { x: 0.5, y: 0.5 }));
+          image.addEventListener('click', function (event) {
+            if (fitted) setWidth(startWidth, pointOnImage(image, event.clientX, event.clientY));
+          });
+          dialog.querySelector('[data-zoom="close"]').addEventListener('click', () => dialog.close());
+          dialog.addEventListener('close', function () {
+            if (dialog.open) return;
+            pendingPoint = null;
+            drag = null;
+            image.removeAttribute('src');
+            opener.focus({ preventScroll: true });
+          });
+          window.addEventListener('popstate', function () { if (dialog.open) dialog.close(); });
+          new ResizeObserver(function () {
+            if (dialog.open && (fitted || width < fitWidth())) setWidth(fitWidth(), { x: 0.5, y: 0.5 });
+          }).observe(viewport);
+
+          // Touch uses native two-axis scrolling. Only mouse dragging needs a pointer handler.
+          viewport.addEventListener('pointerdown', function (event) {
+            if (fitted || event.pointerType !== 'mouse' || event.button !== 0) return;
+            drag = { x: event.clientX, y: event.clientY, left: viewport.scrollLeft, top: viewport.scrollTop };
+            viewport.setPointerCapture(event.pointerId);
+          });
+          viewport.addEventListener('pointermove', function (event) {
+            if (!drag || event.pointerType !== 'mouse') return;
+            viewport.scrollLeft = drag.left + drag.x - event.clientX;
+            viewport.scrollTop = drag.top + drag.y - event.clientY;
+          });
+          viewport.addEventListener('lostpointercapture', function () { drag = null; });
+          dialog.addEventListener('keydown', function (event) {
+            const steps = { ArrowLeft: [-80, 0], ArrowRight: [80, 0], ArrowUp: [0, -80], ArrowDown: [0, 80] };
+            const step = steps[event.key];
+            if (!step || event.altKey || event.metaKey || event.ctrlKey) return;
+            event.preventDefault();
+            viewport.scrollBy(step[0], step[1]);
+          });
+        }
+
+        var CURRENT_INSTALL_VIEW = 'install-v0-3-10';
+        var VIEWS = ['home', 'cryosieve', 'cryopros', 'emodelg', 'cocofold-cocoflex', 'structure-validation', 'install-v0-3-10', 'install-v0-3-5', 'install-v0-3-2', 'install-v0-2-0', 'install-v0-1-0', 'changelog', 'changelogs', 'changelog-v0-3-5', 'changelog-v0-3-2', 'changelog-v0-2-0'];
         var currentView = 'home';
         var transitioning = false;
         var scrollTarget = null;
+        var HOME_TITLE = document.title;
         var totalDownloads = document.querySelector('[data-total-downloads]');
         var metricsAvailability;
 
@@ -3386,7 +4708,7 @@ modules.lock</code></pre>
 
           metricsAreAvailable().then(function (available) {
             if (!available) return null;
-            return window.fetch('/api/stats/releases/v0.3.5', {
+            return window.fetch('/api/stats/releases/v0.3.10', {
               headers: { Accept: 'application/json' }
             });
           }).then(function (response) {
@@ -3466,6 +4788,7 @@ modules.lock</code></pre>
           var exitDelay = reduceMotion ? 0 : 200;
           var cleanupDelay = reduceMotion ? 0 : 280;
 
+          oldEl.querySelectorAll('video').forEach(function (movie) { movie.pause(); });
           oldEl.classList.add('view-exit');
 
           setTimeout(function () {
@@ -3473,6 +4796,7 @@ modules.lock</code></pre>
             oldEl.hidden = true;
 
             newEl.hidden = false;
+            prepareMovies(newEl);
             newEl.classList.add('view-enter');
             updateHeaderOffset();
 
@@ -3501,6 +4825,7 @@ modules.lock</code></pre>
             }
 
             updateNavState(viewName);
+            updateTitle(viewName);
             currentView = viewName;
             transitioning = false;
             reportView(viewName);
@@ -3520,16 +4845,138 @@ modules.lock</code></pre>
             if (homeEl && targetEl) {
               homeEl.hidden = true;
               targetEl.hidden = false;
+              prepareMovies(targetEl);
             }
           }
           updateHeaderOffset();
           if (scrollTarget) {
             var target = document.querySelector(scrollTarget);
-            if (target) target.scrollIntoView({ behavior: 'instant' });
+            if (target) {
+              target.scrollIntoView({ behavior: 'instant' });
+              // The hero and sticky header can change height when the web fonts arrive.
+              if (viewName === 'home') {
+                const initialHash = location.hash;
+                const input = new AbortController();
+                const observer = new ResizeObserver(function () {
+                  if (location.hash !== initialHash) return stop();
+                  updateHeaderOffset();
+                  target.scrollIntoView({ behavior: 'instant' });
+                });
+                function stop() { observer.disconnect(); input.abort(); }
+                for (const type of ['pointerdown', 'wheel', 'keydown', 'popstate']) {
+                  window.addEventListener(type, stop, { passive: true, signal: input.signal });
+                }
+                observer.observe(document.getElementById('main'));
+                observer.observe(siteHeader);
+              }
+            }
             scrollTarget = null;
           }
           currentView = viewName;
           updateNavState(viewName);
+          updateTitle(viewName);
+        }
+
+        function updateTitle(viewName) {
+          var heading = viewName !== 'home' && getEl(viewName).querySelector('h1');
+          document.title = heading
+            ? heading.textContent.replace(/\s+/g, ' ').trim().replace(/\.$/, '') + ' | CoCo Project'
+            : HOME_TITLE;
+        }
+
+        function formatMovieTime(seconds) {
+          var whole = Math.max(0, Math.floor(seconds || 0));
+          var rest = whole % 60;
+          return Math.floor(whole / 60) + ':' + (rest < 10 ? '0' : '') + rest;
+        }
+
+        // Assigning src starts metadata loading on first entry to the module.
+        function prepareMovies(view) {
+          view.querySelectorAll('video[data-src]').forEach(function (movie) {
+            movie.poster = movie.dataset.poster;
+            movie.removeAttribute('data-poster');
+            movie.src = movie.dataset.src;
+            movie.removeAttribute('data-src');
+            if (!movie.closest('.fold-flex-movie')) return;
+            movie.defaultPlaybackRate = 1.5;
+            movie.playbackRate = 1.5;
+            var figure = movie.closest('figure');
+            var controls = document.getElementById('silent-movie-controls').content.firstElementChild.cloneNode(true);
+            controls.setAttribute('aria-labelledby', movie.getAttribute('aria-labelledby'));
+            movie.after(controls);
+            movie.controls = false;
+            var playButton = controls.querySelector('[data-action="play"]');
+            var position = controls.querySelector('input');
+            var time = controls.querySelector('.silent-movie-time');
+            var speed = controls.querySelector('select');
+            var fullscreen = controls.querySelector('[data-action="fullscreen"]');
+
+            var waitingAt = null;
+
+            function showTime() {
+              var current = formatMovieTime(movie.currentTime);
+              var total = formatMovieTime(Number.isFinite(movie.duration) ? movie.duration : 0);
+              time.textContent = current + ' / ' + total;
+              position.setAttribute('aria-valuetext', current + ' of ' + total);
+            }
+
+            function showBuffering() {
+              if (movie.paused) return;
+              waitingAt = movie.currentTime;
+              playButton.textContent = 'Loading…';
+              playButton.setAttribute('aria-label', 'Loading… Cancel playback');
+              playButton.title = 'Cancel playback';
+            }
+
+            function showPlaybackAction(label) {
+              waitingAt = null;
+              playButton.textContent = label;
+              playButton.removeAttribute('aria-label');
+              playButton.removeAttribute('title');
+            }
+
+            function togglePlayback() {
+              if (!movie.paused) {
+                movie.pause();
+                return;
+              }
+              movie.play().catch(function (error) {
+                if (error.name === 'AbortError') return;
+                var fallback = movie.querySelector('a').cloneNode(true);
+                controls.replaceChildren(fallback);
+              });
+            }
+            playButton.addEventListener('click', togglePlayback);
+            movie.addEventListener('click', togglePlayback);
+            movie.addEventListener('play', showBuffering);
+            movie.addEventListener('waiting', showBuffering);
+            movie.addEventListener('pause', function () { showPlaybackAction('Play'); });
+            movie.addEventListener('durationchange', function () {
+              if (Number.isFinite(movie.duration)) {
+                position.max = movie.duration;
+                position.disabled = false;
+              }
+              showTime();
+            });
+            movie.addEventListener('timeupdate', function () {
+              position.value = movie.currentTime;
+              showTime();
+              if (waitingAt !== null && !movie.paused && !movie.seeking &&
+                  movie.readyState >= movie.HAVE_FUTURE_DATA && movie.currentTime > waitingAt) {
+                showPlaybackAction('Pause');
+              }
+            });
+            position.addEventListener('input', function () { movie.currentTime = Number(position.value); });
+            speed.addEventListener('change', function () { movie.playbackRate = Number(speed.value); });
+            fullscreen.hidden = !document.fullscreenEnabled;
+            fullscreen.addEventListener('click', function () {
+              if (document.fullscreenElement === figure) document.exitFullscreen();
+              else figure.requestFullscreen();
+            });
+            figure.addEventListener('fullscreenchange', function () {
+              fullscreen.textContent = document.fullscreenElement === figure ? 'Exit full screen' : 'Full screen';
+            });
+          });
         }
 
         function updateNavState(viewName) {
